@@ -177,7 +177,7 @@ class Form {
 
 		return $template->toString( 'form.twig', [
 			'atts'    => $this->getData( 'atts', [] ),
-			'content' => $this->_container->__toString(),
+			'content' => $this->getData( 'fields' )->__toString(),
 		] );
 	}
 
