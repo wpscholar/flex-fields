@@ -1,0 +1,3 @@
+{% for key, value in atts %}
+    {{key|e('html_attr')}}="{{value|e('html_attr')}}"
+{% endfor %}

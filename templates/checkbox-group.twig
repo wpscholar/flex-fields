@@ -1,0 +1,16 @@
+<fieldset {% include 'attributes.twig' %}>
+
+    {%- if legend -%}
+        <legend>{{- legend|e('html') -}}</legend>
+    {%- endif -%}
+
+    {% for option in options %}
+        <label class="flex-label">
+            <input type="checkbox"
+                   name="{{ name ~ '[]'|e('html_attr') }}"
+                   value="{{ option.value|e('html_attr') }}"{{ option.value in value ? ' checked' : '' }} />
+            <span class="flex-label-text">{{ option.label|e('html') }}</span>
+        </label>
+    {% endfor %}
+
+</fieldset>

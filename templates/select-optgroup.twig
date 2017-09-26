@@ -1,0 +1,5 @@
+<optgroup label="{{ option.label|e('html_attr') }}">
+    {% for option in option.options %}
+        {% include 'select-option.twig' %}
+    {% endfor %}
+</optgroup>

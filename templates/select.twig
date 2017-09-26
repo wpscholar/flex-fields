@@ -1,0 +1,9 @@
+<select name="{{name|e('html_attr')}}"{% include 'attributes.twig' %}>
+    {% for option in options %}
+        {% if option.options %}
+            {% include 'select-optgroup.twig' %}
+        {% else %}
+            {% include 'select-option.twig' %}
+        {% endif %}
+    {% endfor %}
+</select>

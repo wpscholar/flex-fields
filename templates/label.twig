@@ -1,0 +1,15 @@
+{% set labelPosition = labelPosition|default('before') %}
+
+{% if label %}
+    <label class="flex-label">
+        {%- if labelPosition != 'after' -%}
+            <span class="flex-label-text">{{- label|e('html') -}}</span>
+        {%- endif -%}
+        {{- content|raw -}}
+        {%- if labelPosition == 'after' -%}
+            <span class="flex-label-text">{{- label|e('html') -}}</span>
+        {%- endif -%}
+    </label>
+{% else %}
+    {{- content|raw -}}
+{% endif %}
