@@ -56,7 +56,7 @@ class TemplateHandler {
 	 * @return array
 	 */
 	protected function getTemplatePaths() {
-		return apply_filters( __METHOD__, [ __DIR__ . '/templates' ] );
+		return apply_filters( __METHOD__, [ dirname( __DIR__ ) . '/templates' ] );
 	}
 
 	/**
