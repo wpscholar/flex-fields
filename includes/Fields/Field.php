@@ -3,6 +3,7 @@
 namespace FlexFields\Fields;
 
 use FlexFields\Traits\Data;
+use FlexFields\Traits\FieldStorageEngine;
 use FlexFields\Traits\Getter;
 use FlexFields\Traits\Setter;
 
@@ -13,10 +14,11 @@ use FlexFields\Traits\Setter;
  *
  * @property string $name
  * @property mixed $value
+ * @property string $storage
  */
 abstract class Field {
 
-	use Data, Getter, Setter;
+	use Data, FieldStorageEngine, Getter, Setter;
 
 	/**
 	 * Field name
@@ -53,6 +55,7 @@ abstract class Field {
 		$this->_name = $name;
 		$this->_data = $args;
 		$this->value = $this->getData( 'value', '' );
+		$this->setStorageEngine( $this->getData( 'storage' ) );
 	}
 
 	/**
@@ -60,6 +63,7 @@ abstract class Field {
 	 */
 	public function render() {
 		echo $this->__toString();
+		wp_enqueue_style( 'flex-fields' );
 	}
 
 	/**
@@ -78,6 +82,15 @@ abstract class Field {
 	 */
 	protected function _get_value() {
 		return $this->_value;
+	}
+
+	/**
+	 * Get storage class
+	 *
+	 * @return string|null
+	 */
+	protected function _get_storage() {
+		return is_object( $this->_storage ) ? get_class( $this->_storage ) : null;
 	}
 
 	/**

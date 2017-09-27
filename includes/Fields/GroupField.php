@@ -28,6 +28,17 @@ class GroupField extends Field {
 	}
 
 	/**
+	 * Sanitize field value
+	 *
+	 * @param string $value
+	 *
+	 * @return null
+	 */
+	public function sanitize( $value ) {
+		return null;
+	}
+
+	/**
 	 * Get field value
 	 *
 	 * @return mixed

@@ -12,6 +12,17 @@ use FlexFields\TemplateHandler;
 class CheckboxGroupField extends Field {
 
 	/**
+	 * Sanitize field value
+	 *
+	 * @param array $value
+	 *
+	 * @return array
+	 */
+	public function sanitize( $value ) {
+		return array_map( 'sanitize_text_field', $value );
+	}
+
+	/**
 	 * Return field markup as a string
 	 *
 	 * @return string

@@ -14,7 +14,9 @@ const config = {
     entry: {
         'flex-fields': [
             './source/js/flex-fields.js',
-            './source/scss/flex-fields.scss'
+            './source/scss/flex-fields.scss',
+            './node_modules/flatpickr/dist/flatpickr.css',
+            './node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.css',
         ]
     },
     output: {
@@ -34,8 +36,31 @@ const config = {
     module: {
         rules: [
             {
+                test: /\.css$/,
+                use: extractCSS.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {sourceMap: true}
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                sourceMap: true,
+                                plugins: [
+                                    autoPrefixer({browsers: browsers}),
+                                    mediaQueryPacker()
+                                ]
+                            }
+                        }
+                    ]
+
+                })
+            },
+            {
                 test: /\.scss$/,
-                use: extractTextPlugin.extract({
+                use: extractCSS.extract({
                     fallback: 'style-loader',
                     use: [
                         {

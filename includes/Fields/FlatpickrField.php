@@ -5,21 +5,19 @@ namespace FlexFields\Fields;
 use FlexFields\TemplateHandler;
 
 /**
- * Class TextareaField
+ * Class FlatpickrField
  *
  * @package FlexFields\Fields
  */
-class TextareaField extends Field {
+class FlatpickrField extends Field {
 
 	/**
-	 * Sanitize field value
+	 * Get default config for Flatpickr
 	 *
-	 * @param string $value
-	 *
-	 * @return string
+	 * @return array
 	 */
-	public function sanitize( $value ) {
-		return sanitize_textarea_field( $value );
+	protected function _defaultConfig() {
+		return [];
 	}
 
 	/**
@@ -31,8 +29,19 @@ class TextareaField extends Field {
 
 		$template = TemplateHandler::getInstance();
 
+		// Get field attributes
+		$atts = $this->getData( 'atts', [] );
+
+		// Set Flatpickr config
+		$atts['data-flatpickr'] = htmlspecialchars(
+			json_encode( (object) $this->getData( 'config', $this->_defaultConfig() ) ), ENT_QUOTES, 'UTF-8'
+		);
+
+		// This field requires JS
+		wp_enqueue_script( 'flex-fields' );
+
 		return $template->toString( 'field.twig', [
-			'fieldType'   => 'textarea',
+			'fieldType'   => 'flatpickr',
 			'before'      => $this->getData( 'before' ),
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),
@@ -40,10 +49,10 @@ class TextareaField extends Field {
 			'content'     => $template->toString( 'label.twig', [
 				'label'         => $this->getData( 'label' ),
 				'labelPosition' => $this->getData( 'label_position', 'before' ),
-				'content'       => $template->toString( 'textarea.twig', [
+				'content'       => $template->toString( 'flatpickr.twig', [
 					'name'  => $this->name,
 					'value' => $this->value,
-					'atts'  => $this->getData( 'atts', [] ),
+					'atts'  => $atts,
 				] )
 			] ),
 		] );

@@ -14,6 +14,21 @@ use FlexFields\TemplateHandler;
 class SelectField extends Field {
 
 	/**
+	 * Sanitize field value
+	 *
+	 * @param string|array $value
+	 *
+	 * @return array
+	 */
+	public function sanitize( $value ) {
+		if ( $this->isMultiSelect ) {
+			return array_map( 'sanitize_text_field', $value );
+		} else {
+			return sanitize_text_field( $value );
+		}
+	}
+
+	/**
 	 * Return field markup as a string
 	 *
 	 * @return string

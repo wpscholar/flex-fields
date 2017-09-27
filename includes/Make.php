@@ -5,6 +5,7 @@ namespace FlexFields;
 use FlexFields\Fields\Field;
 use FlexFields\Fields\FieldContainer;
 use FlexFields\Forms\Form;
+use FlexFields\Storage\FieldStorage;
 
 /**
  * Class Make
@@ -59,6 +60,41 @@ class Make {
 	 */
 	public static function FieldContainer( array $fields = [] ) {
 		return new FieldContainer( $fields );
+	}
+
+	/**
+	 * Factory for generating a field storage object from a string
+	 *
+	 * @param string $storageType
+	 *
+	 * @return FieldStorage
+	 */
+	public static function FieldStorage( $storageType = null ) {
+
+		// Default storage class
+		$storageClass = __NAMESPACE__ . '\\Storage\\PostMetaStorage';
+
+		if ( class_exists( $storageType ) ) {
+
+			// If class is explicitly passed, just use that
+			$storageClass = $storageType;
+
+		} else {
+
+			// Otherwise, derive class name from storage type
+			$storageType = str_replace( ' ', '',
+				ucwords( str_replace( [ '-', '_' ], ' ', strtolower( $storageType ) ) )
+			);
+
+			$class = __NAMESPACE__ . '\\Storage\\' . $storageType . 'Storage';
+
+			if ( class_exists( $class ) ) {
+				$storageClass = $class;
+			}
+		}
+
+		return new $storageClass();
+
 	}
 
 	/**
