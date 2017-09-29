@@ -4,7 +4,6 @@ namespace FlexFields;
 
 use FlexFields\Fields\Field;
 use FlexFields\Fields\FieldContainer;
-use FlexFields\Storage\PostMetaStorage;
 
 /**
  * Class MetaBox
