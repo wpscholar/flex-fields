@@ -22,7 +22,7 @@ class Make {
 	 *
 	 * @return Field
 	 */
-	public static function Field( $name, $args ) {
+	public static function Field( $name, $args = [] ) {
 
 		// Default to input field
 		$fieldClass = __NAMESPACE__ . '\\Fields\\InputField';
