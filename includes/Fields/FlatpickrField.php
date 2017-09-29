@@ -32,10 +32,10 @@ class FlatpickrField extends Field {
 		// Get field attributes
 		$atts = $this->getData( 'atts', [] );
 
+		$config = array_merge( $this->_defaultConfig(), $this->getData( 'config', [] ) );
+
 		// Set Flatpickr config
-		$atts['data-flatpickr'] = htmlspecialchars(
-			json_encode( (object) $this->getData( 'config', $this->_defaultConfig() ) ), ENT_QUOTES, 'UTF-8'
-		);
+		$atts['data-flatpickr'] = htmlspecialchars( json_encode( (object) $config ), ENT_QUOTES, 'UTF-8' );
 
 		// This field requires JS
 		wp_enqueue_script( 'flex-fields' );
