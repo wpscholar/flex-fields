@@ -11,7 +11,7 @@
   display: block; }
 
 .flex-field-flatpickr .flatpickr-input {
-  background-color: transparent; }
+  background-color: white; }
 
 .flex-field-flatpickr .flatpickr-reset {
   color: gray;
