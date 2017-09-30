@@ -43,7 +43,7 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	 *
 	 * @param string $name
 	 *
-	 * @return mixed
+	 * @return Field|null
 	 */
 	public function getField( $name ) {
 		$field = null;
