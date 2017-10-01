@@ -8,12 +8,12 @@
         {%- for item in value -%}
             <div>
                 <input type="text" name="{{ name|e('html_attr') }}[]" value="{{ item|e('html_attr') }}" />
-                <button type="button" title="Delete" data-action="delete">x</button>
+                <button type="button" title="Delete" data-action="delete">✕</button>
             </div>
         {%- endfor -%}
         <div>
             <input type="text" name="{{ name|e('html_attr') }}[]" value="" />
-            <button type="button" title="Delete" data-action="delete">x</button>
+            <button type="button" title="Delete" data-action="delete">✕</button>
         </div>
     </div>
 

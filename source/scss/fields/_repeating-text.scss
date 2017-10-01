@@ -1,0 +1,25 @@
+.flex-field-repeating-text {
+
+  > fieldset {
+
+    > div {
+      margin: .5em 0;
+      > div {
+        display: flex;
+        margin: .25em 0;
+        button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-size: 1em;
+        }
+      }
+    }
+
+    > button {
+      @extend .flex-button;
+    }
+
+  }
+
+}

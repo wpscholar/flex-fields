@@ -7,6 +7,14 @@
 .flex-field--full-width {
   width: 100%; }
 
+.flex-button, .flex-field-repeating-text > fieldset > button {
+  background-color: #EEEEEE;
+  border: 1px solid #CCCCCC;
+  border-radius: 6px;
+  color: #333333;
+  cursor: pointer;
+  font-size: 1em; }
+
 .flex-field-flatpickr .flex-label-text {
   display: block; }
 
@@ -22,6 +30,22 @@
 
 .flex-field-input .flex-label-text + input {
   display: block; }
+
+.flex-field-radio-group .flex-label {
+  display: block; }
+
+.flex-field-repeating-text > fieldset > div {
+  margin: .5em 0; }
+  .flex-field-repeating-text > fieldset > div > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: .25em 0; }
+    .flex-field-repeating-text > fieldset > div > div button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1em; }
 
 .flex-field-select .flex-label-text {
   display: block; }
