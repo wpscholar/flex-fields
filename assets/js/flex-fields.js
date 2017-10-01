@@ -68,9 +68,9 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-__webpack_require__(7);
 __webpack_require__(8);
-module.exports = __webpack_require__(9);
+__webpack_require__(9);
+module.exports = __webpack_require__(10);
 
 
 /***/ }),
@@ -80,6 +80,9 @@ module.exports = __webpack_require__(9);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_flatpickr__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_repeating_text__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_repeating_text___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__fields_repeating_text__);
+
 
 
 /***/ }),
@@ -2763,7 +2766,27 @@ module.exports = g;
 /* 7 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+Array.from(document.querySelectorAll('.flex-field-repeating-text')).forEach(function (field) {
+
+    var container = field.querySelector('fieldset > div');
+    var template = container.lastElementChild.cloneNode(true);
+    var addButton = field.querySelector('fieldset > button');
+    var deleteButtons = container.querySelectorAll('button');
+
+    var deleteEventHandler = function deleteEventHandler() {
+        this.parentNode.parentNode.removeChild(this.parentNode);
+    };
+
+    addButton.addEventListener('click', function () {
+        var node = template.cloneNode(true);
+        node.querySelector('button').addEventListener('click', deleteEventHandler);
+        container.appendChild(node);
+    });
+
+    Array.from(deleteButtons).forEach(function (deleteButton) {
+        deleteButton.addEventListener('click', deleteEventHandler);
+    });
+});
 
 /***/ }),
 /* 8 */
@@ -2773,6 +2796,12 @@ module.exports = g;
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
