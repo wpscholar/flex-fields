@@ -5,7 +5,7 @@ import decode from 'lodash.unescape';
 Array
     .from(document.querySelectorAll('.flex-field-flatpickr'))
     .forEach(
-        function (field) {
+        (field) => {
 
             const input = field.querySelector('[data-flatpickr]');
             const config = JSON.parse(decode(input.getAttribute('data-flatpickr')));
