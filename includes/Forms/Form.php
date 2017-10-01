@@ -159,7 +159,7 @@ class Form {
 		$value         = strtoupper( $value );
 		$valid_methods = [ 'GET', 'POST' ];
 		$method        = $valid_methods[0];
-		if ( in_array( $valid_methods, $valid_methods ) ) {
+		if ( in_array( $value, $valid_methods ) ) {
 			$method = $value;
 		}
 		$this->_data['method']         = $method;
