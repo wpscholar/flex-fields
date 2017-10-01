@@ -31,6 +31,9 @@ class RepeatingTextField extends Field {
 
 		$template = TemplateHandler::getInstance();
 
+		// This field requires JS
+		wp_enqueue_script( 'flex-fields' );
+
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'repeating-text',
 			'before'      => $this->getData( 'before' ),
