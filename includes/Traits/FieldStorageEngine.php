@@ -26,7 +26,7 @@ trait FieldStorageEngine {
 	 *
 	 * @return string
 	 */
-	function sanitize( $value ) {
+	public function sanitize( $value ) {
 		return sanitize_text_field( $value );
 	}
 
