@@ -7,6 +7,7 @@ use FlexFields\Fields\FieldContainer;
 use FlexFields\Make;
 use FlexFields\TemplateHandler;
 use FlexFields\Traits\Data;
+use FlexFields\Traits\Errors;
 use FlexFields\Traits\Getter;
 use FlexFields\Traits\Setter;
 
@@ -22,7 +23,10 @@ use FlexFields\Traits\Setter;
  */
 class Form {
 
-	use Data, Getter, Setter;
+	use Data,
+		Errors,
+		Getter,
+		Setter;
 
 	/**
 	 * Form constructor.
@@ -32,7 +36,8 @@ class Form {
 	 */
 	public function __construct( $name, array $args = [] ) {
 
-		$this->_data = $args;
+		$this->_data         = $args;
+		$this->_data['name'] = $name;
 
 		// Setup handler, if provided
 		$handler = $this->getData( 'handler' );
@@ -46,14 +51,17 @@ class Form {
 
 		// Set fields
 		$fieldContainer = new FieldContainer( $this->getData( 'fields', [] ) );
-		$fieldContainer->addField( Make::Field( 'form', [ 'type' => 'hidden', 'value' => $name ] ) );
+		$fieldContainer->addField( Make::Field( 'form', [
+			'type'   => 'hidden',
+			'value'  => $name,
+			'hidden' => true,
+		] ) );
 		$this->_data['fields'] = $fieldContainer;
 
 		// Set core data
 		$this->context = $this->getData( 'context', 'custom' );
 		$this->method  = $this->getData( 'method', $this->getData( [ 'atts', 'method' ], 'GET' ) );
 
-		$this->_data['name']   = $name;
 		$this->_data['action'] = $this->getData( 'action', $this->getData( [ 'atts', 'action' ], '' ) );
 
 	}
@@ -65,6 +73,7 @@ class Form {
 
 		// Set field values
 		foreach ( $this->fields as $field ) {
+
 			/**
 			 * @var Field $field
 			 */
@@ -72,21 +81,17 @@ class Form {
 				case 'GET':
 					if ( isset( $_GET[ $field->name ] ) ) {
 						$field->value = $_GET[ $field->name ];
-					} else {
-						$field->value = '';
 					}
 					break;
 				case 'POST':
 					if ( isset( $_POST[ $field->name ] ) ) {
 						$field->value = $_POST[ $field->name ];
-					} else {
-						$field->value = '';
 					}
 					break;
 			}
 		}
 
-		do_action( __METHOD__, $this );
+		do_action( __METHOD__ . '_' . $this->name, $this );
 	}
 
 	/**
@@ -95,7 +100,7 @@ class Form {
 	 * @param callable $callback
 	 */
 	public function registerHandler( callable $callback ) {
-		add_action( __CLASS__ . '::' . 'process', $callback );
+		add_action( __CLASS__ . '::process_' . $this->name, $callback );
 	}
 
 	/**
@@ -111,7 +116,7 @@ class Form {
 	 * @return bool
 	 */
 	public function shouldHandle() {
-		return $this->_name === filter_input( constant( 'INPUT_' . $this->method ), 'form' );
+		return $this->name === filter_input( constant( 'INPUT_' . $this->method ), 'form' );
 	}
 
 	/**
@@ -176,8 +181,10 @@ class Form {
 		$template = TemplateHandler::getInstance();
 
 		return $template->toString( 'form.twig', [
-			'atts'    => $this->getData( 'atts', [] ),
-			'content' => $this->getData( 'fields' )->__toString(),
+			'atts'      => $this->getData( 'atts', [] ),
+			'hasErrors' => $this->hasErrors(),
+			'errors'    => $this->getErrorMessages(),
+			'content'   => $this->getData( 'fields' )->__toString(),
 		] );
 	}
 

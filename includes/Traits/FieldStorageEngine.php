@@ -47,7 +47,13 @@ trait FieldStorageEngine {
 	 * @returns mixed
 	 */
 	public function fetch( $id ) {
-		return $this->_storage->fetch( $id, $this->_name );
+		$fetch = $this->getData( 'fetch' );
+		if ( $fetch && is_callable( $fetch ) ) {
+			return call_user_func( $fetch, $id, $this->_name );
+		} else {
+			return $this->_storage->fetch( $id, $this->_name );
+		}
+
 	}
 
 	/**
@@ -57,7 +63,12 @@ trait FieldStorageEngine {
 	 * @param mixed $value
 	 */
 	public function save( $id, $value ) {
-		$this->_storage->save( $id, $this->_name, $this->sanitize( $value ) );
+		$save = $this->getData( 'save' );
+		if ( $save && is_callable( $save ) ) {
+			call_user_func( $save, $id, $this->_name, $this->sanitize( $value ) );
+		} else {
+			$this->_storage->save( $id, $this->_name, $this->sanitize( $value ) );
+		}
 	}
 
 	/**
@@ -66,7 +77,12 @@ trait FieldStorageEngine {
 	 * @param int $id
 	 */
 	public function delete( $id ) {
-		$this->_storage->delete( $id, $this->_name );
+		$delete = $this->getData( 'delete' );
+		if ( $delete && is_callable( $delete ) ) {
+			call_user_func( $delete, $id, $this->_name );
+		} else {
+			$this->_storage->delete( $id, $this->_name );
+		}
 	}
 
 	/**

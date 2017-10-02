@@ -3,6 +3,7 @@
 namespace FlexFields\Fields;
 
 use FlexFields\Traits\Data;
+use FlexFields\Traits\Errors;
 use FlexFields\Traits\FieldStorageEngine;
 use FlexFields\Traits\Getter;
 use FlexFields\Traits\Setter;
@@ -18,7 +19,11 @@ use FlexFields\Traits\Setter;
  */
 abstract class Field {
 
-	use Data, FieldStorageEngine, Getter, Setter;
+	use Data,
+		Errors,
+		FieldStorageEngine,
+		Getter,
+		Setter;
 
 	/**
 	 * Field name
@@ -63,7 +68,6 @@ abstract class Field {
 	 */
 	public function render() {
 		echo $this->__toString();
-		wp_enqueue_style( 'flex-fields' );
 	}
 
 	/**

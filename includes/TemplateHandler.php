@@ -45,6 +45,14 @@ class TemplateHandler {
 			$twig->addExtension( new \Twig_Extension_Debug() );
 		}
 
+		$twig
+			->getExtension( 'Twig_Extension_Core' )
+			->setEscaper( 'esc_attr',
+				function ( $twig, $string, $charset ) {
+					return esc_attr( $string );
+				}
+			);
+
 		$this->_twig = $twig;
 	}
 

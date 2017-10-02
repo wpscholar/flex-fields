@@ -1,0 +1,21 @@
+.flex-error {
+  display: block;
+  margin: .5em 0 1em 0;
+  padding: .25em;
+  background-color: pink;
+  border: 1px solid red;
+  color: #747474;
+}
+
+.flex-field-has-error {
+  .flex-label-text,
+  & > fieldset > legend {
+    color: red;
+  }
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="text"] {
+    border: 1px solid red;
+  }
+}

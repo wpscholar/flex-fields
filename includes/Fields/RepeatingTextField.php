@@ -29,13 +29,16 @@ class RepeatingTextField extends Field {
 	 */
 	public function __toString() {
 
-		$template = TemplateHandler::getInstance();
-
-		// This field requires JS
+		wp_enqueue_style( 'flex-fields' );
 		wp_enqueue_script( 'flex-fields' );
+
+		$template = TemplateHandler::getInstance();
 
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'repeating-text',
+			'hidden'      => $this->getData( 'hidden', false ),
+			'hasError'    => $this->hasErrors(),
+			'error'       => $this->getErrorMessage(),
 			'before'      => $this->getData( 'before' ),
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),

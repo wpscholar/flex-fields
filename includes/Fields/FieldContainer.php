@@ -115,6 +115,32 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	}
 
 	/**
+	 * Converts the field container to a string
+	 *
+	 * @return string
+	 */
+	public function asString() {
+		return $this->__toString();
+	}
+
+	/**
+	 * Converts the field container to an array
+	 *
+	 * @return array
+	 */
+	public function asArray() {
+		$data = [];
+		foreach ( $this->_fields as $field ) {
+			/**
+			 * @var Field $field
+			 */
+			$data[ $field->name ] = $field->value;
+		}
+
+		return $data;
+	}
+
+	/**
 	 * Converts the field container, including all contained fields, to a string.
 	 *
 	 * @return string

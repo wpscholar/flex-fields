@@ -1,3 +1,10 @@
 <form {% include 'attributes.twig' %}>
+    {% if hasErrors %}
+        <div class="flex-form-errors">
+            {% for error in errors %}
+                {% include 'error.twig' %}
+            {% endfor %}
+        </div>
+    {% endif %}
     {{- content|raw -}}
 </form>

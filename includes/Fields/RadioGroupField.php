@@ -18,6 +18,8 @@ class RadioGroupField extends Field {
 	 */
 	public function __toString() {
 
+		wp_enqueue_style( 'flex-fields' );
+
 		$template = TemplateHandler::getInstance();
 
 		$options = apply_filters(
@@ -28,6 +30,9 @@ class RadioGroupField extends Field {
 
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'radio-group',
+			'hidden'      => $this->getData( 'hidden', false ),
+			'hasError'    => $this->hasErrors(),
+			'error'       => $this->getErrorMessage(),
 			'before'      => $this->getData( 'before' ),
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),

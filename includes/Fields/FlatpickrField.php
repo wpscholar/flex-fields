@@ -27,6 +27,9 @@ class FlatpickrField extends Field {
 	 */
 	public function __toString() {
 
+		wp_enqueue_style( 'flex-fields' );
+		wp_enqueue_script( 'flex-fields' );
+
 		$template = TemplateHandler::getInstance();
 
 		// Get field attributes
@@ -37,11 +40,11 @@ class FlatpickrField extends Field {
 		// Set Flatpickr config
 		$atts['data-flatpickr'] = htmlspecialchars( json_encode( (object) $config ), ENT_QUOTES, 'UTF-8' );
 
-		// This field requires JS
-		wp_enqueue_script( 'flex-fields' );
-
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'flatpickr',
+			'hidden'      => $this->getData( 'hidden', false ),
+			'hasError'    => $this->hasErrors(),
+			'error'       => $this->getErrorMessage(),
 			'before'      => $this->getData( 'before' ),
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),
