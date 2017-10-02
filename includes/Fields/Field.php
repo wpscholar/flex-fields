@@ -42,15 +42,6 @@ abstract class Field {
 	protected $_value;
 
 	/**
-	 * Field data
-	 *
-	 * Set during construction, cannot be altered externally.
-	 *
-	 * @var array
-	 */
-	protected $_data = [];
-
-	/**
 	 * Field constructor.
 	 *
 	 * @param string $name
