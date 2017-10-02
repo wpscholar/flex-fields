@@ -13,15 +13,6 @@ use FlexFields\Storage\FieldStorage;
 trait FieldStorageEngine {
 
 	/**
-	 * Field name
-	 *
-	 * Set during construction, cannot be altered externally
-	 *
-	 * @var string
-	 */
-	protected $_name;
-
-	/**
 	 * Storage engine
 	 *
 	 * @var FieldStorage
