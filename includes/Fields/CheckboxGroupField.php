@@ -33,11 +33,13 @@ class CheckboxGroupField extends Field {
 
 		$template = TemplateHandler::getInstance();
 
-		$options = apply_filters(
-			__CLASS__ . ':options',
-			$this->_normalizeOptions( $this->getData( 'options', [] ) ),
-			$this
-		);
+		$options = $this->getData( 'options', [] );
+
+		if ( is_callable( $options ) ) {
+			$options = $options( $this );
+		}
+
+		$options = apply_filters( __CLASS__ . ':options', $this->_normalizeOptions( $options ), $this );
 
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'checkbox-group',
