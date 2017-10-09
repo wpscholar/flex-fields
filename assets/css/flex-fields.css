@@ -36,6 +36,9 @@
 .flex-field-has-error input[type="text"] {
   border: 1px solid red; }
 
+.flex-field-checkbox-group .flex-label {
+  display: block; }
+
 .flex-field-flatpickr .flex-label-text {
   display: block; }
 
