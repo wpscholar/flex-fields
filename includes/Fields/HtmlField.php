@@ -57,6 +57,12 @@ class HtmlField extends Field {
 
 		$template = TemplateHandler::getInstance();
 
+		$value = $this->getData( 'value' );
+
+		if ( is_callable( $value ) ) {
+			$value = $value( $this );
+		}
+
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'html',
 			'hidden'      => $this->getData( 'hidden', false ),
@@ -65,7 +71,7 @@ class HtmlField extends Field {
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),
 			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => wp_kses_post( apply_filters( __METHOD__, $this->value, $this ) ),
+			'content'     => apply_filters( __METHOD__, $value, $this ),
 		] );
 
 	}
