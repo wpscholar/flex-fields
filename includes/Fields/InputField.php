@@ -63,7 +63,7 @@ class InputField extends Field {
 
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'input',
-			'hidden'      => $this->getData( 'hidden', false ),
+			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'hasError'    => $this->hasErrors(),
 			'error'       => $this->getErrorMessage(),
 			'before'      => $this->getData( 'before' ),

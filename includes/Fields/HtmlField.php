@@ -65,7 +65,7 @@ class HtmlField extends Field {
 
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'html',
-			'hidden'      => $this->getData( 'hidden', false ),
+			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'hasError'    => false,
 			'before'      => $this->getData( 'before' ),
 			'after'       => $this->getData( 'after' ),

@@ -10,6 +10,7 @@ use FlexFields\TemplateHandler;
  * @package FlexFields\Fields
  *
  * @property bool $isMultiSelect
+ * @property array $options
  */
 class SelectField extends Field {
 
@@ -39,17 +40,9 @@ class SelectField extends Field {
 
 		$template = TemplateHandler::getInstance();
 
-		$options = $this->getData( 'options', [] );
-
-		if ( is_callable( $options ) ) {
-			$options = $options( $this );
-		}
-
-		$options = apply_filters( __CLASS__ . ':options', $this->_normalizeOptions( $options ), $this );
-
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'select',
-			'hidden'      => $this->getData( 'hidden', false ),
+			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'hasError'    => $this->hasErrors(),
 			'error'       => $this->getErrorMessage(),
 			'before'      => $this->getData( 'before' ),
@@ -62,7 +55,7 @@ class SelectField extends Field {
 				'content'       => $template->toString( 'select.twig', [
 					'name'    => $this->isMultiSelect ? $this->name . '[]' : $this->name,
 					'value'   => $this->value,
-					'options' => $this->_normalizeOptions( $options ),
+					'options' => $this->_normalizeOptions( $this->options ),
 					'atts'    => $this->getData( 'atts', [] ),
 				] )
 			] ),
@@ -77,6 +70,17 @@ class SelectField extends Field {
 	 */
 	protected function _get_isMultiSelect() {
 		return (bool) $this->getData( [ 'atts', 'multiple' ] );
+	}
+
+	/**
+	 * Get options
+	 *
+	 * @return array
+	 */
+	protected function _get_options() {
+		$options = $this->_maybeConvertCallable( $this->getData( 'options', [] ), $this );
+
+		return apply_filters( __CLASS__ . ':options', $this->_normalizeOptions( $options ), $this );
 	}
 
 	/**

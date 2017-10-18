@@ -36,7 +36,7 @@ class RepeatingTextField extends Field {
 
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'repeating-text',
-			'hidden'      => $this->getData( 'hidden', false ),
+			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'hasError'    => $this->hasErrors(),
 			'error'       => $this->getErrorMessage(),
 			'before'      => $this->getData( 'before' ),

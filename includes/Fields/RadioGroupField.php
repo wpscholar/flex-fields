@@ -8,6 +8,8 @@ use FlexFields\TemplateHandler;
  * Class RadioGroupField
  *
  * @package FlexFields\Fields
+ *
+ * @property array $options
  */
 class RadioGroupField extends Field {
 
@@ -22,17 +24,9 @@ class RadioGroupField extends Field {
 
 		$template = TemplateHandler::getInstance();
 
-		$options = $this->getData( 'options', [] );
-
-		if ( is_callable( $options ) ) {
-			$options = $options( $this );
-		}
-
-		$options = apply_filters( __CLASS__ . ':options', $this->_normalizeOptions( $options ), $this );
-
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'radio-group',
-			'hidden'      => $this->getData( 'hidden', false ),
+			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'hasError'    => $this->hasErrors(),
 			'error'       => $this->getErrorMessage(),
 			'before'      => $this->getData( 'before' ),
@@ -43,11 +37,22 @@ class RadioGroupField extends Field {
 				'name'    => $this->name,
 				'value'   => $this->value,
 				'legend'  => $this->getData( 'label' ),
-				'options' => $this->_normalizeOptions( $options ),
+				'options' => $this->_normalizeOptions( $this->options ),
 				'atts'    => $this->getData( 'atts', [] ),
 			] ),
 		] );
 
+	}
+
+	/**
+	 * Get options
+	 *
+	 * @return array
+	 */
+	protected function _get_options() {
+		$options = $this->_maybeConvertCallable( $this->getData( 'options', [] ), $this );
+
+		return apply_filters( __CLASS__ . ':options', $this->_normalizeOptions( $options ), $this );
 	}
 
 	/**
