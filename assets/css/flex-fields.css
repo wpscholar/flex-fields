@@ -36,6 +36,9 @@
 .flex-field-has-error input[type="text"] {
   border: 1px solid red; }
 
+.wp-admin.term-php .flex-field {
+  margin: 0; }
+
 .flex-field-flatpickr .flex-label-text {
   display: block; }
 
