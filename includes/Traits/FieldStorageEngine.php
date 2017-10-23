@@ -55,10 +55,16 @@ trait FieldStorageEngine {
 	 */
 	public function save( $id, $value ) {
 		$save = $this->getData( 'save' );
-		if ( $save && is_callable( $save ) ) {
-			call_user_func( $save, $id, $this->_name, $this->sanitize( $value ) );
+		$sanitize = $this->getData( 'sanitize' );
+		if ( $sanitize && is_callable( $sanitize ) ) {
+			$clean_value = call_user_func( $sanitize, $value );
 		} else {
-			$this->_storage->save( $id, $this->_name, $this->sanitize( $value ) );
+			$clean_value = sanitize_text_field( $value );
+		}
+		if ( $save && is_callable( $save ) ) {
+			call_user_func( $save, $id, $this->_name, $this->sanitize( $clean_value ) );
+		} else {
+			$this->_storage->save( $id, $this->_name, $this->sanitize( $clean_value ) );
 		}
 	}
 

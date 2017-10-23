@@ -67,6 +67,7 @@ class GroupField extends Field {
 
 		return $template->toString( 'field.twig', [
 			'fieldType'   => 'group',
+			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'before'      => $this->getData( 'before' ),
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),

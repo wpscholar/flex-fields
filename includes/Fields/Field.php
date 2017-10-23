@@ -98,6 +98,24 @@ abstract class Field {
 	}
 
 	/**
+	 * Covert a callable to a value
+	 *
+	 * @param callable|mixed $value
+	 *
+	 * @return mixed
+	 */
+	protected function _maybeConvertCallable( $value ) {
+
+		if ( is_callable( $value ) ) {
+			$args = func_get_args();
+			array_shift( $args );
+			$value = call_user_func_array( $value, $args );
+		}
+
+		return $value;
+	}
+
+	/**
 	 * Return field markup as a string
 	 *
 	 * @return string

@@ -19,25 +19,30 @@
   font-size: 1em; }
 
 .flex-error {
+  max-width: 600px;
   display: block;
   margin: .5em 0 1em 0;
   padding: .25em;
-  background-color: pink;
-  border: 1px solid red;
-  color: #747474; }
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  border-radius: 4px;
+  color: #dd0000; }
 
 .flex-field-has-error .flex-label-text,
 .flex-field-has-error > fieldset > legend {
-  color: red; }
+  color: #dd0000; }
 
 .flex-field-has-error input[type="email"],
 .flex-field-has-error input[type="number"],
 .flex-field-has-error input[type="tel"],
 .flex-field-has-error input[type="text"] {
-  border: 1px solid red; }
+  border: 1px solid #dd0000; }
 
 .wp-admin.term-php .flex-field {
   margin: 0; }
+
+.flex-field-checkbox-group .flex-label {
+  display: block; }
 
 .flex-field-flatpickr .flex-label-text {
   display: block; }
