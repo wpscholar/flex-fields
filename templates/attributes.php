@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var \FlexFields\TemplateX $x
+ * @var \wpscholar\TemplateX $x
  */
 
 foreach ( $x->get( 'atts', [] ) as $key => $value ) {

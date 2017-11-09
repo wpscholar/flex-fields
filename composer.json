@@ -16,5 +16,8 @@
     "psr-4": {
       "FlexFields\\": "includes"
     }
+  },
+  "require": {
+    "wpscholar/templatex": "^1.0"
   }
 }

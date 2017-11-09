@@ -2,6 +2,8 @@
 
 namespace FlexFields;
 
+use wpscholar\TemplateX;
+
 /**
  * Class TemplateHandler
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \FlexFields\TemplateX $x
+ * @var \wpscholar\TemplateX $x
  */
 ?>
 <select name="<?php echo esc_attr( $x->get( 'name' ) ); ?>" <?php $x->load( 'attributes.php' ); ?>>

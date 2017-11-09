@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \FlexFields\TemplateX $x
+ * @var \wpscholar\TemplateX $x
  *
  * @var string $fieldType
  */

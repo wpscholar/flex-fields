@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \FlexFields\TemplateX $x
+ * @var \wpscholar\TemplateX $x
  */
 ?>
 <optgroup label="<?php echo esc_attr( $x->get( 'option.label' ) ); ?>">
