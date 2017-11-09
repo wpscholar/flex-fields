@@ -65,14 +65,14 @@ class GroupField extends Field {
 
 		$template = TemplateHandler::getInstance();
 
-		return $template->toString( 'field.twig', [
+		return $template->toString( 'field.php', [
 			'fieldType'   => 'group',
 			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'before'      => $this->getData( 'before' ),
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),
 			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'fieldset.twig', [
+			'content'     => $template->toString( 'fieldset.php', [
 				'legend'  => $this->getData( 'label' ),
 				'atts'    => $this->getData( 'atts', [] ),
 				'content' => $this->_container->__toString(),

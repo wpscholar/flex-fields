@@ -14,12 +14,12 @@ class TemplateHandler {
 	 *
 	 * @var TemplateHandler
 	 */
-	protected static $_instance;
+	protected static $instance;
 
 	/**
-	 * @var \Twig_Environment
+	 * @var TemplateX
 	 */
-	protected $_twig;
+	protected $x;
 
 	/**
 	 * Get an instance of this class.
@@ -27,33 +27,18 @@ class TemplateHandler {
 	 * @return TemplateHandler
 	 */
 	public static function getInstance() {
-		if ( ! isset( self::$_instance ) ) {
-			self::$_instance = new self();
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return self::$_instance;
+		return self::$instance;
 	}
 
 	/**
-	 * FieldTemplateHandler constructor.
+	 * TemplateHandler constructor.
 	 */
 	protected function __construct() {
-		$loader = new \Twig_Loader_Filesystem( $this->getTemplatePaths() );
-		$twig   = new \Twig_Environment( $loader, [ 'debug' => $this->_isDebugMode() ] );
-
-		if ( $this->_isDebugMode() ) {
-			$twig->addExtension( new \Twig_Extension_Debug() );
-		}
-
-		$twig
-			->getExtension( 'Twig_Extension_Core' )
-			->setEscaper( 'esc_attr',
-				function ( $twig, $string, $charset ) {
-					return esc_attr( $string );
-				}
-			);
-
-		$this->_twig = $twig;
+		$this->x = new TemplateX( $this->getTemplatePaths() );
 	}
 
 	/**
@@ -86,16 +71,10 @@ class TemplateHandler {
 	 * @return string
 	 */
 	public function toString( $template, array $data = [] ) {
-		return $this->_twig->render( $template, $data );
-	}
+		$this->x->setTemplate( $template );
+		$this->x->setContext( $data );
 
-	/**
-	 * Check if we are in debug mode.
-	 *
-	 * @return bool
-	 */
-	protected function _isDebugMode() {
-		return defined( 'WP_DEBUG' ) && WP_DEBUG ? WP_DEBUG : false;
+		return $this->x->render();
 	}
 
 }

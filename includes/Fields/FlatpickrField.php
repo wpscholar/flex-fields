@@ -40,7 +40,7 @@ class FlatpickrField extends Field {
 		// Set Flatpickr config
 		$atts['data-flatpickr'] = htmlspecialchars( json_encode( (object) $config ), ENT_QUOTES, 'UTF-8' );
 
-		return $template->toString( 'field.twig', [
+		return $template->toString( 'field.php', [
 			'fieldType'   => 'flatpickr',
 			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'hasError'    => $this->hasErrors(),
@@ -49,10 +49,10 @@ class FlatpickrField extends Field {
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),
 			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'label.twig', [
+			'content'     => $template->toString( 'label.php', [
 				'label'         => $this->getData( 'label' ),
 				'labelPosition' => $this->getData( 'label_position', 'before' ),
-				'content'       => $template->toString( 'flatpickr.twig', [
+				'content'       => $template->toString( 'flatpickr.php', [
 					'name'  => $this->name,
 					'value' => $this->value,
 					'atts'  => $atts,

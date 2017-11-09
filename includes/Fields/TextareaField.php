@@ -33,7 +33,7 @@ class TextareaField extends Field {
 
 		$template = TemplateHandler::getInstance();
 
-		return $template->toString( 'field.twig', [
+		return $template->toString( 'field.php', [
 			'fieldType'   => 'textarea',
 			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'hasError'    => $this->hasErrors(),
@@ -42,10 +42,10 @@ class TextareaField extends Field {
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),
 			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'label.twig', [
+			'content'     => $template->toString( 'label.php', [
 				'label'         => $this->getData( 'label' ),
 				'labelPosition' => $this->getData( 'label_position', 'before' ),
-				'content'       => $template->toString( 'textarea.twig', [
+				'content'       => $template->toString( 'textarea.php', [
 					'name'  => $this->name,
 					'value' => $this->value,
 					'atts'  => $this->getData( 'atts', [] ),

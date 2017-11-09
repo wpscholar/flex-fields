@@ -180,7 +180,7 @@ class Form {
 
 		$template = TemplateHandler::getInstance();
 
-		return $template->toString( 'form.twig', [
+		return $template->toString( 'form.php', [
 			'atts'      => $this->getData( 'atts', [] ),
 			'hasErrors' => $this->hasErrors(),
 			'errors'    => $this->getErrorMessages(),

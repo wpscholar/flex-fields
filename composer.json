@@ -16,8 +16,5 @@
     "psr-4": {
       "FlexFields\\": "includes"
     }
-  },
-  "require": {
-    "twig/twig": "^1.34"
   }
 }

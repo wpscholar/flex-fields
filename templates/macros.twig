@@ -1,5 +1,0 @@
-{% macro maybeAddClass(condition, className) %}
-    {%- if condition -%}
-        {{- ' ' ~ className|e('html_attr') -}}
-    {%- endif -%}
-{% endmacro %}

@@ -34,7 +34,7 @@ class RepeatingTextField extends Field {
 
 		$template = TemplateHandler::getInstance();
 
-		return $template->toString( 'field.twig', [
+		return $template->toString( 'field.php', [
 			'fieldType'   => 'repeating-text',
 			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'hasError'    => $this->hasErrors(),
@@ -43,7 +43,7 @@ class RepeatingTextField extends Field {
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),
 			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'repeating-text.twig', [
+			'content'     => $template->toString( 'repeating-text.php', [
 				'name'   => $this->name,
 				'value'  => array_filter( $this->value ),
 				'legend' => $this->getData( 'label' ),

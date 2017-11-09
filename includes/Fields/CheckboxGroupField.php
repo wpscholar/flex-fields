@@ -35,7 +35,7 @@ class CheckboxGroupField extends Field {
 
 		$template = TemplateHandler::getInstance();
 
-		return $template->toString( 'field.twig', [
+		return $template->toString( 'field.php', [
 			'fieldType'   => 'checkbox-group',
 			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
 			'hasError'    => $this->hasErrors(),
@@ -44,7 +44,7 @@ class CheckboxGroupField extends Field {
 			'after'       => $this->getData( 'after' ),
 			'beforeField' => $this->getData( 'before_field' ),
 			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'checkbox-group.twig', [
+			'content'     => $template->toString( 'checkbox-group.php', [
 				'name'    => $this->name,
 				'value'   => $this->value,
 				'legend'  => $this->getData( 'label' ),
