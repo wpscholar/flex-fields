@@ -29,7 +29,9 @@ if ( ! function_exists( 'flex_fields_setup' ) ) {
 	 */
 	function flex_fields_allowed_html() {
 
-		if ( ! defined( 'FLEX_FIELDS_ALLOWED_HTML' ) ) {
+		static $flexAllowedHtml;
+
+		if ( ! isset( $flexAllowedHtml ) ) {
 
 			// Get allowed global attributes from WordPress and add our own
 			$globalAtts = apply_filters( 'flex_fields_global_atts', _wp_add_global_attributes( [
@@ -70,12 +72,9 @@ if ( ! function_exists( 'flex_fields_setup' ) ) {
 			// Allow filtering of our custom allowed HTML
 			$flexAllowedHtml = (array) apply_filters( __FUNCTION__, $flexAllowedHtml );
 
-			// Define a constant to serve as a cache for multiple calls in a single page load
-			define( 'FLEX_FIELDS_ALLOWED_HTML', $flexAllowedHtml );
-
 		}
 
-		return FLEX_FIELDS_ALLOWED_HTML;
+		return $flexAllowedHtml;
 	}
 
 	if ( function_exists( 'add_action' ) ) {
