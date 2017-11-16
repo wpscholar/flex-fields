@@ -36,6 +36,7 @@ if ( ! function_exists( 'flex_fields_setup' ) ) {
 			// Get allowed global attributes from WordPress and add our own
 			$globalAtts = apply_filters( 'flex_fields_global_atts', _wp_add_global_attributes( [
 				'data-action'    => true,
+				'data-choices'   => true,
 				'data-flatpickr' => true,
 				'hidden'         => true
 			] ) );

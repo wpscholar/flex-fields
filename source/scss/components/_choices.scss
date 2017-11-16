@@ -1,0 +1,19 @@
+$choices-button-icon-path: '~choices.js/assets/icons';
+$choices-selector: 'flex-choices';
+@import "~choices.js/assets/styles/scss/choices";
+
+.flex-field {
+  .#{$choices-selector} {
+    margin-bottom: 1px;
+    margin-top: 1px;
+    max-width: 350px;
+
+    &__inner {
+      box-sizing: border-box;
+    }
+
+    &__list--dropdown .#{$choices-selector}__item--selectable {
+      padding-right: 10px;
+    }
+  }
+}
