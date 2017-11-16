@@ -21,6 +21,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
+    "choices.js": "^3.0.2",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "css-mqpacker": "^6.0.1",
@@ -32,6 +33,7 @@
     "sass-loader": "^6.0.6",
     "sass-mq": "^3.3.2",
     "style-loader": "^0.18.2",
+    "svg-url-loader": "^2.3.0",
     "webpack": "^3.6.0"
   }
 }

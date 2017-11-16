@@ -98,6 +98,10 @@ const config = {
                         'transform-object-rest-spread'
                     ]
                 }
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-url-loader',
             }
         ]
     },
