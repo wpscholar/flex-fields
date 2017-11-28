@@ -17,10 +17,12 @@ class AutocompleteField extends ChoicesField {
 	protected function _defaultConfig() {
 		// Merge with parent config.
 		return array_merge( parent::_defaultConfig(), [
+			// Enable search
+			'searchEnabled' => true,
 			// Default to only searching the label
-			'searchFields' => [ 'label' ],
+			'searchFields'  => [ 'label' ],
 			// Poorly documented Choices.js options, see http://fusejs.io/ for full options and details.
-			'fuseOptions'  => [
+			'fuseOptions'   => [
 				// Set distance to 1000 allows a threshold of .1 to find exact matches within the first 100 characters.
 				'distance'       => 1000,
 				// Threshold set to .1 to allow matching any location for the text.
