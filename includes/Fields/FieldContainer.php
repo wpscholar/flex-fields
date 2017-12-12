@@ -2,6 +2,7 @@
 
 namespace FlexFields\Fields;
 
+use FlexFields\Container;
 use FlexFields\Make;
 
 /**
@@ -14,9 +15,9 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	/**
 	 * Field collection
 	 *
-	 * @var array
+	 * @var Container
 	 */
-	protected $_fields = [];
+	protected $fields;
 
 	/**
 	 * FieldContainer constructor.
@@ -24,7 +25,10 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	 * @param array $fields
 	 */
 	public function __construct( array $fields = [] ) {
-		$this->addFields( $fields );
+		$this->fields = new Container();
+		if ( ! empty( $fields ) ) {
+			$this->addFields( $fields );
+		}
 	}
 
 	/**
@@ -35,7 +39,7 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	 * @return bool
 	 */
 	public function hasField( $name ) {
-		return isset( $this->_fields[ $name ] );
+		return $this->fields->has( $name );
 	}
 
 	/**
@@ -47,11 +51,25 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	 */
 	public function getField( $name ) {
 		$field = null;
-		if ( $this->hasField( $name ) ) {
-			$field = $this->_fields[ $name ];
+		try {
+			$this->fields->get( $name );
+		} catch ( \Exception $e ) {
+			trigger_error( $e->getMessage() );
+		} finally {
+			return $field;
 		}
+	}
 
-		return $field;
+	/**
+	 * Register a field into the container
+	 *
+	 * @param string $name
+	 * @param array $args
+	 */
+	public function registerField( $name, array $args = [] ) {
+		$this->fields->set( $name, $this->fields->service( function () use ( $name, $args ) {
+			return Make::Field( $name, $args );
+		} ) );
 	}
 
 	/**
@@ -60,21 +78,23 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	 * @param Field $field
 	 */
 	public function addField( Field $field ) {
-		$this->_fields[ $field->name ] = $field;
+		$this->fields->set( $field->name, $this->fields->service( function () use ( $field ) {
+			return Make::Field( $field->name, $field->getData() );
+		} ) );
 	}
 
 	/**
 	 * Add multiple fields to the container
 	 *
-	 * @param array|Field[] $fields
+	 * @param array $fields
 	 */
 	public function addFields( array $fields ) {
-		foreach ( $fields as $key => $value ) {
-			$field = $value;
-			if ( is_array( $value ) ) {
-				$field = Make::Field( $key, $value );
+		foreach ( $fields as $name => $field ) {
+			if ( is_array( $field ) ) {
+				$this->registerField( $name, $field );
+			} else {
+				$this->addField( $field );
 			}
-			$this->addField( $field );
 		}
 	}
 
@@ -84,16 +104,23 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	 * @param string $name
 	 */
 	public function removeField( $name ) {
-		if ( $this->hasField( $name ) ) {
-			unset( $this->_fields[ $name ] );
-		}
+		$this->fields->delete( $name );
 	}
 
 	/**
 	 * Remove all fields from the container
 	 */
 	public function removeAllFields() {
-		$this->_fields = [];
+		$this->fields->reset();
+	}
+
+	/**
+	 * Get field collection.
+	 *
+	 * @return Container
+	 */
+	public function getCollection() {
+		return $this->fields;
 	}
 
 	/**
@@ -102,7 +129,7 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	 * @return \ArrayIterator
 	 */
 	public function getIterator() {
-		return new \ArrayIterator( $this->_fields );
+		return new \ArrayIterator( $this->fields );
 	}
 
 	/**
@@ -111,7 +138,7 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	 * @return int
 	 */
 	public function count() {
-		return count( $this->_fields );
+		return count( $this->fields );
 	}
 
 	/**
@@ -130,7 +157,7 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	 */
 	public function asArray() {
 		$data = [];
-		foreach ( $this->_fields as $field ) {
+		foreach ( $this->fields as $field ) {
 			/**
 			 * @var Field $field
 			 */
@@ -150,7 +177,7 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 			PHP_EOL,
 			array_map( function ( $field ) {
 				return "{$field}";
-			}, $this->_fields )
+			}, iterator_to_array( $this->fields ) )
 		);
 	}
 

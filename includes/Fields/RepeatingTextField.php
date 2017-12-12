@@ -2,8 +2,6 @@
 
 namespace FlexFields\Fields;
 
-use FlexFields\TemplateHandler;
-
 /**
  * Class RepeatingTextField
  *
@@ -32,24 +30,12 @@ class RepeatingTextField extends Field {
 		wp_enqueue_style( 'flex-fields' );
 		wp_enqueue_script( 'flex-fields' );
 
-		$template = TemplateHandler::getInstance();
-
-		return $template->toString( 'field.php', [
-			'fieldType'   => 'repeating-text',
-			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
-			'hasError'    => $this->hasErrors(),
-			'error'       => $this->getErrorMessage(),
-			'before'      => $this->getData( 'before' ),
-			'after'       => $this->getData( 'after' ),
-			'beforeField' => $this->getData( 'before_field' ),
-			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'repeating-text.php', [
-				'name'   => $this->name,
-				'value'  => array_filter( $this->value ),
-				'legend' => $this->getData( 'label' ),
-				'atts'   => $this->getData( 'atts', [] ),
-			] ),
-		] );
+		return $this->fieldWrapper( 'repeating-text', $this->renderTemplate( 'repeating-text.php', [
+			'name'  => $this->name,
+			'value' => array_filter( $this->value ),
+			'label' => $this->getData( 'label' ),
+			'atts'  => $this->getData( 'atts', [] ),
+		] ) );
 
 	}
 

@@ -10,14 +10,14 @@ namespace FlexFields\Storage;
 interface FieldStorage {
 
 	/**
-	 * Fetch field value
+	 * Load field value
 	 *
 	 * @param int $id
 	 * @param string $key
 	 *
 	 * @return mixed
 	 */
-	public function fetch( $id, $key );
+	public function load( $id, $key );
 
 	/**
 	 * Save field value
@@ -35,5 +35,5 @@ interface FieldStorage {
 	 * @param string $key
 	 */
 	public function delete( $id, $key );
-	
+
 }

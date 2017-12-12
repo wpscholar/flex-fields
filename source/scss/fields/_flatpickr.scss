@@ -4,16 +4,25 @@
     display: block;
   }
 
+  .flatpickr-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+  }
+
   .flatpickr-input {
     background-color: white;
   }
 
   .flatpickr-reset {
+    position: absolute;
+    right: 1em;
     color: gray;
     cursor: pointer;
-    display: inline-block;
-    position: relative;
-    left: -20px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-self: center;
+    text-align: right;
   }
 
 }

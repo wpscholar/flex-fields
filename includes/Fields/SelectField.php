@@ -2,8 +2,6 @@
 
 namespace FlexFields\Fields;
 
-use FlexFields\TemplateHandler;
-
 /**
  * Class SelectField
  *
@@ -22,11 +20,7 @@ class SelectField extends Field {
 	 * @return array
 	 */
 	public function sanitize( $value ) {
-		if ( $this->isMultiSelect ) {
-			return array_map( 'sanitize_text_field', $value );
-		} else {
-			return sanitize_text_field( $value );
-		}
+		return $this->isMultiSelect ? array_map( 'sanitize_text_field', $value ) : sanitize_text_field( $value );
 	}
 
 	/**
@@ -38,28 +32,14 @@ class SelectField extends Field {
 
 		wp_enqueue_style( 'flex-fields' );
 
-		$template = TemplateHandler::getInstance();
-
-		return $template->toString( 'field.php', [
-			'fieldType'   => 'select',
-			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
-			'hasError'    => $this->hasErrors(),
-			'error'       => $this->getErrorMessage(),
-			'before'      => $this->getData( 'before' ),
-			'after'       => $this->getData( 'after' ),
-			'beforeField' => $this->getData( 'before_field' ),
-			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'label.php', [
-				'label'         => $this->getData( 'label' ),
-				'labelPosition' => $this->getData( 'label_position', 'before' ),
-				'content'       => $template->toString( 'select.php', [
-					'name'    => $this->isMultiSelect ? $this->name . '[]' : $this->name,
-					'value'   => $this->value,
-					'options' => $this->_normalizeOptions( $this->options ),
-					'atts'    => $this->getData( 'atts', [] ),
-				] )
-			] ),
+		$select = $this->renderTemplate( 'select.php', [
+			'name'    => $this->isMultiSelect ? $this->name . '[]' : $this->name,
+			'value'   => $this->value,
+			'options' => $this->_normalizeOptions( $this->options ),
+			'atts'    => $this->getData( 'atts', [] ),
 		] );
+
+		return $this->fieldWrapper( 'select', $this->fieldLabel( $select ) );
 
 	}
 
@@ -78,7 +58,8 @@ class SelectField extends Field {
 	 * @return array
 	 */
 	protected function _get_options() {
-		$options = $this->_maybeConvertCallable( $this->getData( 'options', [] ), $this );
+		$options = $this->getData( 'options', [] );
+		$options = is_callable( $options ) ? $options( $this ) : $options;
 
 		return apply_filters( __CLASS__ . ':options', $this->_normalizeOptions( $options ), $this );
 	}

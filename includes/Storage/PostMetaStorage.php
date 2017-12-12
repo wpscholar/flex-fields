@@ -17,7 +17,7 @@ class PostMetaStorage implements FieldStorage {
 	 *
 	 * @return mixed
 	 */
-	public function fetch( $id, $key ) {
+	public function load( $id, $key ) {
 		return get_post_meta( $id, $key, true );
 	}
 

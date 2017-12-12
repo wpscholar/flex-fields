@@ -28,8 +28,6 @@ abstract class Field {
 	/**
 	 * Field name
 	 *
-	 * Set during construction, cannot be altered externally
-	 *
 	 * @var string
 	 */
 	protected $_name;
@@ -55,14 +53,14 @@ abstract class Field {
 	}
 
 	/**
-	 * Render field
+	 * Render field.
 	 */
 	public function render() {
 		echo $this->__toString();
 	}
 
 	/**
-	 * Get field name
+	 * Get field name.
 	 *
 	 * @return string
 	 */
@@ -71,7 +69,7 @@ abstract class Field {
 	}
 
 	/**
-	 * Get field value
+	 * Get field value.
 	 *
 	 * @return mixed
 	 */
@@ -80,16 +78,16 @@ abstract class Field {
 	}
 
 	/**
-	 * Get storage class
+	 * Get storage class name.
 	 *
-	 * @return string|null
+	 * @return string
 	 */
 	protected function _get_storage() {
-		return is_object( $this->_storage ) ? get_class( $this->_storage ) : null;
+		return get_class( $this->_storage );
 	}
 
 	/**
-	 * Set field value
+	 * Set field value.
 	 *
 	 * @param mixed $value
 	 */
@@ -98,28 +96,64 @@ abstract class Field {
 	}
 
 	/**
-	 * Covert a callable to a value
-	 *
-	 * @param callable|mixed $value
-	 *
-	 * @return mixed
-	 */
-	protected function _maybeConvertCallable( $value ) {
-
-		if ( is_callable( $value ) ) {
-			$args = func_get_args();
-			array_shift( $args );
-			$value = call_user_func_array( $value, $args );
-		}
-
-		return $value;
-	}
-
-	/**
-	 * Return field markup as a string
+	 * Return field markup as string.
 	 *
 	 * @return string
 	 */
 	abstract public function __toString();
+
+	/**
+	 * @param $template
+	 * @param array $data
+	 *
+	 * @return string
+	 */
+	protected function renderTemplate( $template, array $data = [] ) {
+		$render = flex_fields_container()->get( 'render' );
+
+		return (string) $render( $template, $data );
+	}
+
+	/**
+	 * Render field wrapper.
+	 *
+	 * @param string $fieldType
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	protected function fieldWrapper( $fieldType, $content ) {
+
+		$hidden = $this->getData( 'hidden', false );
+
+		return $this->renderTemplate( 'field.php', [
+			'fieldType'   => $fieldType,
+			'field_atts'  => $this->getData( 'field_atts', [] ),
+			'hidden'      => is_callable( $hidden ) ? $hidden( $this ) : $hidden,
+			'hasError'    => $this->hasErrors(),
+			'error'       => $this->getErrorMessage(),
+			'before'      => $this->getData( 'before' ),
+			'after'       => $this->getData( 'after' ),
+			'beforeField' => $this->getData( 'before_field' ),
+			'afterField'  => $this->getData( 'after_field' ),
+			'description' => $this->getData( 'description' ),
+			'content'     => $content,
+		] );
+	}
+
+	/**
+	 * Render field label.
+	 *
+	 * @param $content
+	 *
+	 * @return string
+	 */
+	protected function fieldLabel( $content ) {
+		return $this->renderTemplate( 'label.php', [
+			'label'         => $this->getData( 'label' ),
+			'labelPosition' => $this->getData( 'label_position', 'before' ),
+			'content'       => $content,
+		] );
+	}
 
 }

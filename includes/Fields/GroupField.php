@@ -2,19 +2,19 @@
 
 namespace FlexFields\Fields;
 
-use FlexFields\TemplateHandler;
+use Traversable;
 
 /**
  * Class GroupField
  *
  * @package FlexFields\Fields
  */
-class GroupField extends Field {
+class GroupField extends Field implements \IteratorAggregate, \Countable {
 
 	/**
 	 * @var FieldContainer
 	 */
-	protected $_container;
+	protected $fields;
 
 	/**
 	 * Field constructor.
@@ -23,8 +23,17 @@ class GroupField extends Field {
 	 * @param array $args
 	 */
 	public function __construct( $name, array $args = [] ) {
+
+		// Run parent constructor
 		parent::__construct( $name, $args );
-		$this->_container = new FieldContainer();
+
+		// Create field container
+		$this->fields = new FieldContainer();
+
+		// Setup fields
+		if ( isset( $args['fields'] ) && is_array( $args['fields'] ) ) {
+			$this->fields->addFields( $args['fields'] );
+		}
 	}
 
 	/**
@@ -63,22 +72,29 @@ class GroupField extends Field {
 	 */
 	public function __toString() {
 
-		$template = TemplateHandler::getInstance();
-
-		return $template->toString( 'field.php', [
-			'fieldType'   => 'group',
-			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
-			'before'      => $this->getData( 'before' ),
-			'after'       => $this->getData( 'after' ),
-			'beforeField' => $this->getData( 'before_field' ),
-			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'fieldset.php', [
-				'legend'  => $this->getData( 'label' ),
-				'atts'    => $this->getData( 'atts', [] ),
-				'content' => $this->_container->__toString(),
-			] ),
+		$group = $this->renderTemplate( 'fieldset.php', [
+			'label'  => $this->getData( 'label' ),
+			'atts'    => $this->getData( 'atts', [] ),
+			'content' => $this->fields->__toString(),
 		] );
 
+		return $this->fieldWrapper( 'group', $group );
+
 	}
+
+	/**
+	 * @return FieldContainer|Traversable
+	 */
+	public function getIterator() {
+		return $this->fields;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function count() {
+		return count( $this->fields );
+	}
+
 
 }

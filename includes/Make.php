@@ -22,24 +22,24 @@ class Make {
 	 *
 	 * @return Field
 	 */
-	public static function Field( $name, $args = [] ) {
+	public static function Field( $name, array $args = [] ) {
 
 		// Default to input field
 		$fieldClass = __NAMESPACE__ . '\\Fields\\InputField';
 
-		if ( isset( $args['fieldClass'] ) && class_exists( $args['fieldClass'] ) ) {
+		if ( isset( $args['field_class'] ) && class_exists( $args['field_class'] ) ) {
 
-			// If 'fieldClass' is explicitly passed, then use it.
-			$fieldClass = $args['fieldClass'];
+			// If 'field_class' is explicitly set, use it.
+			$fieldClass = $args['field_class'];
 
 		} else if ( isset( $args['field'] ) ) {
 
-			// Derive 'fieldClass' based on 'field' name
+			// Derive field class based on field type
 			$fieldType = str_replace( ' ', '',
 				ucwords( str_replace( [ '-', '_' ], ' ', strtolower( $args['field'] ) ) )
 			);
 
-			$class = __NAMESPACE__ . '\\Fields\\' . $fieldType . 'Field';
+			$class = __NAMESPACE__ . "\\Fields\\{$fieldType}Field";
 
 			if ( class_exists( $class ) ) {
 				$fieldClass = $class;

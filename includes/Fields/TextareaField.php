@@ -2,8 +2,6 @@
 
 namespace FlexFields\Fields;
 
-use FlexFields\TemplateHandler;
-
 /**
  * Class TextareaField
  *
@@ -31,27 +29,13 @@ class TextareaField extends Field {
 
 		wp_enqueue_style( 'flex-fields' );
 
-		$template = TemplateHandler::getInstance();
-
-		return $template->toString( 'field.php', [
-			'fieldType'   => 'textarea',
-			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
-			'hasError'    => $this->hasErrors(),
-			'error'       => $this->getErrorMessage(),
-			'before'      => $this->getData( 'before' ),
-			'after'       => $this->getData( 'after' ),
-			'beforeField' => $this->getData( 'before_field' ),
-			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'label.php', [
-				'label'         => $this->getData( 'label' ),
-				'labelPosition' => $this->getData( 'label_position', 'before' ),
-				'content'       => $template->toString( 'textarea.php', [
-					'name'  => $this->name,
-					'value' => $this->value,
-					'atts'  => $this->getData( 'atts', [] ),
-				] )
-			] ),
+		$textarea = $this->renderTemplate( 'textarea.php', [
+			'name'  => $this->name,
+			'value' => $this->value,
+			'atts'  => $this->getData( 'atts', [] ),
 		] );
+
+		return $this->fieldWrapper( 'textarea', $this->fieldLabel( $textarea ) );
 
 	}
 

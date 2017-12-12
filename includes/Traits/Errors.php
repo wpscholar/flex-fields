@@ -33,7 +33,7 @@ trait Errors {
 	 * @param string $message
 	 */
 	public function addError( $message ) {
-		if ( ! isset( $this->_errors ) ) {
+		if ( null === $this->_errors ) {
 			$this->_errors = new \WP_Error();
 		}
 

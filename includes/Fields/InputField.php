@@ -2,53 +2,12 @@
 
 namespace FlexFields\Fields;
 
-use FlexFields\TemplateHandler;
-
 /**
  * Class InputField
  *
  * @package FlexFields\Fields
  */
 class InputField extends Field {
-
-	/**
-	 * Fetch field value from storage engine
-	 *
-	 * @param int $id
-	 *
-	 * @returns mixed
-	 */
-	public function fetch( $id ) {
-		$value = null;
-		if ( 'submit' !== $this->getData( 'type', $this->getData( [ 'atts', 'type' ], 'text' ) ) ) {
-			$value = parent::fetch( $id );
-		}
-
-		return $value;
-	}
-
-	/**
-	 * Save field value to storage engine
-	 *
-	 * @param int $id
-	 * @param mixed $value
-	 */
-	public function save( $id, $value ) {
-		if ( 'submit' !== $this->getData( 'type', $this->getData( [ 'atts', 'type' ], 'text' ) ) ) {
-			parent::save( $id, $value );
-		}
-	}
-
-	/**
-	 * Delete field value from storage engine
-	 *
-	 * @param int $id
-	 */
-	public function delete( $id ) {
-		if ( 'submit' !== $this->getData( 'type', $this->getData( [ 'atts', 'type' ], 'text' ) ) ) {
-			parent::delete( $id );
-		}
-	}
 
 	/**
 	 * Return field markup as a string
@@ -59,29 +18,74 @@ class InputField extends Field {
 
 		wp_enqueue_style( 'flex-fields' );
 
-		$template = TemplateHandler::getInstance();
-
-		return $template->toString( 'field.php', [
-			'fieldType'   => 'input',
-			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
-			'hasError'    => $this->hasErrors(),
-			'error'       => $this->getErrorMessage(),
-			'before'      => $this->getData( 'before' ),
-			'after'       => $this->getData( 'after' ),
-			'beforeField' => $this->getData( 'before_field' ),
-			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'label.php', [
-				'label'         => $this->getData( 'label' ),
-				'labelPosition' => $this->getData( 'label_position', 'before' ),
-				'content'       => $template->toString( 'input.php', [
-					'type'  => $this->getData( 'type', $this->getData( [ 'atts', 'type' ], 'text' ) ),
-					'name'  => $this->name,
-					'value' => $this->value,
-					'atts'  => $this->getData( 'atts', [] ),
-				] )
-			] ),
+		$input = $this->renderTemplate( 'input.php', [
+			'type'  => $this->inputType(),
+			'name'  => $this->name,
+			'value' => $this->value,
+			'atts'  => $this->getData( 'atts', [] ),
 		] );
 
+		return $this->fieldWrapper( 'input', $this->fieldLabel( $input ) );
+
+	}
+
+	/**
+	 * Load field value from storage
+	 *
+	 * @param int $id
+	 *
+	 * @returns mixed
+	 */
+	public function load( $id ) {
+		$value = null;
+		if ( $this->canStore() ) {
+			$value = parent::load( $id );
+		}
+
+		return $value;
+	}
+
+	/**
+	 * Save field value to storage
+	 *
+	 * @param int $id
+	 * @param mixed $value
+	 */
+	public function save( $id, $value ) {
+		if ( $this->canStore() ) {
+			parent::save( $id, $value );
+		}
+	}
+
+	/**
+	 * Delete field value from storage
+	 *
+	 * @param int $id
+	 */
+	public function delete( $id ) {
+		if ( $this->canStore() ) {
+			parent::delete( $id );
+		}
+	}
+
+	/**
+	 * Get input type
+	 *
+	 * @return string
+	 */
+	protected function inputType() {
+		return (string) $this->getData( 'type', $this->getData( [ 'atts', 'type' ], 'text' ) );
+	}
+
+	/**
+	 * Check if input has a field value that can be stored.
+	 *
+	 * Inputs of type button, reset, and submit aren't used for data.
+	 *
+	 * @return bool
+	 */
+	protected function canStore() {
+		return ! in_array( $this->inputType(), [ 'button', 'reset', 'submit' ], SORT_STRING );
 	}
 
 }

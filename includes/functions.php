@@ -1,85 +1,82 @@
 <?php
 
-if ( ! function_exists( 'flex_fields_setup' ) ) {
+use FlexFields\Container;
+use FlexFields\Fields\Field;
+use FlexFields\Make;
 
-	function flex_fields_setup() {
+/**
+ * Register a field.
+ *
+ * @param string $name
+ * @param array $args
+ * @param string $group
+ */
+function register_flex_field( $name, array $args = [], $group = 'default' ) {
+	$fieldGroup = get_flex_field_group( $group );
+	$fieldGroup->set( $name, $fieldGroup->factory( function () use ( $name, $args ) {
+		return Make::Field( $name, $args );
+	} ) );
+}
 
-		if ( ! defined( 'FLEX_FIELDS_DIR' ) ) {
-			define( 'FLEX_FIELDS_DIR', dirname( __DIR__ ) );
-		}
+/**
+ * Register several fields at once.
+ *
+ * @param array $fields
+ * @param string $group
+ */
+function register_flex_fields( array $fields, $group = 'default' ) {
+	foreach ( $fields as $name => $args ) {
+		register_flex_field( $name, $args, $group );
+	}
+}
 
-		if ( ! defined( 'FLEX_FIELDS_URL' ) ) {
-			define( 'FLEX_FIELDS_URL', home_url( '/' . str_replace( ABSPATH, '', FLEX_FIELDS_DIR ) ) );
-		}
+/**
+ * Get a field.
+ *
+ * @param string $name
+ * @param string $group
+ *
+ * @return Field|null
+ */
+function get_flex_field( $name, $group = 'default' ) {
+	$field = null;
+	try {
+		$field = get_flex_field_group( $group )->get( $name );
+	} catch ( Exception $e ) {
+		trigger_error( $e->getMessage() );
+	} finally {
+		return $field;
+	}
+}
 
-		add_action( 'admin_enqueue_scripts', 'flex_fields_register_assets' );
-		add_action( 'wp_enqueue_scripts', 'flex_fields_register_assets' );
+/**
+ * Get a field group.
+ *
+ * @param string $group
+ *
+ * @return Container
+ */
+function get_flex_field_group( $group = 'default' ) {
+
+	// Get groups container
+	$groups = get_flex_field_groups();
+
+	// If group doesn't exist, create it
+	if ( ! $groups->has( $group ) ) {
+		$groups->set( $group, $groups->service( function () {
+			return new Container();
+		} ) );
 	}
 
-	function flex_fields_register_assets() {
-		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		wp_register_style( 'flex-fields', FLEX_FIELDS_URL . "/assets/css/flex-fields{$suffix}.css" );
-		wp_register_script( 'flex-fields', FLEX_FIELDS_URL . "/assets/js/flex-fields{$suffix}.js" );
-	}
+	// Return container for group
+	return $groups->get( $group );
+}
 
-	/**
-	 * Fetch the allowed HTML for FlexFields
-	 *
-	 * @return array
-	 */
-	function flex_fields_allowed_html() {
-
-		static $flexAllowedHtml;
-
-		if ( ! isset( $flexAllowedHtml ) ) {
-
-			// Get allowed global attributes from WordPress and add our own
-			$globalAtts = apply_filters( 'flex_fields_global_atts', _wp_add_global_attributes( [
-				'data-action'    => true,
-				'data-choices'   => true,
-				'data-flatpickr' => true,
-				'hidden'         => true
-			] ) );
-
-			// Get allowed HTML from WordPress and add our own
-			$allowedHtml = array_merge( wp_kses_allowed_html( 'post' ), [
-				'input'    => [
-					'checked' => true,
-					'type'    => true,
-					'name'    => true,
-					'value'   => true,
-				],
-				'optgroup' => [
-					'label' => true,
-				],
-				'option'   => [
-					'selected' => true,
-					'value'    => true,
-				],
-				'select'   => [
-					'name' => true,
-				],
-			] );
-
-			// Add all global attributes to all tags
-			$flexAllowedHtml = array_map( function ( $value ) use ( $globalAtts ) {
-				if ( is_array( $value ) ) {
-					$value = array_merge( $value, $globalAtts );
-				}
-
-				return $value;
-			}, $allowedHtml );
-
-			// Allow filtering of our custom allowed HTML
-			$flexAllowedHtml = (array) apply_filters( __FUNCTION__, $flexAllowedHtml );
-
-		}
-
-		return $flexAllowedHtml;
-	}
-
-	if ( function_exists( 'add_action' ) ) {
-		flex_fields_setup();
-	}
-
+/**
+ * Get all field groups.
+ *
+ * @return Container
+ */
+function get_flex_field_groups() {
+	return flex_fields_container()->get( 'fields' );
 }

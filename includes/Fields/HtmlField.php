@@ -2,8 +2,6 @@
 
 namespace FlexFields\Fields;
 
-use FlexFields\TemplateHandler;
-
 /**
  * Class HtmlField
  *
@@ -51,11 +49,12 @@ class HtmlField extends Field {
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function __toString() {
 
 		wp_enqueue_style( 'flex-fields' );
-
-		$template = TemplateHandler::getInstance();
 
 		$value = $this->getData( 'value' );
 
@@ -63,16 +62,7 @@ class HtmlField extends Field {
 			$value = $value( $this );
 		}
 
-		return $template->toString( 'field.php', [
-			'fieldType'   => 'html',
-			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
-			'hasError'    => false,
-			'before'      => $this->getData( 'before' ),
-			'after'       => $this->getData( 'after' ),
-			'beforeField' => $this->getData( 'before_field' ),
-			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => apply_filters( __METHOD__, $value, $this ),
-		] );
+		return $this->fieldWrapper( 'html', $this->fieldLabel( apply_filters( __CLASS__ . ':content', $value, $this ) ) );
 
 	}
 

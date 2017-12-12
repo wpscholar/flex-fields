@@ -10,7 +10,7 @@
 .flex-field--full-width {
   width: 100%; }
 
-.flex-button, .flex-field-repeating-text > fieldset > button {
+.flex-button, .flex-field-repeating-text button[data-action="add"] {
   background-color: #EEEEEE;
   border: 1px solid #CCCCCC;
   border-radius: 6px;
@@ -277,25 +277,36 @@
   .flex-field .flex-choices__list--dropdown .flex-choices__item--selectable {
     padding-right: 10px; }
 
+.flex-field-description {
+  margin: .25em 0 .5em 0;
+  padding: 0;
+  font-style: italic; }
+
 .flex-error {
   max-width: 600px;
   display: block;
   margin: .5em 0 1em 0;
-  padding: .25em;
+  padding: 1em;
   background-color: #f2dede;
   border: 1px solid #ebccd1;
   border-radius: 4px;
   color: #dd0000; }
 
-.flex-field-has-error .flex-label-text,
-.flex-field-has-error > fieldset > legend {
+.flex-field-has-error .flex-label-text {
   color: #dd0000; }
 
+.flex-field-has-error textarea,
 .flex-field-has-error input[type="email"],
 .flex-field-has-error input[type="number"],
 .flex-field-has-error input[type="tel"],
 .flex-field-has-error input[type="text"] {
   border: 1px solid #dd0000; }
+
+.flex-field > fieldset {
+  padding: .5em 1em; }
+  .flex-field > fieldset > legend {
+    font-weight: bold;
+    padding: 0 .5em; }
 
 .wp-admin.term-php .flex-field {
   margin: 0; }
@@ -312,15 +323,30 @@
 .flex-field-flatpickr .flex-label-text {
   display: block; }
 
+.flex-field-flatpickr .flatpickr-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  position: relative; }
+
 .flex-field-flatpickr .flatpickr-input {
   background-color: white; }
 
 .flex-field-flatpickr .flatpickr-reset {
+  position: absolute;
+  right: 1em;
   color: gray;
   cursor: pointer;
-  display: inline-block;
-  position: relative;
-  left: -20px; }
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-item-align: center;
+      align-self: center;
+  text-align: right; }
 
 .flex-field-input .flex-label-text + input {
   display: block; }
@@ -328,18 +354,22 @@
 .flex-field-radio-group .flex-label {
   display: block; }
 
-.flex-field-repeating-text > fieldset > div {
+.flex-field-repeating-text .flex-field-collection {
   margin: .5em 0; }
-  .flex-field-repeating-text > fieldset > div > div {
+  .flex-field-repeating-text .flex-field-collection > div {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     margin: .25em 0; }
-    .flex-field-repeating-text > fieldset > div > div button {
+    .flex-field-repeating-text .flex-field-collection > div input {
+      margin-right: 10px; }
+    .flex-field-repeating-text .flex-field-collection > div button {
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 1em; }
+      font-size: 1em;
+      color: grey;
+      padding: 0 .5em; }
 
 .flex-field-select .flex-label-text {
   display: block; }
