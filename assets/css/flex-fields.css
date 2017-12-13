@@ -316,7 +316,8 @@
   position: relative; }
 
 .flex-field-flatpickr .flatpickr-input {
-  background-color: white; }
+  background-color: white;
+  margin: 0; }
 
 .flex-field-flatpickr .flatpickr-reset {
   position: absolute;
@@ -356,14 +357,15 @@
     display: flex;
     margin: .25em 0; }
     .flex-field-repeating-text .flex-field-collection > div input {
-      margin-right: 10px; }
+      margin: 0; }
     .flex-field-repeating-text .flex-field-collection > div button {
       background: none;
       border: none;
       cursor: pointer;
       font-size: 1em;
       color: grey;
-      padding: 0 .5em; }
+      margin: 0 0 0 10px;
+      padding: 0; }
 
 .flex-field-select .flex-label-text {
   display: block; }

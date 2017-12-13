@@ -3,7 +3,7 @@
  * @var \wpscholar\TemplateX $x
  */
 ?>
-<span class="flatpickr-wrapper">
+<div class="flatpickr-wrapper">
 	<?php $x->load( 'input.php' ); ?>
-    <span class="flatpickr-reset">✕</span>
-</span>
+    <div class="flatpickr-reset">✕</div>
+</div>

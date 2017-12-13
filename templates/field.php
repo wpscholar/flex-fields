@@ -19,11 +19,11 @@ $atts['class'] = trim(
 <?php echo wp_kses( $x->get( 'beforeField' ), flex_fields_allowed_html() ); ?>
     <div <?php $x->load( 'attributes.php', [ 'atts' => $atts ] ); ?> <?php echo $x->is( 'hidden', true ) ? 'hidden' : ''; ?>>
 		<?php echo wp_kses( $x->get( 'before' ), flex_fields_allowed_html() ); ?>
-        <?php echo wp_kses( $x->get( 'content' ), flex_fields_allowed_html() ); ?>
-	    <?php $x->load( 'error.php' ); ?>
-        <?php if ( $x->has( 'description' ) ): ?>
+		<?php echo wp_kses( $x->get( 'content' ), flex_fields_allowed_html() ); ?>
+		<?php $x->load( 'error.php' ); ?>
+		<?php if ( $x->get( 'description', false ) ): ?>
             <p class="flex-field-description"><?php echo esc_html( $x->get( 'description' ) ); ?></p>
 		<?php endif; ?>
-        <?php echo wp_kses( $x->get( 'after' ), flex_fields_allowed_html() ); ?>
+		<?php echo wp_kses( $x->get( 'after' ), flex_fields_allowed_html() ); ?>
     </div>
 <?php echo wp_kses( $x->get( 'afterField' ), flex_fields_allowed_html() ); ?>

@@ -10,7 +10,7 @@
       margin: .25em 0;
 
       input {
-        margin-right: 10px;
+        margin: 0;
       }
 
       button {
@@ -19,7 +19,8 @@
         cursor: pointer;
         font-size: 1em;
         color: grey;
-        padding: 0 .5em;
+        margin: 0 0 0 10px;
+        padding: 0;
       }
 
     }
