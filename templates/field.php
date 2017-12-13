@@ -11,7 +11,7 @@ $atts['class'] = trim(
 	implode( ' ', [
 		'flex-field',
 		'flex-field-' . $x->get( 'fieldType' ),
-		$x->get( 'hasError', false ) ? 'flex-field-has-error' : '',
+		$x->get( 'hasErrors', false ) ? 'flex-field-has-error' : '',
 	] ) . $x->get( 'fieldAtts.class', '' )
 );
 

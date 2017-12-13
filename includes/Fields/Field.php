@@ -130,7 +130,7 @@ abstract class Field {
 			'fieldType'   => $fieldType,
 			'fieldAtts'  => $this->getData( 'field_atts', [] ),
 			'hidden'      => is_callable( $hidden ) ? $hidden( $this ) : $hidden,
-			'hasError'    => $this->hasErrors(),
+			'hasErrors'    => $this->hasErrors(),
 			'error'       => $this->getErrorMessage(),
 			'before'      => $this->getData( 'before' ),
 			'after'       => $this->getData( 'after' ),
