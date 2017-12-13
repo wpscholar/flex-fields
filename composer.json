@@ -19,6 +19,6 @@
     }
   },
   "require": {
-    "wpscholar/templatex": "^1.0"
+    "wpscholar/templatex": "^1.1"
   }
 }
