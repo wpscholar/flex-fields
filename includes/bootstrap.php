@@ -72,6 +72,7 @@ if ( ! function_exists( 'flex_fields_setup' ) ) {
 				'select'   => [
 					'name' => true,
 				],
+				'span'     => [],
 			] );
 
 			// Add all global attributes to all tags
