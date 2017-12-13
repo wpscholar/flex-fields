@@ -5,14 +5,15 @@
  * @var string $fieldType
  */
 
-$atts = $x->get( 'field_atts', [] );
-$class = $x->get( 'field_atts.class', '' );
+$atts = $x->get( 'fieldAtts', [] );
 
-$atts['class'] = trim( implode( ' ', [
+$atts['class'] = trim(
+	implode( ' ', [
 		'flex-field',
 		'flex-field-' . $x->get( 'fieldType' ),
 		$x->get( 'hasError', false ) ? 'flex-field-has-error' : '',
-	] ) . $x->get( 'field_atts.class', '' ) );
+	] ) . $x->get( 'fieldAtts.class', '' )
+);
 
 ?>
 <?php echo wp_kses( $x->get( 'beforeField' ), flex_fields_allowed_html() ); ?>

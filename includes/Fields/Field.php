@@ -128,7 +128,7 @@ abstract class Field {
 
 		return $this->renderTemplate( 'field.php', [
 			'fieldType'   => $fieldType,
-			'field_atts'  => $this->getData( 'field_atts', [] ),
+			'fieldAtts'  => $this->getData( 'field_atts', [] ),
 			'hidden'      => is_callable( $hidden ) ? $hidden( $this ) : $hidden,
 			'hasError'    => $this->hasErrors(),
 			'error'       => $this->getErrorMessage(),
