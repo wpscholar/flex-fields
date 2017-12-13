@@ -281,29 +281,33 @@ module.exports = __webpack_require__(12);
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__fields_choices__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__fields_flatpickr__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_repeating_text__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fields_repeating_text___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__fields_repeating_text__);
 
 
+__webpack_require__(3);
 
+__webpack_require__(6);
+
+__webpack_require__(9);
 
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_choices_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_choices_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_choices_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_unescape__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_unescape___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash_unescape__);
 
 
+var _choices = __webpack_require__(4);
+
+var _choices2 = _interopRequireDefault(_choices);
+
+var _lodash = __webpack_require__(0);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 Array.from(document.querySelectorAll('.flex-field [data-choices]')).forEach(function (input) {
 
@@ -311,9 +315,9 @@ Array.from(document.querySelectorAll('.flex-field [data-choices]')).forEach(func
         e.stopPropagation();
     });
 
-    var config = JSON.parse(__WEBPACK_IMPORTED_MODULE_1_lodash_unescape___default()(input.getAttribute('data-choices')));
+    var config = JSON.parse((0, _lodash2.default)(input.getAttribute('data-choices')));
 
-    new __WEBPACK_IMPORTED_MODULE_0_choices_js___default.a(input, config);
+    new _choices2.default(input, config);
 });
 
 /***/ }),
@@ -355,23 +359,29 @@ module.exports = g;
 
 /***/ }),
 /* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_flatpickr__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_flatpickr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_flatpickr__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_confirmDate_confirmDate__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_confirmDate_confirmDate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_confirmDate_confirmDate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash_unescape__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash_unescape___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash_unescape__);
 
 
+var _flatpickr = __webpack_require__(7);
 
+var _flatpickr2 = _interopRequireDefault(_flatpickr);
+
+var _confirmDate = __webpack_require__(8);
+
+var _confirmDate2 = _interopRequireDefault(_confirmDate);
+
+var _lodash = __webpack_require__(0);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 Array.from(document.querySelectorAll('.flex-field-flatpickr')).forEach(function (field) {
 
     var input = field.querySelector('[data-flatpickr]');
-    var config = JSON.parse(__WEBPACK_IMPORTED_MODULE_2_lodash_unescape___default()(input.getAttribute('data-flatpickr')));
+    var config = JSON.parse((0, _lodash2.default)(input.getAttribute('data-flatpickr')));
 
     config.onReady = function (dateObj, dateStr, instance) {
 
@@ -384,9 +394,9 @@ Array.from(document.querySelectorAll('.flex-field-flatpickr')).forEach(function 
         });
     };
 
-    config.plugins = [new __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_confirmDate_confirmDate___default.a({})];
+    config.plugins = [new _confirmDate2.default({})];
 
-    __WEBPACK_IMPORTED_MODULE_0_flatpickr___default()(input, config);
+    (0, _flatpickr2.default)(input, config);
 });
 
 /***/ }),
@@ -2799,7 +2809,10 @@ if (true) module.exports = confirmDatePlugin;
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 Array.from(document.querySelectorAll('.flex-field-repeating-text')).forEach(function (field) {
 

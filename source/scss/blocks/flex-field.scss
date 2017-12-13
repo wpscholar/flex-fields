@@ -3,6 +3,20 @@ $choices-selector: 'flex-choices';
 @import "~choices.js/assets/styles/scss/choices";
 
 .flex-field {
+
+  // Fieldsets
+  fieldset {
+
+    padding: .5em 1em;
+
+    > legend {
+      font-weight: bold;
+      padding: 0 .5em;
+    }
+
+  }
+
+  // Choices fields
   .#{$choices-selector} {
     margin-bottom: 1px;
     margin-top: 1px;
@@ -15,5 +29,13 @@ $choices-selector: 'flex-choices';
     &__list--dropdown .#{$choices-selector}__item--selectable {
       padding-right: 10px;
     }
+  }
+
+}
+
+// Term meta box
+.wp-admin.term-php {
+  .flex-field {
+    margin: 0;
   }
 }

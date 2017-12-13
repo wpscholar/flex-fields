@@ -18,6 +18,10 @@
   cursor: pointer;
   font-size: 1em; }
 
+.flex-error {
+  margin: .5em 0;
+  color: #dd0000; }
+
 /*===============================
 =            Choices            =
 ===============================*/
@@ -267,6 +271,12 @@
   opacity: .5; }
 
 /*=====  End of Choices  ======*/
+.flex-field fieldset {
+  padding: .5em 1em; }
+  .flex-field fieldset > legend {
+    font-weight: bold;
+    padding: 0 .5em; }
+
 .flex-field .flex-choices {
   margin-bottom: 1px;
   margin-top: 1px;
@@ -276,37 +286,6 @@
             box-sizing: border-box; }
   .flex-field .flex-choices__list--dropdown .flex-choices__item--selectable {
     padding-right: 10px; }
-
-.flex-field-description {
-  margin: .25em 0 .5em 0;
-  padding: 0;
-  font-style: italic; }
-
-.flex-error {
-  max-width: 600px;
-  display: block;
-  margin: .5em 0 1em 0;
-  padding: 1em;
-  background-color: #f2dede;
-  border: 1px solid #ebccd1;
-  border-radius: 4px;
-  color: #dd0000; }
-
-.flex-field-has-error .flex-label-text {
-  color: #dd0000; }
-
-.flex-field-has-error textarea,
-.flex-field-has-error input[type="email"],
-.flex-field-has-error input[type="number"],
-.flex-field-has-error input[type="tel"],
-.flex-field-has-error input[type="text"] {
-  border: 1px solid #dd0000; }
-
-.flex-field > fieldset {
-  padding: .5em 1em; }
-  .flex-field > fieldset > legend {
-    font-weight: bold;
-    padding: 0 .5em; }
 
 .wp-admin.term-php .flex-field {
   margin: 0; }
@@ -319,6 +298,11 @@
 
 .flex-field-choices .flex-label-text {
   display: block; }
+
+.flex-field-description {
+  margin: .25em 0 .5em 0;
+  padding: 0;
+  font-style: italic; }
 
 .flex-field-flatpickr .flex-label-text {
   display: block; }
@@ -347,6 +331,16 @@
   -ms-flex-item-align: center;
       align-self: center;
   text-align: right; }
+
+.flex-field-has-error .flex-label-text {
+  color: #dd0000; }
+
+.flex-field-has-error textarea,
+.flex-field-has-error input[type="email"],
+.flex-field-has-error input[type="number"],
+.flex-field-has-error input[type="tel"],
+.flex-field-has-error input[type="text"] {
+  border: 1px solid #dd0000; }
 
 .flex-field-input .flex-label-text + input {
   display: block; }
