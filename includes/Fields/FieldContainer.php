@@ -126,10 +126,10 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	/**
 	 * Setup iterator for looping through fields
 	 *
-	 * @return \ArrayIterator
+	 * @return Container|\Traversable
 	 */
 	public function getIterator() {
-		return new \ArrayIterator( $this->fields );
+		return $this->fields;
 	}
 
 	/**
