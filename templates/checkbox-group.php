@@ -12,10 +12,11 @@
     <div class="flex-fieldset-content">
 		<?php foreach ( $x->get( 'options', [] ) as $option ): ?>
             <label class="flex-label">
-                <input type="checkbox"
-                       name="<?php echo esc_attr( $x->get( 'name' ) . '[]' ); ?>"
-                       value="<?php echo esc_attr( $x->getIn( $option, 'value' ) ); ?>"
-					<?php checked( in_array( $x->getIn( $option, 'value' ), $x->get( 'value' ) ) ); ?>>
+                <input <?php checked( in_array( $x->getIn( $option, 'value' ), $x->get( 'value' ) ) ); ?>
+                    type="checkbox"
+                    name="<?php echo esc_attr( $x->get( 'name' ) . '[]' ); ?>"
+                    value="<?php echo esc_attr( $x->getIn( $option, 'value' ) ); ?>"
+                />
                 <span class="flex-label-text"><?php echo esc_html( $x->getIn( $option, 'label' ) ); ?></span>
             </label>
 		<?php endforeach; ?>
