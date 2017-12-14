@@ -80,3 +80,28 @@ function get_flex_field_group( $group = 'default' ) {
 function get_flex_field_groups() {
 	return flex_fields_container()->get( 'fields' );
 }
+
+/**
+ * Fetch a field value by name from a data source (e.g. $_GET, $_POST, etc).
+ *
+ * @param array $data
+ * @param string $name
+ * @param mixed $default
+ *
+ * @return mixed
+ */
+function fetch_flex_field_value_by_name( array $data, $name, $default = null ) {
+	$value = $default;
+	if ( $name && is_string( $name ) ) {
+		$path = str_replace( [ '[]', '[', ']' ], [ '|0', '|', '' ], $name );
+		$keys = explode( '|', $path );
+		foreach ( $keys as $key ) {
+			if ( ! is_array( $data ) || ! array_key_exists( $key, $data ) ) {
+				return $default;
+			}
+			$value = $data = $data[ $key ];
+		}
+	}
+
+	return $value;
+}
