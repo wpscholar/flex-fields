@@ -50,11 +50,11 @@ class Form {
 
 		// Set fields
 		$fieldContainer = new FieldContainer( $this->getData( 'fields', [] ) );
-		$fieldContainer->addField( Make::Field( 'form', [
+		$fieldContainer->registerField( 'form', [
 			'type'   => 'hidden',
 			'value'  => $name,
 			'hidden' => true,
-		] ) );
+		] );
 		$this->_data['fields'] = $fieldContainer;
 
 		// Set core data
@@ -76,18 +76,12 @@ class Form {
 			/**
 			 * @var Field $field
 			 */
-			switch ( $this->method ) {
-				case 'GET':
-					if ( isset( $_GET[ $field->name ] ) ) {
-						$field->value = $_GET[ $field->name ];
-					}
-					break;
-				case 'POST':
-					if ( isset( $_POST[ $field->name ] ) ) {
-						$field->value = $_POST[ $field->name ];
-					}
-					break;
+			global ${"_{$this->method}"};
+			$value = fetch_flex_field_value_by_name( ${"_{$this->method}"}, $field->name );
+			if ( null !== $value ) {
+				$field->value = $value;
 			}
+
 		}
 
 		do_action( __METHOD__ . '_' . $this->name, $this );
