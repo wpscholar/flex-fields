@@ -91,6 +91,9 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	public function addFields( array $fields ) {
 		foreach ( $fields as $name => $field ) {
 			if ( is_array( $field ) ) {
+				if ( is_numeric( $name ) && isset( $field['name'] ) ) {
+					$name = $field['name'];
+				}
 				$this->registerField( $name, $field );
 			} else {
 				$this->addField( $field );
