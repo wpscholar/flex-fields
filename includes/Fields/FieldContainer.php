@@ -52,7 +52,7 @@ class FieldContainer implements \IteratorAggregate, \Countable {
 	public function getField( $name ) {
 		$field = null;
 		try {
-			$this->fields->get( $name );
+			$field = $this->fields->get( $name );
 		} catch ( \Exception $e ) {
 			trigger_error( $e->getMessage() );
 		} finally {
