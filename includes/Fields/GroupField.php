@@ -53,7 +53,16 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 	 * @return mixed
 	 */
 	protected function _get_value() {
-		return null;
+		$value = [];
+
+		foreach ( $this->fields as $field ) {
+			/**
+			 * @var Field $field
+			 */
+			$value[ $field->name ] = $field->value;
+		}
+
+		return $value;
 	}
 
 	/**
@@ -73,7 +82,7 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 	public function __toString() {
 
 		$group = $this->renderTemplate( 'fieldset.php', [
-			'label'  => $this->getData( 'label' ),
+			'label'   => $this->getData( 'label' ),
 			'atts'    => $this->getData( 'atts', [] ),
 			'content' => $this->fields->__toString(),
 		] );
