@@ -76,10 +76,11 @@ class Form {
 			/**
 			 * @var Field $field
 			 */
+
 			global ${"_{$this->method}"};
-			$value = fetch_flex_field_value_by_name( ${"_{$this->method}"}, $field->name );
-			if ( null !== $value ) {
-				$field->value = $value;
+
+			if ( isset( ${"_{$this->method}"}[ $field->name ] ) ) {
+				$field->value = ${"_{$this->method}"}[ $field->name ];
 			}
 
 		}
