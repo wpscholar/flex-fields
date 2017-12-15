@@ -5,6 +5,19 @@ use FlexFields\Fields\Field;
 use FlexFields\Make;
 
 /**
+ * Render a field.
+ *
+ * @param string $name
+ * @param string $group
+ */
+function render_flex_field( $name, $group ) {
+	$field = get_flex_field( $name );
+	if ( $field && is_object( $field ) && method_exists( $field, 'render' ) ) {
+		$field->render();
+	}
+}
+
+/**
  * Register a field.
  *
  * @param string $name
