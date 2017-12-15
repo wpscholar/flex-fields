@@ -32,7 +32,7 @@ class FormContainer implements \IteratorAggregate, \Countable {
 	 *
 	 * @param string $name
 	 *
-	 * @return mixed
+	 * @return Form|null
 	 */
 	public function getForm( $name ) {
 		$form = null;
