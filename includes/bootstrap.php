@@ -135,6 +135,7 @@ if ( ! function_exists( 'flex_fields_setup' ) ) {
 					'aria-label'      => true,
 					'aria-labelledby' => true,
 					'aria-required'   => true,
+					'multiple'        => true,
 					'name'            => true,
 					'required'        => true,
 				],
