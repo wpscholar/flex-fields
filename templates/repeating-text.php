@@ -15,7 +15,7 @@
 			<?php foreach ( $x->get( 'value', [] ) as $text ): ?>
                 <div>
                     <input
-                            type="text"
+                            type="<?php echo esc_attr( $x->get( 'type', 'text' ) ); ?>"
                             name="<?php echo esc_attr( $x->get( 'name' ) . '[]' ); ?>"
                             value="<?php echo esc_attr( $text ); ?>"
                     />
@@ -28,7 +28,7 @@
 			<?php endforeach; ?>
             <div>
                 <input
-                        type="text"
+                        type="<?php echo esc_attr( $x->get( 'type', 'text' ) ); ?>"
                         name="<?php echo esc_attr( $x->get( 'name' ) . '[]' ); ?>"
                         value=""
                 />

@@ -32,6 +32,7 @@ class RepeatingTextField extends Field {
 
 		return $this->fieldWrapper( 'repeating-text', $this->renderTemplate( 'repeating-text.php', [
 			'name'  => $this->name,
+			'type'  => $this->getData( 'type', $this->getData( [ 'atts', 'type' ], 'text' ) ),
 			'value' => array_filter( $this->value ),
 			'label' => $this->getData( 'label' ),
 			'atts'  => $this->getData( 'atts', [] ),
