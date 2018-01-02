@@ -59,12 +59,12 @@ trait FieldStorageEngine {
 		if ( $sanitize && is_callable( $sanitize ) ) {
 			$clean_value = $sanitize( $value );
 		} else {
-			$clean_value = sanitize_text_field( $value );
+			$clean_value = $this->sanitize( $value );
 		}
 		if ( $save && is_callable( $save ) ) {
-			$save( $id, $this->_name, $this->sanitize( $clean_value ) );
+			$save( $id, $this->_name, $clean_value );
 		} else {
-			$this->_storage->save( $id, $this->_name, $this->sanitize( $clean_value ) );
+			$this->_storage->save( $id, $this->_name, $clean_value );
 		}
 	}
 
