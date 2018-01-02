@@ -17,7 +17,7 @@ class RepeatingTextField extends Field {
 	 * @return array
 	 */
 	public function sanitize( $value ) {
-		return array_map( 'sanitize_text_field', $value );
+		return array_filter( array_map( 'sanitize_text_field', (array) $value ) );
 	}
 
 	/**
