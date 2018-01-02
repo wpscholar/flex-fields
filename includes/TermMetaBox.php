@@ -2,6 +2,7 @@
 
 namespace FlexFields;
 
+use FlexFields\Fields\Field;
 use FlexFields\Fields\FieldContainer;
 
 /**
@@ -96,7 +97,7 @@ class TermMetaBox {
 			if ( $field->storage !== 'FlexFields\\Storage\\TermMetaStorage' ) {
 				$field->setStorageEngine( 'term-meta' );
 			}
-			$field->value = $field->fetch( $term->term_id );
+			$field->value = $field->load( $term->term_id );
             $label = $field->getData( 'label', $field->name );
             $field->setData( 'label', '' );
             ?>
