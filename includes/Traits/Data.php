@@ -55,4 +55,14 @@ trait Data {
 		return $value;
 	}
 
+	/**
+	 * Set value
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 */
+	public function setData( $key, $value ) {
+		$this->_data[ $key ] = $value;
+	}
+
 }
