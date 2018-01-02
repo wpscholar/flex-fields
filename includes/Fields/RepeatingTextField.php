@@ -31,7 +31,7 @@ class RepeatingTextField extends Field {
 		wp_enqueue_script( 'flex-fields' );
 
 		return $this->fieldWrapper( 'repeating-text', $this->renderTemplate( 'repeating-text.php', [
-			'name'  => $this->name,
+			'name'  => $this->getData( 'name' ),
 			'type'  => $this->getData( 'type', $this->getData( [ 'atts', 'type' ], 'text' ) ),
 			'value' => array_filter( $this->value ),
 			'label' => $this->getData( 'label' ),

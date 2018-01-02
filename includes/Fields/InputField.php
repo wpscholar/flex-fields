@@ -20,7 +20,7 @@ class InputField extends Field {
 
 		$input = $this->renderTemplate( 'input.php', [
 			'type'  => $this->inputType(),
-			'name'  => $this->name,
+			'name'  => $this->getData( 'name' ),
 			'value' => $this->value,
 			'atts'  => $this->getData( 'atts', [] ),
 		] );

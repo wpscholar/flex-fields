@@ -30,7 +30,7 @@ class TextareaField extends Field {
 		wp_enqueue_style( 'flex-fields' );
 
 		$textarea = $this->renderTemplate( 'textarea.php', [
-			'name'  => $this->name,
+			'name'  => $this->getData( 'name' ),
 			'value' => $this->value,
 			'atts'  => $this->getData( 'atts', [] ),
 		] );

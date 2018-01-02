@@ -47,7 +47,7 @@ abstract class Field {
 	 */
 	public function __construct( $name, array $args = [] ) {
 		$this->_name = $name;
-		$this->_data = $args;
+		$this->_data = array_merge( $args, [ 'name' => $name ] );
 		$this->value = $this->getData( 'value', '' );
 		$this->setStorageEngine( $this->getData( 'storage' ) );
 	}
@@ -103,7 +103,9 @@ abstract class Field {
 	abstract public function __toString();
 
 	/**
-	 * @param $template
+	 * Render a template.
+	 *
+	 * @param string $template
 	 * @param array $data
 	 *
 	 * @return string
@@ -128,9 +130,9 @@ abstract class Field {
 
 		return $this->renderTemplate( 'field.php', [
 			'fieldType'   => $fieldType,
-			'fieldAtts'  => $this->getData( 'field_atts', [] ),
+			'fieldAtts'   => $this->getData( 'field_atts', [] ),
 			'hidden'      => is_callable( $hidden ) ? $hidden( $this ) : $hidden,
-			'hasErrors'    => $this->hasErrors(),
+			'hasErrors'   => $this->hasErrors(),
 			'error'       => $this->getErrorMessage(),
 			'before'      => $this->getData( 'before' ),
 			'after'       => $this->getData( 'after' ),

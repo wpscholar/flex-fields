@@ -32,8 +32,13 @@ class SelectField extends Field {
 
 		wp_enqueue_style( 'flex-fields' );
 
+		$name = $this->getData( 'name' );
+		if ( $this->isMultiSelect ) {
+			$name .= '[]';
+		}
+
 		$select = $this->renderTemplate( 'select.php', [
-			'name'    => $this->isMultiSelect ? $this->name . '[]' : $this->name,
+			'name'    => $name,
 			'value'   => $this->value,
 			'options' => $this->_normalizeOptions( $this->options ),
 			'atts'    => $this->getData( 'atts', [] ),

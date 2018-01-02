@@ -59,8 +59,13 @@ class ChoicesField extends SelectField {
 		// Set Choices.js config
 		$atts['data-choices'] = htmlspecialchars( json_encode( (object) $config ), ENT_QUOTES );
 
+		$name = $this->getData( 'name' );
+		if ( $this->isMultiSelect ) {
+			$name .= '[]';
+		}
+
 		$choices = $this->renderTemplate( 'select.php', [
-			'name'    => $this->isMultiSelect ? $this->name . '[]' : $this->name,
+			'name'    => $name,
 			'value'   => $this->value,
 			'options' => $this->_normalizeOptions( $this->options ),
 			'atts'    => $atts,

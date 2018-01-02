@@ -71,7 +71,9 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 	 * @param mixed $value
 	 */
 	protected function _set_value( $value ) {
-		// This field has no value, so don't allow it to be set.
+		foreach ( array_filter( (array) $value ) as $field_name => $field_value ) {
+			$this->fields->getField( $field_name )->value = $field_value;
+		}
 	}
 
 	/**
@@ -80,6 +82,16 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 	 * @return string
 	 */
 	public function __toString() {
+
+		foreach ( $this->fields as $field ) {
+			/**
+			 * @var Field $field
+			 */
+			$name = $field->getData( 'name' );
+			if ( 0 !== strpos( $name, "{$this->name}[" ) ) {
+				$field->setData( 'name', "{$this->name}[{$name}]" );
+			}
+		}
 
 		$group = $this->renderTemplate( 'fieldset.php', [
 			'label'   => $this->getData( 'label' ),

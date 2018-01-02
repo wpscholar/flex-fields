@@ -32,7 +32,7 @@ class CheckboxGroupField extends Field {
 		wp_enqueue_style( 'flex-fields' );
 
 		$checkboxGroup = $this->renderTemplate( 'checkbox-group.php', [
-			'name'    => $this->name,
+			'name'    => $this->getData( 'name' ),
 			'value'   => $this->value,
 			'label'   => $this->getData( 'label' ),
 			'options' => $this->_normalizeOptions( $this->options ),

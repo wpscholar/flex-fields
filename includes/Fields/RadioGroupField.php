@@ -21,9 +21,9 @@ class RadioGroupField extends Field {
 		wp_enqueue_style( 'flex-fields' );
 
 		$radioGroup = $this->renderTemplate( 'radio-group.php', [
-			'name'    => $this->name,
+			'name'    => $this->getData( 'name' ),
 			'value'   => $this->value,
-			'label'  => $this->getData( 'label' ),
+			'label'   => $this->getData( 'label' ),
 			'options' => $this->_normalizeOptions( $this->options ),
 			'atts'    => $this->getData( 'atts', [] ),
 		] );

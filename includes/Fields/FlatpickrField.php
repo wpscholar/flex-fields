@@ -37,7 +37,7 @@ class FlatpickrField extends Field {
 		$atts['data-flatpickr'] = htmlspecialchars( json_encode( (object) $config ), ENT_QUOTES, 'UTF-8' );
 
 		$flatpickr = $this->renderTemplate( 'flatpickr.php', [
-			'name'  => $this->name,
+			'name'  => $this->getData( 'name' ),
 			'value' => $this->value,
 			'atts'  => $atts,
 		] );
