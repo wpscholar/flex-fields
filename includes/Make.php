@@ -63,7 +63,7 @@ class Make {
 	}
 
 	/**
-	 * Factory for generating a field storage object from a string
+	 * Factory for generating a field storage object from a string.
 	 *
 	 * @param string $storageType
 	 *
@@ -98,7 +98,7 @@ class Make {
 	}
 
 	/**
-	 * Factory for generating a form
+	 * Factory for generating a form.
 	 *
 	 * @param string $name The name of the form.
 	 * @param array $args The arguments for the form.
@@ -107,6 +107,30 @@ class Make {
 	 */
 	public static function Form( $name, array $args = [] ) {
 		return new Form( $name, $args );
+	}
+
+	/**
+	 * Factory for creating a new meta box.
+	 *
+	 * @param string $id
+	 * @param string $title
+	 * @param string|null $postType Name of the post type or null for all post types.
+	 *
+	 * @return MetaBox
+	 */
+	public static function MetaBox( $id, $title, $postType = null ) {
+		return new MetaBox( $id, $title, $postType );
+	}
+
+	/**
+	 * Factory for creating a new term meta box.
+	 *
+	 * @param string $taxonomy
+	 *
+	 * @return TermMetaBox
+	 */
+	public static function TermMetaBox( $taxonomy ) {
+		return new TermMetaBox( $taxonomy );
 	}
 
 }
