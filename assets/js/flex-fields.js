@@ -274,9 +274,9 @@ module.exports = unescape;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
-__webpack_require__(10);
 __webpack_require__(11);
-module.exports = __webpack_require__(12);
+__webpack_require__(12);
+module.exports = __webpack_require__(13);
 
 
 /***/ }),
@@ -291,6 +291,8 @@ __webpack_require__(3);
 __webpack_require__(6);
 
 __webpack_require__(9);
+
+__webpack_require__(10);
 
 /***/ }),
 /* 3 */
@@ -2814,6 +2816,48 @@ if (true) module.exports = confirmDatePlugin;
 "use strict";
 
 
+Array.from(document.querySelectorAll('.flex-field-repeating')).forEach(function (field) {
+
+    var index = void 0;
+
+    var container = field.querySelector('.flex-field-collection');
+    var templateWrapper = field.querySelector('.flex-field-template');
+    var template = templateWrapper.firstElementChild.cloneNode(true);
+    var addButton = field.querySelector('[data-action="add"]');
+    var deleteButtons = field.querySelectorAll('[data-action="delete"]');
+    var fieldName = templateWrapper.getAttribute('data-action');
+
+    var deleteEventHandler = function deleteEventHandler() {
+        this.parentNode.parentNode.removeChild(this.parentNode);
+    };
+
+    index = container.childElementCount;
+
+    templateWrapper.parentNode.removeChild(templateWrapper);
+
+    addButton.addEventListener('click', function () {
+        var node = template.cloneNode(true);
+        node.querySelector('button').addEventListener('click', deleteEventHandler);
+        Array.from(node.querySelectorAll('[name*="' + fieldName + '[x]"]')).forEach(function (el) {
+            var name = el.getAttribute('name');
+            el.setAttribute('name', name.replace(fieldName + '[x]', fieldName + '[' + index + ']'));
+        });
+        container.appendChild(node);
+        index++;
+    });
+
+    Array.from(deleteButtons).forEach(function (deleteButton) {
+        deleteButton.addEventListener('click', deleteEventHandler);
+    });
+});
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 Array.from(document.querySelectorAll('.flex-field-repeating-text')).forEach(function (field) {
 
     var container = field.querySelector('.flex-field-collection');
@@ -2837,12 +2881,6 @@ Array.from(document.querySelectorAll('.flex-field-repeating-text')).forEach(func
 });
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 11 */
 /***/ (function(module, exports) {
 
@@ -2850,6 +2888,12 @@ Array.from(document.querySelectorAll('.flex-field-repeating-text')).forEach(func
 
 /***/ }),
 /* 12 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

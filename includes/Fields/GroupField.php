@@ -2,8 +2,6 @@
 
 namespace FlexFields\Fields;
 
-use Traversable;
-
 /**
  * Class GroupField
  *
@@ -32,7 +30,15 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 
 		// Setup fields
 		if ( isset( $args['fields'] ) && is_array( $args['fields'] ) ) {
+
+			// Add fields
 			$this->fields->addFields( $args['fields'] );
+
+			// Set field names
+			foreach ( $this->fields as $field ) {
+				$field->setData( 'name', "{$this->name}[{$field->getData( 'name' )}]" );
+			}
+
 		}
 	}
 
@@ -50,15 +56,11 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 	/**
 	 * Get field value
 	 *
-	 * @return mixed
+	 * @return array
 	 */
 	protected function _get_value() {
 		$value = [];
-
 		foreach ( $this->fields as $field ) {
-			/**
-			 * @var Field $field
-			 */
 			$value[ $field->name ] = $field->value;
 		}
 
@@ -68,7 +70,7 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 	/**
 	 * Set field value
 	 *
-	 * @param mixed $value
+	 * @param array $value
 	 */
 	protected function _set_value( $value ) {
 		foreach ( array_filter( (array) $value ) as $field_name => $field_value ) {
@@ -83,16 +85,6 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 	 */
 	public function __toString() {
 
-		foreach ( $this->fields as $field ) {
-			/**
-			 * @var Field $field
-			 */
-			$name = $field->getData( 'name' );
-			if ( 0 !== strpos( $name, "{$this->name}[" ) ) {
-				$field->setData( 'name', "{$this->name}[{$name}]" );
-			}
-		}
-
 		$group = $this->renderTemplate( 'fieldset.php', [
 			'label'   => $this->getData( 'label' ),
 			'atts'    => $this->getData( 'atts', [] ),
@@ -104,7 +96,7 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 	}
 
 	/**
-	 * @return FieldContainer|Traversable
+	 * @return \Traversable|FieldContainer
 	 */
 	public function getIterator() {
 		return $this->fields;
