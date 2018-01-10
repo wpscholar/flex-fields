@@ -2860,7 +2860,7 @@ Array.from(document.querySelectorAll('.flex-field-repeating')).forEach(function 
 "use strict";
 
 
-Array.from(document.querySelectorAll('.flex-field-repeating-text')).forEach(function (field) {
+function initialize(field) {
 
     var container = field.querySelector('.flex-field-collection');
     var template = field.querySelector('.flex-field-collection').lastElementChild.cloneNode(true);
@@ -2880,7 +2880,15 @@ Array.from(document.querySelectorAll('.flex-field-repeating-text')).forEach(func
     Array.from(deleteButtons).forEach(function (deleteButton) {
         deleteButton.addEventListener('click', deleteEventHandler);
     });
-});
+}
+
+Array.from(document.querySelectorAll('.flex-field-repeating-text')).map(initialize);
+
+window.flexfields = window.flexfields || {};
+
+window.flexfields.repeatingText = {
+    initialize: initialize
+};
 
 /***/ }),
 /* 11 */
