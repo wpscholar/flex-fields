@@ -6,12 +6,15 @@ Array
     .forEach(
         (input) => {
 
-            input.addEventListener('click', function(e) {
+            input.addEventListener('click', function (e) {
                 e.stopPropagation();
             });
 
             const config = JSON.parse(decode(input.getAttribute('data-choices')));
 
-            new Choices(input, config);
+            input.data = {
+                'Choices': new Choices(input, config)
+            };
+
         }
     );

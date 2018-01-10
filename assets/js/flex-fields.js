@@ -319,7 +319,9 @@ Array.from(document.querySelectorAll('.flex-field [data-choices]')).forEach(func
 
     var config = JSON.parse((0, _lodash2.default)(input.getAttribute('data-choices')));
 
-    new _choices2.default(input, config);
+    input.data = {
+        'Choices': new _choices2.default(input, config)
+    };
 });
 
 /***/ }),
