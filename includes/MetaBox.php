@@ -142,7 +142,7 @@ class MetaBox {
 			if ( $field->storage !== 'FlexFields\\Storage\\PostMetaStorage' ) {
 				$field->setStorageEngine( 'post-meta' );
 			}
-			$field->value = $field->fetch( $post->ID );
+			$field->value = $field->load( $post->ID );
 			$field->render();
 		}
 		wp_nonce_field( $this->nonceAction, $this->nonceName );
