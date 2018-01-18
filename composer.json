@@ -2,7 +2,7 @@
   "name": "wpscholar/flex-fields",
   "description": "A library for working with fields in WordPress",
   "type": "library",
-  "license": "GPL-2.0+",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Micah Wood",
