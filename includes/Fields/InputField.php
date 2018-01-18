@@ -18,9 +18,14 @@ class InputField extends Field {
 
 		wp_enqueue_style( 'flex-fields' );
 
+		$name = $this->getData( 'name' );
+		if ( 'multiple' === $this->getData( [ 'atts', 'multiple' ] ) ) {
+			$name .= '[]';
+		}
+
 		$input = $this->renderTemplate( 'input.php', [
 			'type'  => $this->inputType(),
-			'name'  => $this->getData( 'name' ),
+			'name'  => $name,
 			'value' => $this->value,
 			'atts'  => $this->getData( 'atts', [] ),
 		] );
