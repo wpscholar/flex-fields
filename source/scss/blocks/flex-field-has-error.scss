@@ -1,0 +1,12 @@
+.flex-field-has-error {
+  .flex-label-text {
+    color: #dd0000;
+  }
+  textarea,
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="text"] {
+    border: 1px solid #dd0000;
+  }
+}

@@ -2,8 +2,6 @@
 
 namespace FlexFields\Fields;
 
-use FlexFields\TemplateHandler;
-
 /**
  * Class CheckboxGroupField
  *
@@ -33,25 +31,15 @@ class CheckboxGroupField extends Field {
 
 		wp_enqueue_style( 'flex-fields' );
 
-		$template = TemplateHandler::getInstance();
-
-		return $template->toString( 'field.php', [
-			'fieldType'   => 'checkbox-group',
-			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
-			'hasError'    => $this->hasErrors(),
-			'error'       => $this->getErrorMessage(),
-			'before'      => $this->getData( 'before' ),
-			'after'       => $this->getData( 'after' ),
-			'beforeField' => $this->getData( 'before_field' ),
-			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'checkbox-group.php', [
-				'name'    => $this->name,
-				'value'   => $this->value,
-				'legend'  => $this->getData( 'label' ),
-				'options' => $this->_normalizeOptions( $this->options ),
-				'atts'    => $this->getData( 'atts', [] ),
-			] ),
+		$checkboxGroup = $this->renderTemplate( 'checkbox-group.php', [
+			'name'    => $this->getData( 'name' ),
+			'value'   => $this->value,
+			'label'   => $this->getData( 'label' ),
+			'options' => $this->_normalizeOptions( $this->options ),
+			'atts'    => $this->getData( 'atts', [] ),
 		] );
+
+		return $this->fieldWrapper( 'checkbox-group', $checkboxGroup );
 
 	}
 
@@ -61,7 +49,8 @@ class CheckboxGroupField extends Field {
 	 * @return array
 	 */
 	protected function _get_options() {
-		$options = $this->_maybeConvertCallable( $this->getData( 'options', [] ), $this );
+		$options = $this->getData( 'options', [] );
+		$options = is_callable( $options ) ? $options( $this ) : $options;
 
 		return apply_filters( __CLASS__ . ':options', $this->_normalizeOptions( $options ), $this );
 	}

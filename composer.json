@@ -11,13 +11,14 @@
   ],
   "autoload": {
     "files": [
-      "includes/functions.php"
+      "includes/functions.php",
+      "includes/bootstrap.php"
     ],
     "psr-4": {
       "FlexFields\\": "includes"
     }
   },
   "require": {
-    "wpscholar/templatex": "^1.0"
+    "wpscholar/templatex": "^1.1"
   }
 }

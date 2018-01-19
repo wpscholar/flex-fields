@@ -2,8 +2,6 @@
 
 namespace FlexFields\Fields;
 
-use FlexFields\TemplateHandler;
-
 /**
  * Class ChoicesField
  *
@@ -14,6 +12,9 @@ use FlexFields\TemplateHandler;
  */
 class ChoicesField extends SelectField {
 
+	/**
+	 * @return array
+	 */
 	protected function _defaultConfig() {
 		return [
 			// Change CSS classnames to better restrict CSS/JS scope
@@ -50,8 +51,6 @@ class ChoicesField extends SelectField {
 		wp_enqueue_style( 'flex-fields' );
 		wp_enqueue_script( 'flex-fields' );
 
-		$template = TemplateHandler::getInstance();
-
 		// Get field attributes
 		$atts = $this->getData( 'atts', [] );
 
@@ -60,27 +59,19 @@ class ChoicesField extends SelectField {
 		// Set Choices.js config
 		$atts['data-choices'] = htmlspecialchars( json_encode( (object) $config ), ENT_QUOTES );
 
-		// TODO: Need to be able to pass css classes to field wrapper vs. actual input/select field.
-		return $template->toString( 'field.php', [
-			'fieldType'   => 'choices',
-			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
-			'hasError'    => $this->hasErrors(),
-			'error'       => $this->getErrorMessage(),
-			'before'      => $this->getData( 'before' ),
-			'after'       => $this->getData( 'after' ),
-			'beforeField' => $this->getData( 'before_field' ),
-			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'label.php', [
-				'label'         => $this->getData( 'label' ),
-				'labelPosition' => $this->getData( 'label_position', 'before' ),
-				'content'       => $template->toString( 'select.php', [
-					'name'    => $this->isMultiSelect ? $this->name . '[]' : $this->name,
-					'value'   => $this->value,
-					'options' => $this->_normalizeOptions( $this->options ),
-					'atts'    => $atts,
-				] )
-			] ),
+		$name = $this->getData( 'name' );
+		if ( $this->isMultiSelect ) {
+			$name .= '[]';
+		}
+
+		$choices = $this->renderTemplate( 'select.php', [
+			'name'    => $name,
+			'value'   => $this->value,
+			'options' => $this->_normalizeOptions( $this->options ),
+			'atts'    => $atts,
 		] );
+
+		return $this->fieldWrapper( 'choices', $this->fieldLabel( $choices ) );
 
 	}
 

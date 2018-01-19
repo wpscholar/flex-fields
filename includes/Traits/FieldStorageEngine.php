@@ -2,6 +2,7 @@
 
 namespace FlexFields\Traits;
 
+use FlexFields\Fields\InputField;
 use FlexFields\Make;
 use FlexFields\Storage\FieldStorage;
 
@@ -37,14 +38,13 @@ trait FieldStorageEngine {
 	 *
 	 * @returns mixed
 	 */
-	public function fetch( $id ) {
-		$fetch = $this->getData( 'fetch' );
-		if ( $fetch && is_callable( $fetch ) ) {
-			return call_user_func( $fetch, $id, $this->_name );
-		} else {
-			return $this->_storage->fetch( $id, $this->_name );
+	public function load( $id ) {
+		$load = $this->getData( 'load' );
+		if ( $load && is_callable( $load ) ) {
+			return $load( $id, $this->_name );
 		}
 
+		return $this->_storage->load( $id, $this->_name );
 	}
 
 	/**
@@ -57,14 +57,14 @@ trait FieldStorageEngine {
 		$save = $this->getData( 'save' );
 		$sanitize = $this->getData( 'sanitize' );
 		if ( $sanitize && is_callable( $sanitize ) ) {
-			$clean_value = call_user_func( $sanitize, $value );
+			$clean_value = $sanitize( $value );
 		} else {
-			$clean_value = sanitize_text_field( $value );
+			$clean_value = $this->sanitize( $value );
 		}
 		if ( $save && is_callable( $save ) ) {
-			call_user_func( $save, $id, $this->_name, $this->sanitize( $clean_value ) );
+			$save( $id, $this->_name, $clean_value );
 		} else {
-			$this->_storage->save( $id, $this->_name, $this->sanitize( $clean_value ) );
+			$this->_storage->save( $id, $this->_name, $clean_value );
 		}
 	}
 
@@ -76,7 +76,7 @@ trait FieldStorageEngine {
 	public function delete( $id ) {
 		$delete = $this->getData( 'delete' );
 		if ( $delete && is_callable( $delete ) ) {
-			call_user_func( $delete, $id, $this->_name );
+			$delete( $id, $this->_name );
 		} else {
 			$this->_storage->delete( $id, $this->_name );
 		}

@@ -1,0 +1,29 @@
+.flex-field-flatpickr {
+
+  .flex-label-text {
+    display: block;
+  }
+
+  .flatpickr-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+  }
+
+  .flatpickr-input {
+    background-color: white;
+    margin: 0;
+  }
+
+  .flatpickr-reset {
+    position: absolute;
+    right: 1em;
+    color: gray;
+    cursor: pointer;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-self: center;
+    text-align: right;
+  }
+
+}

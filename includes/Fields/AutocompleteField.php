@@ -2,8 +2,6 @@
 
 namespace FlexFields\Fields;
 
-use FlexFields\TemplateHandler;
-
 /**
  * Class AutocompleteField
  *
@@ -44,8 +42,6 @@ class AutocompleteField extends ChoicesField {
 		wp_enqueue_style( 'flex-fields' );
 		wp_enqueue_script( 'flex-fields' );
 
-		$template = TemplateHandler::getInstance();
-
 		// Get field attributes
 		$atts = $this->getData( 'atts', [] );
 
@@ -54,26 +50,19 @@ class AutocompleteField extends ChoicesField {
 		// Set Choices.js config
 		$atts['data-choices'] = htmlspecialchars( json_encode( (object) $config ), ENT_QUOTES );
 
-		return $template->toString( 'field.php', [
-			'fieldType'   => 'autocomplete',
-			'hidden'      => $this->_maybeConvertCallable( $this->getData( 'hidden', false ), $this ),
-			'hasError'    => $this->hasErrors(),
-			'error'       => $this->getErrorMessage(),
-			'before'      => $this->getData( 'before' ),
-			'after'       => $this->getData( 'after' ),
-			'beforeField' => $this->getData( 'before_field' ),
-			'afterField'  => $this->getData( 'after_field' ),
-			'content'     => $template->toString( 'label.php', [
-				'label'         => $this->getData( 'label' ),
-				'labelPosition' => $this->getData( 'label_position', 'before' ),
-				'content'       => $template->toString( 'select.php', [
-					'name'    => $this->isMultiSelect ? $this->name . '[]' : $this->name,
-					'value'   => $this->value,
-					'options' => $this->_normalizeOptions( $this->options ),
-					'atts'    => $atts,
-				] )
-			] ),
+		$name = $this->getData( 'name' );
+		if ( $this->isMultiSelect ) {
+			$name .= '[]';
+		}
+
+		$autocomplete = $this->renderTemplate( 'select.php', [
+			'name'    => $name,
+			'value'   => $this->value,
+			'options' => $this->_normalizeOptions( $this->options ),
+			'atts'    => $atts,
 		] );
+
+		return $this->fieldWrapper( 'autocomplete', $this->fieldLabel( $autocomplete ) );
 
 	}
 

@@ -24,7 +24,12 @@ trait Data {
 	 *
 	 * @returns mixed
 	 */
-	public function getData( $key, $default = null ) {
+	public function getData( $key = null, $default = null ) {
+
+		// Get all data
+		if ( null === $key ) {
+			return $this->_data;
+		}
 
 		$value = $default;
 
@@ -35,7 +40,7 @@ trait Data {
 		}
 
 		if ( is_array( $key ) ) {
-			$value    = $this->_data;
+			$value = $this->_data;
 			$segments = $key;
 			foreach ( $segments as $segment ) {
 				if ( isset( $value[ $segment ] ) ) {
@@ -51,7 +56,7 @@ trait Data {
 	}
 
 	/**
-	 * Set data value
+	 * Set value
 	 *
 	 * @param string $key
 	 * @param mixed $value

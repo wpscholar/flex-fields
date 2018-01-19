@@ -2,7 +2,8 @@
 /**
  * @var \wpscholar\TemplateX $x
  */
-
-$x->load( 'input.php' );
-
-?><span class="flatpickr-reset">✕</span>
+?>
+<div class="flatpickr-wrapper">
+	<?php $x->load( 'input.php' ); ?>
+    <div class="flatpickr-reset">✕</div>
+</div>
