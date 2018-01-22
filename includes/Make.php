@@ -133,4 +133,16 @@ class Make {
 		return new TermMetaBox( $taxonomy );
 	}
 
+	/**
+	 * Factory for creating a new admin settings page.
+	 *
+	 * @param array $page
+	 * @param array $sections
+	 *
+	 * @return AdminSettingsPage
+	 */
+	public static function AdminSettingsPage( array $page, array $sections ) {
+		return new AdminSettingsPage( $page, $sections );
+	}
+
 }
