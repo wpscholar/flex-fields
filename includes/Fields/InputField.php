@@ -90,7 +90,7 @@ class InputField extends Field {
 	 * @return bool
 	 */
 	protected function canStore() {
-		return ! in_array( $this->inputType(), [ 'button', 'reset', 'submit' ], SORT_STRING );
+		return ! \in_array( $this->inputType(), [ 'button', 'reset', 'submit' ], SORT_STRING );
 	}
 
 }

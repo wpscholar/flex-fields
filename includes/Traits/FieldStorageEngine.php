@@ -40,7 +40,7 @@ trait FieldStorageEngine {
 	 */
 	public function load( $id ) {
 		$load = $this->getData( 'load' );
-		if ( $load && is_callable( $load ) ) {
+		if ( $load && \is_callable( $load ) ) {
 			return $load( $id, $this->_name );
 		}
 
@@ -56,12 +56,12 @@ trait FieldStorageEngine {
 	public function save( $id, $value ) {
 		$save = $this->getData( 'save' );
 		$sanitize = $this->getData( 'sanitize' );
-		if ( $sanitize && is_callable( $sanitize ) ) {
+		if ( $sanitize && \is_callable( $sanitize ) ) {
 			$clean_value = $sanitize( $value );
 		} else {
 			$clean_value = $this->sanitize( $value );
 		}
-		if ( $save && is_callable( $save ) ) {
+		if ( $save && \is_callable( $save ) ) {
 			$save( $id, $this->_name, $clean_value );
 		} else {
 			$this->_storage->save( $id, $this->_name, $clean_value );
@@ -75,7 +75,7 @@ trait FieldStorageEngine {
 	 */
 	public function delete( $id ) {
 		$delete = $this->getData( 'delete' );
-		if ( $delete && is_callable( $delete ) ) {
+		if ( $delete && \is_callable( $delete ) ) {
 			$delete( $id, $this->_name );
 		} else {
 			$this->_storage->delete( $id, $this->_name );

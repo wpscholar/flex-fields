@@ -7,7 +7,7 @@
 	<?php if ( $x->get( 'hasErrors', false ) ): ?>
         <div class="flex-form-errors">
 			<?php
-			foreach ( $x->get( 'errors', [] ) as $error ) {
+			foreach ( (array) $x->get( 'errors', [] ) as $error ) {
 				$x->load( 'error.php', [ 'error' => $error ] );
 			}
 			?>
