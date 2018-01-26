@@ -26,13 +26,13 @@
     "css-loader": "^0.28.7",
     "css-mqpacker": "^6.0.1",
     "extract-text-webpack-plugin": "^3.0.0",
-    "flatpickr": "^3.0.7",
+    "flatpickr": "^4.2.3",
     "lodash.unescape": "^4.0.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.7.2",
     "postcss-loader": "^2.0.6",
     "sass-loader": "^6.0.6",
-    "sass-mq": "^3.3.2",
-    "style-loader": "^0.18.2",
+    "sass-mq": "^4.0.2",
+    "style-loader": "^0.19.1",
     "svg-url-loader": "^2.3.0",
     "webpack": "^3.6.0"
   }
