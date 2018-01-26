@@ -25,8 +25,8 @@ Array
     .from(document.querySelectorAll('.flex-field-repeating-text'))
     .map(initialize);
 
-window.flexfields = window.flexfields || {};
+window.flexFields = window.flexFields || {};
 
-window.flexfields.repeatingText = {
+window.flexFields.repeatingText = {
     initialize: initialize
 };
