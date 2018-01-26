@@ -29,6 +29,10 @@ if ( ! function_exists( 'flex_fields_setup' ) ) {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		wp_register_style( 'flex-fields', FLEX_FIELDS_URL . "/assets/css/flex-fields{$suffix}.css" );
 		wp_register_script( 'flex-fields', FLEX_FIELDS_URL . "/assets/js/flex-fields{$suffix}.js" );
+		wp_localize_script( 'flex-fields', 'flexFields', [
+			'restUrl'   => esc_url_raw( rest_url() ),
+			'restNonce' => wp_create_nonce( 'wp_rest' ),
+		] );
 	}
 
 	if ( function_exists( 'add_action' ) ) {
