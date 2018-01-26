@@ -1,4 +1,4 @@
-.flex-field[hidden] {
+.flex-field[hidden], .flex-field [hidden] {
   display: none !important; }
 
 .flex-field {
@@ -289,6 +289,69 @@
 
 .wp-admin.term-php .flex-field {
   margin: 0; }
+
+.flex-field-ajax-upload input[type="file"] {
+  margin: 0;
+  padding: 0; }
+
+.flex-field-ajax-upload__drop-zone {
+  background: #efefef;
+  padding: 2em 1em;
+  text-align: center; }
+
+.flex-field-ajax-upload__on-load, .flex-field-ajax-upload__on-upload, .flex-field-ajax-upload__on-max-upload, .flex-field-ajax-upload__on-success, .flex-field-ajax-upload__on-failure {
+  display: none; }
+
+.flex-field-ajax-upload__gallery {
+  margin: 1em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-line-pack: justify;
+      align-content: space-between; }
+
+.flex-field-ajax-upload__image {
+  margin: .25em; }
+
+.flex-field-ajax-upload.\--has-advanced-upload input[type="file"] {
+  display: none; }
+
+.flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__on-load {
+  display: block; }
+
+.flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone {
+  outline: 2px dashed grey;
+  outline-offset: -10px;
+  position: relative; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-error {
+    color: darkred;
+    outline-color: darkred; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-active {
+    background: white;
+    outline-offset: -4px; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    outline-offset: -10px;
+    background: #efefef; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-uploading .flex-field-ajax-upload__on-load {
+    display: none; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-uploading .flex-field-ajax-upload__on-upload {
+    display: block; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-max-upload .flex-field-ajax-upload__on-load {
+    display: none; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-max-upload .flex-field-ajax-upload__on-max-upload {
+    display: block; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-success .flex-field-ajax-upload__on-load {
+    display: none; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-success .flex-field-ajax-upload__on-success {
+    display: block; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-failure .flex-field-ajax-upload__on-load {
+    display: none; }
+  .flex-field-ajax-upload.\--has-advanced-upload .flex-field-ajax-upload__drop-zone.\--is-failure .flex-field-ajax-upload__on-failure {
+    display: block; }
 
 .flex-field-autocomplete .flex-label-text {
   display: block; }
@@ -634,6 +697,9 @@
 .numInputWrapper input {
   width: 100%;
 }
+.numInputWrapper input::-ms-clear {
+  display: none;
+}
 .numInputWrapper span {
   position: absolute;
   right: 0;
@@ -756,7 +822,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   color: inherit;
-  cursor: default;
+  cursor: text;
   padding: 0 0 0 0.5ch;
   margin: 0;
   display: inline-block;
@@ -965,10 +1031,6 @@ span.flatpickr-weekday {
           box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
 }
 .flatpickr-day.disabled,
-.flatpickr-day.disabled:hover {
-  pointer-events: none;
-}
-.flatpickr-day.disabled,
 .flatpickr-day.disabled:hover,
 .flatpickr-day.prevMonthDay,
 .flatpickr-day.nextMonthDay,
@@ -979,6 +1041,11 @@ span.flatpickr-weekday {
   background: transparent;
   border-color: transparent;
   cursor: default;
+}
+.flatpickr-day.disabled,
+.flatpickr-day.disabled:hover {
+  cursor: not-allowed;
+  color: rgba(57,57,57,0.1);
 }
 .flatpickr-day.week.selected {
   border-radius: 0;
@@ -1002,10 +1069,15 @@ span.flatpickr-weekday {
   width: 100%;
   line-height: 28px;
 }
-.flatpickr-weekwrapper span.flatpickr-day {
+.flatpickr-weekwrapper span.flatpickr-day,
+.flatpickr-weekwrapper span.flatpickr-day:hover {
   display: block;
   width: 100%;
   max-width: none;
+  color: rgba(57,57,57,0.3);
+  background: transparent;
+  cursor: default;
+  border: none;
 }
 .flatpickr-innerContainer {
   display: block;
