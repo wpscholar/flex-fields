@@ -1,0 +1,97 @@
+.flex-field-ajax-upload {
+
+  input[type="file"] {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__drop-zone {
+    background: #efefef;
+    padding: 2em 1em;
+    text-align: center;
+  }
+
+  &__on-load,
+  &__on-upload,
+  &__on-max-upload,
+  &__on-success,
+  &__on-failure {
+    display: none;
+  }
+
+  &__gallery {
+    margin: 1em 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+  }
+
+  &__image {
+    margin: .25em;
+  }
+
+  &.--has-advanced-upload {
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .flex-field-ajax-upload__on-load {
+      display: block;
+    }
+
+    .flex-field-ajax-upload__drop-zone {
+      outline: 2px dashed grey;
+      outline-offset: -10px;
+      position: relative;
+      &.--is-error {
+        color: darkred;
+        outline-color: darkred;
+      }
+      &.--is-active {
+        background: white;
+        outline-offset: -4px;
+      }
+      &.--is-disabled {
+        opacity: .5;
+        cursor: not-allowed;
+        outline-offset: -10px;
+        background: #efefef;
+      }
+      &.--is-uploading {
+        .flex-field-ajax-upload__on-load {
+          display: none;
+        }
+        .flex-field-ajax-upload__on-upload {
+          display: block;
+        }
+      }
+      &.--is-max-upload {
+        .flex-field-ajax-upload__on-load {
+          display: none;
+        }
+        .flex-field-ajax-upload__on-max-upload {
+          display: block;
+        }
+      }
+      &.--is-success {
+        .flex-field-ajax-upload__on-load {
+          display: none;
+        }
+        .flex-field-ajax-upload__on-success {
+          display: block;
+        }
+      }
+      &.--is-failure {
+        .flex-field-ajax-upload__on-load {
+          display: none;
+        }
+        .flex-field-ajax-upload__on-failure {
+          display: block;
+        }
+      }
+    }
+
+  }
+
+}
