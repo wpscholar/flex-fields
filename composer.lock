@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f611bf771351e700801bc5d9497e25e",
+    "content-hash": "7cbbf4e77a69e7162539103598678d36",
     "packages": [
         {
             "name": "wpscholar/templatex",
-            "version": "1.1",
+            "version": "1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wpscholar/templatex.git",
-                "reference": "1cf8ba3686c57c596ac548daa2616101f5d8031b"
+                "reference": "aa1156a85ae1e59eb19fa82790b6298e534ec054"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wpscholar/templatex/zipball/1cf8ba3686c57c596ac548daa2616101f5d8031b",
-                "reference": "1cf8ba3686c57c596ac548daa2616101f5d8031b",
+                "url": "https://api.github.com/repos/wpscholar/templatex/zipball/aa1156a85ae1e59eb19fa82790b6298e534ec054",
+                "reference": "aa1156a85ae1e59eb19fa82790b6298e534ec054",
                 "shasum": ""
             },
             "type": "library",
@@ -37,7 +37,7 @@
                 }
             ],
             "description": "A simple, micro template engine for PHP",
-            "time": "2017-12-08T22:02:06+00:00"
+            "time": "2018-01-29T17:18:49+00:00"
         }
     ],
     "packages-dev": [],
