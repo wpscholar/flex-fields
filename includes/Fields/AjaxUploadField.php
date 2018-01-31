@@ -40,14 +40,22 @@ class AjaxUploadField extends Field {
 		wp_enqueue_style( 'flex-fields' );
 		wp_enqueue_script( 'flex-fields' );
 
+		$imageSize = $this->getData( 'image_size', 'thumbnail' );
+		$maxUploads = $this->getData( 'max_uploads', $this->isMultiFileUpload() ? 10 : 1 );
+
+		$this->_data['field_atts']['data-config'] = wp_json_encode( [
+			'imageSize'  => $imageSize,
+			'maxUploads' => $maxUploads,
+		] );
+
 		$input = $this->renderTemplate( 'ajax-upload.php', [
 			'type'             => 'file',
 			'name'             => $this->getData( 'name' ),
 			'value'            => $this->value,
 			'atts'             => $this->getData( 'atts', [] ),
 			'fileHandle'       => $this->getData( 'file_handle' ),
-			'imageSize'        => $this->getData( 'image_size', 'thumbnail' ),
-			'maxUploads'       => $this->getData( 'max_uploads', $this->isMultiFileUpload() ? 10 : 1 ),
+			'imageSize'        => $imageSize,
+			'maxUploads'       => $maxUploads,
 			'label'            => $this->getData( 'label' ),
 			'labelPosition'    => $this->getData( 'label_position', 'before' ),
 			'labelOnError'     => $this->getData( 'label_on_error', __( 'Uh oh. Something went wrong. Please try again.', 'flex-fields' ) ),
