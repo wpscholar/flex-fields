@@ -35,9 +35,9 @@ class RepeatingField extends Field implements \IteratorAggregate, \Countable {
 
 		// Setup repeating field
 		if ( isset( $args['repeating_field'] ) ) {
-			if ( is_array( $args['repeating_field'] ) ) {
+			if ( \is_array( $args['repeating_field'] ) ) {
 				$this->field_args = $args['repeating_field'];
-			} else if ( is_object( $args['repeating_field'] ) && is_a( $args['repeating_field'], Field::class ) ) {
+			} else if ( \is_object( $args['repeating_field'] ) && is_a( $args['repeating_field'], Field::class ) ) {
 				$this->field_args = $args['repeating_field']->getData();
 			}
 		}
