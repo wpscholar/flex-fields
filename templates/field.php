@@ -16,6 +16,8 @@ $atts['class'] = trim(
 	] )
 );
 
+asort( $atts );
+
 ?>
 <?php echo wp_kses( $x->get( 'beforeField' ), flex_fields_allowed_html() ); ?>
     <div <?php $x->load( 'attributes.php', [ 'atts' => $atts ] ); ?> <?php echo $x->is( 'hidden', true ) ? 'hidden' : ''; ?>>
