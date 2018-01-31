@@ -64,7 +64,13 @@ class SelectField extends Field {
 	 */
 	protected function _get_options() {
 		$options = $this->getData( 'options', [] );
-		$options = is_callable( $options ) ? $options( $this ) : $options;
+		$options = \is_callable( $options ) ? $options( $this ) : $options;
+		$options = $this->_normalizeOptions( $options );
+
+		$default_option = $this->getData( 'default_option' );
+		if ( $default_option ) {
+			array_unshift( $options, $default_option );
+		}
 
 		return apply_filters( __CLASS__ . ':options', $this->_normalizeOptions( $options ), $this );
 	}
