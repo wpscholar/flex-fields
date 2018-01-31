@@ -896,7 +896,7 @@ module.exports = g;
 
 var _ChoicesField = __webpack_require__(10);
 
-Array.from(document.querySelectorAll('.flex-field-autocomplete, .flex-field-choices')).map(function (el) {
+Array.from(document.querySelectorAll('.flex-field-autocomplete, .flex-field-choices, .flex-field-choices-input')).map(function (el) {
     return new _ChoicesField.ChoicesField(el);
 });
 
