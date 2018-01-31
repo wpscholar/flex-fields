@@ -128,10 +128,15 @@ abstract class Field {
 
 		$hidden = $this->getData( 'hidden', false );
 
+		$fieldAtts = $this->getData( 'field_atts', [] );
+
+		$fieldAtts['data-name'] = $this->name;
+		$fieldAtts['data-type'] = $fieldType;
+
 		return $this->renderTemplate( 'field.php', [
 			'fieldType'   => $fieldType,
-			'fieldAtts'   => $this->getData( 'field_atts', [] ),
-			'hidden'      => is_callable( $hidden ) ? $hidden( $this ) : $hidden,
+			'fieldAtts'   => $fieldAtts,
+			'hidden'      => \is_callable( $hidden ) ? $hidden( $this ) : $hidden,
 			'hasErrors'   => $this->hasErrors(),
 			'error'       => $this->getErrorMessage(),
 			'before'      => $this->getData( 'before' ),
