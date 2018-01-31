@@ -456,6 +456,10 @@
 .flex-field-select .flex-label-text {
   display: block; }
 
+.flex-field-textarea textarea {
+  display: block;
+  width: 100%; }
+
 .flex-form-errors {
   display: block;
   margin: 1em 0;
