@@ -75,7 +75,10 @@ if ( ! function_exists( 'flex_fields_setup' ) ) {
 				'aria-valuetext'       => true,
 				'data-action'          => true,
 				'data-choices'         => true,
+				'data-config'          => true,
 				'data-flatpickr'       => true,
+				'data-name'            => true,
+				'data-type'            => true,
 				'hidden'               => true
 			] ) );
 
@@ -83,7 +86,6 @@ if ( ! function_exists( 'flex_fields_setup' ) ) {
 			$allowedHtml = array_merge( wp_kses_allowed_html( 'post' ), [
 				'datalist' => [],
 				'form'     => [
-					'accept'         => true,
 					'accept-charset' => true,
 					'action'         => true,
 					'autocomplete'   => true,
@@ -94,6 +96,7 @@ if ( ! function_exists( 'flex_fields_setup' ) ) {
 					'target'         => true,
 				],
 				'input'    => [
+					'accept'          => true,
 					'aria-invalid'    => true,
 					'aria-label'      => true,
 					'aria-labelledby' => true,
