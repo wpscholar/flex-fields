@@ -36,10 +36,6 @@
                    value="" />
         </a>
 
-        <span class="flex-field-ajax-upload__max-uploads"
-              hidden="hidden"><?php echo esc_html( $x->get( 'maxUploads' ) ); ?></span>
-        <span class="flex-field-ajax-upload__image-size"
-              hidden="hidden"><?php echo esc_html( $x->get( 'imageSize' ) ); ?></span>
     </div>
 
 </fieldset>
