@@ -12,7 +12,7 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 	/**
 	 * @var FieldContainer
 	 */
-	protected $fields;
+	public $fields;
 
 	/**
 	 * Field constructor.
