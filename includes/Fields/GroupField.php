@@ -50,7 +50,16 @@ class GroupField extends Field implements \IteratorAggregate, \Countable {
 	 * @return null
 	 */
 	public function sanitize( $value ) {
-		return null;
+		$clean = [];
+
+		foreach ( array_filter( (array) $value ) as $fieldName => $fieldValue ) {
+			$field = $this->fields->getField( $fieldName );
+			if ( $field ) {
+				$clean[ $field->name ] = $field->sanitize( $fieldValue );
+			}
+		}
+
+		return $clean;
 	}
 
 	/**

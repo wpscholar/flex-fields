@@ -55,7 +55,15 @@ class RepeatingField extends Field implements \IteratorAggregate, \Countable {
 	 * @return null
 	 */
 	public function sanitize( $value ) {
-		return null;
+		$clean = [];
+
+		foreach ( array_filter( (array) $value ) as $index => $data ) {
+			foreach ( $this->fields as $field ) {
+				$clean[ $index ] = $field->sanitize( $data );
+			}
+		}
+
+		return $clean;
 	}
 
 	/**
