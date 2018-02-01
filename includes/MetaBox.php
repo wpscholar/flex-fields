@@ -76,12 +76,12 @@ class MetaBox {
 	 * @param string $postType
 	 */
 	public function __construct( $id, $title, $postType = null ) {
-		$this->id          = sanitize_html_class( $id );
-		$this->title       = $title;
-		$this->screen      = $postType;
-		$this->nonceName   = 'metabox-' . $id . '-nonce';
+		$this->id = sanitize_html_class( $id );
+		$this->title = $title;
+		$this->screen = $postType;
+		$this->nonceName = 'metabox-' . $id . '-nonce';
 		$this->nonceAction = 'update-metabox-' . $id;
-		$this->fields      = new FieldContainer();
+		$this->fields = new FieldContainer();
 		$this->setUp();
 	}
 
@@ -122,7 +122,7 @@ class MetaBox {
 					if ( $field->storage !== 'FlexFields\\Storage\\PostMetaStorage' ) {
 						$field->setStorageEngine( 'post-meta' );
 					}
-					$field->save( $post_id, $_POST[ $field->name ] );
+					$field->save( $post_id, isset( $_POST[ $field->name ] ) ? $_POST[ $field->name ] : '' );
 				}
 			}
 		}
