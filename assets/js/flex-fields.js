@@ -502,9 +502,9 @@ module.exports = unescape;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(4);
-__webpack_require__(20);
-__webpack_require__(21);
-module.exports = __webpack_require__(22);
+__webpack_require__(22);
+__webpack_require__(23);
+module.exports = __webpack_require__(24);
 
 
 /***/ }),
@@ -525,6 +525,8 @@ __webpack_require__(12);
 __webpack_require__(16);
 
 __webpack_require__(18);
+
+__webpack_require__(20);
 
 /***/ }),
 /* 5 */
@@ -3623,18 +3625,123 @@ _FlexFields.flexFields.addFieldClass(RepeatingTextField);
 
 /***/ }),
 /* 20 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+
+
+var _TinyMceField = __webpack_require__(21);
+
+Array.from(document.querySelectorAll('.flex-field-tinymce')).map(function (el) {
+    return new _TinyMceField.TinyMceField(el);
+});
 
 /***/ }),
 /* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.TinyMceField = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _lodash = __webpack_require__(2);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _Field2 = __webpack_require__(0);
+
+var _FlexFields = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TinyMceField = exports.TinyMceField = function (_Field) {
+    _inherits(TinyMceField, _Field);
+
+    function TinyMceField(el) {
+        _classCallCheck(this, TinyMceField);
+
+        var _this = _possibleConstructorReturn(this, (TinyMceField.__proto__ || Object.getPrototypeOf(TinyMceField)).call(this, el));
+
+        window.addEventListener('load', _this.setup.bind(_this));
+        return _this;
+    }
+
+    _createClass(TinyMceField, [{
+        key: "setup",
+        value: function setup() {
+            wp.editor.initialize(this.name, this.config);
+            this._editor = window.tinymce.get(this.name);
+        }
+    }, {
+        key: "appendContent",
+        value: function appendContent(content) {
+            this.setContent(this.content + content);
+        }
+    }, {
+        key: "setContent",
+        value: function setContent(content) {
+            this._editor.setContent(content);
+        }
+    }, {
+        key: "focus",
+        value: function focus() {
+            this.editor.focus();
+            this.editor.selection.select(this.editor.getBody(), true);
+            this.editor.selection.collapse(false);
+        }
+    }, {
+        key: "config",
+        get: function get() {
+            return JSON.parse((0, _lodash2.default)(this.textarea.getAttribute('data-config')));
+        }
+    }, {
+        key: "content",
+        get: function get() {
+            return this._editor.getContent();
+        }
+    }, {
+        key: "editor",
+        get: function get() {
+            return this._editor;
+        }
+    }, {
+        key: "textarea",
+        get: function get() {
+            return this.el.querySelector('textarea');
+        }
+    }]);
+
+    return TinyMceField;
+}(_Field2.Field);
+
+_FlexFields.flexFields.addFieldClass(TinyMceField);
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 22 */
+/* 23 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 24 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
