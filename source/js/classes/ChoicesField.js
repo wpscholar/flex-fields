@@ -9,7 +9,12 @@ export class ChoicesField extends Field {
     constructor(el) {
         super(el);
         this.select.addEventListener('click', e => e.stopPropagation());
+        this.select.addEventListener('change', this.onChange.bind(this));
         this._choices = new Choices(this.select, this.config);
+    }
+
+    onChange(e) {
+        this.dispatch('change', {target: e.target});
     }
 
     get choices() {
@@ -23,6 +28,10 @@ export class ChoicesField extends Field {
 
     get select() {
         return this.el.querySelector('[data-choices]');
+    }
+
+    get value() {
+        return this.choices.getValue();
     }
 
 }

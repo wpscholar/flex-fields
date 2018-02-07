@@ -947,11 +947,17 @@ var ChoicesField = exports.ChoicesField = function (_Field) {
         _this.select.addEventListener('click', function (e) {
             return e.stopPropagation();
         });
+        _this.select.addEventListener('change', _this.onChange.bind(_this));
         _this._choices = new _choices2.default(_this.select, _this.config);
         return _this;
     }
 
     _createClass(ChoicesField, [{
+        key: 'onChange',
+        value: function onChange(e) {
+            this.dispatch('change', { target: e.target });
+        }
+    }, {
         key: 'choices',
         get: function get() {
             return this._choices;
@@ -966,6 +972,11 @@ var ChoicesField = exports.ChoicesField = function (_Field) {
         key: 'select',
         get: function get() {
             return this.el.querySelector('[data-choices]');
+        }
+    }, {
+        key: 'value',
+        get: function get() {
+            return this.choices.getValue();
         }
     }]);
 
