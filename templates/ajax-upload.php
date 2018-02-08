@@ -18,19 +18,26 @@
             <span class="flex-field-ajax-upload__on-success"><?php echo esc_html( $x->get( 'labelOnSuccess' ) ); ?></span>
             <span class="flex-field-ajax-upload__on-failure"><?php echo esc_html( $x->get( 'labelOnError' ) ); ?></span>
         </label>
-        <div class="flex-field-ajax-upload__gallery">
-			<?php foreach ( (array) $x->get( 'value', [] ) as $id ): ?>
-                <a href="#" class="flex-field-ajax-upload__image">
-                    <img src="<?php echo esc_url( wp_get_attachment_image_url( $id, $x->get( 'imageSize' ) ) ); ?>" />
+        <div class="flex-field-ajax-upload__gallery"><?php
+			foreach ( (array) $x->get( 'value', [] ) as $id ): ?>
+                <a href="#" class="flex-field-ajax-upload__item">
+                    <span><?php
+	                    if ( wp_attachment_is_image( $id ) ):
+		                    ?><img
+                            src="<?php echo esc_url( wp_get_attachment_image_url( $id, $x->get( 'imageSize' ) ) ); ?>" /><?php
+	                    else:
+		                    echo esc_html( basename( get_post_meta( $id, '_wp_attached_file', true ) ) );
+	                    endif; ?>
+                    </span>
                     <input name="<?php echo esc_attr( $x->get( 'name' ) . '[]' ); ?>"
                            type="hidden"
                            value="<?php echo esc_attr( $id ); ?>" />
                 </a>
-			<?php endforeach; ?>
-        </div>
+			<?php endforeach;
+			?></div>
 
-        <a href="#" class="flex-field-ajax-upload__image flex-template" hidden="hidden">
-            <img src="" />
+        <a href="#" class="flex-field-ajax-upload__item flex-template" hidden="hidden">
+            <span></span>
             <input name="<?php echo esc_attr( $x->get( 'name' ) . '[]' ); ?>"
                    type="hidden"
                    value="" />

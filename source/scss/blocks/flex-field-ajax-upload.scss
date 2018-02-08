@@ -7,6 +7,7 @@
 
   &__drop-zone {
     background: #efefef;
+    display: block;
     padding: 2em 1em;
     text-align: center;
   }
@@ -24,10 +25,16 @@
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
+    &:empty {
+      display: none;
+    }
   }
 
-  &__image {
+  &__item {
     margin: .25em;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &.--has-advanced-upload {

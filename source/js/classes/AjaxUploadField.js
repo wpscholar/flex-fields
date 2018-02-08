@@ -15,7 +15,7 @@ export class AjaxUploadField extends Field {
 
         // Make some adjustments to template
         template.removeAttribute('hidden');
-        template.classList.remove('template');
+        template.classList.remove('flex-template');
 
         this._config = JSON.parse(decode(el.getAttribute('data-config')));
         this._template = template.cloneNode(true);
@@ -55,18 +55,34 @@ export class AjaxUploadField extends Field {
         }
 
         // Setup click handlers for any pre-existing images in gallery
-        this.items.forEach(function (a) {
-            a.addEventListener('click', this.onClickImage.bind(this));
+        this.items.forEach(el => {
+            el.addEventListener('click', this.onClickRemoveHandler.bind(this));
         });
     }
 
-    addImage(id, src) {
+    add(json, file) {
+
         const template = this.template;
-        template.querySelector('img').setAttribute('src', src);
+        const span = template.querySelector('span');
+
+        const id = json.id;
+
+        if (this.fileTypeMatches(file, 'image')) {
+            const img = document.createElement('img');
+            let src = xhr.response.source_url;
+            if (xhr.response.media_details.sizes[this.imageSize]) {
+                src = xhr.response.media_details.sizes[this.imageSize].source_url;
+            }
+            img.setAttribute('src', src);
+            span.appendChild(img);
+        } else {
+            span.textContent = file.name;
+        }
+
         template.querySelector('input').value = id;
         this.gallery.appendChild(template);
-        template.addEventListener('click', this.onClickImage.bind(this));
-        this.dispatch('addImage', {target: template});
+        template.addEventListener('click', this.onClickRemoveHandler.bind(this));
+        this.dispatch('add', {target: template});
     }
 
     disable() {
@@ -126,7 +142,7 @@ export class AjaxUploadField extends Field {
                             setTimeout(() => {
                                 this.dropZone.classList.remove('--is-success');
                             }, 2000);
-                            this.addImage(xhr.response.id, xhr.response.media_details.sizes[this.imageSize].source_url);
+                            this.add(xhr.response, file);
                             // Disable field if the max upload count has already been met.
                             if (this.count >= this.maxUploads) {
                                 this.disable();
@@ -182,12 +198,12 @@ export class AjaxUploadField extends Field {
         return file.name.split('.').pop().toLowerCase();
     }
 
-    onClickImage(e) {
+    onClickRemoveHandler(e) {
         e.preventDefault();
 
-        const target = e.target.closest('a');
+        const target = e.currentTarget;
 
-        this.dispatch('removeImage', {
+        this.dispatch('remove', {
             id: target.querySelector('input').value,
             target
         });
@@ -230,7 +246,7 @@ export class AjaxUploadField extends Field {
     }
 
     get items() {
-        return Array.from(this.gallery.querySelectorAll('a'));
+        return Array.from(this.gallery.children);
     }
 
     get maxUploads() {
