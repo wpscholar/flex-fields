@@ -69,9 +69,9 @@ export class AjaxUploadField extends Field {
 
         if (this.fileTypeMatches(file, 'image')) {
             const img = document.createElement('img');
-            let src = xhr.response.source_url;
-            if (xhr.response.media_details.sizes[this.imageSize]) {
-                src = xhr.response.media_details.sizes[this.imageSize].source_url;
+            let src = json.source_url;
+            if (json.media_details.sizes[this.imageSize]) {
+                src = json.media_details.sizes[this.imageSize].source_url;
             }
             img.setAttribute('src', src);
             span.appendChild(img);

@@ -670,9 +670,9 @@ var AjaxUploadField = exports.AjaxUploadField = function (_Field) {
 
             if (this.fileTypeMatches(file, 'image')) {
                 var img = document.createElement('img');
-                var src = xhr.response.source_url;
-                if (xhr.response.media_details.sizes[this.imageSize]) {
-                    src = xhr.response.media_details.sizes[this.imageSize].source_url;
+                var src = json.source_url;
+                if (json.media_details.sizes[this.imageSize]) {
+                    src = json.media_details.sizes[this.imageSize].source_url;
                 }
                 img.setAttribute('src', src);
                 span.appendChild(img);
