@@ -1,4 +1,7 @@
+import 'whatwg-fetch';
+
 import './polyfills/closest';
+import './polyfills/object';
 import './fields/ajax-upload';
 import './fields/choices';
 import './fields/flatpickr';
