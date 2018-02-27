@@ -1,3 +1,6 @@
+import 'es6-promise/auto';
+import 'es6-symbol/implement';
+import 'iterators-polyfill';
 import 'whatwg-fetch';
 
 import './polyfills/closest';
