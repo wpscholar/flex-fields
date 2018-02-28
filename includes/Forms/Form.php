@@ -80,7 +80,7 @@ class Form {
 			global ${"_{$this->method}"};
 
 			if ( isset( ${"_{$this->method}"}[ $field->name ] ) ) {
-				$field->value = ${"_{$this->method}"}[ $field->name ];
+				$field->value = wp_unslash( ${"_{$this->method}"}[ $field->name ] );
 			}
 
 		}
