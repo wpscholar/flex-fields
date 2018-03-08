@@ -128,7 +128,7 @@ class AdminSettingsPage {
 	 * Callback for the `admin_menu` hook.
 	 */
 	public function onAdminMenu() {
-		if ( isset( $page['parent_slug'] ) ) {
+		if ( isset( $this->_page_data['parent_slug'] ) ) {
 			add_submenu_page( ...array_values( $this->_page_data ) );
 		} else {
 			add_menu_page( ...array_values( $this->_page_data ) );
