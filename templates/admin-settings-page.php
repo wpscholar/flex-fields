@@ -4,7 +4,7 @@
  */
 ?>
 <div class="wrap">
-    <h2 class="wp-heading-inline"><?php esc_html( $x->get( 'title' ) ); ?></h2>
+    <h2 class="wp-heading-inline"><?php echo esc_html( $x->get( 'title' ) ); ?></h2>
     <form action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" method="post">
 		<?php settings_errors(); ?>
 		<?php settings_fields( $x->get( 'page' ) ); ?>
