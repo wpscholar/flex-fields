@@ -119,6 +119,9 @@ class RepeatingField extends Field implements \IteratorAggregate, \Countable {
 	 */
 	public function __toString() {
 
+		wp_enqueue_style( 'flex-fields' );
+		wp_enqueue_script( 'flex-fields' );
+
 		// Create a template field
 		$template_field = Make::Field( "{$this->name}[x]", $this->field_args );
 
