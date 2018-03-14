@@ -8,6 +8,21 @@ export class TinyMceField extends Field {
     constructor(el) {
         super(el);
         window.addEventListener('load', this.setup.bind(this));
+
+        // Ensure TinyMCE field works when in a repeating field.
+        flexFields.addEventListener('addChild', function () {
+            if ('repeating' === this.type) {
+                Array
+                    .from(this.el.querySelectorAll('.flex-field-tinymce'))
+                    .map(el => {
+                        const textarea = el.querySelector('textarea');
+                        textarea.setAttribute('id', textarea.getAttribute('id').replace('x', this._index));
+                        const tinyMce = new TinyMceField(el);
+                        tinyMce.setup();
+                    });
+            }
+        });
+
     }
 
     setup() {
