@@ -50,10 +50,13 @@ export class RepeatingField extends Field {
         // Append new element to DOM
         this.container.appendChild(target);
 
-        this._index++;
-
         // Dispatch our custom addChild event
         this.dispatch('addChild', {target});
+
+        // Globally dispatch
+        flexFields.dispatch('addChild', {target}, this);
+
+        this._index++;
     }
 
     onClickDeleteButton(e) {
