@@ -48,7 +48,7 @@ class TinyMceField extends TextareaField {
 		$config = array_merge( $this->_defaultConfig(), (array) $this->getData( 'config', [] ) );
 
 		// Set config
-		$atts['id'] = $this->getData( 'name' );
+		$atts['id'] = str_replace( [ '[', ']', '--' ], '-', trim( $this->getData( 'name' ), ']' ) );
 		$atts['data-config'] = htmlspecialchars( json_encode( (object) $config ), ENT_QUOTES );
 
 		$editor = $this->renderTemplate( 'textarea.php', [

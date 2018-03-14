@@ -11,7 +11,7 @@ export class TinyMceField extends Field {
     }
 
     setup() {
-        wp.editor.initialize(this.name, this.config);
+        wp.editor.initialize(this.textarea.id, this.config);
         this._editor = window.tinymce.get(this.name);
     }
 

@@ -6098,7 +6098,7 @@ var TinyMceField = exports.TinyMceField = function (_Field) {
     _createClass(TinyMceField, [{
         key: "setup",
         value: function setup() {
-            wp.editor.initialize(this.name, this.config);
+            wp.editor.initialize(this.textarea.id, this.config);
             this._editor = window.tinymce.get(this.name);
         }
     }, {
