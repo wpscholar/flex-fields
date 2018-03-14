@@ -5908,10 +5908,13 @@ var RepeatingField = exports.RepeatingField = function (_Field) {
             // Append new element to DOM
             this.container.appendChild(target);
 
-            this._index++;
-
             // Dispatch our custom addChild event
             this.dispatch('addChild', { target: target });
+
+            // Globally dispatch
+            _FlexFields.flexFields.dispatch('addChild', { target: target }, this);
+
+            this._index++;
         }
     }, {
         key: "onClickDeleteButton",
@@ -6092,6 +6095,21 @@ var TinyMceField = exports.TinyMceField = function (_Field) {
         var _this = _possibleConstructorReturn(this, (TinyMceField.__proto__ || Object.getPrototypeOf(TinyMceField)).call(this, el));
 
         window.addEventListener('load', _this.setup.bind(_this));
+
+        // Ensure TinyMCE field works when in a repeating field.
+        _FlexFields.flexFields.addEventListener('addChild', function () {
+            var _this2 = this;
+
+            if ('repeating' === this.type) {
+                Array.from(this.el.querySelectorAll('.flex-field-tinymce')).map(function (el) {
+                    var textarea = el.querySelector('textarea');
+                    textarea.setAttribute('id', textarea.getAttribute('id').replace('x', _this2._index));
+                    var tinyMce = new TinyMceField(el);
+                    tinyMce.setup();
+                });
+            }
+        });
+
         return _this;
     }
 
