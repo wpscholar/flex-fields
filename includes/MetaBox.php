@@ -114,15 +114,26 @@ class MetaBox {
 	 */
 	public function save( $post_id ) {
 		if ( isset( $_POST[ $this->nonceName ] ) && wp_verify_nonce( $_POST[ $this->nonceName ], $this->nonceAction ) ) {
-			if ( current_user_can( 'edit_post', $post_id ) ) {
-				foreach ( $this->fields as $field ) {
-					/**
-					 * @var Field $field
-					 */
-					if ( $field->storage !== 'FlexFields\\Storage\\PostMetaStorage' ) {
-						$field->setStorageEngine( 'post-meta' );
+			if ( ! wp_is_post_autosave( $post_id ) && ! wp_is_post_revision( $post_id ) && current_user_can( 'edit_post', $post_id ) ) {
+				/**
+				 * Filter `FlexFields\MetaBox::save`, allows disabling saving/updating of an entire meta box.
+				 *
+				 * Expects a boolean value. Defaults to `true`, passing `false` will stop processing of meta box values.
+				 *
+				 * @param bool $shouldSave Defaults to true, return false to skip saving meta box values.
+				 * @param string $metaboxId The string ID of the metabox.
+				 * @param int $postId The current post ID.
+				 */
+				if ( apply_filters( __METHOD__, true, $this->id, $post_id ) ) {
+					foreach ( $this->fields as $field ) {
+						/**
+						 * @var Field $field
+						 */
+						if ( $field->storage !== 'FlexFields\\Storage\\PostMetaStorage' ) {
+							$field->setStorageEngine( 'post-meta' );
+						}
+						$field->save( $post_id, isset( $_POST[ $field->name ] ) ? $_POST[ $field->name ] : '' );
 					}
-					$field->save( $post_id, isset( $_POST[ $field->name ] ) ? $_POST[ $field->name ] : '' );
 				}
 			}
 		}
