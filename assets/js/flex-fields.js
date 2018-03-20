@@ -74,113 +74,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Field = exports.Field = function () {
-    function Field(el) {
-        _classCallCheck(this, Field);
-
-        this.listeners = {};
-
-        // Make field instance accessible from element
-        el.flexField = this;
-
-        // Make element accessible from field instance
-        this.el = el;
-
-        // Set field name
-        this._name = el.getAttribute('data-name');
-
-        // Set field type (defaults to input, subclasses should override)
-        this._type = el.getAttribute('data-type');
-
-        // Set default value (subclasses should override)
-        this._value = '';
-    }
-
-    _createClass(Field, [{
-        key: 'addEventListener',
-        value: function addEventListener(type, callback) {
-            var listener = { type: type, callback: callback };
-            if (this.listeners[type]) {
-                this.listeners[type].push(listener);
-            } else {
-                this.listeners[type] = [listener];
-            }
-            return listener;
-        }
-    }, {
-        key: 'removeEventListener',
-        value: function removeEventListener(listener) {
-            var listeners = this.listeners[listener.type];
-            if (listeners) {
-                var index = listeners.indexOf(listener);
-                if (index > -1) {
-                    this.listeners[listener.type] = listeners.splice(index, 1);
-                }
-            }
-        }
-    }, {
-        key: 'dispatch',
-        value: function dispatch(type) {
-            var _this = this;
-
-            var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-            if (this.listeners[type]) {
-                this.listeners[type].forEach(function (listener) {
-                    listener.callback.apply(_this, [_extends({}, data, { type: type })]);
-                });
-            }
-        }
-    }, {
-        key: 'show',
-        value: function show() {
-            this.el.removeAttribute('hidden');
-        }
-    }, {
-        key: 'hide',
-        value: function hide() {
-            this.el.setAttribute('hidden', 'hidden');
-        }
-    }, {
-        key: 'type',
-        get: function get() {
-            return this._type;
-        }
-    }, {
-        key: 'name',
-        get: function get() {
-            return this._name;
-        }
-    }, {
-        key: 'value',
-        get: function get() {
-            return this._value;
-        },
-        set: function set(value) {
-            this._value = value;
-        }
-    }]);
-
-    return Field;
-}();
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -290,6 +183,113 @@ if (window.flexFields) {
 window.flexFields = flexFields;
 
 exports.flexFields = flexFields;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Field = exports.Field = function () {
+    function Field(el) {
+        _classCallCheck(this, Field);
+
+        this.listeners = {};
+
+        // Make field instance accessible from element
+        el.flexField = this;
+
+        // Make element accessible from field instance
+        this.el = el;
+
+        // Set field name
+        this._name = el.getAttribute('data-name');
+
+        // Set field type (defaults to input, subclasses should override)
+        this._type = el.getAttribute('data-type');
+
+        // Set default value (subclasses should override)
+        this._value = '';
+    }
+
+    _createClass(Field, [{
+        key: 'addEventListener',
+        value: function addEventListener(type, callback) {
+            var listener = { type: type, callback: callback };
+            if (this.listeners[type]) {
+                this.listeners[type].push(listener);
+            } else {
+                this.listeners[type] = [listener];
+            }
+            return listener;
+        }
+    }, {
+        key: 'removeEventListener',
+        value: function removeEventListener(listener) {
+            var listeners = this.listeners[listener.type];
+            if (listeners) {
+                var index = listeners.indexOf(listener);
+                if (index > -1) {
+                    this.listeners[listener.type] = listeners.splice(index, 1);
+                }
+            }
+        }
+    }, {
+        key: 'dispatch',
+        value: function dispatch(type) {
+            var _this = this;
+
+            var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+            if (this.listeners[type]) {
+                this.listeners[type].forEach(function (listener) {
+                    listener.callback.apply(_this, [_extends({}, data, { type: type })]);
+                });
+            }
+        }
+    }, {
+        key: 'show',
+        value: function show() {
+            this.el.removeAttribute('hidden');
+        }
+    }, {
+        key: 'hide',
+        value: function hide() {
+            this.el.setAttribute('hidden', 'hidden');
+        }
+    }, {
+        key: 'type',
+        get: function get() {
+            return this._type;
+        }
+    }, {
+        key: 'name',
+        get: function get() {
+            return this._name;
+        }
+    }, {
+        key: 'value',
+        get: function get() {
+            return this._value;
+        },
+        set: function set(value) {
+            this._value = value;
+        }
+    }]);
+
+    return Field;
+}();
 
 /***/ }),
 /* 2 */
@@ -3001,9 +3001,9 @@ var _lodash = __webpack_require__(2);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _Field2 = __webpack_require__(0);
+var _Field2 = __webpack_require__(1);
 
-var _FlexFields = __webpack_require__(1);
+var _FlexFields = __webpack_require__(0);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3330,9 +3330,9 @@ var _lodash = __webpack_require__(2);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _Field2 = __webpack_require__(0);
+var _Field2 = __webpack_require__(1);
 
-var _FlexFields = __webpack_require__(1);
+var _FlexFields = __webpack_require__(0);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3440,9 +3440,9 @@ var _lodash = __webpack_require__(2);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _Field2 = __webpack_require__(0);
+var _Field2 = __webpack_require__(1);
 
-var _FlexFields = __webpack_require__(1);
+var _FlexFields = __webpack_require__(0);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5842,9 +5842,9 @@ exports.RepeatingField = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Field2 = __webpack_require__(0);
+var _Field2 = __webpack_require__(1);
 
-var _FlexFields = __webpack_require__(1);
+var _FlexFields = __webpack_require__(0);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5975,9 +5975,9 @@ exports.RepeatingTextField = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Field2 = __webpack_require__(0);
+var _Field2 = __webpack_require__(1);
 
-var _FlexFields = __webpack_require__(1);
+var _FlexFields = __webpack_require__(0);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6052,8 +6052,24 @@ _FlexFields.flexFields.addFieldClass(RepeatingTextField);
 
 var _TinyMceField = __webpack_require__(48);
 
+var _FlexFields = __webpack_require__(0);
+
 Array.from(document.querySelectorAll('.flex-field-tinymce')).map(function (el) {
     return new _TinyMceField.TinyMceField(el);
+});
+
+// Ensure TinyMCE field works when in a repeating field.
+_FlexFields.flexFields.addEventListener('addChild', function () {
+    var _this = this;
+
+    if ('repeating' === this.type) {
+        Array.from(this.el.querySelectorAll('.flex-field-tinymce')).map(function (el) {
+            var textarea = el.querySelector('textarea');
+            textarea.setAttribute('id', textarea.getAttribute('id').replace('x', _this._index));
+            var tinyMce = new _TinyMceField.TinyMceField(el);
+            tinyMce.setup();
+        });
+    }
 });
 
 /***/ }),
@@ -6074,9 +6090,9 @@ var _lodash = __webpack_require__(2);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _Field2 = __webpack_require__(0);
+var _Field2 = __webpack_require__(1);
 
-var _FlexFields = __webpack_require__(1);
+var _FlexFields = __webpack_require__(0);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6095,21 +6111,6 @@ var TinyMceField = exports.TinyMceField = function (_Field) {
         var _this = _possibleConstructorReturn(this, (TinyMceField.__proto__ || Object.getPrototypeOf(TinyMceField)).call(this, el));
 
         window.addEventListener('load', _this.setup.bind(_this));
-
-        // Ensure TinyMCE field works when in a repeating field.
-        _FlexFields.flexFields.addEventListener('addChild', function () {
-            var _this2 = this;
-
-            if ('repeating' === this.type) {
-                Array.from(this.el.querySelectorAll('.flex-field-tinymce')).map(function (el) {
-                    var textarea = el.querySelector('textarea');
-                    textarea.setAttribute('id', textarea.getAttribute('id').replace('x', _this2._index));
-                    var tinyMce = new TinyMceField(el);
-                    tinyMce.setup();
-                });
-            }
-        });
-
         return _this;
     }
 
