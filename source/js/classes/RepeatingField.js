@@ -9,8 +9,8 @@ export class RepeatingField extends Field {
 
         this._name = this._name.replace('[x]', '');
 
-        const addButton = el.querySelector('[data-action="add"]');
-        const deleteButtons = el.querySelectorAll('[data-action="delete"]');
+        const addButton = el.querySelector('[data-action="add"][data-action-type="repeating"]');
+        const deleteButtons = el.querySelectorAll('[data-action="delete"][data-action-type="repeating"]');
         const templateWrapper = el.querySelector('.flex-field-template');
 
         // Remove template wrapper and contents from DOM (don't want to submit with form)

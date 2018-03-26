@@ -24,7 +24,8 @@ $fields = $x->get( 'fields', [] );
 
                 <button type="button"
                         title="<?php esc_attr_e( 'Delete', 'flex-fields' ); ?>"
-                        data-action="delete">✕
+                        data-action="delete"
+                        data-action-type="repeating">✕
                 </button>
 
             </div>
@@ -38,14 +39,15 @@ $fields = $x->get( 'fields', [] );
 
                     <button type="button"
                             title="<?php esc_attr_e( 'Delete', 'flex-fields' ); ?>"
-                            data-action="delete">✕
+                            data-action="delete"
+                            data-action-type="repeating">✕
                     </button>
 
                 </div>
 			<?php endforeach; ?>
         </div>
 
-        <button type="button" title="<?php esc_attr_e( 'Add', 'flex-fields' ); ?>" data-action="add">
+        <button type="button" title="<?php esc_attr_e( 'Add', 'flex-fields' ); ?>" data-action="add" data-action-type="repeating">
 			<?php esc_html_e( '+ Add', 'flex-fields' ); ?>
         </button>
 

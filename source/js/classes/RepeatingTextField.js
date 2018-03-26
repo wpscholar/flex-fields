@@ -13,6 +13,8 @@ export class RepeatingTextField extends Field {
         const addButton = this.el.querySelector('[data-action="add"]');
         const deleteButtons = this.el.querySelectorAll('[data-action="delete"]');
 
+        this.el.setAttribute('data-flex-initialized', '');
+
         // Add click handler for add button
         addButton.addEventListener('click', this.onClickAddButton.bind(this));
 

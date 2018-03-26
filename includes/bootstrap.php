@@ -74,6 +74,7 @@ if ( ! function_exists( 'flex_fields_setup' ) ) {
 				'aria-valuenow'        => true,
 				'aria-valuetext'       => true,
 				'data-action'          => true,
+				'data-action-type'     => true,
 				'data-choices'         => true,
 				'data-config'          => true,
 				'data-flatpickr'       => true,
