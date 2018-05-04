@@ -1,8 +1,11 @@
 .flex-button {
-  background-color: #EEEEEE;
-  border: 1px solid #CCCCCC;
-  border-radius: 6px;
-  color: #333333;
+  background-color: #f7f7f7;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 #cccccc;
+  color: #555555;
   cursor: pointer;
   font-size: 1em;
+  line-height: 1.4;
+  padding: .5em 1em;
 }

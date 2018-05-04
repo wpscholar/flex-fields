@@ -533,9 +533,9 @@ module.exports = function (val) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(6);
-__webpack_require__(49);
-__webpack_require__(50);
-module.exports = __webpack_require__(51);
+__webpack_require__(51);
+__webpack_require__(52);
+module.exports = __webpack_require__(53);
 
 
 /***/ }),
@@ -559,9 +559,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_ajax_upload__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_choices__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_flatpickr__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_repeating__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_repeating_text__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_tiny_mce__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_media_upload__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_repeating__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_repeating_text__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_tiny_mce__ = __webpack_require__(49);
+
 
 
 
@@ -5784,7 +5786,155 @@ return confirmDatePlugin;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_RepeatingField__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_MediaUploadField__ = __webpack_require__(44);
+
+
+Array.from(document.querySelectorAll('.flex-field-media-upload')).map(function (el) {
+	return new __WEBPACK_IMPORTED_MODULE_0__classes_MediaUploadField__["a" /* MediaUploadField */](el);
+});
+
+/***/ }),
+/* 44 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MediaUploadField; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Field__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FlexFields__ = __webpack_require__(0);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var MediaUploadField = function (_Field) {
+	_inherits(MediaUploadField, _Field);
+
+	function MediaUploadField(el) {
+		_classCallCheck(this, MediaUploadField);
+
+		// Setup our custom media upload modal
+		var _this = _possibleConstructorReturn(this, (MediaUploadField.__proto__ || Object.getPrototypeOf(MediaUploadField)).call(this, el));
+
+		_this.frame = wp.media({
+			title: 'Set Featured Image',
+			button: {
+				text: 'Select'
+			},
+			multiple: false
+		});
+
+		_this.frame.on('select', function () {
+
+			// Get media attachment details from the frame state
+			var attachment = _this.frame.state().get('selection').first().toJSON();
+
+			console.log(attachment);
+
+			// Set field value
+			_this.value = attachment.id || '';
+
+			// Set image source
+			_this.setImageSource(attachment.sizes.thumbnail.url || '');
+		});
+
+		// Add click handler for the "Add Image" button.
+		_this.addButton.addEventListener('click', function (e) {
+			e.preventDefault();
+			_this.frame.open();
+		});
+
+		// Add click handler for the "Remove Image" button.
+		_this.removeButton.addEventListener('click', function (e) {
+			e.preventDefault();
+			_this.value = '';
+		});
+
+		// Toggle display of Add/Remove buttons
+		_this.toggleAddButton();
+		_this.toggleRemoveButton();
+		_this.toggleGallery();
+
+		return _this;
+	}
+
+	_createClass(MediaUploadField, [{
+		key: "toggleAddButton",
+		value: function toggleAddButton() {
+			this.addButton.hidden = Boolean(this.input.value);
+		}
+	}, {
+		key: "toggleRemoveButton",
+		value: function toggleRemoveButton() {
+			this.removeButton.hidden = Boolean(!this.input.value);
+		}
+	}, {
+		key: "toggleGallery",
+		value: function toggleGallery() {
+			this.gallery.hidden = Boolean(!this.input.value);
+		}
+	}, {
+		key: "setImageSource",
+		value: function setImageSource(src) {
+			this.image.setAttribute('src', src);
+		}
+	}, {
+		key: "gallery",
+		get: function get() {
+			return this.el.querySelector('.flex-field-gallery');
+		}
+	}, {
+		key: "image",
+		get: function get() {
+			return this.el.querySelector('img');
+		}
+	}, {
+		key: "input",
+		get: function get() {
+			return this.el.querySelector('input[type="hidden"]');
+		}
+	}, {
+		key: "addButton",
+		get: function get() {
+			return this.el.querySelector('[data-action="add"]');
+		}
+	}, {
+		key: "removeButton",
+		get: function get() {
+			return this.el.querySelector('[data-action="remove"]');
+		}
+	}, {
+		key: "value",
+		get: function get() {
+			return this.input.value;
+		},
+		set: function set(value) {
+			if (!value) {
+				this.setImageSource('');
+			}
+			this.input.value = value;
+			this.toggleAddButton();
+			this.toggleRemoveButton();
+			this.toggleGallery();
+		}
+	}]);
+
+	return MediaUploadField;
+}(__WEBPACK_IMPORTED_MODULE_0__Field__["a" /* Field */]);
+
+__WEBPACK_IMPORTED_MODULE_1__FlexFields__["a" /* flexFields */].addFieldClass(MediaUploadField);
+
+/***/ }),
+/* 45 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_RepeatingField__ = __webpack_require__(46);
 
 
 Array.from(document.querySelectorAll('.flex-field-repeating')).map(function (el) {
@@ -5792,7 +5942,7 @@ Array.from(document.querySelectorAll('.flex-field-repeating')).map(function (el)
 });
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5907,11 +6057,11 @@ var RepeatingField = function (_Field) {
 __WEBPACK_IMPORTED_MODULE_1__FlexFields__["a" /* flexFields */].addFieldClass(RepeatingField);
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_RepeatingTextField__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_RepeatingTextField__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_FlexFields__ = __webpack_require__(0);
 
 
@@ -5930,7 +6080,7 @@ __WEBPACK_IMPORTED_MODULE_1__classes_FlexFields__["a" /* flexFields */].addEvent
 });
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6009,11 +6159,11 @@ var RepeatingTextField = function (_Field) {
 __WEBPACK_IMPORTED_MODULE_1__FlexFields__["a" /* flexFields */].addFieldClass(RepeatingTextField);
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_TinyMceField__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_TinyMceField__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_FlexFields__ = __webpack_require__(0);
 
 
@@ -6037,7 +6187,7 @@ __WEBPACK_IMPORTED_MODULE_1__classes_FlexFields__["a" /* flexFields */].addEvent
 });
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6122,19 +6272,19 @@ var TinyMceField = function (_Field) {
 __WEBPACK_IMPORTED_MODULE_2__FlexFields__["a" /* flexFields */].addFieldClass(TinyMceField);
 
 /***/ }),
-/* 49 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 51 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 53 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

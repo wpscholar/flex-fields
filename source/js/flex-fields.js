@@ -8,6 +8,7 @@ import './polyfills/object';
 import './fields/ajax-upload';
 import './fields/choices';
 import './fields/flatpickr';
+import './fields/media-upload';
 import './fields/repeating';
 import './fields/repeating-text';
 import './fields/tiny-mce';
