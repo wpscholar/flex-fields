@@ -28,6 +28,11 @@ class AdminSettingsPage {
 	protected $_field_container;
 
 	/**
+	 * @var bool
+	 */
+	protected $_network = false;
+
+	/**
 	 * AdminSettingsPage constructor.
 	 *
 	 * @param array $page_args
@@ -38,12 +43,20 @@ class AdminSettingsPage {
 		$this->_sections = $sections;
 		$this->_field_container = $field_container = new FieldContainer();
 
+		$this->_network = ! empty( $page_args['network'] );
+
 		$defaults = [
 			'capability' => 'manage_options',
 			'function'   => '',
 			'icon_url'   => '',
+			'network'    => false,
 			'position'   => null,
 		];
+
+		// If creating a network settings page, use a different default permission
+		if ( $this->_network ) {
+			$defaults['capability'] = 'manage_network_options';
+		}
 
 		$page = array_merge( $defaults, $page_args, [ 'function' => [ $this, 'renderPage' ] ] );
 
@@ -107,7 +120,12 @@ class AdminSettingsPage {
 		}
 
 		add_action( 'admin_init', [ $this, 'onAdminInit' ] );
-		add_action( 'admin_menu', [ $this, 'onAdminMenu' ] );
+
+		if ( $this->_network ) {
+			add_action( 'network_admin_menu', [ $this, 'onAdminMenu' ] );
+		} else {
+			add_action( 'admin_menu', [ $this, 'onAdminMenu' ] );
+		}
 
 	}
 
