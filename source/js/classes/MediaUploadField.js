@@ -21,13 +21,11 @@ export class MediaUploadField extends Field {
 			// Get media attachment details from the frame state
 			const attachment = this.frame.state().get( 'selection' ).first().toJSON();
 
-			console.log( attachment );
-
 			// Set field value
 			this.value = attachment.id || '';
 
 			// Set image source
-			this.setImageSource( attachment.sizes.thumbnail.url || '' );
+			this.setImageSource( (attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url) || '' );
 
 		} );
 

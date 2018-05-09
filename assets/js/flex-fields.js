@@ -5834,13 +5834,11 @@ var MediaUploadField = function (_Field) {
 			// Get media attachment details from the frame state
 			var attachment = _this.frame.state().get('selection').first().toJSON();
 
-			console.log(attachment);
-
 			// Set field value
 			_this.value = attachment.id || '';
 
 			// Set image source
-			_this.setImageSource(attachment.sizes.thumbnail.url || '');
+			_this.setImageSource((attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url) || '');
 		});
 
 		// Add click handler for the "Add Image" button.
