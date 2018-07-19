@@ -323,6 +323,9 @@
   margin: .25em; }
   .flex-field-ajax-upload__item:hover {
     cursor: pointer; }
+  .flex-field-ajax-upload__item.\--document {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%; }
 
 .flex-field-ajax-upload.\--has-advanced-upload input[type="file"] {
   display: none; }

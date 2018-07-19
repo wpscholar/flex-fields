@@ -35,6 +35,9 @@
     &:hover {
       cursor: pointer;
     }
+    &.--document {
+      flex-basis: 100%;
+    }
   }
 
   &.--has-advanced-upload {

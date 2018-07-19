@@ -67,7 +67,7 @@ export class AjaxUploadField extends Field {
 
         const id = json.id;
 
-        if (this.fileTypeMatches(file, 'image')) {
+        if ( this.fileTypeMatches(file, 'image')) {
             const img = document.createElement('img');
             let src = json.source_url;
             if (json.media_details.sizes[this.imageSize]) {
@@ -77,6 +77,7 @@ export class AjaxUploadField extends Field {
             span.appendChild(img);
         } else {
             span.textContent = file.name;
+            template.classList.add('--document');
         }
 
         template.querySelector('input').value = id;
