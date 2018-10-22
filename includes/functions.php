@@ -11,8 +11,8 @@ use FlexFields\Make;
  * @param string $name
  * @param string $group
  */
-function render_flex_field( $name, $group ) {
-	$field = get_flex_field( $name );
+function render_flex_field( $name, $group = 'default' ) {
+	$field = get_flex_field( $name, $group );
 	if ( $field && is_object( $field ) && method_exists( $field, 'render' ) ) {
 		$field->render();
 	}
