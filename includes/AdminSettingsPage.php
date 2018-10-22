@@ -191,7 +191,7 @@ class AdminSettingsPage {
 			'type'              => \gettype( $field->value ),
 			'default'           => $field->value,
 			'description'       => $field->getData( 'description', '' ),
-			'sanitize_callback' => function ( $value ) use ( $field ) {
+			'sanitize_callback' => $field->getData( 'sanitize', function ( $value ) use ( $field ) {
 
 				$is_valid = validate_flex_field( $field );
 				if ( $is_valid ) {
@@ -201,7 +201,7 @@ class AdminSettingsPage {
 				}
 
 				return $field->value;
-			},
+			} ),
 			'show_in_rest'      => $field->getData( 'show_in_rest', false ),
 		] );
 	}
