@@ -1,0 +1,41 @@
+.flex-field-toggle {
+  input[type="checkbox"] {
+    height: 0;
+    visibility: hidden;
+    width: 0;
+
+    &:checked {
+      + .flex-field-toggle__toggle {
+        background-color: green;
+
+        &::before {
+          left: 1.625em;
+        }
+      }
+    }
+  }
+
+  &__toggle {
+    background: grey;
+    border-radius: 1em;
+    cursor: pointer;
+    display: inline-block;
+    height: 2em;
+    margin: 0 .5em;
+    position: relative;
+    transition: background-color .3s;
+    width: 3.5em;
+
+    &::before {
+      background: #ffffff;
+      border-radius: 100%;
+      content: '';
+      height: 1.75em;
+      left: .125em;
+      position: absolute;
+      top: .125em;
+      transition: left .3s;
+      width: 1.75em;
+    }
+  }
+}
