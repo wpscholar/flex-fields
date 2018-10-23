@@ -145,4 +145,16 @@ class Make {
 		return new AdminSettingsPage( $page, $sections );
 	}
 
+	/**
+	 * Factory for creating a new network admin settings page.
+	 *
+	 * @param array $page
+	 * @param array $sections
+	 *
+	 * @return NetworkAdminSettingsPage
+	 */
+	public static function NetworkAdminSettingsPage( array $page, array $sections ) {
+		return new NetworkAdminSettingsPage( $page, $sections );
+	}
+
 }

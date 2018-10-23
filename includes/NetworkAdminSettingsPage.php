@@ -6,11 +6,11 @@ use FlexFields\Fields\Field;
 use FlexFields\Fields\FieldContainer;
 
 /**
- * Class AdminSettingsPage
+ * Class NetworkAdminSettingsPage
  *
  * @package FlexFields
  */
-class AdminSettingsPage {
+class NetworkAdminSettingsPage {
 
 	/**
 	 * @var array
@@ -36,10 +36,10 @@ class AdminSettingsPage {
 	public function __construct( array $page_args, array $sections ) {
 
 		$this->_sections = $sections;
-		$this->_field_container = $field_container = new FieldContainer();
+		$this->_field_container = new FieldContainer();
 
 		$defaults = [
-			'capability' => 'manage_options',
+			'capability' => 'manage_network_options',
 			'function'   => '',
 			'icon_url'   => '',
 			'position'   => null,
@@ -107,7 +107,7 @@ class AdminSettingsPage {
 		}
 
 		add_action( 'admin_init', [ $this, 'onAdminInit' ] );
-		add_action( 'admin_menu', [ $this, 'onAdminMenu' ] );
+		add_action( 'network_admin_menu', [ $this, 'onAdminMenu' ] );
 
 	}
 
@@ -118,21 +118,51 @@ class AdminSettingsPage {
 
 		$this->registerSections();
 
-		foreach ( $this->_field_container as $field ) {
-			$this->registerSetting( $field );
-		}
-
 	}
 
 	/**
-	 * Callback for the `admin_menu` hook.
+	 * Checks if data needs saving on `load-{$page_slug}` action.
+	 */
+	public function handleNetworkSave() {
+		if ( ! isset( $_POST['_flexFieldsNetworkNonce'] ) ) {
+			return;
+		}
+		check_admin_referer( $this->_page_data['menu_slug'] . get_current_user_id(), '_flexFieldsNetworkNonce' );
+
+		$haveErrors = false;
+
+		foreach ( $this->_field_container as $field ) {
+			$is_valid = validate_flex_field( $field );
+			if ( $is_valid ) {
+				$value = filter_input( INPUT_POST, $field->name );
+				$field->value = $field->save( 0, $value );
+			} else {
+				$haveErrors = true;
+				add_settings_error( $field->name, 'flex_field_error', $field->getErrorMessage() );
+			}
+		}
+
+		if ( ! $haveErrors ) {
+			wp_safe_redirect( add_query_arg( [
+				'page'   => $this->_page_data['menu_slug'],
+				'update' => 'updated',
+			], network_admin_url( 'admin.php' ) ) );
+			exit();
+		}
+	}
+
+	/**
+	 * Callback for the `network_admin_menu` hook.
 	 */
 	public function onAdminMenu() {
 		if ( isset( $this->_page_data['parent_slug'] ) ) {
-			add_submenu_page( ...array_values( $this->_page_data ) );
+			$page = add_submenu_page( ...array_values( $this->_page_data ) );
 		} else {
-			add_menu_page( ...array_values( $this->_page_data ) );
+			$page = add_menu_page( ...array_values( $this->_page_data ) );
 		}
+
+		// Add action to handle checking for data to save on page load.
+		add_action( 'load-' . $page, [ $this, 'handleNetworkSave' ] );
 	}
 
 	/**
@@ -155,37 +185,12 @@ class AdminSettingsPage {
 		$fields = isset( $data['fields'] ) && \is_array( $data['fields'] ) ? $data['fields'] : [];
 		foreach ( $fields as $index => $field ) {
 			$fields[ $index ]['section'] = $data['id'];
-			$fields[ $index ]['storage'] = 'option';
+			$fields[ $index ]['storage'] = 'site-option';
 		}
 		$this->_field_container->addFields( $fields );
 		foreach ( $this->_field_container->getIterator() as $field_name => $field ) {
 			$this->addField( $field );
 		}
-	}
-
-	/**
-	 * Register an individual setting.
-	 *
-	 * @param Field $field
-	 */
-	public function registerSetting( Field $field ) {
-		register_setting( $this->_page_data['menu_slug'], $field->name, [
-			'type'              => \gettype( $field->value ),
-			'default'           => $field->value,
-			'description'       => $field->getData( 'description', '' ),
-			'sanitize_callback' => $field->getData( 'sanitize', function ( $value ) use ( $field ) {
-
-				$is_valid = validate_flex_field( $field );
-				if ( $is_valid ) {
-					$field->value = $field->sanitize( $value );
-				} else {
-					add_settings_error( $field->name, 'flex_field_error', $field->getErrorMessage() );
-				}
-
-				return $field->value;
-			} ),
-			'show_in_rest'      => $field->getData( 'show_in_rest', false ),
-		] );
 	}
 
 	/**
@@ -242,7 +247,7 @@ class AdminSettingsPage {
 	 */
 	public function renderPage() {
 		$render = flex_fields_container()->get( 'render' );
-		echo $render( 'admin-settings-page.php', [
+		echo $render( 'network-admin-settings-page.php', [
 			'title' => $this->_page_data['page_title'],
 			'page'  => $this->_page_data['menu_slug'],
 		] );
