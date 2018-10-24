@@ -65,15 +65,10 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return flexFields; });
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -182,26 +177,21 @@ if (window.flexFields) {
 
 window.flexFields = flexFields;
 
-exports.flexFields = flexFields;
+
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Field; });
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Field = exports.Field = function () {
+var Field = function () {
     function Field(el) {
         _classCallCheck(this, Field);
 
@@ -550,36 +540,43 @@ module.exports = __webpack_require__(53);
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_es6_promise_auto__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_es6_promise_auto___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_es6_promise_auto__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_es6_symbol_implement__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_es6_symbol_implement___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_es6_symbol_implement__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_iterators_polyfill__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_iterators_polyfill___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_iterators_polyfill__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_whatwg_fetch__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_whatwg_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_whatwg_fetch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polyfills_closest__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polyfills_closest___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__polyfills_closest__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polyfills_object__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polyfills_object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__polyfills_object__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fields_ajax_upload__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__fields_choices__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fields_flatpickr__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__fields_media_upload__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fields_repeating__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__fields_repeating_text__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__fields_tiny_mce__ = __webpack_require__(49);
 
 
-__webpack_require__(7);
 
-__webpack_require__(10);
 
-__webpack_require__(30);
 
-__webpack_require__(31);
 
-__webpack_require__(32);
 
-__webpack_require__(33);
 
-__webpack_require__(34);
 
-__webpack_require__(36);
 
-__webpack_require__(39);
 
-__webpack_require__(43);
 
-__webpack_require__(45);
 
-__webpack_require__(47);
 
-__webpack_require__(49);
 
 /***/ }),
 /* 7 */
@@ -2931,10 +2928,7 @@ module.exports = function (x) {
 
 /***/ }),
 /* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
+/***/ (function(module, exports) {
 
 if (!Element.prototype.matches) {
     Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
@@ -2956,10 +2950,7 @@ if (!Element.prototype.closest) {
 
 /***/ }),
 /* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
+/***/ (function(module, exports) {
 
 if (!Object.entries) {
     Object.entries = function (obj) {
@@ -2974,40 +2965,27 @@ if (!Object.entries) {
 
 /***/ }),
 /* 34 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_AjaxUploadField__ = __webpack_require__(35);
 
-
-var _AjaxUploadField = __webpack_require__(35);
 
 Array.from(document.querySelectorAll('.flex-field-ajax-upload')).map(function (el) {
-    return new _AjaxUploadField.AjaxUploadField(el);
+    return new __WEBPACK_IMPORTED_MODULE_0__classes_AjaxUploadField__["a" /* AjaxUploadField */](el);
 });
 
 /***/ }),
 /* 35 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.AjaxUploadField = undefined;
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AjaxUploadField; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_unescape__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_unescape___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash_unescape__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Field__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FlexFields__ = __webpack_require__(0);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _lodash = __webpack_require__(2);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _Field2 = __webpack_require__(1);
-
-var _FlexFields = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3015,7 +2993,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AjaxUploadField = exports.AjaxUploadField = function (_Field) {
+
+
+
+
+
+var AjaxUploadField = function (_Field) {
     _inherits(AjaxUploadField, _Field);
 
     function AjaxUploadField(el) {
@@ -3032,7 +3015,7 @@ var AjaxUploadField = exports.AjaxUploadField = function (_Field) {
         template.removeAttribute('hidden');
         template.classList.remove('flex-template');
 
-        _this._config = JSON.parse((0, _lodash2.default)(el.getAttribute('data-config')));
+        _this._config = JSON.parse(__WEBPACK_IMPORTED_MODULE_0_lodash_unescape___default()(el.getAttribute('data-config')));
         _this._template = template.cloneNode(true);
 
         if (_this.isAdvancedUpload) {
@@ -3158,7 +3141,7 @@ var AjaxUploadField = exports.AjaxUploadField = function (_Field) {
                     var xhr = new XMLHttpRequest();
                     if (xhr.upload) {
 
-                        xhr.open('POST', _FlexFields.flexFields.restUrl + 'wp/v2/media', true);
+                        xhr.open('POST', __WEBPACK_IMPORTED_MODULE_2__FlexFields__["a" /* flexFields */].restUrl + 'wp/v2/media', true);
                         xhr.responseType = 'json';
 
                         xhr.onload = function (e) {
@@ -3190,7 +3173,7 @@ var AjaxUploadField = exports.AjaxUploadField = function (_Field) {
                             }, 2000);
                         };
 
-                        xhr.setRequestHeader('X-WP-Nonce', _FlexFields.flexFields.restNonce);
+                        xhr.setRequestHeader('X-WP-Nonce', __WEBPACK_IMPORTED_MODULE_2__FlexFields__["a" /* flexFields */].restNonce);
                         xhr.setRequestHeader('Content-Disposition', 'attachment; filename="' + file.name + '"');
                         xhr.send(file);
                     }
@@ -3294,50 +3277,35 @@ var AjaxUploadField = exports.AjaxUploadField = function (_Field) {
     }]);
 
     return AjaxUploadField;
-}(_Field2.Field);
+}(__WEBPACK_IMPORTED_MODULE_1__Field__["a" /* Field */]);
 
-_FlexFields.flexFields.addFieldClass(AjaxUploadField);
+__WEBPACK_IMPORTED_MODULE_2__FlexFields__["a" /* flexFields */].addFieldClass(AjaxUploadField);
 
 /***/ }),
 /* 36 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_ChoicesField__ = __webpack_require__(37);
 
-
-var _ChoicesField = __webpack_require__(37);
 
 Array.from(document.querySelectorAll('.flex-field-autocomplete, .flex-field-choices, .flex-field-choices-input')).map(function (el) {
-    return new _ChoicesField.ChoicesField(el);
+    return new __WEBPACK_IMPORTED_MODULE_0__classes_ChoicesField__["a" /* ChoicesField */](el);
 });
 
 /***/ }),
 /* 37 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.ChoicesField = undefined;
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChoicesField; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_choices_js__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_choices_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_choices_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_unescape__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_unescape___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash_unescape__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Field__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__FlexFields__ = __webpack_require__(0);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _choices = __webpack_require__(38);
-
-var _choices2 = _interopRequireDefault(_choices);
-
-var _lodash = __webpack_require__(2);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _Field2 = __webpack_require__(1);
-
-var _FlexFields = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3345,7 +3313,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ChoicesField = exports.ChoicesField = function (_Field) {
+
+
+
+
+
+
+var ChoicesField = function (_Field) {
     _inherits(ChoicesField, _Field);
 
     function ChoicesField(el) {
@@ -3357,7 +3331,7 @@ var ChoicesField = exports.ChoicesField = function (_Field) {
             return e.stopPropagation();
         });
         _this.select.addEventListener('change', _this.onChange.bind(_this));
-        _this._choices = new _choices2.default(_this.select, _this.config);
+        _this._choices = new __WEBPACK_IMPORTED_MODULE_0_choices_js___default.a(_this.select, _this.config);
         return _this;
     }
 
@@ -3375,7 +3349,7 @@ var ChoicesField = exports.ChoicesField = function (_Field) {
         key: 'config',
         get: function get() {
             var select = this.el.querySelector('[data-choices]');
-            return JSON.parse((0, _lodash2.default)(select.getAttribute('data-choices')));
+            return JSON.parse(__WEBPACK_IMPORTED_MODULE_1_lodash_unescape___default()(select.getAttribute('data-choices')));
         }
     }, {
         key: 'select',
@@ -3390,9 +3364,9 @@ var ChoicesField = exports.ChoicesField = function (_Field) {
     }]);
 
     return ChoicesField;
-}(_Field2.Field);
+}(__WEBPACK_IMPORTED_MODULE_2__Field__["a" /* Field */]);
 
-_FlexFields.flexFields.addFieldClass(ChoicesField);
+__WEBPACK_IMPORTED_MODULE_3__FlexFields__["a" /* flexFields */].addFieldClass(ChoicesField);
 
 /***/ }),
 /* 38 */
@@ -3406,48 +3380,31 @@ return void 0!==t&&null!==t&&i===e},r=(t.isNode=function(e){return"object"===("u
 
 /***/ }),
 /* 39 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_FlatpickrField__ = __webpack_require__(40);
 
-
-var _FlatpickrField = __webpack_require__(40);
 
 Array.from(document.querySelectorAll('.flex-field-flatpickr')).map(function (el) {
-    return new _FlatpickrField.FlatpickrField(el);
+    return new __WEBPACK_IMPORTED_MODULE_0__classes_FlatpickrField__["a" /* FlatpickrField */](el);
 });
 
 /***/ }),
 /* 40 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.FlatpickrField = undefined;
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FlatpickrField; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_flatpickr__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_flatpickr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_flatpickr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_confirmDate_confirmDate__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_confirmDate_confirmDate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_confirmDate_confirmDate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash_unescape__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash_unescape___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash_unescape__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Field__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FlexFields__ = __webpack_require__(0);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _flatpickr = __webpack_require__(41);
-
-var _flatpickr2 = _interopRequireDefault(_flatpickr);
-
-var _confirmDate = __webpack_require__(42);
-
-var _confirmDate2 = _interopRequireDefault(_confirmDate);
-
-var _lodash = __webpack_require__(2);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _Field2 = __webpack_require__(1);
-
-var _FlexFields = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3455,7 +3412,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FlatpickrField = exports.FlatpickrField = function (_Field) {
+
+
+
+
+
+
+
+var FlatpickrField = function (_Field) {
     _inherits(FlatpickrField, _Field);
 
     function FlatpickrField(el) {
@@ -3463,7 +3427,7 @@ var FlatpickrField = exports.FlatpickrField = function (_Field) {
 
         var _this = _possibleConstructorReturn(this, (FlatpickrField.__proto__ || Object.getPrototypeOf(FlatpickrField)).call(this, el));
 
-        _this._flatpickr = (0, _flatpickr2.default)(_this.input, _this.config);
+        _this._flatpickr = __WEBPACK_IMPORTED_MODULE_0_flatpickr___default()(_this.input, _this.config);
         return _this;
     }
 
@@ -3477,7 +3441,7 @@ var FlatpickrField = exports.FlatpickrField = function (_Field) {
         get: function get() {
             var _this2 = this;
 
-            var config = JSON.parse((0, _lodash2.default)(this.input.getAttribute('data-flatpickr')));
+            var config = JSON.parse(__WEBPACK_IMPORTED_MODULE_2_lodash_unescape___default()(this.input.getAttribute('data-flatpickr')));
 
             config.onReady = function (dateObj, dateStr, instance) {
                 _this2.clearButton.addEventListener('click', function (e) {
@@ -3487,7 +3451,7 @@ var FlatpickrField = exports.FlatpickrField = function (_Field) {
                 });
             };
 
-            config.plugins = [new _confirmDate2.default({})];
+            config.plugins = [new __WEBPACK_IMPORTED_MODULE_1_flatpickr_dist_plugins_confirmDate_confirmDate___default.a({})];
 
             return config;
         }
@@ -3504,9 +3468,9 @@ var FlatpickrField = exports.FlatpickrField = function (_Field) {
     }]);
 
     return FlatpickrField;
-}(_Field2.Field);
+}(__WEBPACK_IMPORTED_MODULE_3__Field__["a" /* Field */]);
 
-_FlexFields.flexFields.addFieldClass(FlatpickrField);
+__WEBPACK_IMPORTED_MODULE_4__FlexFields__["a" /* flexFields */].addFieldClass(FlatpickrField);
 
 /***/ }),
 /* 41 */
@@ -5820,34 +5784,25 @@ return confirmDatePlugin;
 
 /***/ }),
 /* 43 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_MediaUploadField__ = __webpack_require__(44);
 
-
-var _MediaUploadField = __webpack_require__(44);
 
 Array.from(document.querySelectorAll('.flex-field-media-upload')).map(function (el) {
-	return new _MediaUploadField.MediaUploadField(el);
+	return new __WEBPACK_IMPORTED_MODULE_0__classes_MediaUploadField__["a" /* MediaUploadField */](el);
 });
 
 /***/ }),
 /* 44 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.MediaUploadField = undefined;
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MediaUploadField; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Field__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FlexFields__ = __webpack_require__(0);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Field2 = __webpack_require__(1);
-
-var _FlexFields = __webpack_require__(0);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5855,7 +5810,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var MediaUploadField = exports.MediaUploadField = function (_Field) {
+
+
+
+var MediaUploadField = function (_Field) {
 	_inherits(MediaUploadField, _Field);
 
 	function MediaUploadField(el) {
@@ -5966,40 +5924,31 @@ var MediaUploadField = exports.MediaUploadField = function (_Field) {
 	}]);
 
 	return MediaUploadField;
-}(_Field2.Field);
+}(__WEBPACK_IMPORTED_MODULE_0__Field__["a" /* Field */]);
 
-_FlexFields.flexFields.addFieldClass(MediaUploadField);
+__WEBPACK_IMPORTED_MODULE_1__FlexFields__["a" /* flexFields */].addFieldClass(MediaUploadField);
 
 /***/ }),
 /* 45 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_RepeatingField__ = __webpack_require__(46);
 
-
-var _RepeatingField = __webpack_require__(46);
 
 Array.from(document.querySelectorAll('.flex-field-repeating')).map(function (el) {
-    return new _RepeatingField.RepeatingField(el);
+    return new __WEBPACK_IMPORTED_MODULE_0__classes_RepeatingField__["a" /* RepeatingField */](el);
 });
 
 /***/ }),
 /* 46 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.RepeatingField = undefined;
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RepeatingField; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Field__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FlexFields__ = __webpack_require__(0);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Field2 = __webpack_require__(1);
-
-var _FlexFields = __webpack_require__(0);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6007,7 +5956,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var RepeatingField = exports.RepeatingField = function (_Field) {
+
+
+
+var RepeatingField = function (_Field) {
     _inherits(RepeatingField, _Field);
 
     function RepeatingField(el) {
@@ -6067,7 +6019,7 @@ var RepeatingField = exports.RepeatingField = function (_Field) {
             this.dispatch('addChild', { target: target });
 
             // Globally dispatch
-            _FlexFields.flexFields.dispatch('addChild', { target: target }, this);
+            __WEBPACK_IMPORTED_MODULE_1__FlexFields__["a" /* flexFields */].dispatch('addChild', { target: target }, this);
 
             this._index++;
         }
@@ -6099,51 +6051,42 @@ var RepeatingField = exports.RepeatingField = function (_Field) {
     }]);
 
     return RepeatingField;
-}(_Field2.Field);
+}(__WEBPACK_IMPORTED_MODULE_0__Field__["a" /* Field */]);
 
-_FlexFields.flexFields.addFieldClass(RepeatingField);
+__WEBPACK_IMPORTED_MODULE_1__FlexFields__["a" /* flexFields */].addFieldClass(RepeatingField);
 
 /***/ }),
 /* 47 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_RepeatingTextField__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_FlexFields__ = __webpack_require__(0);
 
 
-var _RepeatingTextField = __webpack_require__(48);
-
-var _FlexFields = __webpack_require__(0);
 
 Array.from(document.querySelectorAll('.flex-field-repeating-text')).map(function (el) {
-    return new _RepeatingTextField.RepeatingTextField(el);
+    return new __WEBPACK_IMPORTED_MODULE_0__classes_RepeatingTextField__["a" /* RepeatingTextField */](el);
 });
 
 // Ensure field works in repeating field.
-_FlexFields.flexFields.addEventListener('addChild', function () {
+__WEBPACK_IMPORTED_MODULE_1__classes_FlexFields__["a" /* flexFields */].addEventListener('addChild', function () {
     if ('repeating' === this.type) {
         Array.from(this.el.querySelectorAll('.flex-field-repeating-text:not([data-flex-initialized])')).map(function (el) {
-            new _RepeatingTextField.RepeatingTextField(el);
+            new __WEBPACK_IMPORTED_MODULE_0__classes_RepeatingTextField__["a" /* RepeatingTextField */](el);
         });
     }
 });
 
 /***/ }),
 /* 48 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.RepeatingTextField = undefined;
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RepeatingTextField; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Field__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FlexFields__ = __webpack_require__(0);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Field2 = __webpack_require__(1);
-
-var _FlexFields = __webpack_require__(0);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6151,7 +6094,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var RepeatingTextField = exports.RepeatingTextField = function (_Field) {
+
+
+
+var RepeatingTextField = function (_Field) {
     _inherits(RepeatingTextField, _Field);
 
     function RepeatingTextField(el) {
@@ -6207,34 +6153,33 @@ var RepeatingTextField = exports.RepeatingTextField = function (_Field) {
     }]);
 
     return RepeatingTextField;
-}(_Field2.Field);
+}(__WEBPACK_IMPORTED_MODULE_0__Field__["a" /* Field */]);
 
-_FlexFields.flexFields.addFieldClass(RepeatingTextField);
+__WEBPACK_IMPORTED_MODULE_1__FlexFields__["a" /* flexFields */].addFieldClass(RepeatingTextField);
 
 /***/ }),
 /* 49 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__classes_TinyMceField__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_FlexFields__ = __webpack_require__(0);
 
 
-var _TinyMceField = __webpack_require__(50);
-
-var _FlexFields = __webpack_require__(0);
 
 Array.from(document.querySelectorAll('.flex-field-tinymce')).map(function (el) {
-    return new _TinyMceField.TinyMceField(el);
+    return new __WEBPACK_IMPORTED_MODULE_0__classes_TinyMceField__["a" /* TinyMceField */](el);
 });
 
 // Ensure TinyMCE field works when in a repeating field.
-_FlexFields.flexFields.addEventListener('addChild', function () {
+__WEBPACK_IMPORTED_MODULE_1__classes_FlexFields__["a" /* flexFields */].addEventListener('addChild', function () {
     var _this = this;
 
     if ('repeating' === this.type) {
         Array.from(this.el.querySelectorAll('.flex-field-tinymce')).map(function (el) {
             var textarea = el.querySelector('textarea');
             textarea.setAttribute('id', textarea.getAttribute('id').replace('x', _this._index));
-            var tinyMce = new _TinyMceField.TinyMceField(el);
+            var tinyMce = new __WEBPACK_IMPORTED_MODULE_0__classes_TinyMceField__["a" /* TinyMceField */](el);
             tinyMce.setup();
         });
     }
@@ -6242,27 +6187,15 @@ _FlexFields.flexFields.addEventListener('addChild', function () {
 
 /***/ }),
 /* 50 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.TinyMceField = undefined;
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TinyMceField; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_unescape__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_unescape___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash_unescape__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Field__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FlexFields__ = __webpack_require__(0);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _lodash = __webpack_require__(2);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _Field2 = __webpack_require__(1);
-
-var _FlexFields = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6270,7 +6203,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var TinyMceField = exports.TinyMceField = function (_Field) {
+
+
+
+
+
+var TinyMceField = function (_Field) {
     _inherits(TinyMceField, _Field);
 
     function TinyMceField(el) {
@@ -6308,7 +6246,7 @@ var TinyMceField = exports.TinyMceField = function (_Field) {
     }, {
         key: "config",
         get: function get() {
-            return JSON.parse((0, _lodash2.default)(this.textarea.getAttribute('data-config')));
+            return JSON.parse(__WEBPACK_IMPORTED_MODULE_0_lodash_unescape___default()(this.textarea.getAttribute('data-config')));
         }
     }, {
         key: "content",
@@ -6328,9 +6266,9 @@ var TinyMceField = exports.TinyMceField = function (_Field) {
     }]);
 
     return TinyMceField;
-}(_Field2.Field);
+}(__WEBPACK_IMPORTED_MODULE_1__Field__["a" /* Field */]);
 
-_FlexFields.flexFields.addFieldClass(TinyMceField);
+__WEBPACK_IMPORTED_MODULE_2__FlexFields__["a" /* flexFields */].addFieldClass(TinyMceField);
 
 /***/ }),
 /* 51 */
