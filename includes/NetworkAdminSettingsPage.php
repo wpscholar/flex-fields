@@ -134,8 +134,7 @@ class NetworkAdminSettingsPage {
 		foreach ( $this->_field_container as $field ) {
 			$is_valid = validate_flex_field( $field );
 			if ( $is_valid ) {
-				$value = filter_input( INPUT_POST, $field->name );
-				$field->value = $field->save( 0, $value );
+				$field->value = $field->save( 0, isset( $_POST[ $field->name ] ) ? $_POST[ $field->name ] : '' );
 			} else {
 				$haveErrors = true;
 				add_settings_error( $field->name, 'flex_field_error', $field->getErrorMessage() );
