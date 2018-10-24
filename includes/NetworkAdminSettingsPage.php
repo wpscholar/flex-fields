@@ -149,7 +149,7 @@ class NetworkAdminSettingsPage {
 			wp_safe_redirect( add_query_arg( [
 				'page'   => $this->_page_data['menu_slug'],
 				'update' => 'updated',
-			], network_admin_url( 'admin.php' ) ) );
+			], network_admin_url( $this->_page_data['parent_slug'] ? : 'admin.php' ) ) );
 			exit();
 		}
 	}
