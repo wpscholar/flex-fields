@@ -39,10 +39,11 @@ class NetworkAdminSettingsPage {
 		$this->_field_container = new FieldContainer();
 
 		$defaults = [
-			'capability' => 'manage_network_options',
-			'function'   => '',
-			'icon_url'   => '',
-			'position'   => null,
+			'capability'   => 'manage_network_options',
+			'function'     => '',
+			'icon_url'     => '',
+			'position'     => null,
+			'save_message' => esc_html__( 'Settings saved.' ),
 		];
 
 		$page = array_merge( $defaults, $page_args, [ 'function' => [ $this, 'renderPage' ] ] );
@@ -124,6 +125,9 @@ class NetworkAdminSettingsPage {
 	 * Checks if data needs saving on `load-{$page_slug}` action.
 	 */
 	public function handleNetworkSave() {
+		if ( isset( $_GET['update'] ) && 'updated' === $_GET['update'] ) {
+			add_action( 'network_admin_notices', [ $this, 'saveSuccessNotice' ] );
+		}
 		if ( ! isset( $_POST['_flexFieldsNetworkNonce'] ) ) {
 			return;
 		}
@@ -134,8 +138,7 @@ class NetworkAdminSettingsPage {
 		foreach ( $this->_field_container as $field ) {
 			$is_valid = validate_flex_field( $field );
 			if ( $is_valid ) {
-				$value = filter_input( INPUT_POST, $field->name );
-				$field->value = $field->save( 0, $value );
+				$field->value = $field->save( 0, isset( $_POST[ $field->name ] ) ? $_POST[ $field->name ] : '' );
 			} else {
 				$haveErrors = true;
 				add_settings_error( $field->name, 'flex_field_error', $field->getErrorMessage() );
@@ -146,9 +149,24 @@ class NetworkAdminSettingsPage {
 			wp_safe_redirect( add_query_arg( [
 				'page'   => $this->_page_data['menu_slug'],
 				'update' => 'updated',
-			], network_admin_url( 'admin.php' ) ) );
+			], network_admin_url( $this->_page_data['parent_slug'] ? : 'admin.php' ) ) );
 			exit();
 		}
+	}
+
+	/**
+	 * Outputs success message once page has been saved. Runs on `network_admin_notices` action hook.
+	 */
+	public function saveSuccessNotice() {
+		$msg = esc_html__( 'Settings saved.' );
+		if ( ! empty( $this->_page_data['save_message'] ) ) {
+			$msg = $this->_page_data['save_message'];
+		}
+		?>
+		<div class="notice notice-success is-dismissible">
+			<p><?php echo esc_html( $msg ); ?></p>
+		</div>
+		<?php
 	}
 
 	/**
