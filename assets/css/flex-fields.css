@@ -478,6 +478,40 @@
   display: block;
   width: 100%; }
 
+.flex-field-toggle input[type="checkbox"] {
+  height: 0;
+  visibility: hidden;
+  width: 0; }
+  .flex-field-toggle input[type="checkbox"]:checked + .flex-field-toggle__toggle {
+    background-color: green; }
+    .flex-field-toggle input[type="checkbox"]:checked + .flex-field-toggle__toggle::before {
+      left: 1.625em; }
+
+.flex-field-toggle__toggle {
+  background: grey;
+  border-radius: 1em;
+  cursor: pointer;
+  display: inline-block;
+  height: 2em;
+  margin: 0 .5em;
+  position: relative;
+  -webkit-transition: background-color .3s;
+  -o-transition: background-color .3s;
+  transition: background-color .3s;
+  width: 3.5em; }
+  .flex-field-toggle__toggle::before {
+    background: #ffffff;
+    border-radius: 100%;
+    content: '';
+    height: 1.75em;
+    left: .125em;
+    position: absolute;
+    top: .125em;
+    -webkit-transition: left .3s;
+    -o-transition: left .3s;
+    transition: left .3s;
+    width: 1.75em; }
+
 .flex-form-errors {
   display: block;
   margin: 1em 0;

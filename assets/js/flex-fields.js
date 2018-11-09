@@ -2274,9 +2274,7 @@ module.exports = function (dest, src /*, …srcn*/) {
 "use strict";
 
 
-module.exports = __webpack_require__(19)()
-	? Object.keys
-	: __webpack_require__(20);
+module.exports = __webpack_require__(19)() ? Object.keys : __webpack_require__(20);
 
 
 /***/ }),
@@ -2291,8 +2289,8 @@ module.exports = function () {
 		Object.keys("primitive");
 		return true;
 	} catch (e) {
- return false;
-}
+		return false;
+	}
 };
 
 
@@ -2307,9 +2305,7 @@ var isValue = __webpack_require__(4);
 
 var keys = Object.keys;
 
-module.exports = function (object) {
-	return keys(isValue(object) ? Object(object) : object);
-};
+module.exports = function (object) { return keys(isValue(object) ? Object(object) : object); };
 
 
 /***/ }),
