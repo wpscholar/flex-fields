@@ -1,6 +1,6 @@
-$choices-button-icon-path: '~choices.js/assets/icons';
+$choices-button-icon-path: '~choices.js/src/icons';
 $choices-selector: 'flex-choices';
-@import "~choices.js/assets/styles/scss/choices";
+@import "~choices.js/src/styles/choices";
 
 .flex-field {
 
