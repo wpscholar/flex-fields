@@ -34,13 +34,16 @@ class FlatpickrField extends Field {
 		$config = array_merge( $this->_defaultConfig(), $this->getData( 'config', [] ) );
 
 		// Set Flatpickr config
-		$atts['data-flatpickr'] = htmlspecialchars( json_encode( (object) $config ), ENT_QUOTES, 'UTF-8' );
+		$atts['data-flatpickr'] = htmlspecialchars( wp_json_encode( (object) $config ), ENT_QUOTES, 'UTF-8' );
 
-		$flatpickr = $this->renderTemplate( 'flatpickr.php', [
-			'name'  => $this->getData( 'name' ),
-			'value' => $this->value,
-			'atts'  => $atts,
-		] );
+		$flatpickr = $this->renderTemplate(
+			'flatpickr.php',
+			[
+				'name'  => $this->getData( 'name' ),
+				'value' => $this->value,
+				'atts'  => $atts,
+			]
+		);
 
 		return $this->fieldWrapper( 'flatpickr', $this->fieldLabel( $flatpickr ) );
 
