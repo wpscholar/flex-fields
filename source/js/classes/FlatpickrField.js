@@ -1,6 +1,6 @@
 import flatpickr from 'flatpickr';
 import confirmDatePlugin from 'flatpickr/dist/plugins/confirmDate/confirmDate';
-import decode from 'lodash.unescape';
+import decode from 'lodash/unescape';
 
 import {Field} from "./Field";
 import {flexFields} from "./FlexFields";

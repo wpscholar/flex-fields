@@ -1,4 +1,4 @@
-import decode from 'lodash.unescape';
+import decode from 'lodash/unescape';
 
 import {Field} from "./Field";
 import {flexFields} from "./FlexFields";

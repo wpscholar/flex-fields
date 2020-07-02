@@ -15,7 +15,7 @@
         "es6-symbol": "^3.1.3",
         "flatpickr": "^4.6.3",
         "iterators-polyfill": "^1.0.2",
-        "lodash.unescape": "^4.0.1",
+        "lodash": "^4.17.15",
         "whatwg-fetch": "^3.1.0"
     },
     "devDependencies": {
