@@ -1,27 +1,13 @@
 'use strict';
 
-const autoPrefixer = require( 'autoprefixer' );
-const browsers = require( '@wordpress/browserslist-config' );
-const mediaQueryPacker = require( 'css-mqpacker' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
-const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
-const webpack = require( 'webpack' );
+const autoprefixer = require('autoprefixer');
+const browsers = require('@wordpress/browserslist-config');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
+const webpack = require('webpack');
 
-module.exports = function () {
+module.exports = function (env, options) {
 
-	const mode = process.env.NODE_ENV || 'development';
-	const extensionPrefix = mode === 'production' ? '.min' : '';
-
-	// These are the paths where different types of resources should end up.
-	const paths = {
-		css: 'assets/css/',
-		img: 'assets/img/',
-		font: 'assets/font/',
-		js: 'assets/js/',
-	};
-
-	// The property names will be the file names, the values are the files that should be included.
 	const entry = {
 		'flex-fields': [
 			'./source/js/flex-fields.js',
@@ -30,6 +16,18 @@ module.exports = function () {
 			'./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.css',
 		],
 	};
+
+	const paths = {
+		css: 'assets/css/',
+		img: 'assets/img/',
+		font: 'assets/font/',
+		js: 'assets/js/',
+		lang: 'languages/',
+	};
+
+	const mode = options.mode || 'development';
+
+	const extPrefix = mode === 'production' ? '.min' : '';
 
 	const loaders = {
 		css: {
@@ -42,11 +40,10 @@ module.exports = function () {
 			loader: 'postcss-loader',
 			options: {
 				plugins: [
-					autoPrefixer( {
-						browsers,
+					autoprefixer({
+						overrideBrowserslist: browsers,
 						flexbox: 'no-2009',
-					} ),
-					mediaQueryPacker(),
+					}),
 				],
 				sourceMap: true,
 			},
@@ -59,50 +56,33 @@ module.exports = function () {
 		},
 	};
 
-	const config = {
+	return {
 		mode,
 		entry,
 		output: {
-			filename: `${ paths.js }[name]${ extensionPrefix }.js`,
-			path: __dirname,
-		},
-		externals: {
-			'@wordpress/a11y': 'wp.a11y',
-			'@wordpress/components': 'wp.components', // Not really a package.
-			'@wordpress/blocks': 'wp.blocks', // Not really a package.
-			'@wordpress/data': 'wp.data', // Not really a package.
-			'@wordpress/date': 'wp.date', // Not really a package.
-			'@wordpress/element': 'wp.element', // Not really a package.
-			'@wordpress/hooks': 'wp.hooks',
-			'@wordpress/i18n': 'wp.i18n',
-			'@wordpress/utils': 'wp.utils', // Not really a package
-			backbone: 'Backbone',
-			jquery: 'jQuery',
-			lodash: 'lodash',
-			moment: 'moment',
-			react: 'React',
-			'react-dom': 'ReactDOM',
-			tinymce: 'tinymce',
+			path: path.join(__dirname, '/'),
+			filename: `${paths.js}[name]${extPrefix}.js`,
 		},
 		module: {
 			rules: [
 				{
-					test: /\.js|.jsx/,
+					test: /\.js|.jsx|.es6/,
 					loader: 'babel-loader',
 					query: {
 						presets: [
 							'@wordpress/default',
 						],
 						plugins: [
+							[
+								'@wordpress/babel-plugin-makepot',
+								{
+									'output': `${paths.lang}translation.pot`,
+								}
+							],
 							'transform-class-properties',
 						],
 					},
 					exclude: /(node_modules|bower_components)/,
-				},
-				{
-					test: /\.html$/,
-					loader: 'raw-loader',
-					exclude: /node_modules/,
 				},
 				{
 					test: /\.css$/,
@@ -111,6 +91,7 @@ module.exports = function () {
 						loaders.css,
 						loaders.postCss,
 					],
+					exclude: /(bower_components)/,
 				},
 				{
 					test: /\.scss$/,
@@ -120,7 +101,7 @@ module.exports = function () {
 						loaders.postCss,
 						loaders.sass,
 					],
-					exclude: /node_modules/,
+					exclude: /(node_modules|bower_components)/,
 				},
 				{
 					test: /\.(ttf|eot|svg|woff2?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -133,48 +114,84 @@ module.exports = function () {
 							},
 						},
 					],
-					exclude: /(assets)/,
+					exclude: /(assets|node_modules|bower_components)/,
+				},
+				{
+					test: /\.html$/,
+					loader: 'raw-loader',
+					exclude: /(node_modules|bower_components)/,
 				},
 			],
 		},
-		optimization: {
-			minimizer: [
-				new UglifyJsPlugin( {
-					cache: true,
-					parallel: true,
-					sourceMap: true,
-				} ),
-				new OptimizeCSSAssetsPlugin( {} ),
-			],
-		},
 		plugins: [
-			new MiniCssExtractPlugin( {
-				filename: `${ paths.css }[name]${ extensionPrefix }.css`,
-			} ),
-			new webpack.DefinePlugin( {
-				'process.env.NODE_ENV': JSON.stringify( mode ),
-			} ),
-			function () {
+			new MiniCssExtractPlugin({
+				filename: `${paths.css}[name]${extPrefix}.css`,
+			}),
+			new webpack.DefinePlugin({
+				'process.env.NODE_ENV': JSON.stringify(mode),
+			}),
+			function (compiler) {
 				// Custom webpack plugin - remove generated JS files that aren't needed
-				this.hooks.done.tap( 'webpack', function (stats) {
-					stats.compilation.chunks.forEach( chunk => {
-						if (!chunk.entryModule._identifier.includes( '.js' )) {
-							chunk.files.forEach( file => {
-								if (file.includes( '.js' )) {
-									fs.unlinkSync( path.join( __dirname, `/${ file }` ) );
+				compiler.hooks.emit.tap('RemoveEmptyJsFiles', function (compilation) {
+					compilation.chunks.forEach(chunk => {
+						if (!chunk.entryModule._identifier.includes('.js')) {
+							chunk.files.forEach(file => {
+								if (file.includes('.js')) {
+									delete compilation.assets[file];
 								}
-							} );
+							});
 						}
-					} );
-				} );
+					});
+				});
 			},
 		],
+		externals: {
+			'@wordpress/a11y': 'wp.a11y',
+			'@wordpress/api-fetch': 'wp.apiFetch',
+			'@wordpress/api-request': 'wp.apiRequest',
+			'@wordpress/autop': 'wp.autop',
+			'@wordpress/blob': 'wp.blob',
+			'@wordpress/block-library': 'wp.blockLibrary',
+			'@wordpress/blocks': 'wp.blocks',
+			'@wordpress/block-serialization-default-parser': 'wp.blockSerializationDefaultParser',
+			'@wordpress/components': 'wp.components',
+			'@wordpress/compose': 'wp.compose',
+			'@wordpress/core-data': 'wp.coreData',
+			'@wordpress/data': 'wp.data',
+			'@wordpress/date': 'wp.date',
+			'@wordpress/deprecated': 'wp.deprecated',
+			'@wordpress/dom': 'wp.dom',
+			'@wordpress/dom-ready': 'wp.domReady',
+			'@wordpress/editor': 'wp.editor',
+			'@wordpress/edit-post': 'wp.editPost',
+			'@wordpress/element': 'wp.element',
+			'@wordpress/escape-html': 'wp.escapeHtml',
+			'@wordpress/format-library': 'wp.formatLibrary',
+			'@wordpress/hooks': 'wp.hooks',
+			'@wordpress/html-entities': 'wp.htmlEntities',
+			'@wordpress/i18n': 'wp.i18n',
+			'@wordpress/is-shallow-equal': 'wp.isShallowEqual',
+			'@wordpress/keycodes': 'wp.keycodes',
+			'@wordpress/notices': 'wp.notices',
+			'@wordpress/nux': 'wp.nux',
+			'@wordpress/plugins': 'wp.plugins',
+			'@wordpress/redux-routine': 'wp.reduxRoutine',
+			'@wordpress/rich-text': 'wp.richText',
+			'@wordpress/shortcode': 'wp.shortcode',
+			'@wordpress/token-list': 'wp.tokenList',
+			'@wordpress/url': 'wp.url',
+			'@wordpress/viewport': 'wp.viewport',
+			'@wordpress/wordcount': 'wp.wordcount',
+			backbone: 'Backbone',
+			jquery: 'jQuery',
+			lodash: 'lodash',
+			moment: 'moment',
+			react: 'React',
+			'react-dom': 'ReactDOM',
+			tinymce: 'tinymce',
+			underscore: '_',
+		},
+		devtool: 'source-map',
 	};
-
-	if (mode !== 'production') {
-		config.devtool = 'source-map';
-	}
-
-	return config;
 
 };
