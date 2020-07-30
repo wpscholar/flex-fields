@@ -16,7 +16,7 @@
         "flatpickr": "^4.6.3",
         "iterators-polyfill": "^1.0.2",
         "lodash": "^4.17.15",
-        "whatwg-fetch": "^3.1.0"
+        "whatwg-fetch": "^3.1.1"
     },
     "devDependencies": {
         "@babel/core": "^7.10.4",
