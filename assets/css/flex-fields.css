@@ -271,8 +271,7 @@
 .flex-choices__button {
   text-indent: -9999px;
   -webkit-appearance: none;
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
   border: 0;
   background-color: transparent;
   background-repeat: no-repeat;
@@ -584,7 +583,7 @@
 .flatpickr-calendar .hasWeeks .dayContainer {
   border-left: 0;
 }
-.flatpickr-calendar.showTimeInput.hasTime .flatpickr-time {
+.flatpickr-calendar.hasTime .flatpickr-time {
   height: 40px;
   border-top: 1px solid #e6e6e6;
 }
@@ -603,9 +602,16 @@
   left: 22px;
 }
 .flatpickr-calendar.rightMost:before,
-.flatpickr-calendar.rightMost:after {
+.flatpickr-calendar.arrowRight:before,
+.flatpickr-calendar.rightMost:after,
+.flatpickr-calendar.arrowRight:after {
   left: auto;
   right: 22px;
+}
+.flatpickr-calendar.arrowCenter:before,
+.flatpickr-calendar.arrowCenter:after {
+  left: 50%;
+  right: 50%;
 }
 .flatpickr-calendar:before {
   border-width: 5px;
@@ -857,7 +863,6 @@
   border-radius: 0;
   vertical-align: initial;
   -webkit-appearance: textfield;
-  -moz-appearance: textfield;
   appearance: textfield;
 }
 .flatpickr-current-month input.cur-year:focus {
@@ -1164,7 +1169,6 @@ span.flatpickr-weekday {
   position: relative;
   box-sizing: border-box;
   -webkit-appearance: textfield;
-  -moz-appearance: textfield;
   appearance: textfield;
 }
 .flatpickr-time input.flatpickr-hour {
