@@ -39,7 +39,7 @@ render_flex_field(
 ## Maintainers 
 
 <a href="https://github.com/wpscholar">  
-    <img src="https://avatars.githubusercontent.com/u/890951?v=4" alt="Micah Wood" style="width: 60px;border-radius:50%;" />
+    <img src="https://avatars.githubusercontent.com/u/890951?v=4&s=60" alt="Micah Wood" style="border-radius:50%;" />
 </a>
 
 ## Contributors
