@@ -12386,7 +12386,20 @@ var AjaxUploadField = /*#__PURE__*/function (_Field) {
 
       if (totalFileCount <= this.maxUploads) {
         files.forEach(function (file) {
+          console.log(file, _this2.isValidMimeType(file.type));
           var reader = new FileReader();
+
+          if (!_this2.isValidMimeType(file.type)) {
+            _this2.showError('invalid-type');
+
+            return;
+          }
+
+          if (_this2.maxSize && file.size > _this2.maxSize) {
+            _this2.showError('max-size');
+
+            return;
+          }
 
           if (_this2.fileTypeMatches(file, 'image')) {
             reader.onload = function (e) {
@@ -12423,41 +12436,39 @@ var AjaxUploadField = /*#__PURE__*/function (_Field) {
                   _this2.disable();
                 }
               } else {
-                _this2.dropZone.classList.remove('--is-uploading');
-
-                _this2.dropZone.classList.add('--is-error');
-
-                setTimeout(function () {
-                  _this2.dropZone.classList.remove('--is-error');
-                }, 2000);
+                _this2.showError('failure');
               }
             };
 
             xhr.onerror = function (e) {
-              _this2.dropZone.classList.remove('--is-uploading');
-
-              _this2.dropZone.classList.add('--is-error');
-
-              setTimeout(function () {
-                _this2.dropZone.classList.remove('--is-error');
-              }, 2000);
+              _this2.showError('failure');
             };
 
             xhr.setRequestHeader('X-WP-Nonce', _FlexFields__WEBPACK_IMPORTED_MODULE_8__["flexFields"].restNonce);
             xhr.setRequestHeader('Content-Disposition', 'attachment; filename="' + file.name + '"');
+            xhr.setRequestHeader('Content-Type', file.type);
             xhr.send(file);
           }
         });
       } else {
-        this.dropZone.classList.remove('--is-uploading');
-        this.dropZone.classList.add('--is-max-upload');
-        this.dropZone.classList.add('--is-error');
-        setTimeout(function () {
-          _this2.dropZone.classList.remove('--is-max-upload');
-
-          _this2.dropZone.classList.remove('--is-error');
-        }, 3000);
+        this.showError('max-upload');
       }
+    }
+  }, {
+    key: "showError",
+    value: function showError() {
+      var _this3 = this;
+
+      var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'failure';
+      this.dropZone.classList.remove('--is-uploading');
+      this.dropZone.classList.remove('--is-success');
+      this.dropZone.classList.add('--is-error');
+      this.dropZone.classList.add("--is-".concat(type));
+      setTimeout(function () {
+        _this3.dropZone.classList.remove('--is-error');
+
+        _this3.dropZone.classList.remove("--is-".concat(type));
+      }, 3500);
     }
   }, {
     key: "fileTypeMatches",
@@ -12468,6 +12479,23 @@ var AjaxUploadField = /*#__PURE__*/function (_Field) {
     key: "fileMimeTypeMatches",
     value: function fileMimeTypeMatches(file, mimetype) {
       return file.type === mimetype;
+    }
+  }, {
+    key: "isValidMimeType",
+    value: function isValidMimeType(mimetype) {
+      var isValid = !this.allowedMimeTypes.length;
+
+      if (!isValid) {
+        for (var i = 0; i < this.allowedMimeTypes.length; i++) {
+          isValid = this.allowedMimeTypes[i] === mimetype;
+
+          if (isValid) {
+            break;
+          }
+        }
+      }
+
+      return isValid;
     }
   }, {
     key: "getFileExtension",
@@ -12493,6 +12521,11 @@ var AjaxUploadField = /*#__PURE__*/function (_Field) {
     key: "count",
     get: function get() {
       return this.gallery.querySelectorAll('a').length;
+    }
+  }, {
+    key: "allowedMimeTypes",
+    get: function get() {
+      return this._config.allowedMimeTypes || [];
     }
   }, {
     key: "dropZone",
@@ -12534,6 +12567,11 @@ var AjaxUploadField = /*#__PURE__*/function (_Field) {
     key: "maxUploads",
     get: function get() {
       return parseInt(this._config.maxUploads || 1, 10);
+    }
+  }, {
+    key: "maxSize",
+    get: function get() {
+      return parseInt(this._config.maxSize || 0, 10) * 1000000;
     }
   }, {
     key: "template",

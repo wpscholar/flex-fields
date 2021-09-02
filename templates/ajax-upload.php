@@ -17,6 +17,8 @@ $ids = (array) $x->get( 'value', [] );
             <span class="flex-field-ajax-upload__on-load"><?php echo esc_html( $x->get( 'labelOnLoad' ) ); ?></span>
             <span class="flex-field-ajax-upload__on-upload"><?php echo esc_html( $x->get( 'labelOnUpload' ) ); ?></span>
             <span class="flex-field-ajax-upload__on-max-upload"><?php echo esc_html( sprintf( $x->get( 'labelOnMaxUpload' ), absint( $x->get( 'maxUploads' ) ) ) ); ?></span>
+            <span class="flex-field-ajax-upload__on-max-size"><?php echo esc_html( sprintf( $x->get( 'labelOnMaxSize' ), absint( $x->get( 'maxSize' ) ) ) ); ?></span>
+            <span class="flex-field-ajax-upload__on-invalid-type"><?php echo esc_html( $x->get( 'labelOnInvalidType' ) ); ?></span>
             <span class="flex-field-ajax-upload__on-success"><?php echo esc_html( $x->get( 'labelOnSuccess' ) ); ?></span>
             <span class="flex-field-ajax-upload__on-failure"><?php echo esc_html( $x->get( 'labelOnError' ) ); ?></span>
         </label>
