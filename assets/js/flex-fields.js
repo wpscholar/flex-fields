@@ -12648,6 +12648,11 @@ var ChoicesField = /*#__PURE__*/function (_Field) {
     _this.select.addEventListener('change', _this.onChange.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this)));
 
     _this._choices = new choices_js__WEBPACK_IMPORTED_MODULE_6___default.a(_this.select, _this.config);
+
+    if (_this.config.placeholderValue && _this.select.hasAttribute('multiple')) {
+      _this._choices.input.element.setAttribute('placeholder', _this.config.placeholderValue);
+    }
+
     return _this;
   }
 
