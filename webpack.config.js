@@ -38,12 +38,12 @@ module.exports = function (env, options) {
 		entry,
 		output: {
 			path: path.join(__dirname, '/'),
-			filename: `${paths.js}[name]${extPrefix}.js`,
+			filename: `${ paths.js }[name]${ extPrefix }.js`,
 		},
 		plugins: [
 			new RemoveEmptyScriptsPlugin(),
 			new MiniCssExtractPlugin({
-				filename: `${paths.css}[name]${extPrefix}.css`,
+				filename: `${ paths.css }[name]${ extPrefix }.css`,
 			}),
 			new webpack.DefinePlugin({
 				'process.env.NODE_ENV': JSON.stringify(mode),
