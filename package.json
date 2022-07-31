@@ -5,12 +5,15 @@
     "license": "GPL-2.0+",
     "private": true,
     "scripts": {
-        "start": "webpack --watch",
-        "build": "webpack -p",
-        "lint": "eslint source/js/**"
+        "start": "wp-scripts start",
+        "build": "wp-scripts build --mode=production",
+        "lint:css": "wp-scripts lint-style",
+        "lint:js": "wp-scripts lint-js",
+        "lint:md:docs": "wp-scripts lint-md-docs",
+        "lint:pkg-json": "wp-scripts lint-pkg-json"
     },
     "dependencies": {
-        "choices.js": "^9.0.1",
+        "choices.js": "^10.1.0",
         "es6-promise": "^4.2.8",
         "es6-symbol": "^3.1.3",
         "flatpickr": "^4.6.9",
@@ -19,22 +22,7 @@
         "whatwg-fetch": "^3.6.2"
     },
     "devDependencies": {
-        "@babel/core": "^7.10.4",
-        "@wordpress/babel-plugin-makepot": "^3.10.0",
-        "@wordpress/babel-preset-default": "^4.20.0",
-        "@wordpress/browserslist-config": "^2.7.0",
-        "@wordpress/eslint-plugin": "^7.4.0",
-        "autoprefixer": "^9.8.6",
-        "babel-loader": "^8.2.2",
-        "babel-plugin-transform-class-properties": "^6.24.1",
-        "css-loader": "^3.6.0",
-        "eslint": "^7.29.0",
-        "mini-css-extract-plugin": "^0.9.0",
-        "node-sass": "^7.0.0",
-        "postcss-loader": "^3.0.0",
-        "sass-loader": "^9.0.3",
-        "svg-url-loader": "^6.0.0",
-        "webpack": "^4.46.0",
-        "webpack-cli": "^3.3.12"
+        "@wordpress/scripts": "^23.6.0",
+        "webpack-remove-empty-scripts": "^0.8.1"
     }
 }

@@ -1,451 +1,1069 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
-/******/ })
-/************************************************************************/
-/******/ ({
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/arrayLikeToArray.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./source/js/classes/AjaxUploadField.js":
+/*!**********************************************!*\
+  !*** ./source/js/classes/AjaxUploadField.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AjaxUploadField": () => (/* binding */ AjaxUploadField)
+/* harmony export */ });
+/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash/unescape */ "./node_modules/lodash/unescape.js");
+/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_unescape__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
+/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
 
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
 
-  return arr2;
-}
 
-module.exports = _arrayLikeToArray;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
+class AjaxUploadField extends _Field__WEBPACK_IMPORTED_MODULE_1__.Field {
+  constructor(el) {
+    super(el);
+    const template = el.querySelector('.flex-template'); // Remove template from DOM (to avoid submitting invalid data with form)
 
-/***/ }),
+    template.parentNode.removeChild(template); // Make some adjustments to template
 
-/***/ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+    template.removeAttribute('hidden');
+    template.classList.remove('flex-template');
+    this._config = JSON.parse(lodash_unescape__WEBPACK_IMPORTED_MODULE_0___default()(el.getAttribute('data-config')));
+    this._template = template.cloneNode(true);
 
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
+    if (this.isAdvancedUpload) {
+      // Disable field if the max upload count has already been met.
+      if (this.count >= this.maxUploads) {
+        this.disable();
+      } // Setup file handler for input field
 
-module.exports = _arrayWithHoles;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
 
-/***/ }),
+      this.input.addEventListener('change', this.fileSelectHandler.bind(this)); // Setup drag and drop events
 
-/***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+      ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(event => this.dropZone.addEventListener(event, e => {
+        e.stopPropagation();
+        e.preventDefault();
+      }));
+      ['dragover', 'dragenter'].forEach(event => this.dropZone.addEventListener(event, () => {
+        this.dropZone.classList.add('--is-active');
+      }));
+      ['dragleave', 'dragend', 'drop'].forEach(event => this.dropZone.addEventListener(event, () => {
+        this.dropZone.classList.remove('--is-active');
+      }));
+      this.dropZone.addEventListener('drop', this.fileSelectHandler.bind(this)); // Add class to trigger display of advanced features
 
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
+      this.el.classList.add('--has-advanced-upload');
+    } // Setup click handlers for any pre-existing images in gallery
 
-  return self;
-}
 
-module.exports = _assertThisInitialized;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-module.exports = _createClass;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
+    this.items.forEach(el => {
+      el.addEventListener('click', this.onClickRemoveHandler.bind(this));
     });
-  } else {
-    obj[key] = value;
   }
 
-  return obj;
-}
+  add(json, file) {
+    const template = this.template;
+    const span = template.querySelector('span');
+    const id = json.id;
 
-module.exports = _defineProperty;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
+    if (this.fileTypeMatches(file, 'image')) {
+      const img = document.createElement('img');
+      let src = json.source_url;
 
-/***/ }),
+      if (json.media_details.sizes[this.imageSize]) {
+        src = json.media_details.sizes[this.imageSize].source_url;
+      }
 
-/***/ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+      img.setAttribute('src', src);
+      span.appendChild(img);
+    } else {
+      span.textContent = file.name;
+      template.classList.add('--document');
+    }
 
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
-  return _getPrototypeOf(o);
-}
-
-module.exports = _getPrototypeOf;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/inherits.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
+    template.querySelector('input').value = id;
+    this.gallery.appendChild(template);
+    template.addEventListener('click', this.onClickRemoveHandler.bind(this));
+    this.dispatch('add', {
+      target: template
+    });
   }
 
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-
-module.exports = _inherits;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _iterableToArrayLimit(arr, i) {
-  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-
-  if (_i == null) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-
-  var _s, _e;
-
-  try {
-    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
+  disable() {
+    if (!this.isDisabled) {
+      this.input.setAttribute('disabled', 'disabled');
+      this.dropZone.classList.add('--is-disabled');
     }
   }
 
-  return _arr;
-}
-
-module.exports = _iterableToArrayLimit;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/nonIterableRest.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/nonIterableRest.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-module.exports = _nonIterableRest;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js")["default"];
-
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
+  enable() {
+    if (this.isDisabled) {
+      this.input.removeAttribute('disabled');
+      this.dropZone.classList.remove('--is-disabled');
+    }
   }
 
-  return assertThisInitialized(self);
-}
+  fileExtensionMatches(file, ext) {
+    return this.getFileExtension(file) === ext.toLowerCase();
+  }
 
-module.exports = _possibleConstructorReturn;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
+  fileSelectHandler(e) {
+    this.dropZone.classList.add('--is-uploading');
+    const files = Array.from(e.target.files || e.dataTransfer.files);
+    const totalFileCount = files.length + this.count;
+
+    if (totalFileCount <= this.maxUploads) {
+      files.forEach(file => {
+        console.log(file, this.isValidMimeType(file.type));
+        const reader = new FileReader();
+
+        if (!this.isValidMimeType(file.type)) {
+          this.showError('invalid-type');
+          return;
+        }
+
+        if (this.maxSize && file.size > this.maxSize) {
+          this.showError('max-size');
+          return;
+        }
+
+        if (this.fileTypeMatches(file, 'image')) {
+          reader.onload = function (e) {
+            reader.readAsDataURL(file);
+          };
+        }
+
+        if (this.fileTypeMatches(file, 'text')) {
+          reader.onload = function (e) {
+            reader.readAsText(file);
+          };
+        }
+
+        const xhr = new XMLHttpRequest();
+
+        if (xhr.upload) {
+          xhr.open('POST', _FlexFields__WEBPACK_IMPORTED_MODULE_2__.flexFields.restUrl + 'wp/v2/media', true);
+          xhr.responseType = 'json';
+
+          xhr.onload = e => {
+            if (xhr.status >= 200 && xhr.status < 400) {
+              this.dropZone.classList.remove('--is-uploading');
+              this.dropZone.classList.add('--is-success');
+              setTimeout(() => {
+                this.dropZone.classList.remove('--is-success');
+              }, 2000);
+              this.add(xhr.response, file); // Disable field if the max upload count has already been met.
+
+              if (this.count >= this.maxUploads) {
+                this.disable();
+              }
+            } else {
+              this.showError('failure');
+            }
+          };
+
+          xhr.onerror = e => {
+            this.showError('failure');
+          };
+
+          xhr.setRequestHeader('X-WP-Nonce', _FlexFields__WEBPACK_IMPORTED_MODULE_2__.flexFields.restNonce);
+          xhr.setRequestHeader('Content-Disposition', 'attachment; filename="' + file.name + '"');
+          xhr.setRequestHeader('Content-Type', file.type);
+          xhr.send(file);
+        }
+      });
+    } else {
+      this.showError('max-upload');
+    }
+  }
+
+  showError() {
+    let type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'failure';
+    this.dropZone.classList.remove('--is-uploading');
+    this.dropZone.classList.remove('--is-success');
+    this.dropZone.classList.add('--is-error');
+    this.dropZone.classList.add(`--is-${type}`);
+    setTimeout(() => {
+      this.dropZone.classList.remove('--is-error');
+      this.dropZone.classList.remove(`--is-${type}`);
+    }, 3500);
+  }
+
+  fileTypeMatches(file, type) {
+    return file.type.indexOf(type) === 0;
+  }
+
+  fileMimeTypeMatches(file, mimetype) {
+    return file.type === mimetype;
+  }
+
+  isValidMimeType(mimetype) {
+    let isValid = !this.allowedMimeTypes.length;
+
+    if (!isValid) {
+      for (let i = 0; i < this.allowedMimeTypes.length; i++) {
+        isValid = this.allowedMimeTypes[i] === mimetype;
+
+        if (isValid) {
+          break;
+        }
+      }
+    }
+
+    return isValid;
+  }
+
+  getFileExtension(file) {
+    return file.name.split('.').pop().toLowerCase();
+  }
+
+  onClickRemoveHandler(e) {
+    e.preventDefault();
+    const target = e.currentTarget;
+    this.dispatch('remove', {
+      id: target.querySelector('input').value,
+      target
+    });
+    target.parentNode.removeChild(target); // Enable field if the max upload count has already been met.
+
+    if (this.count < this.maxUploads) {
+      this.enable();
+    }
+  }
+
+  get count() {
+    return this.gallery.querySelectorAll('a').length;
+  }
+
+  get allowedMimeTypes() {
+    return this._config.allowedMimeTypes || [];
+  }
+
+  get dropZone() {
+    return this.el.querySelector('.flex-field-ajax-upload__drop-zone');
+  }
+
+  get gallery() {
+    return this.el.querySelector('.flex-field-ajax-upload__gallery');
+  }
+
+  get imageSize() {
+    return this._config.imageSize;
+  }
+
+  get input() {
+    return this.el.querySelector('input[type="file"]');
+  }
+
+  get isAdvancedUpload() {
+    const el = this.el;
+    return ('draggable' in el || 'ondragstart' in el && 'ondrop' in el) && 'FormData' in window && 'FileReader' in window;
+  }
+
+  get isDisabled() {
+    return this.input.hasAttribute('disabled');
+  }
+
+  get items() {
+    return Array.from(this.gallery.children);
+  }
+
+  get maxUploads() {
+    return parseInt(this._config.maxUploads || 1, 10);
+  }
+
+  get maxSize() {
+    return parseInt(this._config.maxSize || 0, 10) * 1000000;
+  }
+
+  get template() {
+    return this._template.cloneNode(true);
+  }
+
+}
+_FlexFields__WEBPACK_IMPORTED_MODULE_2__.flexFields.addFieldClass(AjaxUploadField);
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./source/js/classes/ChoicesField.js":
+/*!*******************************************!*\
+  !*** ./source/js/classes/ChoicesField.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ChoicesField": () => (/* binding */ ChoicesField)
+/* harmony export */ });
+/* harmony import */ var choices_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! choices.js */ "./node_modules/choices.js/public/assets/scripts/choices.js");
+/* harmony import */ var choices_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(choices_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/unescape */ "./node_modules/lodash/unescape.js");
+/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_unescape__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
+/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
 
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
-  return _setPrototypeOf(o, p);
+
+
+
+class ChoicesField extends _Field__WEBPACK_IMPORTED_MODULE_2__.Field {
+  constructor(el) {
+    super(el);
+    this.select.addEventListener('click', e => e.stopPropagation());
+    this.select.addEventListener('change', this.onChange.bind(this));
+    this._choices = new (choices_js__WEBPACK_IMPORTED_MODULE_0___default())(this.select, this.config);
+
+    if (this.config.placeholderValue && this.select.hasAttribute('multiple')) {
+      this._choices.input.element.setAttribute('placeholder', this.config.placeholderValue);
+    }
+  }
+
+  onChange(e) {
+    this.dispatch('change', {
+      target: e.target
+    });
+  }
+
+  get choices() {
+    return this._choices;
+  }
+
+  get config() {
+    const select = this.el.querySelector('[data-choices]');
+    return JSON.parse(lodash_unescape__WEBPACK_IMPORTED_MODULE_1___default()(select.getAttribute('data-choices')));
+  }
+
+  get select() {
+    return this.el.querySelector('[data-choices]');
+  }
+
+  get value() {
+    return this.choices.getValue();
+  }
+
 }
-
-module.exports = _setPrototypeOf;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
+_FlexFields__WEBPACK_IMPORTED_MODULE_3__.flexFields.addFieldClass(ChoicesField);
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/slicedToArray.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./source/js/classes/Field.js":
+/*!************************************!*\
+  !*** ./source/js/classes/Field.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Field": () => (/* binding */ Field)
+/* harmony export */ });
+class Field {
+  constructor(el) {
+    this.listeners = {}; // Make field instance accessible from element
 
-var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js");
+    el.flexField = this; // Make element accessible from field instance
 
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+    this.el = el; // Set field name
 
-var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ "./node_modules/@babel/runtime/helpers/nonIterableRest.js");
+    this._name = el.getAttribute('data-name'); // Set field type (defaults to input, subclasses should override)
 
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
-}
+    this._type = el.getAttribute('data-type'); // Set default value (subclasses should override)
 
-module.exports = _slicedToArray;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
+    this._value = '';
+  }
 
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return typeof obj;
+  addEventListener(type, callback) {
+    const listener = {
+      type,
+      callback
     };
 
-    module.exports["default"] = module.exports, module.exports.__esModule = true;
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
+    if (this.listeners[type]) {
+      this.listeners[type].push(listener);
+    } else {
+      this.listeners[type] = [listener];
+    }
 
-    module.exports["default"] = module.exports, module.exports.__esModule = true;
+    return listener;
   }
 
-  return _typeof(obj);
-}
+  removeEventListener(listener) {
+    const listeners = this.listeners[listener.type];
 
-module.exports = _typeof;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
+    if (listeners) {
+      const index = listeners.indexOf(listener);
+
+      if (index > -1) {
+        this.listeners[listener.type] = listeners.splice(index, 1);
+      }
+    }
+  }
+
+  dispatch(type) {
+    let data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    if (this.listeners[type]) {
+      this.listeners[type].forEach(listener => {
+        listener.callback.apply(this, [{ ...data,
+          type
+        }]);
+      });
+    }
+  }
+
+  show() {
+    this.el.removeAttribute('hidden');
+  }
+
+  hide() {
+    this.el.setAttribute('hidden', 'hidden');
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get value() {
+    return this._value;
+  }
+
+  set value(value) {
+    this._value = value;
+  }
+
+}
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./source/js/classes/FlatpickrField.js":
+/*!*********************************************!*\
+  !*** ./source/js/classes/FlatpickrField.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FlatpickrField": () => (/* binding */ FlatpickrField)
+/* harmony export */ });
+/* harmony import */ var flatpickr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! flatpickr */ "./node_modules/flatpickr/dist/esm/index.js");
+/* harmony import */ var flatpickr_dist_plugins_confirmDate_confirmDate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flatpickr/dist/plugins/confirmDate/confirmDate */ "./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.js");
+/* harmony import */ var flatpickr_dist_plugins_confirmDate_confirmDate__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flatpickr_dist_plugins_confirmDate_confirmDate__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/unescape */ "./node_modules/lodash/unescape.js");
+/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_unescape__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
+/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
 
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+
+
+
+
+class FlatpickrField extends _Field__WEBPACK_IMPORTED_MODULE_3__.Field {
+  constructor(el) {
+    super(el);
+    this._flatpickr = (0,flatpickr__WEBPACK_IMPORTED_MODULE_0__["default"])(this.input, this.config);
+  }
+
+  get clearButton() {
+    return this.el.querySelector('.flatpickr-reset');
+  }
+
+  get config() {
+    const config = JSON.parse(lodash_unescape__WEBPACK_IMPORTED_MODULE_2___default()(this.input.getAttribute('data-flatpickr')));
+
+    config.onReady = (dateObj, dateStr, instance) => {
+      this.clearButton.addEventListener('click', e => {
+        e.preventDefault();
+        instance.clear();
+        instance.close();
+      });
+    };
+
+    config.plugins = [new (flatpickr_dist_plugins_confirmDate_confirmDate__WEBPACK_IMPORTED_MODULE_1___default())({})];
+    return config;
+  }
+
+  get flatpickr() {
+    return this._flatpickr;
+  }
+
+  get input() {
+    return this.el.querySelector('[data-flatpickr]');
+  }
+
+}
+_FlexFields__WEBPACK_IMPORTED_MODULE_4__.flexFields.addFieldClass(FlatpickrField);
+
+/***/ }),
+
+/***/ "./source/js/classes/FlexFields.js":
+/*!*****************************************!*\
+  !*** ./source/js/classes/FlexFields.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "flexFields": () => (/* binding */ flexFields)
+/* harmony export */ });
+class FlexFields {
+  constructor() {
+    this.classes = {};
+    this.listeners = {};
+  }
+
+  addEventListener(type, callback) {
+    const listener = {
+      type,
+      callback
+    };
+
+    if (this.listeners[type]) {
+      this.listeners[type].push(listener);
+    } else {
+      this.listeners[type] = [listener];
+    }
+
+    return listener;
+  }
+
+  removeEventListener(listener) {
+    const listeners = this.listeners[listener.type];
+
+    if (listeners) {
+      const index = listeners.indexOf(listener);
+
+      if (index > -1) {
+        this.listeners[listener.type] = listeners.splice(index, 1);
+      }
+    }
+  }
+
+  dispatch(type) {
+    let data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    let scope = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+    if (this.listeners[type]) {
+      this.listeners[type].forEach(function (listener) {
+        listener.callback.apply(scope, [{ ...data,
+          type
+        }]);
+      });
+    }
+  }
+
+  addFieldClass(classFunction) {
+    this.classes[classFunction.name] = classFunction;
+  }
+
+  getFieldClass(className) {
+    return this.classes[className];
+  }
+
+  hasFieldClass(className) {
+    return typeof this.classes[className] !== 'undefined';
+  }
+
 }
 
-module.exports = _unsupportedIterableToArray;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
+const flexFields = new FlexFields();
+
+if (window.flexFields) {
+  for (const [key, value] of Object.entries(window.flexFields)) {
+    if (!flexFields.hasOwnProperty(key)) {
+      flexFields[key] = value;
+    }
+  }
+}
+
+window.flexFields = flexFields;
+
+
+/***/ }),
+
+/***/ "./source/js/classes/MediaUploadField.js":
+/*!***********************************************!*\
+  !*** ./source/js/classes/MediaUploadField.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MediaUploadField": () => (/* binding */ MediaUploadField)
+/* harmony export */ });
+/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
+/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
+
+
+class MediaUploadField extends _Field__WEBPACK_IMPORTED_MODULE_0__.Field {
+  constructor(el) {
+    super(el); // Setup our custom media upload modal
+
+    this.frame = wp.media({
+      title: 'Set Featured Image',
+      button: {
+        text: 'Select'
+      },
+      multiple: false
+    });
+    this.frame.on('select', () => {
+      // Get media attachment details from the frame state
+      const attachment = this.frame.state().get('selection').first().toJSON(); // Set field value
+
+      this.value = attachment.id || ''; // Set image source
+
+      this.setImageSource((attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url) || '');
+    }); // Add click handler for the "Add Image" button.
+
+    this.addButton.addEventListener('click', e => {
+      e.preventDefault();
+      this.frame.open();
+    }); // Add click handler for the "Remove Image" button.
+
+    this.removeButton.addEventListener('click', e => {
+      e.preventDefault();
+      this.value = '';
+    }); // Toggle display of Add/Remove buttons
+
+    this.toggleAddButton();
+    this.toggleRemoveButton();
+    this.toggleGallery();
+  }
+
+  toggleAddButton() {
+    this.addButton.hidden = Boolean(this.input.value);
+  }
+
+  toggleRemoveButton() {
+    this.removeButton.hidden = Boolean(!this.input.value);
+  }
+
+  toggleGallery() {
+    this.gallery.hidden = Boolean(!this.input.value);
+  }
+
+  setImageSource(src) {
+    this.image.setAttribute('src', src);
+  }
+
+  get gallery() {
+    return this.el.querySelector('.flex-field-gallery');
+  }
+
+  get image() {
+    return this.el.querySelector('img');
+  }
+
+  get input() {
+    return this.el.querySelector('input[type="hidden"]');
+  }
+
+  get addButton() {
+    return this.el.querySelector('[data-action="add"]');
+  }
+
+  get removeButton() {
+    return this.el.querySelector('[data-action="remove"]');
+  }
+
+  get value() {
+    return this.input.value;
+  }
+
+  set value(value) {
+    if (!value) {
+      this.setImageSource('');
+    }
+
+    this.input.value = value;
+    this.toggleAddButton();
+    this.toggleRemoveButton();
+    this.toggleGallery();
+  }
+
+}
+_FlexFields__WEBPACK_IMPORTED_MODULE_1__.flexFields.addFieldClass(MediaUploadField);
+
+/***/ }),
+
+/***/ "./source/js/classes/RepeatingField.js":
+/*!*********************************************!*\
+  !*** ./source/js/classes/RepeatingField.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RepeatingField": () => (/* binding */ RepeatingField)
+/* harmony export */ });
+/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
+/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
+
+
+class RepeatingField extends _Field__WEBPACK_IMPORTED_MODULE_0__.Field {
+  constructor(el) {
+    super(el);
+    this._name = this._name.replace('[x]', '');
+    const addButton = el.querySelector('[data-action="add"][data-action-type="repeating"]');
+    const deleteButtons = el.querySelectorAll('[data-action="delete"][data-action-type="repeating"]');
+    const templateWrapper = el.querySelector('.flex-field-template'); // Remove template wrapper and contents from DOM (don't want to submit with form)
+
+    templateWrapper.parentNode.removeChild(templateWrapper); // Set index
+
+    this._index = this.count; // Set field type
+
+    this._type = 'repeating'; // Set template to be used for child fields
+
+    this._template = templateWrapper.firstElementChild.cloneNode(true); // Setup click handler for add button
+
+    addButton.addEventListener('click', this.onClickAddButton.bind(this)); // Setup click handler for delete buttons
+
+    Array.from(deleteButtons).forEach(deleteButton => {
+      deleteButton.addEventListener('click', this.onClickDeleteButton.bind(this));
+    });
+  }
+
+  onClickAddButton() {
+    const target = this.template; // Setup click handler for delete button
+
+    target.lastElementChild.addEventListener('click', this.onClickDeleteButton.bind(this)); // Replace field names as needed
+
+    Array.from(target.querySelectorAll(`[name*="${this.name}[x]"]`)).forEach(el => {
+      let name = el.getAttribute('name');
+      el.setAttribute('name', name.replace(`${this.name}[x]`, `${this.name}[${this._index}]`));
+    }); // Append new element to DOM
+
+    this.container.appendChild(target); // Dispatch our custom addChild event
+
+    this.dispatch('addChild', {
+      target
+    }); // Globally dispatch
+
+    _FlexFields__WEBPACK_IMPORTED_MODULE_1__.flexFields.dispatch('addChild', {
+      target
+    }, this);
+    this._index++;
+  }
+
+  onClickDeleteButton(e) {
+    this.container.removeChild(e.target.parentNode);
+  }
+
+  get children() {
+    return Array.from(this.container.children);
+  }
+
+  get container() {
+    return this.el.querySelector('.flex-field-collection');
+  }
+
+  get count() {
+    return this.children.length;
+  }
+
+  get template() {
+    return this._template.cloneNode(true);
+  }
+
+}
+_FlexFields__WEBPACK_IMPORTED_MODULE_1__.flexFields.addFieldClass(RepeatingField);
+
+/***/ }),
+
+/***/ "./source/js/classes/RepeatingTextField.js":
+/*!*************************************************!*\
+  !*** ./source/js/classes/RepeatingTextField.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RepeatingTextField": () => (/* binding */ RepeatingTextField)
+/* harmony export */ });
+/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
+/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
+
+
+class RepeatingTextField extends _Field__WEBPACK_IMPORTED_MODULE_0__.Field {
+  constructor(el) {
+    super(el); // Setup template
+
+    this._template = this.container.lastElementChild.cloneNode(true);
+    const addButton = this.el.querySelector('[data-action="add"]');
+    const deleteButtons = this.el.querySelectorAll('[data-action="delete"]');
+    this.el.setAttribute('data-flex-initialized', ''); // Add click handler for add button
+
+    addButton.addEventListener('click', this.onClickAddButton.bind(this));
+    Array.from(deleteButtons).forEach(el => el.addEventListener('click', this.onClickDeleteButton.bind(this)));
+  }
+
+  onClickAddButton() {
+    const target = this.template;
+    const deleteButton = target.querySelector('button'); // Add handler for delete button
+
+    deleteButton.addEventListener('click', this.onClickDeleteButton.bind(this));
+    this.container.appendChild(target);
+    this.dispatch('addChild', {
+      target
+    });
+  }
+
+  onClickDeleteButton(e) {
+    this.container.removeChild(e.target.parentNode);
+  }
+
+  get container() {
+    return this.el.querySelector('.flex-field-collection');
+  }
+
+  get template() {
+    return this._template.cloneNode(true);
+  }
+
+}
+_FlexFields__WEBPACK_IMPORTED_MODULE_1__.flexFields.addFieldClass(RepeatingTextField);
+
+/***/ }),
+
+/***/ "./source/js/classes/TinyMceField.js":
+/*!*******************************************!*\
+  !*** ./source/js/classes/TinyMceField.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TinyMceField": () => (/* binding */ TinyMceField)
+/* harmony export */ });
+/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash/unescape */ "./node_modules/lodash/unescape.js");
+/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_unescape__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
+/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
+
+
+
+class TinyMceField extends _Field__WEBPACK_IMPORTED_MODULE_1__.Field {
+  constructor(el) {
+    super(el);
+    window.addEventListener('load', this.setup.bind(this));
+  }
+
+  setup() {
+    wp.editor.initialize(this.textarea.id, this.config);
+    this._editor = window.tinymce.get(this.name);
+  }
+
+  appendContent(content) {
+    this.setContent(this.content + content);
+  }
+
+  setContent(content) {
+    this._editor.setContent(content);
+  }
+
+  focus() {
+    this.editor.focus();
+    this.editor.selection.select(this.editor.getBody(), true);
+    this.editor.selection.collapse(false);
+  }
+
+  get config() {
+    return JSON.parse(lodash_unescape__WEBPACK_IMPORTED_MODULE_0___default()(this.textarea.getAttribute('data-config')));
+  }
+
+  get content() {
+    return this._editor.getContent();
+  }
+
+  get editor() {
+    return this._editor;
+  }
+
+  get textarea() {
+    return this.el.querySelector('textarea');
+  }
+
+}
+_FlexFields__WEBPACK_IMPORTED_MODULE_2__.flexFields.addFieldClass(TinyMceField);
+
+/***/ }),
+
+/***/ "./source/js/fields/ajax-upload.js":
+/*!*****************************************!*\
+  !*** ./source/js/fields/ajax-upload.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _classes_AjaxUploadField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/AjaxUploadField */ "./source/js/classes/AjaxUploadField.js");
+
+Array.from(document.querySelectorAll('.flex-field-ajax-upload')).map(el => new _classes_AjaxUploadField__WEBPACK_IMPORTED_MODULE_0__.AjaxUploadField(el));
+
+/***/ }),
+
+/***/ "./source/js/fields/choices.js":
+/*!*************************************!*\
+  !*** ./source/js/fields/choices.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _classes_ChoicesField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/ChoicesField */ "./source/js/classes/ChoicesField.js");
+
+Array.from(document.querySelectorAll('.flex-field-autocomplete, .flex-field-choices, .flex-field-choices-input')).map(el => new _classes_ChoicesField__WEBPACK_IMPORTED_MODULE_0__.ChoicesField(el));
+
+/***/ }),
+
+/***/ "./source/js/fields/flatpickr.js":
+/*!***************************************!*\
+  !*** ./source/js/fields/flatpickr.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _classes_FlatpickrField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/FlatpickrField */ "./source/js/classes/FlatpickrField.js");
+
+Array.from(document.querySelectorAll('.flex-field-flatpickr')).map(el => new _classes_FlatpickrField__WEBPACK_IMPORTED_MODULE_0__.FlatpickrField(el));
+
+/***/ }),
+
+/***/ "./source/js/fields/media-upload.js":
+/*!******************************************!*\
+  !*** ./source/js/fields/media-upload.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _classes_MediaUploadField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/MediaUploadField */ "./source/js/classes/MediaUploadField.js");
+
+Array.from(document.querySelectorAll('.flex-field-media-upload')).map(el => new _classes_MediaUploadField__WEBPACK_IMPORTED_MODULE_0__.MediaUploadField(el));
+
+/***/ }),
+
+/***/ "./source/js/fields/repeating-text.js":
+/*!********************************************!*\
+  !*** ./source/js/fields/repeating-text.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _classes_RepeatingTextField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/RepeatingTextField */ "./source/js/classes/RepeatingTextField.js");
+/* harmony import */ var _classes_FlexFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../classes/FlexFields */ "./source/js/classes/FlexFields.js");
+
+
+Array.from(document.querySelectorAll('.flex-field-repeating-text')).map(el => new _classes_RepeatingTextField__WEBPACK_IMPORTED_MODULE_0__.RepeatingTextField(el)); // Ensure field works in repeating field.
+
+_classes_FlexFields__WEBPACK_IMPORTED_MODULE_1__.flexFields.addEventListener('addChild', function () {
+  if ('repeating' === this.type) {
+    Array.from(this.el.querySelectorAll('.flex-field-repeating-text:not([data-flex-initialized])')).map(el => {
+      new _classes_RepeatingTextField__WEBPACK_IMPORTED_MODULE_0__.RepeatingTextField(el);
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./source/js/fields/repeating.js":
+/*!***************************************!*\
+  !*** ./source/js/fields/repeating.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _classes_RepeatingField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/RepeatingField */ "./source/js/classes/RepeatingField.js");
+
+Array.from(document.querySelectorAll('.flex-field-repeating')).map(el => new _classes_RepeatingField__WEBPACK_IMPORTED_MODULE_0__.RepeatingField(el));
+
+/***/ }),
+
+/***/ "./source/js/fields/tiny-mce.js":
+/*!**************************************!*\
+  !*** ./source/js/fields/tiny-mce.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _classes_TinyMceField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/TinyMceField */ "./source/js/classes/TinyMceField.js");
+/* harmony import */ var _classes_FlexFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../classes/FlexFields */ "./source/js/classes/FlexFields.js");
+
+
+Array.from(document.querySelectorAll('.flex-field-tinymce')).map(el => new _classes_TinyMceField__WEBPACK_IMPORTED_MODULE_0__.TinyMceField(el)); // Ensure TinyMCE field works when in a repeating field.
+
+_classes_FlexFields__WEBPACK_IMPORTED_MODULE_1__.flexFields.addEventListener('addChild', function () {
+  if ('repeating' === this.type) {
+    Array.from(this.el.querySelectorAll('.flex-field-tinymce')).map(el => {
+      const textarea = el.querySelector('textarea');
+      textarea.setAttribute('id', textarea.getAttribute('id').replace('x', this._index));
+      const tinyMce = new _classes_TinyMceField__WEBPACK_IMPORTED_MODULE_0__.TinyMceField(el);
+      tinyMce.setup();
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./source/js/polyfills/closest.js":
+/*!****************************************!*\
+  !*** ./source/js/polyfills/closest.js ***!
+  \****************************************/
+/***/ (() => {
+
+if (!Element.prototype.matches) {
+  Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+}
+
+if (!Element.prototype.closest) {
+  Element.prototype.closest = function (s) {
+    let el = this;
+
+    if (!document.documentElement.contains(el)) {
+      return null;
+    }
+
+    do {
+      if (el.matches(s)) return el;
+      el = el.parentElement || el.parentNode;
+    } while (el !== null && el.nodeType === 1);
+
+    return null;
+  };
+}
+
+/***/ }),
+
+/***/ "./source/js/polyfills/object.js":
+/*!***************************************!*\
+  !*** ./source/js/polyfills/object.js ***!
+  \***************************************/
+/***/ (() => {
+
+if (!Object.entries) {
+  Object.entries = function (obj) {
+    var ownProps = Object.keys(obj),
+        i = ownProps.length,
+        resArray = new Array(i); // preallocate the Array
+
+    while (i--) resArray[i] = [ownProps[i], obj[ownProps[i]]];
+
+    return resArray;
+  };
+}
 
 /***/ }),
 
@@ -453,106 +1071,4876 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 /*!******************************************************************!*\
   !*** ./node_modules/choices.js/public/assets/scripts/choices.js ***!
   \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module) => {
 
-/*! choices.js v9.0.1 | © 2019 Josh Johnson | https://github.com/jshjohnson/Choices#readme */
+/*! choices.js v10.1.0 | © 2022 Josh Johnson | https://github.com/jshjohnson/Choices#readme */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
 		module.exports = factory();
 	else {}
 })(window, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/public/assets/scripts/";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+return /******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
 
-"use strict";
+/***/ 282:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_632__) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.clearChoices = exports.activateChoices = exports.filterChoices = exports.addChoice = void 0;
+
+var constants_1 = __nested_webpack_require_632__(883);
+
+var addChoice = function (_a) {
+  var value = _a.value,
+      label = _a.label,
+      id = _a.id,
+      groupId = _a.groupId,
+      disabled = _a.disabled,
+      elementId = _a.elementId,
+      customProperties = _a.customProperties,
+      placeholder = _a.placeholder,
+      keyCode = _a.keyCode;
+  return {
+    type: constants_1.ACTION_TYPES.ADD_CHOICE,
+    value: value,
+    label: label,
+    id: id,
+    groupId: groupId,
+    disabled: disabled,
+    elementId: elementId,
+    customProperties: customProperties,
+    placeholder: placeholder,
+    keyCode: keyCode
+  };
+};
+
+exports.addChoice = addChoice;
+
+var filterChoices = function (results) {
+  return {
+    type: constants_1.ACTION_TYPES.FILTER_CHOICES,
+    results: results
+  };
+};
+
+exports.filterChoices = filterChoices;
+
+var activateChoices = function (active) {
+  if (active === void 0) {
+    active = true;
+  }
+
+  return {
+    type: constants_1.ACTION_TYPES.ACTIVATE_CHOICES,
+    active: active
+  };
+};
+
+exports.activateChoices = activateChoices;
+
+var clearChoices = function () {
+  return {
+    type: constants_1.ACTION_TYPES.CLEAR_CHOICES
+  };
+};
+
+exports.clearChoices = clearChoices;
+
+/***/ }),
+
+/***/ 783:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_2094__) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.addGroup = void 0;
+
+var constants_1 = __nested_webpack_require_2094__(883);
+
+var addGroup = function (_a) {
+  var value = _a.value,
+      id = _a.id,
+      active = _a.active,
+      disabled = _a.disabled;
+  return {
+    type: constants_1.ACTION_TYPES.ADD_GROUP,
+    value: value,
+    id: id,
+    active: active,
+    disabled: disabled
+  };
+};
+
+exports.addGroup = addGroup;
+
+/***/ }),
+
+/***/ 464:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_2630__) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.highlightItem = exports.removeItem = exports.addItem = void 0;
+
+var constants_1 = __nested_webpack_require_2630__(883);
+
+var addItem = function (_a) {
+  var value = _a.value,
+      label = _a.label,
+      id = _a.id,
+      choiceId = _a.choiceId,
+      groupId = _a.groupId,
+      customProperties = _a.customProperties,
+      placeholder = _a.placeholder,
+      keyCode = _a.keyCode;
+  return {
+    type: constants_1.ACTION_TYPES.ADD_ITEM,
+    value: value,
+    label: label,
+    id: id,
+    choiceId: choiceId,
+    groupId: groupId,
+    customProperties: customProperties,
+    placeholder: placeholder,
+    keyCode: keyCode
+  };
+};
+
+exports.addItem = addItem;
+
+var removeItem = function (id, choiceId) {
+  return {
+    type: constants_1.ACTION_TYPES.REMOVE_ITEM,
+    id: id,
+    choiceId: choiceId
+  };
+};
+
+exports.removeItem = removeItem;
+
+var highlightItem = function (id, highlighted) {
+  return {
+    type: constants_1.ACTION_TYPES.HIGHLIGHT_ITEM,
+    id: id,
+    highlighted: highlighted
+  };
+};
+
+exports.highlightItem = highlightItem;
+
+/***/ }),
+
+/***/ 137:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_3835__) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.setIsLoading = exports.resetTo = exports.clearAll = void 0;
+
+var constants_1 = __nested_webpack_require_3835__(883);
+
+var clearAll = function () {
+  return {
+    type: constants_1.ACTION_TYPES.CLEAR_ALL
+  };
+};
+
+exports.clearAll = clearAll;
+
+var resetTo = function (state) {
+  return {
+    type: constants_1.ACTION_TYPES.RESET_TO,
+    state: state
+  };
+};
+
+exports.resetTo = resetTo;
+
+var setIsLoading = function (isLoading) {
+  return {
+    type: constants_1.ACTION_TYPES.SET_IS_LOADING,
+    isLoading: isLoading
+  };
+};
+
+exports.setIsLoading = setIsLoading;
+
+/***/ }),
+
+/***/ 373:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_4557__) {
+
+
+
+var __spreadArray = this && this.__spreadArray || function (to, from, pack) {
+  if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from));
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var deepmerge_1 = __importDefault(__nested_webpack_require_4557__(996));
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+
+var fuse_js_1 = __importDefault(__nested_webpack_require_4557__(221));
+
+var choices_1 = __nested_webpack_require_4557__(282);
+
+var groups_1 = __nested_webpack_require_4557__(783);
+
+var items_1 = __nested_webpack_require_4557__(464);
+
+var misc_1 = __nested_webpack_require_4557__(137);
+
+var components_1 = __nested_webpack_require_4557__(520);
+
+var constants_1 = __nested_webpack_require_4557__(883);
+
+var defaults_1 = __nested_webpack_require_4557__(789);
+
+var utils_1 = __nested_webpack_require_4557__(799);
+
+var reducers_1 = __nested_webpack_require_4557__(655);
+
+var store_1 = __importDefault(__nested_webpack_require_4557__(744));
+
+var templates_1 = __importDefault(__nested_webpack_require_4557__(686));
+/** @see {@link http://browserhacks.com/#hack-acea075d0ac6954f275a70023906050c} */
+
+
+var IS_IE11 = '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style;
+var USER_DEFAULTS = {};
+/**
+ * Choices
+ * @author Josh Johnson<josh@joshuajohnson.co.uk>
+ */
+
+var Choices =
+/** @class */
+function () {
+  function Choices(element, userConfig) {
+    var _this = this;
+
+    if (element === void 0) {
+      element = '[data-choice]';
+    }
+
+    if (userConfig === void 0) {
+      userConfig = {};
+    }
+
+    if (userConfig.allowHTML === undefined) {
+      console.warn('Deprecation warning: allowHTML will default to false in a future release. To render HTML in Choices, you will need to set it to true. Setting allowHTML will suppress this message.');
+    }
+
+    this.config = deepmerge_1.default.all([defaults_1.DEFAULT_CONFIG, Choices.defaults.options, userConfig], // When merging array configs, replace with a copy of the userConfig array,
+    // instead of concatenating with the default array
+    {
+      arrayMerge: function (_, sourceArray) {
+        return __spreadArray([], sourceArray, true);
+      }
+    });
+    var invalidConfigOptions = (0, utils_1.diff)(this.config, defaults_1.DEFAULT_CONFIG);
+
+    if (invalidConfigOptions.length) {
+      console.warn('Unknown config option(s) passed', invalidConfigOptions.join(', '));
+    }
+
+    var passedElement = typeof element === 'string' ? document.querySelector(element) : element;
+
+    if (!(passedElement instanceof HTMLInputElement || passedElement instanceof HTMLSelectElement)) {
+      throw TypeError('Expected one of the following types text|select-one|select-multiple');
+    }
+
+    this._isTextElement = passedElement.type === constants_1.TEXT_TYPE;
+    this._isSelectOneElement = passedElement.type === constants_1.SELECT_ONE_TYPE;
+    this._isSelectMultipleElement = passedElement.type === constants_1.SELECT_MULTIPLE_TYPE;
+    this._isSelectElement = this._isSelectOneElement || this._isSelectMultipleElement;
+    this.config.searchEnabled = this._isSelectMultipleElement || this.config.searchEnabled;
+
+    if (!['auto', 'always'].includes("".concat(this.config.renderSelectedChoices))) {
+      this.config.renderSelectedChoices = 'auto';
+    }
+
+    if (userConfig.addItemFilter && typeof userConfig.addItemFilter !== 'function') {
+      var re = userConfig.addItemFilter instanceof RegExp ? userConfig.addItemFilter : new RegExp(userConfig.addItemFilter);
+      this.config.addItemFilter = re.test.bind(re);
+    }
+
+    if (this._isTextElement) {
+      this.passedElement = new components_1.WrappedInput({
+        element: passedElement,
+        classNames: this.config.classNames,
+        delimiter: this.config.delimiter
+      });
+    } else {
+      this.passedElement = new components_1.WrappedSelect({
+        element: passedElement,
+        classNames: this.config.classNames,
+        template: function (data) {
+          return _this._templates.option(data);
+        }
+      });
+    }
+
+    this.initialised = false;
+    this._store = new store_1.default();
+    this._initialState = reducers_1.defaultState;
+    this._currentState = reducers_1.defaultState;
+    this._prevState = reducers_1.defaultState;
+    this._currentValue = '';
+    this._canSearch = !!this.config.searchEnabled;
+    this._isScrollingOnIe = false;
+    this._highlightPosition = 0;
+    this._wasTap = true;
+    this._placeholderValue = this._generatePlaceholderValue();
+    this._baseId = (0, utils_1.generateId)(this.passedElement.element, 'choices-');
+    /**
+     * setting direction in cases where it's explicitly set on passedElement
+     * or when calculated direction is different from the document
+     */
+
+    this._direction = this.passedElement.dir;
+
+    if (!this._direction) {
+      var elementDirection = window.getComputedStyle(this.passedElement.element).direction;
+      var documentDirection = window.getComputedStyle(document.documentElement).direction;
+
+      if (elementDirection !== documentDirection) {
+        this._direction = elementDirection;
+      }
+    }
+
+    this._idNames = {
+      itemChoice: 'item-choice'
+    };
+
+    if (this._isSelectElement) {
+      // Assign preset groups from passed element
+      this._presetGroups = this.passedElement.optionGroups; // Assign preset options from passed element
+
+      this._presetOptions = this.passedElement.options;
+    } // Assign preset choices from passed object
+
+
+    this._presetChoices = this.config.choices; // Assign preset items from passed object first
+
+    this._presetItems = this.config.items; // Add any values passed from attribute
+
+    if (this.passedElement.value && this._isTextElement) {
+      var splitValues = this.passedElement.value.split(this.config.delimiter);
+      this._presetItems = this._presetItems.concat(splitValues);
+    } // Create array of choices from option elements
+
+
+    if (this.passedElement.options) {
+      this.passedElement.options.forEach(function (option) {
+        _this._presetChoices.push({
+          value: option.value,
+          label: option.innerHTML,
+          selected: !!option.selected,
+          disabled: option.disabled || option.parentNode.disabled,
+          placeholder: option.value === '' || option.hasAttribute('placeholder'),
+          customProperties: option.dataset['custom-properties']
+        });
+      });
+    }
+
+    this._render = this._render.bind(this);
+    this._onFocus = this._onFocus.bind(this);
+    this._onBlur = this._onBlur.bind(this);
+    this._onKeyUp = this._onKeyUp.bind(this);
+    this._onKeyDown = this._onKeyDown.bind(this);
+    this._onClick = this._onClick.bind(this);
+    this._onTouchMove = this._onTouchMove.bind(this);
+    this._onTouchEnd = this._onTouchEnd.bind(this);
+    this._onMouseDown = this._onMouseDown.bind(this);
+    this._onMouseOver = this._onMouseOver.bind(this);
+    this._onFormReset = this._onFormReset.bind(this);
+    this._onSelectKey = this._onSelectKey.bind(this);
+    this._onEnterKey = this._onEnterKey.bind(this);
+    this._onEscapeKey = this._onEscapeKey.bind(this);
+    this._onDirectionKey = this._onDirectionKey.bind(this);
+    this._onDeleteKey = this._onDeleteKey.bind(this); // If element has already been initialised with Choices, fail silently
+
+    if (this.passedElement.isActive) {
+      if (!this.config.silent) {
+        console.warn('Trying to initialise Choices on element already initialised', {
+          element: element
+        });
+      }
+
+      this.initialised = true;
+      return;
+    } // Let's go
+
+
+    this.init();
+  }
+
+  Object.defineProperty(Choices, "defaults", {
+    get: function () {
+      return Object.preventExtensions({
+        get options() {
+          return USER_DEFAULTS;
+        },
+
+        get templates() {
+          return templates_1.default;
+        }
+
+      });
+    },
+    enumerable: false,
+    configurable: true
+  });
+
+  Choices.prototype.init = function () {
+    if (this.initialised) {
+      return;
+    }
+
+    this._createTemplates();
+
+    this._createElements();
+
+    this._createStructure();
+
+    this._store.subscribe(this._render);
+
+    this._render();
+
+    this._addEventListeners();
+
+    var shouldDisable = !this.config.addItems || this.passedElement.element.hasAttribute('disabled');
+
+    if (shouldDisable) {
+      this.disable();
+    }
+
+    this.initialised = true;
+    var callbackOnInit = this.config.callbackOnInit; // Run callback if it is a function
+
+    if (callbackOnInit && typeof callbackOnInit === 'function') {
+      callbackOnInit.call(this);
+    }
+  };
+
+  Choices.prototype.destroy = function () {
+    if (!this.initialised) {
+      return;
+    }
+
+    this._removeEventListeners();
+
+    this.passedElement.reveal();
+    this.containerOuter.unwrap(this.passedElement.element);
+    this.clearStore();
+
+    if (this._isSelectElement) {
+      this.passedElement.options = this._presetOptions;
+    }
+
+    this._templates = templates_1.default;
+    this.initialised = false;
+  };
+
+  Choices.prototype.enable = function () {
+    if (this.passedElement.isDisabled) {
+      this.passedElement.enable();
+    }
+
+    if (this.containerOuter.isDisabled) {
+      this._addEventListeners();
+
+      this.input.enable();
+      this.containerOuter.enable();
+    }
+
+    return this;
+  };
+
+  Choices.prototype.disable = function () {
+    if (!this.passedElement.isDisabled) {
+      this.passedElement.disable();
+    }
+
+    if (!this.containerOuter.isDisabled) {
+      this._removeEventListeners();
+
+      this.input.disable();
+      this.containerOuter.disable();
+    }
+
+    return this;
+  };
+
+  Choices.prototype.highlightItem = function (item, runEvent) {
+    if (runEvent === void 0) {
+      runEvent = true;
+    }
+
+    if (!item || !item.id) {
+      return this;
+    }
+
+    var id = item.id,
+        _a = item.groupId,
+        groupId = _a === void 0 ? -1 : _a,
+        _b = item.value,
+        value = _b === void 0 ? '' : _b,
+        _c = item.label,
+        label = _c === void 0 ? '' : _c;
+    var group = groupId >= 0 ? this._store.getGroupById(groupId) : null;
+
+    this._store.dispatch((0, items_1.highlightItem)(id, true));
+
+    if (runEvent) {
+      this.passedElement.triggerEvent(constants_1.EVENTS.highlightItem, {
+        id: id,
+        value: value,
+        label: label,
+        groupValue: group && group.value ? group.value : null
+      });
+    }
+
+    return this;
+  };
+
+  Choices.prototype.unhighlightItem = function (item) {
+    if (!item || !item.id) {
+      return this;
+    }
+
+    var id = item.id,
+        _a = item.groupId,
+        groupId = _a === void 0 ? -1 : _a,
+        _b = item.value,
+        value = _b === void 0 ? '' : _b,
+        _c = item.label,
+        label = _c === void 0 ? '' : _c;
+    var group = groupId >= 0 ? this._store.getGroupById(groupId) : null;
+
+    this._store.dispatch((0, items_1.highlightItem)(id, false));
+
+    this.passedElement.triggerEvent(constants_1.EVENTS.highlightItem, {
+      id: id,
+      value: value,
+      label: label,
+      groupValue: group && group.value ? group.value : null
+    });
+    return this;
+  };
+
+  Choices.prototype.highlightAll = function () {
+    var _this = this;
+
+    this._store.items.forEach(function (item) {
+      return _this.highlightItem(item);
+    });
+
+    return this;
+  };
+
+  Choices.prototype.unhighlightAll = function () {
+    var _this = this;
+
+    this._store.items.forEach(function (item) {
+      return _this.unhighlightItem(item);
+    });
+
+    return this;
+  };
+
+  Choices.prototype.removeActiveItemsByValue = function (value) {
+    var _this = this;
+
+    this._store.activeItems.filter(function (item) {
+      return item.value === value;
+    }).forEach(function (item) {
+      return _this._removeItem(item);
+    });
+
+    return this;
+  };
+
+  Choices.prototype.removeActiveItems = function (excludedId) {
+    var _this = this;
+
+    this._store.activeItems.filter(function (_a) {
+      var id = _a.id;
+      return id !== excludedId;
+    }).forEach(function (item) {
+      return _this._removeItem(item);
+    });
+
+    return this;
+  };
+
+  Choices.prototype.removeHighlightedItems = function (runEvent) {
+    var _this = this;
+
+    if (runEvent === void 0) {
+      runEvent = false;
+    }
+
+    this._store.highlightedActiveItems.forEach(function (item) {
+      _this._removeItem(item); // If this action was performed by the user
+      // trigger the event
+
+
+      if (runEvent) {
+        _this._triggerChange(item.value);
+      }
+    });
+
+    return this;
+  };
+
+  Choices.prototype.showDropdown = function (preventInputFocus) {
+    var _this = this;
+
+    if (this.dropdown.isActive) {
+      return this;
+    }
+
+    requestAnimationFrame(function () {
+      _this.dropdown.show();
+
+      _this.containerOuter.open(_this.dropdown.distanceFromTopWindow);
+
+      if (!preventInputFocus && _this._canSearch) {
+        _this.input.focus();
+      }
+
+      _this.passedElement.triggerEvent(constants_1.EVENTS.showDropdown, {});
+    });
+    return this;
+  };
+
+  Choices.prototype.hideDropdown = function (preventInputBlur) {
+    var _this = this;
+
+    if (!this.dropdown.isActive) {
+      return this;
+    }
+
+    requestAnimationFrame(function () {
+      _this.dropdown.hide();
+
+      _this.containerOuter.close();
+
+      if (!preventInputBlur && _this._canSearch) {
+        _this.input.removeActiveDescendant();
+
+        _this.input.blur();
+      }
+
+      _this.passedElement.triggerEvent(constants_1.EVENTS.hideDropdown, {});
+    });
+    return this;
+  };
+
+  Choices.prototype.getValue = function (valueOnly) {
+    if (valueOnly === void 0) {
+      valueOnly = false;
+    }
+
+    var values = this._store.activeItems.reduce(function (selectedItems, item) {
+      var itemValue = valueOnly ? item.value : item;
+      selectedItems.push(itemValue);
+      return selectedItems;
+    }, []);
+
+    return this._isSelectOneElement ? values[0] : values;
+  };
+
+  Choices.prototype.setValue = function (items) {
+    var _this = this;
+
+    if (!this.initialised) {
+      return this;
+    }
+
+    items.forEach(function (value) {
+      return _this._setChoiceOrItem(value);
+    });
+    return this;
+  };
+
+  Choices.prototype.setChoiceByValue = function (value) {
+    var _this = this;
+
+    if (!this.initialised || this._isTextElement) {
+      return this;
+    } // If only one value has been passed, convert to array
+
+
+    var choiceValue = Array.isArray(value) ? value : [value]; // Loop through each value and
+
+    choiceValue.forEach(function (val) {
+      return _this._findAndSelectChoiceByValue(val);
+    });
+    return this;
+  };
+  /**
+   * Set choices of select input via an array of objects (or function that returns array of object or promise of it),
+   * a value field name and a label field name.
+   * This behaves the same as passing items via the choices option but can be called after initialising Choices.
+   * This can also be used to add groups of choices (see example 2); Optionally pass a true `replaceChoices` value to remove any existing choices.
+   * Optionally pass a `customProperties` object to add additional data to your choices (useful when searching/filtering etc).
+   *
+   * **Input types affected:** select-one, select-multiple
+   *
+   * @example
+   * ```js
+   * const example = new Choices(element);
+   *
+   * example.setChoices([
+   *   {value: 'One', label: 'Label One', disabled: true},
+   *   {value: 'Two', label: 'Label Two', selected: true},
+   *   {value: 'Three', label: 'Label Three'},
+   * ], 'value', 'label', false);
+   * ```
+   *
+   * @example
+   * ```js
+   * const example = new Choices(element);
+   *
+   * example.setChoices(async () => {
+   *   try {
+   *      const items = await fetch('/items');
+   *      return items.json()
+   *   } catch(err) {
+   *      console.error(err)
+   *   }
+   * });
+   * ```
+   *
+   * @example
+   * ```js
+   * const example = new Choices(element);
+   *
+   * example.setChoices([{
+   *   label: 'Group one',
+   *   id: 1,
+   *   disabled: false,
+   *   choices: [
+   *     {value: 'Child One', label: 'Child One', selected: true},
+   *     {value: 'Child Two', label: 'Child Two',  disabled: true},
+   *     {value: 'Child Three', label: 'Child Three'},
+   *   ]
+   * },
+   * {
+   *   label: 'Group two',
+   *   id: 2,
+   *   disabled: false,
+   *   choices: [
+   *     {value: 'Child Four', label: 'Child Four', disabled: true},
+   *     {value: 'Child Five', label: 'Child Five'},
+   *     {value: 'Child Six', label: 'Child Six', customProperties: {
+   *       description: 'Custom description about child six',
+   *       random: 'Another random custom property'
+   *     }},
+   *   ]
+   * }], 'value', 'label', false);
+   * ```
+   */
+
+
+  Choices.prototype.setChoices = function (choicesArrayOrFetcher, value, label, replaceChoices) {
+    var _this = this;
+
+    if (choicesArrayOrFetcher === void 0) {
+      choicesArrayOrFetcher = [];
+    }
+
+    if (value === void 0) {
+      value = 'value';
+    }
+
+    if (label === void 0) {
+      label = 'label';
+    }
+
+    if (replaceChoices === void 0) {
+      replaceChoices = false;
+    }
+
+    if (!this.initialised) {
+      throw new ReferenceError("setChoices was called on a non-initialized instance of Choices");
+    }
+
+    if (!this._isSelectElement) {
+      throw new TypeError("setChoices can't be used with INPUT based Choices");
+    }
+
+    if (typeof value !== 'string' || !value) {
+      throw new TypeError("value parameter must be a name of 'value' field in passed objects");
+    } // Clear choices if needed
+
+
+    if (replaceChoices) {
+      this.clearChoices();
+    }
+
+    if (typeof choicesArrayOrFetcher === 'function') {
+      // it's a choices fetcher function
+      var fetcher_1 = choicesArrayOrFetcher(this);
+
+      if (typeof Promise === 'function' && fetcher_1 instanceof Promise) {
+        // that's a promise
+        // eslint-disable-next-line no-promise-executor-return
+        return new Promise(function (resolve) {
+          return requestAnimationFrame(resolve);
+        }).then(function () {
+          return _this._handleLoadingState(true);
+        }).then(function () {
+          return fetcher_1;
+        }).then(function (data) {
+          return _this.setChoices(data, value, label, replaceChoices);
+        }).catch(function (err) {
+          if (!_this.config.silent) {
+            console.error(err);
+          }
+        }).then(function () {
+          return _this._handleLoadingState(false);
+        }).then(function () {
+          return _this;
+        });
+      } // function returned something else than promise, let's check if it's an array of choices
+
+
+      if (!Array.isArray(fetcher_1)) {
+        throw new TypeError(".setChoices first argument function must return either array of choices or Promise, got: ".concat(typeof fetcher_1));
+      } // recursion with results, it's sync and choices were cleared already
+
+
+      return this.setChoices(fetcher_1, value, label, false);
+    }
+
+    if (!Array.isArray(choicesArrayOrFetcher)) {
+      throw new TypeError(".setChoices must be called either with array of choices with a function resulting into Promise of array of choices");
+    }
+
+    this.containerOuter.removeLoadingState();
+
+    this._startLoading();
+
+    choicesArrayOrFetcher.forEach(function (groupOrChoice) {
+      if (groupOrChoice.choices) {
+        _this._addGroup({
+          id: groupOrChoice.id ? parseInt("".concat(groupOrChoice.id), 10) : null,
+          group: groupOrChoice,
+          valueKey: value,
+          labelKey: label
+        });
+      } else {
+        var choice = groupOrChoice;
+
+        _this._addChoice({
+          value: choice[value],
+          label: choice[label],
+          isSelected: !!choice.selected,
+          isDisabled: !!choice.disabled,
+          placeholder: !!choice.placeholder,
+          customProperties: choice.customProperties
+        });
+      }
+    });
+
+    this._stopLoading();
+
+    return this;
+  };
+
+  Choices.prototype.clearChoices = function () {
+    this._store.dispatch((0, choices_1.clearChoices)());
+
+    return this;
+  };
+
+  Choices.prototype.clearStore = function () {
+    this._store.dispatch((0, misc_1.clearAll)());
+
+    return this;
+  };
+
+  Choices.prototype.clearInput = function () {
+    var shouldSetInputWidth = !this._isSelectOneElement;
+    this.input.clear(shouldSetInputWidth);
+
+    if (!this._isTextElement && this._canSearch) {
+      this._isSearching = false;
+
+      this._store.dispatch((0, choices_1.activateChoices)(true));
+    }
+
+    return this;
+  };
+
+  Choices.prototype._render = function () {
+    if (this._store.isLoading()) {
+      return;
+    }
+
+    this._currentState = this._store.state;
+    var stateChanged = this._currentState.choices !== this._prevState.choices || this._currentState.groups !== this._prevState.groups || this._currentState.items !== this._prevState.items;
+    var shouldRenderChoices = this._isSelectElement;
+    var shouldRenderItems = this._currentState.items !== this._prevState.items;
+
+    if (!stateChanged) {
+      return;
+    }
+
+    if (shouldRenderChoices) {
+      this._renderChoices();
+    }
+
+    if (shouldRenderItems) {
+      this._renderItems();
+    }
+
+    this._prevState = this._currentState;
+  };
+
+  Choices.prototype._renderChoices = function () {
+    var _this = this;
+
+    var _a = this._store,
+        activeGroups = _a.activeGroups,
+        activeChoices = _a.activeChoices;
+    var choiceListFragment = document.createDocumentFragment();
+    this.choiceList.clear();
+
+    if (this.config.resetScrollPosition) {
+      requestAnimationFrame(function () {
+        return _this.choiceList.scrollToTop();
+      });
+    } // If we have grouped options
+
+
+    if (activeGroups.length >= 1 && !this._isSearching) {
+      // If we have a placeholder choice along with groups
+      var activePlaceholders = activeChoices.filter(function (activeChoice) {
+        return activeChoice.placeholder === true && activeChoice.groupId === -1;
+      });
+
+      if (activePlaceholders.length >= 1) {
+        choiceListFragment = this._createChoicesFragment(activePlaceholders, choiceListFragment);
+      }
+
+      choiceListFragment = this._createGroupsFragment(activeGroups, activeChoices, choiceListFragment);
+    } else if (activeChoices.length >= 1) {
+      choiceListFragment = this._createChoicesFragment(activeChoices, choiceListFragment);
+    } // If we have choices to show
+
+
+    if (choiceListFragment.childNodes && choiceListFragment.childNodes.length > 0) {
+      var activeItems = this._store.activeItems;
+
+      var canAddItem = this._canAddItem(activeItems, this.input.value); // ...and we can select them
+
+
+      if (canAddItem.response) {
+        // ...append them and highlight the first choice
+        this.choiceList.append(choiceListFragment);
+
+        this._highlightChoice();
+      } else {
+        var notice = this._getTemplate('notice', canAddItem.notice);
+
+        this.choiceList.append(notice);
+      }
+    } else {
+      // Otherwise show a notice
+      var dropdownItem = void 0;
+      var notice = void 0;
+
+      if (this._isSearching) {
+        notice = typeof this.config.noResultsText === 'function' ? this.config.noResultsText() : this.config.noResultsText;
+        dropdownItem = this._getTemplate('notice', notice, 'no-results');
+      } else {
+        notice = typeof this.config.noChoicesText === 'function' ? this.config.noChoicesText() : this.config.noChoicesText;
+        dropdownItem = this._getTemplate('notice', notice, 'no-choices');
+      }
+
+      this.choiceList.append(dropdownItem);
+    }
+  };
+
+  Choices.prototype._renderItems = function () {
+    var activeItems = this._store.activeItems || [];
+    this.itemList.clear(); // Create a fragment to store our list items
+    // (so we don't have to update the DOM for each item)
+
+    var itemListFragment = this._createItemsFragment(activeItems); // If we have items to add, append them
+
+
+    if (itemListFragment.childNodes) {
+      this.itemList.append(itemListFragment);
+    }
+  };
+
+  Choices.prototype._createGroupsFragment = function (groups, choices, fragment) {
+    var _this = this;
+
+    if (fragment === void 0) {
+      fragment = document.createDocumentFragment();
+    }
+
+    var getGroupChoices = function (group) {
+      return choices.filter(function (choice) {
+        if (_this._isSelectOneElement) {
+          return choice.groupId === group.id;
+        }
+
+        return choice.groupId === group.id && (_this.config.renderSelectedChoices === 'always' || !choice.selected);
+      });
+    }; // If sorting is enabled, filter groups
+
+
+    if (this.config.shouldSort) {
+      groups.sort(this.config.sorter);
+    }
+
+    groups.forEach(function (group) {
+      var groupChoices = getGroupChoices(group);
+
+      if (groupChoices.length >= 1) {
+        var dropdownGroup = _this._getTemplate('choiceGroup', group);
+
+        fragment.appendChild(dropdownGroup);
+
+        _this._createChoicesFragment(groupChoices, fragment, true);
+      }
+    });
+    return fragment;
+  };
+
+  Choices.prototype._createChoicesFragment = function (choices, fragment, withinGroup) {
+    var _this = this;
+
+    if (fragment === void 0) {
+      fragment = document.createDocumentFragment();
+    }
+
+    if (withinGroup === void 0) {
+      withinGroup = false;
+    } // Create a fragment to store our list items (so we don't have to update the DOM for each item)
+
+
+    var _a = this.config,
+        renderSelectedChoices = _a.renderSelectedChoices,
+        searchResultLimit = _a.searchResultLimit,
+        renderChoiceLimit = _a.renderChoiceLimit;
+    var filter = this._isSearching ? utils_1.sortByScore : this.config.sorter;
+
+    var appendChoice = function (choice) {
+      var shouldRender = renderSelectedChoices === 'auto' ? _this._isSelectOneElement || !choice.selected : true;
+
+      if (shouldRender) {
+        var dropdownItem = _this._getTemplate('choice', choice, _this.config.itemSelectText);
+
+        fragment.appendChild(dropdownItem);
+      }
+    };
+
+    var rendererableChoices = choices;
+
+    if (renderSelectedChoices === 'auto' && !this._isSelectOneElement) {
+      rendererableChoices = choices.filter(function (choice) {
+        return !choice.selected;
+      });
+    } // Split array into placeholders and "normal" choices
+
+
+    var _b = rendererableChoices.reduce(function (acc, choice) {
+      if (choice.placeholder) {
+        acc.placeholderChoices.push(choice);
+      } else {
+        acc.normalChoices.push(choice);
+      }
+
+      return acc;
+    }, {
+      placeholderChoices: [],
+      normalChoices: []
+    }),
+        placeholderChoices = _b.placeholderChoices,
+        normalChoices = _b.normalChoices; // If sorting is enabled or the user is searching, filter choices
+
+
+    if (this.config.shouldSort || this._isSearching) {
+      normalChoices.sort(filter);
+    }
+
+    var choiceLimit = rendererableChoices.length; // Prepend placeholeder
+
+    var sortedChoices = this._isSelectOneElement ? __spreadArray(__spreadArray([], placeholderChoices, true), normalChoices, true) : normalChoices;
+
+    if (this._isSearching) {
+      choiceLimit = searchResultLimit;
+    } else if (renderChoiceLimit && renderChoiceLimit > 0 && !withinGroup) {
+      choiceLimit = renderChoiceLimit;
+    } // Add each choice to dropdown within range
+
+
+    for (var i = 0; i < choiceLimit; i += 1) {
+      if (sortedChoices[i]) {
+        appendChoice(sortedChoices[i]);
+      }
+    }
+
+    return fragment;
+  };
+
+  Choices.prototype._createItemsFragment = function (items, fragment) {
+    var _this = this;
+
+    if (fragment === void 0) {
+      fragment = document.createDocumentFragment();
+    } // Create fragment to add elements to
+
+
+    var _a = this.config,
+        shouldSortItems = _a.shouldSortItems,
+        sorter = _a.sorter,
+        removeItemButton = _a.removeItemButton; // If sorting is enabled, filter items
+
+    if (shouldSortItems && !this._isSelectOneElement) {
+      items.sort(sorter);
+    }
+
+    if (this._isTextElement) {
+      // Update the value of the hidden input
+      this.passedElement.value = items.map(function (_a) {
+        var value = _a.value;
+        return value;
+      }).join(this.config.delimiter);
+    } else {
+      // Update the options of the hidden input
+      this.passedElement.options = items;
+    }
+
+    var addItemToFragment = function (item) {
+      // Create new list element
+      var listItem = _this._getTemplate('item', item, removeItemButton); // Append it to list
+
+
+      fragment.appendChild(listItem);
+    }; // Add each list item to list
+
+
+    items.forEach(addItemToFragment);
+    return fragment;
+  };
+
+  Choices.prototype._triggerChange = function (value) {
+    if (value === undefined || value === null) {
+      return;
+    }
+
+    this.passedElement.triggerEvent(constants_1.EVENTS.change, {
+      value: value
+    });
+  };
+
+  Choices.prototype._selectPlaceholderChoice = function (placeholderChoice) {
+    this._addItem({
+      value: placeholderChoice.value,
+      label: placeholderChoice.label,
+      choiceId: placeholderChoice.id,
+      groupId: placeholderChoice.groupId,
+      placeholder: placeholderChoice.placeholder
+    });
+
+    this._triggerChange(placeholderChoice.value);
+  };
+
+  Choices.prototype._handleButtonAction = function (activeItems, element) {
+    if (!activeItems || !element || !this.config.removeItems || !this.config.removeItemButton) {
+      return;
+    }
+
+    var itemId = element.parentNode && element.parentNode.dataset.id;
+    var itemToRemove = itemId && activeItems.find(function (item) {
+      return item.id === parseInt(itemId, 10);
+    });
+
+    if (!itemToRemove) {
+      return;
+    } // Remove item associated with button
+
+
+    this._removeItem(itemToRemove);
+
+    this._triggerChange(itemToRemove.value);
+
+    if (this._isSelectOneElement && this._store.placeholderChoice) {
+      this._selectPlaceholderChoice(this._store.placeholderChoice);
+    }
+  };
+
+  Choices.prototype._handleItemAction = function (activeItems, element, hasShiftKey) {
+    var _this = this;
+
+    if (hasShiftKey === void 0) {
+      hasShiftKey = false;
+    }
+
+    if (!activeItems || !element || !this.config.removeItems || this._isSelectOneElement) {
+      return;
+    }
+
+    var passedId = element.dataset.id; // We only want to select one item with a click
+    // so we deselect any items that aren't the target
+    // unless shift is being pressed
+
+    activeItems.forEach(function (item) {
+      if (item.id === parseInt("".concat(passedId), 10) && !item.highlighted) {
+        _this.highlightItem(item);
+      } else if (!hasShiftKey && item.highlighted) {
+        _this.unhighlightItem(item);
+      }
+    }); // Focus input as without focus, a user cannot do anything with a
+    // highlighted item
+
+    this.input.focus();
+  };
+
+  Choices.prototype._handleChoiceAction = function (activeItems, element) {
+    if (!activeItems || !element) {
+      return;
+    } // If we are clicking on an option
+
+
+    var id = element.dataset.id;
+
+    var choice = id && this._store.getChoiceById(id);
+
+    if (!choice) {
+      return;
+    }
+
+    var passedKeyCode = activeItems[0] && activeItems[0].keyCode ? activeItems[0].keyCode : undefined;
+    var hasActiveDropdown = this.dropdown.isActive; // Update choice keyCode
+
+    choice.keyCode = passedKeyCode;
+    this.passedElement.triggerEvent(constants_1.EVENTS.choice, {
+      choice: choice
+    });
+
+    if (!choice.selected && !choice.disabled) {
+      var canAddItem = this._canAddItem(activeItems, choice.value);
+
+      if (canAddItem.response) {
+        this._addItem({
+          value: choice.value,
+          label: choice.label,
+          choiceId: choice.id,
+          groupId: choice.groupId,
+          customProperties: choice.customProperties,
+          placeholder: choice.placeholder,
+          keyCode: choice.keyCode
+        });
+
+        this._triggerChange(choice.value);
+      }
+    }
+
+    this.clearInput(); // We want to close the dropdown if we are dealing with a single select box
+
+    if (hasActiveDropdown && this._isSelectOneElement) {
+      this.hideDropdown(true);
+      this.containerOuter.focus();
+    }
+  };
+
+  Choices.prototype._handleBackspace = function (activeItems) {
+    if (!this.config.removeItems || !activeItems) {
+      return;
+    }
+
+    var lastItem = activeItems[activeItems.length - 1];
+    var hasHighlightedItems = activeItems.some(function (item) {
+      return item.highlighted;
+    }); // If editing the last item is allowed and there are not other selected items,
+    // we can edit the item value. Otherwise if we can remove items, remove all selected items
+
+    if (this.config.editItems && !hasHighlightedItems && lastItem) {
+      this.input.value = lastItem.value;
+      this.input.setWidth();
+
+      this._removeItem(lastItem);
+
+      this._triggerChange(lastItem.value);
+    } else {
+      if (!hasHighlightedItems) {
+        // Highlight last item if none already highlighted
+        this.highlightItem(lastItem, false);
+      }
+
+      this.removeHighlightedItems(true);
+    }
+  };
+
+  Choices.prototype._startLoading = function () {
+    this._store.dispatch((0, misc_1.setIsLoading)(true));
+  };
+
+  Choices.prototype._stopLoading = function () {
+    this._store.dispatch((0, misc_1.setIsLoading)(false));
+  };
+
+  Choices.prototype._handleLoadingState = function (setLoading) {
+    if (setLoading === void 0) {
+      setLoading = true;
+    }
+
+    var placeholderItem = this.itemList.getChild(".".concat(this.config.classNames.placeholder));
+
+    if (setLoading) {
+      this.disable();
+      this.containerOuter.addLoadingState();
+
+      if (this._isSelectOneElement) {
+        if (!placeholderItem) {
+          placeholderItem = this._getTemplate('placeholder', this.config.loadingText);
+
+          if (placeholderItem) {
+            this.itemList.append(placeholderItem);
+          }
+        } else {
+          placeholderItem.innerHTML = this.config.loadingText;
+        }
+      } else {
+        this.input.placeholder = this.config.loadingText;
+      }
+    } else {
+      this.enable();
+      this.containerOuter.removeLoadingState();
+
+      if (this._isSelectOneElement) {
+        if (placeholderItem) {
+          placeholderItem.innerHTML = this._placeholderValue || '';
+        }
+      } else {
+        this.input.placeholder = this._placeholderValue || '';
+      }
+    }
+  };
+
+  Choices.prototype._handleSearch = function (value) {
+    if (!this.input.isFocussed) {
+      return;
+    }
+
+    var choices = this._store.choices;
+    var _a = this.config,
+        searchFloor = _a.searchFloor,
+        searchChoices = _a.searchChoices;
+    var hasUnactiveChoices = choices.some(function (option) {
+      return !option.active;
+    }); // Check that we have a value to search and the input was an alphanumeric character
+
+    if (value !== null && typeof value !== 'undefined' && value.length >= searchFloor) {
+      var resultCount = searchChoices ? this._searchChoices(value) : 0; // Trigger search event
+
+      this.passedElement.triggerEvent(constants_1.EVENTS.search, {
+        value: value,
+        resultCount: resultCount
+      });
+    } else if (hasUnactiveChoices) {
+      // Otherwise reset choices to active
+      this._isSearching = false;
+
+      this._store.dispatch((0, choices_1.activateChoices)(true));
+    }
+  };
+
+  Choices.prototype._canAddItem = function (activeItems, value) {
+    var canAddItem = true;
+    var notice = typeof this.config.addItemText === 'function' ? this.config.addItemText(value) : this.config.addItemText;
+
+    if (!this._isSelectOneElement) {
+      var isDuplicateValue = (0, utils_1.existsInArray)(activeItems, value);
+
+      if (this.config.maxItemCount > 0 && this.config.maxItemCount <= activeItems.length) {
+        // If there is a max entry limit and we have reached that limit
+        // don't update
+        canAddItem = false;
+        notice = typeof this.config.maxItemText === 'function' ? this.config.maxItemText(this.config.maxItemCount) : this.config.maxItemText;
+      }
+
+      if (!this.config.duplicateItemsAllowed && isDuplicateValue && canAddItem) {
+        canAddItem = false;
+        notice = typeof this.config.uniqueItemText === 'function' ? this.config.uniqueItemText(value) : this.config.uniqueItemText;
+      }
+
+      if (this._isTextElement && this.config.addItems && canAddItem && typeof this.config.addItemFilter === 'function' && !this.config.addItemFilter(value)) {
+        canAddItem = false;
+        notice = typeof this.config.customAddItemText === 'function' ? this.config.customAddItemText(value) : this.config.customAddItemText;
+      }
+    }
+
+    return {
+      response: canAddItem,
+      notice: notice
+    };
+  };
+
+  Choices.prototype._searchChoices = function (value) {
+    var newValue = typeof value === 'string' ? value.trim() : value;
+    var currentValue = typeof this._currentValue === 'string' ? this._currentValue.trim() : this._currentValue;
+
+    if (newValue.length < 1 && newValue === "".concat(currentValue, " ")) {
+      return 0;
+    } // If new value matches the desired length and is not the same as the current value with a space
+
+
+    var haystack = this._store.searchableChoices;
+    var needle = newValue;
+    var options = Object.assign(this.config.fuseOptions, {
+      keys: __spreadArray([], this.config.searchFields, true),
+      includeMatches: true
+    });
+    var fuse = new fuse_js_1.default(haystack, options);
+    var results = fuse.search(needle); // see https://github.com/krisk/Fuse/issues/303
+
+    this._currentValue = newValue;
+    this._highlightPosition = 0;
+    this._isSearching = true;
+
+    this._store.dispatch((0, choices_1.filterChoices)(results));
+
+    return results.length;
+  };
+
+  Choices.prototype._addEventListeners = function () {
+    var documentElement = document.documentElement; // capture events - can cancel event processing or propagation
+
+    documentElement.addEventListener('touchend', this._onTouchEnd, true);
+    this.containerOuter.element.addEventListener('keydown', this._onKeyDown, true);
+    this.containerOuter.element.addEventListener('mousedown', this._onMouseDown, true); // passive events - doesn't call `preventDefault` or `stopPropagation`
+
+    documentElement.addEventListener('click', this._onClick, {
+      passive: true
+    });
+    documentElement.addEventListener('touchmove', this._onTouchMove, {
+      passive: true
+    });
+    this.dropdown.element.addEventListener('mouseover', this._onMouseOver, {
+      passive: true
+    });
+
+    if (this._isSelectOneElement) {
+      this.containerOuter.element.addEventListener('focus', this._onFocus, {
+        passive: true
+      });
+      this.containerOuter.element.addEventListener('blur', this._onBlur, {
+        passive: true
+      });
+    }
+
+    this.input.element.addEventListener('keyup', this._onKeyUp, {
+      passive: true
+    });
+    this.input.element.addEventListener('focus', this._onFocus, {
+      passive: true
+    });
+    this.input.element.addEventListener('blur', this._onBlur, {
+      passive: true
+    });
+
+    if (this.input.element.form) {
+      this.input.element.form.addEventListener('reset', this._onFormReset, {
+        passive: true
+      });
+    }
+
+    this.input.addEventListeners();
+  };
+
+  Choices.prototype._removeEventListeners = function () {
+    var documentElement = document.documentElement;
+    documentElement.removeEventListener('touchend', this._onTouchEnd, true);
+    this.containerOuter.element.removeEventListener('keydown', this._onKeyDown, true);
+    this.containerOuter.element.removeEventListener('mousedown', this._onMouseDown, true);
+    documentElement.removeEventListener('click', this._onClick);
+    documentElement.removeEventListener('touchmove', this._onTouchMove);
+    this.dropdown.element.removeEventListener('mouseover', this._onMouseOver);
+
+    if (this._isSelectOneElement) {
+      this.containerOuter.element.removeEventListener('focus', this._onFocus);
+      this.containerOuter.element.removeEventListener('blur', this._onBlur);
+    }
+
+    this.input.element.removeEventListener('keyup', this._onKeyUp);
+    this.input.element.removeEventListener('focus', this._onFocus);
+    this.input.element.removeEventListener('blur', this._onBlur);
+
+    if (this.input.element.form) {
+      this.input.element.form.removeEventListener('reset', this._onFormReset);
+    }
+
+    this.input.removeEventListeners();
+  };
+
+  Choices.prototype._onKeyDown = function (event) {
+    var keyCode = event.keyCode;
+    var activeItems = this._store.activeItems;
+    var hasFocusedInput = this.input.isFocussed;
+    var hasActiveDropdown = this.dropdown.isActive;
+    var hasItems = this.itemList.hasChildren();
+    var keyString = String.fromCharCode(keyCode);
+    var wasAlphaNumericChar = /[a-zA-Z0-9-_ ]/.test(keyString);
+    var BACK_KEY = constants_1.KEY_CODES.BACK_KEY,
+        DELETE_KEY = constants_1.KEY_CODES.DELETE_KEY,
+        ENTER_KEY = constants_1.KEY_CODES.ENTER_KEY,
+        A_KEY = constants_1.KEY_CODES.A_KEY,
+        ESC_KEY = constants_1.KEY_CODES.ESC_KEY,
+        UP_KEY = constants_1.KEY_CODES.UP_KEY,
+        DOWN_KEY = constants_1.KEY_CODES.DOWN_KEY,
+        PAGE_UP_KEY = constants_1.KEY_CODES.PAGE_UP_KEY,
+        PAGE_DOWN_KEY = constants_1.KEY_CODES.PAGE_DOWN_KEY;
+
+    if (!this._isTextElement && !hasActiveDropdown && wasAlphaNumericChar) {
+      this.showDropdown();
+
+      if (!this.input.isFocussed) {
+        /*
+          We update the input value with the pressed key as
+          the input was not focussed at the time of key press
+          therefore does not have the value of the key.
+        */
+        this.input.value += keyString.toLowerCase();
+      }
+    }
+
+    switch (keyCode) {
+      case A_KEY:
+        return this._onSelectKey(event, hasItems);
+
+      case ENTER_KEY:
+        return this._onEnterKey(event, activeItems, hasActiveDropdown);
+
+      case ESC_KEY:
+        return this._onEscapeKey(hasActiveDropdown);
+
+      case UP_KEY:
+      case PAGE_UP_KEY:
+      case DOWN_KEY:
+      case PAGE_DOWN_KEY:
+        return this._onDirectionKey(event, hasActiveDropdown);
+
+      case DELETE_KEY:
+      case BACK_KEY:
+        return this._onDeleteKey(event, activeItems, hasFocusedInput);
+
+      default:
+    }
+  };
+
+  Choices.prototype._onKeyUp = function (_a) {
+    var target = _a.target,
+        keyCode = _a.keyCode;
+    var value = this.input.value;
+    var activeItems = this._store.activeItems;
+
+    var canAddItem = this._canAddItem(activeItems, value);
+
+    var backKey = constants_1.KEY_CODES.BACK_KEY,
+        deleteKey = constants_1.KEY_CODES.DELETE_KEY; // We are typing into a text input and have a value, we want to show a dropdown
+    // notice. Otherwise hide the dropdown
+
+    if (this._isTextElement) {
+      var canShowDropdownNotice = canAddItem.notice && value;
+
+      if (canShowDropdownNotice) {
+        var dropdownItem = this._getTemplate('notice', canAddItem.notice);
+
+        this.dropdown.element.innerHTML = dropdownItem.outerHTML;
+        this.showDropdown(true);
+      } else {
+        this.hideDropdown(true);
+      }
+    } else {
+      var wasRemovalKeyCode = keyCode === backKey || keyCode === deleteKey;
+      var userHasRemovedValue = wasRemovalKeyCode && target && !target.value;
+      var canReactivateChoices = !this._isTextElement && this._isSearching;
+      var canSearch = this._canSearch && canAddItem.response;
+
+      if (userHasRemovedValue && canReactivateChoices) {
+        this._isSearching = false;
+
+        this._store.dispatch((0, choices_1.activateChoices)(true));
+      } else if (canSearch) {
+        this._handleSearch(this.input.rawValue);
+      }
+    }
+
+    this._canSearch = this.config.searchEnabled;
+  };
+
+  Choices.prototype._onSelectKey = function (event, hasItems) {
+    var ctrlKey = event.ctrlKey,
+        metaKey = event.metaKey;
+    var hasCtrlDownKeyPressed = ctrlKey || metaKey; // If CTRL + A or CMD + A have been pressed and there are items to select
+
+    if (hasCtrlDownKeyPressed && hasItems) {
+      this._canSearch = false;
+      var shouldHightlightAll = this.config.removeItems && !this.input.value && this.input.element === document.activeElement;
+
+      if (shouldHightlightAll) {
+        this.highlightAll();
+      }
+    }
+  };
+
+  Choices.prototype._onEnterKey = function (event, activeItems, hasActiveDropdown) {
+    var target = event.target;
+    var enterKey = constants_1.KEY_CODES.ENTER_KEY;
+    var targetWasButton = target && target.hasAttribute('data-button');
+
+    if (this._isTextElement && target && target.value) {
+      var value = this.input.value;
+
+      var canAddItem = this._canAddItem(activeItems, value);
+
+      if (canAddItem.response) {
+        this.hideDropdown(true);
+
+        this._addItem({
+          value: value
+        });
+
+        this._triggerChange(value);
+
+        this.clearInput();
+      }
+    }
+
+    if (targetWasButton) {
+      this._handleButtonAction(activeItems, target);
+
+      event.preventDefault();
+    }
+
+    if (hasActiveDropdown) {
+      var highlightedChoice = this.dropdown.getChild(".".concat(this.config.classNames.highlightedState));
+
+      if (highlightedChoice) {
+        // add enter keyCode value
+        if (activeItems[0]) {
+          activeItems[0].keyCode = enterKey; // eslint-disable-line no-param-reassign
+        }
+
+        this._handleChoiceAction(activeItems, highlightedChoice);
+      }
+
+      event.preventDefault();
+    } else if (this._isSelectOneElement) {
+      this.showDropdown();
+      event.preventDefault();
+    }
+  };
+
+  Choices.prototype._onEscapeKey = function (hasActiveDropdown) {
+    if (hasActiveDropdown) {
+      this.hideDropdown(true);
+      this.containerOuter.focus();
+    }
+  };
+
+  Choices.prototype._onDirectionKey = function (event, hasActiveDropdown) {
+    var keyCode = event.keyCode,
+        metaKey = event.metaKey;
+    var downKey = constants_1.KEY_CODES.DOWN_KEY,
+        pageUpKey = constants_1.KEY_CODES.PAGE_UP_KEY,
+        pageDownKey = constants_1.KEY_CODES.PAGE_DOWN_KEY; // If up or down key is pressed, traverse through options
+
+    if (hasActiveDropdown || this._isSelectOneElement) {
+      this.showDropdown();
+      this._canSearch = false;
+      var directionInt = keyCode === downKey || keyCode === pageDownKey ? 1 : -1;
+      var skipKey = metaKey || keyCode === pageDownKey || keyCode === pageUpKey;
+      var selectableChoiceIdentifier = '[data-choice-selectable]';
+      var nextEl = void 0;
+
+      if (skipKey) {
+        if (directionInt > 0) {
+          nextEl = this.dropdown.element.querySelector("".concat(selectableChoiceIdentifier, ":last-of-type"));
+        } else {
+          nextEl = this.dropdown.element.querySelector(selectableChoiceIdentifier);
+        }
+      } else {
+        var currentEl = this.dropdown.element.querySelector(".".concat(this.config.classNames.highlightedState));
+
+        if (currentEl) {
+          nextEl = (0, utils_1.getAdjacentEl)(currentEl, selectableChoiceIdentifier, directionInt);
+        } else {
+          nextEl = this.dropdown.element.querySelector(selectableChoiceIdentifier);
+        }
+      }
+
+      if (nextEl) {
+        // We prevent default to stop the cursor moving
+        // when pressing the arrow
+        if (!(0, utils_1.isScrolledIntoView)(nextEl, this.choiceList.element, directionInt)) {
+          this.choiceList.scrollToChildElement(nextEl, directionInt);
+        }
+
+        this._highlightChoice(nextEl);
+      } // Prevent default to maintain cursor position whilst
+      // traversing dropdown options
+
+
+      event.preventDefault();
+    }
+  };
+
+  Choices.prototype._onDeleteKey = function (event, activeItems, hasFocusedInput) {
+    var target = event.target; // If backspace or delete key is pressed and the input has no value
+
+    if (!this._isSelectOneElement && !target.value && hasFocusedInput) {
+      this._handleBackspace(activeItems);
+
+      event.preventDefault();
+    }
+  };
+
+  Choices.prototype._onTouchMove = function () {
+    if (this._wasTap) {
+      this._wasTap = false;
+    }
+  };
+
+  Choices.prototype._onTouchEnd = function (event) {
+    var target = (event || event.touches[0]).target;
+    var touchWasWithinContainer = this._wasTap && this.containerOuter.element.contains(target);
+
+    if (touchWasWithinContainer) {
+      var containerWasExactTarget = target === this.containerOuter.element || target === this.containerInner.element;
+
+      if (containerWasExactTarget) {
+        if (this._isTextElement) {
+          this.input.focus();
+        } else if (this._isSelectMultipleElement) {
+          this.showDropdown();
+        }
+      } // Prevents focus event firing
+
+
+      event.stopPropagation();
+    }
+
+    this._wasTap = true;
+  };
+  /**
+   * Handles mousedown event in capture mode for containetOuter.element
+   */
+
+
+  Choices.prototype._onMouseDown = function (event) {
+    var target = event.target;
+
+    if (!(target instanceof HTMLElement)) {
+      return;
+    } // If we have our mouse down on the scrollbar and are on IE11...
+
+
+    if (IS_IE11 && this.choiceList.element.contains(target)) {
+      // check if click was on a scrollbar area
+      var firstChoice = this.choiceList.element.firstElementChild;
+      var isOnScrollbar = this._direction === 'ltr' ? event.offsetX >= firstChoice.offsetWidth : event.offsetX < firstChoice.offsetLeft;
+      this._isScrollingOnIe = isOnScrollbar;
+    }
+
+    if (target === this.input.element) {
+      return;
+    }
+
+    var item = target.closest('[data-button],[data-item],[data-choice]');
+
+    if (item instanceof HTMLElement) {
+      var hasShiftKey = event.shiftKey;
+      var activeItems = this._store.activeItems;
+      var dataset = item.dataset;
+
+      if ('button' in dataset) {
+        this._handleButtonAction(activeItems, item);
+      } else if ('item' in dataset) {
+        this._handleItemAction(activeItems, item, hasShiftKey);
+      } else if ('choice' in dataset) {
+        this._handleChoiceAction(activeItems, item);
+      }
+    }
+
+    event.preventDefault();
+  };
+  /**
+   * Handles mouseover event over this.dropdown
+   * @param {MouseEvent} event
+   */
+
+
+  Choices.prototype._onMouseOver = function (_a) {
+    var target = _a.target;
+
+    if (target instanceof HTMLElement && 'choice' in target.dataset) {
+      this._highlightChoice(target);
+    }
+  };
+
+  Choices.prototype._onClick = function (_a) {
+    var target = _a.target;
+    var clickWasWithinContainer = this.containerOuter.element.contains(target);
+
+    if (clickWasWithinContainer) {
+      if (!this.dropdown.isActive && !this.containerOuter.isDisabled) {
+        if (this._isTextElement) {
+          if (document.activeElement !== this.input.element) {
+            this.input.focus();
+          }
+        } else {
+          this.showDropdown();
+          this.containerOuter.focus();
+        }
+      } else if (this._isSelectOneElement && target !== this.input.element && !this.dropdown.element.contains(target)) {
+        this.hideDropdown();
+      }
+    } else {
+      var hasHighlightedItems = this._store.highlightedActiveItems.length > 0;
+
+      if (hasHighlightedItems) {
+        this.unhighlightAll();
+      }
+
+      this.containerOuter.removeFocusState();
+      this.hideDropdown(true);
+    }
+  };
+
+  Choices.prototype._onFocus = function (_a) {
+    var _b;
+
+    var _this = this;
+
+    var target = _a.target;
+    var focusWasWithinContainer = target && this.containerOuter.element.contains(target);
+
+    if (!focusWasWithinContainer) {
+      return;
+    }
+
+    var focusActions = (_b = {}, _b[constants_1.TEXT_TYPE] = function () {
+      if (target === _this.input.element) {
+        _this.containerOuter.addFocusState();
+      }
+    }, _b[constants_1.SELECT_ONE_TYPE] = function () {
+      _this.containerOuter.addFocusState();
+
+      if (target === _this.input.element) {
+        _this.showDropdown(true);
+      }
+    }, _b[constants_1.SELECT_MULTIPLE_TYPE] = function () {
+      if (target === _this.input.element) {
+        _this.showDropdown(true); // If element is a select box, the focused element is the container and the dropdown
+        // isn't already open, focus and show dropdown
+
+
+        _this.containerOuter.addFocusState();
+      }
+    }, _b);
+    focusActions[this.passedElement.element.type]();
+  };
+
+  Choices.prototype._onBlur = function (_a) {
+    var _b;
+
+    var _this = this;
+
+    var target = _a.target;
+    var blurWasWithinContainer = target && this.containerOuter.element.contains(target);
+
+    if (blurWasWithinContainer && !this._isScrollingOnIe) {
+      var activeItems = this._store.activeItems;
+      var hasHighlightedItems_1 = activeItems.some(function (item) {
+        return item.highlighted;
+      });
+      var blurActions = (_b = {}, _b[constants_1.TEXT_TYPE] = function () {
+        if (target === _this.input.element) {
+          _this.containerOuter.removeFocusState();
+
+          if (hasHighlightedItems_1) {
+            _this.unhighlightAll();
+          }
+
+          _this.hideDropdown(true);
+        }
+      }, _b[constants_1.SELECT_ONE_TYPE] = function () {
+        _this.containerOuter.removeFocusState();
+
+        if (target === _this.input.element || target === _this.containerOuter.element && !_this._canSearch) {
+          _this.hideDropdown(true);
+        }
+      }, _b[constants_1.SELECT_MULTIPLE_TYPE] = function () {
+        if (target === _this.input.element) {
+          _this.containerOuter.removeFocusState();
+
+          _this.hideDropdown(true);
+
+          if (hasHighlightedItems_1) {
+            _this.unhighlightAll();
+          }
+        }
+      }, _b);
+      blurActions[this.passedElement.element.type]();
+    } else {
+      // On IE11, clicking the scollbar blurs our input and thus
+      // closes the dropdown. To stop this, we refocus our input
+      // if we know we are on IE *and* are scrolling.
+      this._isScrollingOnIe = false;
+      this.input.element.focus();
+    }
+  };
+
+  Choices.prototype._onFormReset = function () {
+    this._store.dispatch((0, misc_1.resetTo)(this._initialState));
+  };
+
+  Choices.prototype._highlightChoice = function (el) {
+    var _this = this;
+
+    if (el === void 0) {
+      el = null;
+    }
+
+    var choices = Array.from(this.dropdown.element.querySelectorAll('[data-choice-selectable]'));
+
+    if (!choices.length) {
+      return;
+    }
+
+    var passedEl = el;
+    var highlightedChoices = Array.from(this.dropdown.element.querySelectorAll(".".concat(this.config.classNames.highlightedState))); // Remove any highlighted choices
+
+    highlightedChoices.forEach(function (choice) {
+      choice.classList.remove(_this.config.classNames.highlightedState);
+      choice.setAttribute('aria-selected', 'false');
+    });
+
+    if (passedEl) {
+      this._highlightPosition = choices.indexOf(passedEl);
+    } else {
+      // Highlight choice based on last known highlight location
+      if (choices.length > this._highlightPosition) {
+        // If we have an option to highlight
+        passedEl = choices[this._highlightPosition];
+      } else {
+        // Otherwise highlight the option before
+        passedEl = choices[choices.length - 1];
+      }
+
+      if (!passedEl) {
+        passedEl = choices[0];
+      }
+    }
+
+    passedEl.classList.add(this.config.classNames.highlightedState);
+    passedEl.setAttribute('aria-selected', 'true');
+    this.passedElement.triggerEvent(constants_1.EVENTS.highlightChoice, {
+      el: passedEl
+    });
+
+    if (this.dropdown.isActive) {
+      // IE11 ignores aria-label and blocks virtual keyboard
+      // if aria-activedescendant is set without a dropdown
+      this.input.setActiveDescendant(passedEl.id);
+      this.containerOuter.setActiveDescendant(passedEl.id);
+    }
+  };
+
+  Choices.prototype._addItem = function (_a) {
+    var value = _a.value,
+        _b = _a.label,
+        label = _b === void 0 ? null : _b,
+        _c = _a.choiceId,
+        choiceId = _c === void 0 ? -1 : _c,
+        _d = _a.groupId,
+        groupId = _d === void 0 ? -1 : _d,
+        _e = _a.customProperties,
+        customProperties = _e === void 0 ? {} : _e,
+        _f = _a.placeholder,
+        placeholder = _f === void 0 ? false : _f,
+        _g = _a.keyCode,
+        keyCode = _g === void 0 ? -1 : _g;
+    var passedValue = typeof value === 'string' ? value.trim() : value;
+    var items = this._store.items;
+    var passedLabel = label || passedValue;
+    var passedOptionId = choiceId || -1;
+    var group = groupId >= 0 ? this._store.getGroupById(groupId) : null;
+    var id = items ? items.length + 1 : 1; // If a prepended value has been passed, prepend it
+
+    if (this.config.prependValue) {
+      passedValue = this.config.prependValue + passedValue.toString();
+    } // If an appended value has been passed, append it
+
+
+    if (this.config.appendValue) {
+      passedValue += this.config.appendValue.toString();
+    }
+
+    this._store.dispatch((0, items_1.addItem)({
+      value: passedValue,
+      label: passedLabel,
+      id: id,
+      choiceId: passedOptionId,
+      groupId: groupId,
+      customProperties: customProperties,
+      placeholder: placeholder,
+      keyCode: keyCode
+    }));
+
+    if (this._isSelectOneElement) {
+      this.removeActiveItems(id);
+    } // Trigger change event
+
+
+    this.passedElement.triggerEvent(constants_1.EVENTS.addItem, {
+      id: id,
+      value: passedValue,
+      label: passedLabel,
+      customProperties: customProperties,
+      groupValue: group && group.value ? group.value : null,
+      keyCode: keyCode
+    });
+  };
+
+  Choices.prototype._removeItem = function (item) {
+    var id = item.id,
+        value = item.value,
+        label = item.label,
+        customProperties = item.customProperties,
+        choiceId = item.choiceId,
+        groupId = item.groupId;
+    var group = groupId && groupId >= 0 ? this._store.getGroupById(groupId) : null;
+
+    if (!id || !choiceId) {
+      return;
+    }
+
+    this._store.dispatch((0, items_1.removeItem)(id, choiceId));
+
+    this.passedElement.triggerEvent(constants_1.EVENTS.removeItem, {
+      id: id,
+      value: value,
+      label: label,
+      customProperties: customProperties,
+      groupValue: group && group.value ? group.value : null
+    });
+  };
+
+  Choices.prototype._addChoice = function (_a) {
+    var value = _a.value,
+        _b = _a.label,
+        label = _b === void 0 ? null : _b,
+        _c = _a.isSelected,
+        isSelected = _c === void 0 ? false : _c,
+        _d = _a.isDisabled,
+        isDisabled = _d === void 0 ? false : _d,
+        _e = _a.groupId,
+        groupId = _e === void 0 ? -1 : _e,
+        _f = _a.customProperties,
+        customProperties = _f === void 0 ? {} : _f,
+        _g = _a.placeholder,
+        placeholder = _g === void 0 ? false : _g,
+        _h = _a.keyCode,
+        keyCode = _h === void 0 ? -1 : _h;
+
+    if (typeof value === 'undefined' || value === null) {
+      return;
+    } // Generate unique id
+
+
+    var choices = this._store.choices;
+    var choiceLabel = label || value;
+    var choiceId = choices ? choices.length + 1 : 1;
+    var choiceElementId = "".concat(this._baseId, "-").concat(this._idNames.itemChoice, "-").concat(choiceId);
+
+    this._store.dispatch((0, choices_1.addChoice)({
+      id: choiceId,
+      groupId: groupId,
+      elementId: choiceElementId,
+      value: value,
+      label: choiceLabel,
+      disabled: isDisabled,
+      customProperties: customProperties,
+      placeholder: placeholder,
+      keyCode: keyCode
+    }));
+
+    if (isSelected) {
+      this._addItem({
+        value: value,
+        label: choiceLabel,
+        choiceId: choiceId,
+        customProperties: customProperties,
+        placeholder: placeholder,
+        keyCode: keyCode
+      });
+    }
+  };
+
+  Choices.prototype._addGroup = function (_a) {
+    var _this = this;
+
+    var group = _a.group,
+        id = _a.id,
+        _b = _a.valueKey,
+        valueKey = _b === void 0 ? 'value' : _b,
+        _c = _a.labelKey,
+        labelKey = _c === void 0 ? 'label' : _c;
+    var groupChoices = (0, utils_1.isType)('Object', group) ? group.choices : Array.from(group.getElementsByTagName('OPTION'));
+    var groupId = id || Math.floor(new Date().valueOf() * Math.random());
+    var isDisabled = group.disabled ? group.disabled : false;
+
+    if (groupChoices) {
+      this._store.dispatch((0, groups_1.addGroup)({
+        value: group.label,
+        id: groupId,
+        active: true,
+        disabled: isDisabled
+      }));
+
+      var addGroupChoices = function (choice) {
+        var isOptDisabled = choice.disabled || choice.parentNode && choice.parentNode.disabled;
+
+        _this._addChoice({
+          value: choice[valueKey],
+          label: (0, utils_1.isType)('Object', choice) ? choice[labelKey] : choice.innerHTML,
+          isSelected: choice.selected,
+          isDisabled: isOptDisabled,
+          groupId: groupId,
+          customProperties: choice.customProperties,
+          placeholder: choice.placeholder
+        });
+      };
+
+      groupChoices.forEach(addGroupChoices);
+    } else {
+      this._store.dispatch((0, groups_1.addGroup)({
+        value: group.label,
+        id: group.id,
+        active: false,
+        disabled: group.disabled
+      }));
+    }
+  };
+
+  Choices.prototype._getTemplate = function (template) {
+    var _a;
+
+    var args = [];
+
+    for (var _i = 1; _i < arguments.length; _i++) {
+      args[_i - 1] = arguments[_i];
+    }
+
+    return (_a = this._templates[template]).call.apply(_a, __spreadArray([this, this.config], args, false));
+  };
+
+  Choices.prototype._createTemplates = function () {
+    var callbackOnCreateTemplates = this.config.callbackOnCreateTemplates;
+    var userTemplates = {};
+
+    if (callbackOnCreateTemplates && typeof callbackOnCreateTemplates === 'function') {
+      userTemplates = callbackOnCreateTemplates.call(this, utils_1.strToEl);
+    }
+
+    this._templates = (0, deepmerge_1.default)(templates_1.default, userTemplates);
+  };
+
+  Choices.prototype._createElements = function () {
+    this.containerOuter = new components_1.Container({
+      element: this._getTemplate('containerOuter', this._direction, this._isSelectElement, this._isSelectOneElement, this.config.searchEnabled, this.passedElement.element.type, this.config.labelId),
+      classNames: this.config.classNames,
+      type: this.passedElement.element.type,
+      position: this.config.position
+    });
+    this.containerInner = new components_1.Container({
+      element: this._getTemplate('containerInner'),
+      classNames: this.config.classNames,
+      type: this.passedElement.element.type,
+      position: this.config.position
+    });
+    this.input = new components_1.Input({
+      element: this._getTemplate('input', this._placeholderValue),
+      classNames: this.config.classNames,
+      type: this.passedElement.element.type,
+      preventPaste: !this.config.paste
+    });
+    this.choiceList = new components_1.List({
+      element: this._getTemplate('choiceList', this._isSelectOneElement)
+    });
+    this.itemList = new components_1.List({
+      element: this._getTemplate('itemList', this._isSelectOneElement)
+    });
+    this.dropdown = new components_1.Dropdown({
+      element: this._getTemplate('dropdown'),
+      classNames: this.config.classNames,
+      type: this.passedElement.element.type
+    });
+  };
+
+  Choices.prototype._createStructure = function () {
+    // Hide original element
+    this.passedElement.conceal(); // Wrap input in container preserving DOM ordering
+
+    this.containerInner.wrap(this.passedElement.element); // Wrapper inner container with outer container
+
+    this.containerOuter.wrap(this.containerInner.element);
+
+    if (this._isSelectOneElement) {
+      this.input.placeholder = this.config.searchPlaceholderValue || '';
+    } else if (this._placeholderValue) {
+      this.input.placeholder = this._placeholderValue;
+      this.input.setWidth();
+    }
+
+    this.containerOuter.element.appendChild(this.containerInner.element);
+    this.containerOuter.element.appendChild(this.dropdown.element);
+    this.containerInner.element.appendChild(this.itemList.element);
+
+    if (!this._isTextElement) {
+      this.dropdown.element.appendChild(this.choiceList.element);
+    }
+
+    if (!this._isSelectOneElement) {
+      this.containerInner.element.appendChild(this.input.element);
+    } else if (this.config.searchEnabled) {
+      this.dropdown.element.insertBefore(this.input.element, this.dropdown.element.firstChild);
+    }
+
+    if (this._isSelectElement) {
+      this._highlightPosition = 0;
+      this._isSearching = false;
+
+      this._startLoading();
+
+      if (this._presetGroups.length) {
+        this._addPredefinedGroups(this._presetGroups);
+      } else {
+        this._addPredefinedChoices(this._presetChoices);
+      }
+
+      this._stopLoading();
+    }
+
+    if (this._isTextElement) {
+      this._addPredefinedItems(this._presetItems);
+    }
+  };
+
+  Choices.prototype._addPredefinedGroups = function (groups) {
+    var _this = this; // If we have a placeholder option
+
+
+    var placeholderChoice = this.passedElement.placeholderOption;
+
+    if (placeholderChoice && placeholderChoice.parentNode && placeholderChoice.parentNode.tagName === 'SELECT') {
+      this._addChoice({
+        value: placeholderChoice.value,
+        label: placeholderChoice.innerHTML,
+        isSelected: placeholderChoice.selected,
+        isDisabled: placeholderChoice.disabled,
+        placeholder: true
+      });
+    }
+
+    groups.forEach(function (group) {
+      return _this._addGroup({
+        group: group,
+        id: group.id || null
+      });
+    });
+  };
+
+  Choices.prototype._addPredefinedChoices = function (choices) {
+    var _this = this; // If sorting is enabled or the user is searching, filter choices
+
+
+    if (this.config.shouldSort) {
+      choices.sort(this.config.sorter);
+    }
+
+    var hasSelectedChoice = choices.some(function (choice) {
+      return choice.selected;
+    });
+    var firstEnabledChoiceIndex = choices.findIndex(function (choice) {
+      return choice.disabled === undefined || !choice.disabled;
+    });
+    choices.forEach(function (choice, index) {
+      var _a = choice.value,
+          value = _a === void 0 ? '' : _a,
+          label = choice.label,
+          customProperties = choice.customProperties,
+          placeholder = choice.placeholder;
+
+      if (_this._isSelectElement) {
+        // If the choice is actually a group
+        if (choice.choices) {
+          _this._addGroup({
+            group: choice,
+            id: choice.id || null
+          });
+        } else {
+          /**
+           * If there is a selected choice already or the choice is not the first in
+           * the array, add each choice normally.
+           *
+           * Otherwise we pre-select the first enabled choice in the array ("select-one" only)
+           */
+          var shouldPreselect = _this._isSelectOneElement && !hasSelectedChoice && index === firstEnabledChoiceIndex;
+          var isSelected = shouldPreselect ? true : choice.selected;
+          var isDisabled = choice.disabled;
+
+          _this._addChoice({
+            value: value,
+            label: label,
+            isSelected: !!isSelected,
+            isDisabled: !!isDisabled,
+            placeholder: !!placeholder,
+            customProperties: customProperties
+          });
+        }
+      } else {
+        _this._addChoice({
+          value: value,
+          label: label,
+          isSelected: !!choice.selected,
+          isDisabled: !!choice.disabled,
+          placeholder: !!choice.placeholder,
+          customProperties: customProperties
+        });
+      }
+    });
+  };
+
+  Choices.prototype._addPredefinedItems = function (items) {
+    var _this = this;
+
+    items.forEach(function (item) {
+      if (typeof item === 'object' && item.value) {
+        _this._addItem({
+          value: item.value,
+          label: item.label,
+          choiceId: item.id,
+          customProperties: item.customProperties,
+          placeholder: item.placeholder
+        });
+      }
+
+      if (typeof item === 'string') {
+        _this._addItem({
+          value: item
+        });
+      }
+    });
+  };
+
+  Choices.prototype._setChoiceOrItem = function (item) {
+    var _this = this;
+
+    var itemType = (0, utils_1.getType)(item).toLowerCase();
+    var handleType = {
+      object: function () {
+        if (!item.value) {
+          return;
+        } // If we are dealing with a select input, we need to create an option first
+        // that is then selected. For text inputs we can just add items normally.
+
+
+        if (!_this._isTextElement) {
+          _this._addChoice({
+            value: item.value,
+            label: item.label,
+            isSelected: true,
+            isDisabled: false,
+            customProperties: item.customProperties,
+            placeholder: item.placeholder
+          });
+        } else {
+          _this._addItem({
+            value: item.value,
+            label: item.label,
+            choiceId: item.id,
+            customProperties: item.customProperties,
+            placeholder: item.placeholder
+          });
+        }
+      },
+      string: function () {
+        if (!_this._isTextElement) {
+          _this._addChoice({
+            value: item,
+            label: item,
+            isSelected: true,
+            isDisabled: false
+          });
+        } else {
+          _this._addItem({
+            value: item
+          });
+        }
+      }
+    };
+    handleType[itemType]();
+  };
+
+  Choices.prototype._findAndSelectChoiceByValue = function (value) {
+    var _this = this;
+
+    var choices = this._store.choices; // Check 'value' property exists and the choice isn't already selected
+
+    var foundChoice = choices.find(function (choice) {
+      return _this.config.valueComparer(choice.value, value);
+    });
+
+    if (foundChoice && !foundChoice.selected) {
+      this._addItem({
+        value: foundChoice.value,
+        label: foundChoice.label,
+        choiceId: foundChoice.id,
+        groupId: foundChoice.groupId,
+        customProperties: foundChoice.customProperties,
+        placeholder: foundChoice.placeholder,
+        keyCode: foundChoice.keyCode
+      });
+    }
+  };
+
+  Choices.prototype._generatePlaceholderValue = function () {
+    if (this._isSelectElement && this.passedElement.placeholderOption) {
+      var placeholderOption = this.passedElement.placeholderOption;
+      return placeholderOption ? placeholderOption.text : null;
+    }
+
+    var _a = this.config,
+        placeholder = _a.placeholder,
+        placeholderValue = _a.placeholderValue;
+    var dataset = this.passedElement.element.dataset;
+
+    if (placeholder) {
+      if (placeholderValue) {
+        return placeholderValue;
+      }
+
+      if (dataset.placeholder) {
+        return dataset.placeholder;
+      }
+    }
+
+    return null;
+  };
+
+  return Choices;
+}();
+
+exports["default"] = Choices;
+
+/***/ }),
+
+/***/ 613:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_75247__) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var utils_1 = __nested_webpack_require_75247__(799);
+
+var constants_1 = __nested_webpack_require_75247__(883);
+
+var Container =
+/** @class */
+function () {
+  function Container(_a) {
+    var element = _a.element,
+        type = _a.type,
+        classNames = _a.classNames,
+        position = _a.position;
+    this.element = element;
+    this.classNames = classNames;
+    this.type = type;
+    this.position = position;
+    this.isOpen = false;
+    this.isFlipped = false;
+    this.isFocussed = false;
+    this.isDisabled = false;
+    this.isLoading = false;
+    this._onFocus = this._onFocus.bind(this);
+    this._onBlur = this._onBlur.bind(this);
+  }
+
+  Container.prototype.addEventListeners = function () {
+    this.element.addEventListener('focus', this._onFocus);
+    this.element.addEventListener('blur', this._onBlur);
+  };
+
+  Container.prototype.removeEventListeners = function () {
+    this.element.removeEventListener('focus', this._onFocus);
+    this.element.removeEventListener('blur', this._onBlur);
+  };
+  /**
+   * Determine whether container should be flipped based on passed
+   * dropdown position
+   */
+
+
+  Container.prototype.shouldFlip = function (dropdownPos) {
+    if (typeof dropdownPos !== 'number') {
+      return false;
+    } // If flip is enabled and the dropdown bottom position is
+    // greater than the window height flip the dropdown.
+
+
+    var shouldFlip = false;
+
+    if (this.position === 'auto') {
+      shouldFlip = !window.matchMedia("(min-height: ".concat(dropdownPos + 1, "px)")).matches;
+    } else if (this.position === 'top') {
+      shouldFlip = true;
+    }
+
+    return shouldFlip;
+  };
+
+  Container.prototype.setActiveDescendant = function (activeDescendantID) {
+    this.element.setAttribute('aria-activedescendant', activeDescendantID);
+  };
+
+  Container.prototype.removeActiveDescendant = function () {
+    this.element.removeAttribute('aria-activedescendant');
+  };
+
+  Container.prototype.open = function (dropdownPos) {
+    this.element.classList.add(this.classNames.openState);
+    this.element.setAttribute('aria-expanded', 'true');
+    this.isOpen = true;
+
+    if (this.shouldFlip(dropdownPos)) {
+      this.element.classList.add(this.classNames.flippedState);
+      this.isFlipped = true;
+    }
+  };
+
+  Container.prototype.close = function () {
+    this.element.classList.remove(this.classNames.openState);
+    this.element.setAttribute('aria-expanded', 'false');
+    this.removeActiveDescendant();
+    this.isOpen = false; // A dropdown flips if it does not have space within the page
+
+    if (this.isFlipped) {
+      this.element.classList.remove(this.classNames.flippedState);
+      this.isFlipped = false;
+    }
+  };
+
+  Container.prototype.focus = function () {
+    if (!this.isFocussed) {
+      this.element.focus();
+    }
+  };
+
+  Container.prototype.addFocusState = function () {
+    this.element.classList.add(this.classNames.focusState);
+  };
+
+  Container.prototype.removeFocusState = function () {
+    this.element.classList.remove(this.classNames.focusState);
+  };
+
+  Container.prototype.enable = function () {
+    this.element.classList.remove(this.classNames.disabledState);
+    this.element.removeAttribute('aria-disabled');
+
+    if (this.type === constants_1.SELECT_ONE_TYPE) {
+      this.element.setAttribute('tabindex', '0');
+    }
+
+    this.isDisabled = false;
+  };
+
+  Container.prototype.disable = function () {
+    this.element.classList.add(this.classNames.disabledState);
+    this.element.setAttribute('aria-disabled', 'true');
+
+    if (this.type === constants_1.SELECT_ONE_TYPE) {
+      this.element.setAttribute('tabindex', '-1');
+    }
+
+    this.isDisabled = true;
+  };
+
+  Container.prototype.wrap = function (element) {
+    (0, utils_1.wrap)(element, this.element);
+  };
+
+  Container.prototype.unwrap = function (element) {
+    if (this.element.parentNode) {
+      // Move passed element outside this element
+      this.element.parentNode.insertBefore(element, this.element); // Remove this element
+
+      this.element.parentNode.removeChild(this.element);
+    }
+  };
+
+  Container.prototype.addLoadingState = function () {
+    this.element.classList.add(this.classNames.loadingState);
+    this.element.setAttribute('aria-busy', 'true');
+    this.isLoading = true;
+  };
+
+  Container.prototype.removeLoadingState = function () {
+    this.element.classList.remove(this.classNames.loadingState);
+    this.element.removeAttribute('aria-busy');
+    this.isLoading = false;
+  };
+
+  Container.prototype._onFocus = function () {
+    this.isFocussed = true;
+  };
+
+  Container.prototype._onBlur = function () {
+    this.isFocussed = false;
+  };
+
+  return Container;
+}();
+
+exports["default"] = Container;
+
+/***/ }),
+
+/***/ 217:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var Dropdown =
+/** @class */
+function () {
+  function Dropdown(_a) {
+    var element = _a.element,
+        type = _a.type,
+        classNames = _a.classNames;
+    this.element = element;
+    this.classNames = classNames;
+    this.type = type;
+    this.isActive = false;
+  }
+
+  Object.defineProperty(Dropdown.prototype, "distanceFromTopWindow", {
+    /**
+     * Bottom position of dropdown in viewport coordinates
+     */
+    get: function () {
+      return this.element.getBoundingClientRect().bottom;
+    },
+    enumerable: false,
+    configurable: true
+  });
+
+  Dropdown.prototype.getChild = function (selector) {
+    return this.element.querySelector(selector);
+  };
+  /**
+   * Show dropdown to user by adding active state class
+   */
+
+
+  Dropdown.prototype.show = function () {
+    this.element.classList.add(this.classNames.activeState);
+    this.element.setAttribute('aria-expanded', 'true');
+    this.isActive = true;
+    return this;
+  };
+  /**
+   * Hide dropdown from user
+   */
+
+
+  Dropdown.prototype.hide = function () {
+    this.element.classList.remove(this.classNames.activeState);
+    this.element.setAttribute('aria-expanded', 'false');
+    this.isActive = false;
+    return this;
+  };
+
+  return Dropdown;
+}();
+
+exports["default"] = Dropdown;
+
+/***/ }),
+
+/***/ 520:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_81463__) {
+
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.WrappedSelect = exports.WrappedInput = exports.List = exports.Input = exports.Container = exports.Dropdown = void 0;
+
+var dropdown_1 = __importDefault(__nested_webpack_require_81463__(217));
+
+exports.Dropdown = dropdown_1.default;
+
+var container_1 = __importDefault(__nested_webpack_require_81463__(613));
+
+exports.Container = container_1.default;
+
+var input_1 = __importDefault(__nested_webpack_require_81463__(11));
+
+exports.Input = input_1.default;
+
+var list_1 = __importDefault(__nested_webpack_require_81463__(624));
+
+exports.List = list_1.default;
+
+var wrapped_input_1 = __importDefault(__nested_webpack_require_81463__(541));
+
+exports.WrappedInput = wrapped_input_1.default;
+
+var wrapped_select_1 = __importDefault(__nested_webpack_require_81463__(982));
+
+exports.WrappedSelect = wrapped_select_1.default;
+
+/***/ }),
+
+/***/ 11:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_82511__) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var utils_1 = __nested_webpack_require_82511__(799);
+
+var constants_1 = __nested_webpack_require_82511__(883);
+
+var Input =
+/** @class */
+function () {
+  function Input(_a) {
+    var element = _a.element,
+        type = _a.type,
+        classNames = _a.classNames,
+        preventPaste = _a.preventPaste;
+    this.element = element;
+    this.type = type;
+    this.classNames = classNames;
+    this.preventPaste = preventPaste;
+    this.isFocussed = this.element.isEqualNode(document.activeElement);
+    this.isDisabled = element.disabled;
+    this._onPaste = this._onPaste.bind(this);
+    this._onInput = this._onInput.bind(this);
+    this._onFocus = this._onFocus.bind(this);
+    this._onBlur = this._onBlur.bind(this);
+  }
+
+  Object.defineProperty(Input.prototype, "placeholder", {
+    set: function (placeholder) {
+      this.element.placeholder = placeholder;
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Input.prototype, "value", {
+    get: function () {
+      return (0, utils_1.sanitise)(this.element.value);
+    },
+    set: function (value) {
+      this.element.value = value;
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Input.prototype, "rawValue", {
+    get: function () {
+      return this.element.value;
+    },
+    enumerable: false,
+    configurable: true
+  });
+
+  Input.prototype.addEventListeners = function () {
+    this.element.addEventListener('paste', this._onPaste);
+    this.element.addEventListener('input', this._onInput, {
+      passive: true
+    });
+    this.element.addEventListener('focus', this._onFocus, {
+      passive: true
+    });
+    this.element.addEventListener('blur', this._onBlur, {
+      passive: true
+    });
+  };
+
+  Input.prototype.removeEventListeners = function () {
+    this.element.removeEventListener('input', this._onInput);
+    this.element.removeEventListener('paste', this._onPaste);
+    this.element.removeEventListener('focus', this._onFocus);
+    this.element.removeEventListener('blur', this._onBlur);
+  };
+
+  Input.prototype.enable = function () {
+    this.element.removeAttribute('disabled');
+    this.isDisabled = false;
+  };
+
+  Input.prototype.disable = function () {
+    this.element.setAttribute('disabled', '');
+    this.isDisabled = true;
+  };
+
+  Input.prototype.focus = function () {
+    if (!this.isFocussed) {
+      this.element.focus();
+    }
+  };
+
+  Input.prototype.blur = function () {
+    if (this.isFocussed) {
+      this.element.blur();
+    }
+  };
+
+  Input.prototype.clear = function (setWidth) {
+    if (setWidth === void 0) {
+      setWidth = true;
+    }
+
+    if (this.element.value) {
+      this.element.value = '';
+    }
+
+    if (setWidth) {
+      this.setWidth();
+    }
+
+    return this;
+  };
+  /**
+   * Set the correct input width based on placeholder
+   * value or input value
+   */
+
+
+  Input.prototype.setWidth = function () {
+    // Resize input to contents or placeholder
+    var _a = this.element,
+        style = _a.style,
+        value = _a.value,
+        placeholder = _a.placeholder;
+    style.minWidth = "".concat(placeholder.length + 1, "ch");
+    style.width = "".concat(value.length + 1, "ch");
+  };
+
+  Input.prototype.setActiveDescendant = function (activeDescendantID) {
+    this.element.setAttribute('aria-activedescendant', activeDescendantID);
+  };
+
+  Input.prototype.removeActiveDescendant = function () {
+    this.element.removeAttribute('aria-activedescendant');
+  };
+
+  Input.prototype._onInput = function () {
+    if (this.type !== constants_1.SELECT_ONE_TYPE) {
+      this.setWidth();
+    }
+  };
+
+  Input.prototype._onPaste = function (event) {
+    if (this.preventPaste) {
+      event.preventDefault();
+    }
+  };
+
+  Input.prototype._onFocus = function () {
+    this.isFocussed = true;
+  };
+
+  Input.prototype._onBlur = function () {
+    this.isFocussed = false;
+  };
+
+  return Input;
+}();
+
+exports["default"] = Input;
+
+/***/ }),
+
+/***/ 624:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_86550__) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var constants_1 = __nested_webpack_require_86550__(883);
+
+var List =
+/** @class */
+function () {
+  function List(_a) {
+    var element = _a.element;
+    this.element = element;
+    this.scrollPos = this.element.scrollTop;
+    this.height = this.element.offsetHeight;
+  }
+
+  List.prototype.clear = function () {
+    this.element.innerHTML = '';
+  };
+
+  List.prototype.append = function (node) {
+    this.element.appendChild(node);
+  };
+
+  List.prototype.getChild = function (selector) {
+    return this.element.querySelector(selector);
+  };
+
+  List.prototype.hasChildren = function () {
+    return this.element.hasChildNodes();
+  };
+
+  List.prototype.scrollToTop = function () {
+    this.element.scrollTop = 0;
+  };
+
+  List.prototype.scrollToChildElement = function (element, direction) {
+    var _this = this;
+
+    if (!element) {
+      return;
+    }
+
+    var listHeight = this.element.offsetHeight; // Scroll position of dropdown
+
+    var listScrollPosition = this.element.scrollTop + listHeight;
+    var elementHeight = element.offsetHeight; // Distance from bottom of element to top of parent
+
+    var elementPos = element.offsetTop + elementHeight; // Difference between the element and scroll position
+
+    var destination = direction > 0 ? this.element.scrollTop + elementPos - listScrollPosition : element.offsetTop;
+    requestAnimationFrame(function () {
+      _this._animateScroll(destination, direction);
+    });
+  };
+
+  List.prototype._scrollDown = function (scrollPos, strength, destination) {
+    var easing = (destination - scrollPos) / strength;
+    var distance = easing > 1 ? easing : 1;
+    this.element.scrollTop = scrollPos + distance;
+  };
+
+  List.prototype._scrollUp = function (scrollPos, strength, destination) {
+    var easing = (scrollPos - destination) / strength;
+    var distance = easing > 1 ? easing : 1;
+    this.element.scrollTop = scrollPos - distance;
+  };
+
+  List.prototype._animateScroll = function (destination, direction) {
+    var _this = this;
+
+    var strength = constants_1.SCROLLING_SPEED;
+    var choiceListScrollTop = this.element.scrollTop;
+    var continueAnimation = false;
+
+    if (direction > 0) {
+      this._scrollDown(choiceListScrollTop, strength, destination);
+
+      if (choiceListScrollTop < destination) {
+        continueAnimation = true;
+      }
+    } else {
+      this._scrollUp(choiceListScrollTop, strength, destination);
+
+      if (choiceListScrollTop > destination) {
+        continueAnimation = true;
+      }
+    }
+
+    if (continueAnimation) {
+      requestAnimationFrame(function () {
+        _this._animateScroll(destination, direction);
+      });
+    }
+  };
+
+  return List;
+}();
+
+exports["default"] = List;
+
+/***/ }),
+
+/***/ 730:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_89383__) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var utils_1 = __nested_webpack_require_89383__(799);
+
+var WrappedElement =
+/** @class */
+function () {
+  function WrappedElement(_a) {
+    var element = _a.element,
+        classNames = _a.classNames;
+    this.element = element;
+    this.classNames = classNames;
+
+    if (!(element instanceof HTMLInputElement) && !(element instanceof HTMLSelectElement)) {
+      throw new TypeError('Invalid element passed');
+    }
+
+    this.isDisabled = false;
+  }
+
+  Object.defineProperty(WrappedElement.prototype, "isActive", {
+    get: function () {
+      return this.element.dataset.choice === 'active';
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(WrappedElement.prototype, "dir", {
+    get: function () {
+      return this.element.dir;
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(WrappedElement.prototype, "value", {
+    get: function () {
+      return this.element.value;
+    },
+    set: function (value) {
+      // you must define setter here otherwise it will be readonly property
+      this.element.value = value;
+    },
+    enumerable: false,
+    configurable: true
+  });
+
+  WrappedElement.prototype.conceal = function () {
+    // Hide passed input
+    this.element.classList.add(this.classNames.input);
+    this.element.hidden = true; // Remove element from tab index
+
+    this.element.tabIndex = -1; // Backup original styles if any
+
+    var origStyle = this.element.getAttribute('style');
+
+    if (origStyle) {
+      this.element.setAttribute('data-choice-orig-style', origStyle);
+    }
+
+    this.element.setAttribute('data-choice', 'active');
+  };
+
+  WrappedElement.prototype.reveal = function () {
+    // Reinstate passed element
+    this.element.classList.remove(this.classNames.input);
+    this.element.hidden = false;
+    this.element.removeAttribute('tabindex'); // Recover original styles if any
+
+    var origStyle = this.element.getAttribute('data-choice-orig-style');
+
+    if (origStyle) {
+      this.element.removeAttribute('data-choice-orig-style');
+      this.element.setAttribute('style', origStyle);
+    } else {
+      this.element.removeAttribute('style');
+    }
+
+    this.element.removeAttribute('data-choice'); // Re-assign values - this is weird, I know
+    // @todo Figure out why we need to do this
+
+    this.element.value = this.element.value; // eslint-disable-line no-self-assign
+  };
+
+  WrappedElement.prototype.enable = function () {
+    this.element.removeAttribute('disabled');
+    this.element.disabled = false;
+    this.isDisabled = false;
+  };
+
+  WrappedElement.prototype.disable = function () {
+    this.element.setAttribute('disabled', '');
+    this.element.disabled = true;
+    this.isDisabled = true;
+  };
+
+  WrappedElement.prototype.triggerEvent = function (eventType, data) {
+    (0, utils_1.dispatchEvent)(this.element, eventType, data);
+  };
+
+  return WrappedElement;
+}();
+
+exports["default"] = WrappedElement;
+
+/***/ }),
+
+/***/ 541:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_92462__) {
+
+
+
+var __extends = this && this.__extends || function () {
+  var extendStatics = function (d, b) {
+    extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
+    };
+
+    return extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var wrapped_element_1 = __importDefault(__nested_webpack_require_92462__(730));
+
+var WrappedInput =
+/** @class */
+function (_super) {
+  __extends(WrappedInput, _super);
+
+  function WrappedInput(_a) {
+    var element = _a.element,
+        classNames = _a.classNames,
+        delimiter = _a.delimiter;
+
+    var _this = _super.call(this, {
+      element: element,
+      classNames: classNames
+    }) || this;
+
+    _this.delimiter = delimiter;
+    return _this;
+  }
+
+  Object.defineProperty(WrappedInput.prototype, "value", {
+    get: function () {
+      return this.element.value;
+    },
+    set: function (value) {
+      this.element.setAttribute('value', value);
+      this.element.value = value;
+    },
+    enumerable: false,
+    configurable: true
+  });
+  return WrappedInput;
+}(wrapped_element_1.default);
+
+exports["default"] = WrappedInput;
+
+/***/ }),
+
+/***/ 982:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_94334__) {
+
+
+
+var __extends = this && this.__extends || function () {
+  var extendStatics = function (d, b) {
+    extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
+    };
+
+    return extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var wrapped_element_1 = __importDefault(__nested_webpack_require_94334__(730));
+
+var WrappedSelect =
+/** @class */
+function (_super) {
+  __extends(WrappedSelect, _super);
+
+  function WrappedSelect(_a) {
+    var element = _a.element,
+        classNames = _a.classNames,
+        template = _a.template;
+
+    var _this = _super.call(this, {
+      element: element,
+      classNames: classNames
+    }) || this;
+
+    _this.template = template;
+    return _this;
+  }
+
+  Object.defineProperty(WrappedSelect.prototype, "placeholderOption", {
+    get: function () {
+      return this.element.querySelector('option[value=""]') || // Backward compatibility layer for the non-standard placeholder attribute supported in older versions.
+      this.element.querySelector('option[placeholder]');
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(WrappedSelect.prototype, "optionGroups", {
+    get: function () {
+      return Array.from(this.element.getElementsByTagName('OPTGROUP'));
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(WrappedSelect.prototype, "options", {
+    get: function () {
+      return Array.from(this.element.options);
+    },
+    set: function (options) {
+      var _this = this;
+
+      var fragment = document.createDocumentFragment();
+
+      var addOptionToFragment = function (data) {
+        // Create a standard select option
+        var option = _this.template(data); // Append it to fragment
+
+
+        fragment.appendChild(option);
+      }; // Add each list item to list
+
+
+      options.forEach(function (optionData) {
+        return addOptionToFragment(optionData);
+      });
+      this.appendDocFragment(fragment);
+    },
+    enumerable: false,
+    configurable: true
+  });
+
+  WrappedSelect.prototype.appendDocFragment = function (fragment) {
+    this.element.innerHTML = '';
+    this.element.appendChild(fragment);
+  };
+
+  return WrappedSelect;
+}(wrapped_element_1.default);
+
+exports["default"] = WrappedSelect;
+
+/***/ }),
+
+/***/ 883:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.SCROLLING_SPEED = exports.SELECT_MULTIPLE_TYPE = exports.SELECT_ONE_TYPE = exports.TEXT_TYPE = exports.KEY_CODES = exports.ACTION_TYPES = exports.EVENTS = void 0;
+exports.EVENTS = {
+  showDropdown: 'showDropdown',
+  hideDropdown: 'hideDropdown',
+  change: 'change',
+  choice: 'choice',
+  search: 'search',
+  addItem: 'addItem',
+  removeItem: 'removeItem',
+  highlightItem: 'highlightItem',
+  highlightChoice: 'highlightChoice',
+  unhighlightItem: 'unhighlightItem'
+};
+exports.ACTION_TYPES = {
+  ADD_CHOICE: 'ADD_CHOICE',
+  FILTER_CHOICES: 'FILTER_CHOICES',
+  ACTIVATE_CHOICES: 'ACTIVATE_CHOICES',
+  CLEAR_CHOICES: 'CLEAR_CHOICES',
+  ADD_GROUP: 'ADD_GROUP',
+  ADD_ITEM: 'ADD_ITEM',
+  REMOVE_ITEM: 'REMOVE_ITEM',
+  HIGHLIGHT_ITEM: 'HIGHLIGHT_ITEM',
+  CLEAR_ALL: 'CLEAR_ALL',
+  RESET_TO: 'RESET_TO',
+  SET_IS_LOADING: 'SET_IS_LOADING'
+};
+exports.KEY_CODES = {
+  BACK_KEY: 46,
+  DELETE_KEY: 8,
+  ENTER_KEY: 13,
+  A_KEY: 65,
+  ESC_KEY: 27,
+  UP_KEY: 38,
+  DOWN_KEY: 40,
+  PAGE_UP_KEY: 33,
+  PAGE_DOWN_KEY: 34
+};
+exports.TEXT_TYPE = 'text';
+exports.SELECT_ONE_TYPE = 'select-one';
+exports.SELECT_MULTIPLE_TYPE = 'select-multiple';
+exports.SCROLLING_SPEED = 4;
+
+/***/ }),
+
+/***/ 789:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_98665__) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.DEFAULT_CONFIG = exports.DEFAULT_CLASSNAMES = void 0;
+
+var utils_1 = __nested_webpack_require_98665__(799);
+
+exports.DEFAULT_CLASSNAMES = {
+  containerOuter: 'choices',
+  containerInner: 'choices__inner',
+  input: 'choices__input',
+  inputCloned: 'choices__input--cloned',
+  list: 'choices__list',
+  listItems: 'choices__list--multiple',
+  listSingle: 'choices__list--single',
+  listDropdown: 'choices__list--dropdown',
+  item: 'choices__item',
+  itemSelectable: 'choices__item--selectable',
+  itemDisabled: 'choices__item--disabled',
+  itemChoice: 'choices__item--choice',
+  placeholder: 'choices__placeholder',
+  group: 'choices__group',
+  groupHeading: 'choices__heading',
+  button: 'choices__button',
+  activeState: 'is-active',
+  focusState: 'is-focused',
+  openState: 'is-open',
+  disabledState: 'is-disabled',
+  highlightedState: 'is-highlighted',
+  selectedState: 'is-selected',
+  flippedState: 'is-flipped',
+  loadingState: 'is-loading',
+  noResults: 'has-no-results',
+  noChoices: 'has-no-choices'
+};
+exports.DEFAULT_CONFIG = {
+  items: [],
+  choices: [],
+  silent: false,
+  renderChoiceLimit: -1,
+  maxItemCount: -1,
+  addItems: true,
+  addItemFilter: null,
+  removeItems: true,
+  removeItemButton: false,
+  editItems: false,
+  allowHTML: true,
+  duplicateItemsAllowed: true,
+  delimiter: ',',
+  paste: true,
+  searchEnabled: true,
+  searchChoices: true,
+  searchFloor: 1,
+  searchResultLimit: 4,
+  searchFields: ['label', 'value'],
+  position: 'auto',
+  resetScrollPosition: true,
+  shouldSort: true,
+  shouldSortItems: false,
+  sorter: utils_1.sortByAlpha,
+  placeholder: true,
+  placeholderValue: null,
+  searchPlaceholderValue: null,
+  prependValue: null,
+  appendValue: null,
+  renderSelectedChoices: 'auto',
+  loadingText: 'Loading...',
+  noResultsText: 'No results found',
+  noChoicesText: 'No choices to choose from',
+  itemSelectText: 'Press to select',
+  uniqueItemText: 'Only unique values can be added',
+  customAddItemText: 'Only values matching specific conditions can be added',
+  addItemText: function (value) {
+    return "Press Enter to add <b>\"".concat((0, utils_1.sanitise)(value), "\"</b>");
+  },
+  maxItemText: function (maxItemCount) {
+    return "Only ".concat(maxItemCount, " values can be added");
+  },
+  valueComparer: function (value1, value2) {
+    return value1 === value2;
+  },
+  fuseOptions: {
+    includeScore: true
+  },
+  labelId: '',
+  callbackOnInit: null,
+  callbackOnCreateTemplates: null,
+  classNames: exports.DEFAULT_CLASSNAMES
+};
+
+/***/ }),
+
+/***/ 18:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 978:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 948:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 359:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 285:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 533:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 187:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_102291__) {
+
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function () {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __exportStar = this && this.__exportStar || function (m, exports) {
+  for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+__exportStar(__nested_webpack_require_102291__(18), exports);
+
+__exportStar(__nested_webpack_require_102291__(978), exports);
+
+__exportStar(__nested_webpack_require_102291__(948), exports);
+
+__exportStar(__nested_webpack_require_102291__(359), exports);
+
+__exportStar(__nested_webpack_require_102291__(285), exports);
+
+__exportStar(__nested_webpack_require_102291__(533), exports);
+
+__exportStar(__nested_webpack_require_102291__(287), exports);
+
+__exportStar(__nested_webpack_require_102291__(132), exports);
+
+__exportStar(__nested_webpack_require_102291__(837), exports);
+
+__exportStar(__nested_webpack_require_102291__(598), exports);
+
+__exportStar(__nested_webpack_require_102291__(369), exports);
+
+__exportStar(__nested_webpack_require_102291__(37), exports);
+
+__exportStar(__nested_webpack_require_102291__(47), exports);
+
+__exportStar(__nested_webpack_require_102291__(923), exports);
+
+__exportStar(__nested_webpack_require_102291__(876), exports);
+
+/***/ }),
+
+/***/ 287:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 132:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 837:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 598:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 37:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 369:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 47:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 923:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 876:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+/***/ }),
+
+/***/ 799:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.diff = exports.cloneObject = exports.existsInArray = exports.dispatchEvent = exports.sortByScore = exports.sortByAlpha = exports.strToEl = exports.sanitise = exports.isScrolledIntoView = exports.getAdjacentEl = exports.wrap = exports.isType = exports.getType = exports.generateId = exports.generateChars = exports.getRandomNumber = void 0;
+
+var getRandomNumber = function (min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
+exports.getRandomNumber = getRandomNumber;
+
+var generateChars = function (length) {
+  return Array.from({
+    length: length
+  }, function () {
+    return (0, exports.getRandomNumber)(0, 36).toString(36);
+  }).join('');
+};
+
+exports.generateChars = generateChars;
+
+var generateId = function (element, prefix) {
+  var id = element.id || element.name && "".concat(element.name, "-").concat((0, exports.generateChars)(2)) || (0, exports.generateChars)(4);
+  id = id.replace(/(:|\.|\[|\]|,)/g, '');
+  id = "".concat(prefix, "-").concat(id);
+  return id;
+};
+
+exports.generateId = generateId;
+
+var getType = function (obj) {
+  return Object.prototype.toString.call(obj).slice(8, -1);
+};
+
+exports.getType = getType;
+
+var isType = function (type, obj) {
+  return obj !== undefined && obj !== null && (0, exports.getType)(obj) === type;
+};
+
+exports.isType = isType;
+
+var wrap = function (element, wrapper) {
+  if (wrapper === void 0) {
+    wrapper = document.createElement('div');
+  }
+
+  if (element.parentNode) {
+    if (element.nextSibling) {
+      element.parentNode.insertBefore(wrapper, element.nextSibling);
+    } else {
+      element.parentNode.appendChild(wrapper);
+    }
+  }
+
+  return wrapper.appendChild(element);
+};
+
+exports.wrap = wrap;
+
+var getAdjacentEl = function (startEl, selector, direction) {
+  if (direction === void 0) {
+    direction = 1;
+  }
+
+  var prop = "".concat(direction > 0 ? 'next' : 'previous', "ElementSibling");
+  var sibling = startEl[prop];
+
+  while (sibling) {
+    if (sibling.matches(selector)) {
+      return sibling;
+    }
+
+    sibling = sibling[prop];
+  }
+
+  return sibling;
+};
+
+exports.getAdjacentEl = getAdjacentEl;
+
+var isScrolledIntoView = function (element, parent, direction) {
+  if (direction === void 0) {
+    direction = 1;
+  }
+
+  if (!element) {
+    return false;
+  }
+
+  var isVisible;
+
+  if (direction > 0) {
+    // In view from bottom
+    isVisible = parent.scrollTop + parent.offsetHeight >= element.offsetTop + element.offsetHeight;
+  } else {
+    // In view from top
+    isVisible = element.offsetTop >= parent.scrollTop;
+  }
+
+  return isVisible;
+};
+
+exports.isScrolledIntoView = isScrolledIntoView;
+
+var sanitise = function (value) {
+  if (typeof value !== 'string') {
+    return value;
+  }
+
+  return value.replace(/&/g, '&amp;').replace(/>/g, '&gt;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+};
+
+exports.sanitise = sanitise;
+
+exports.strToEl = function () {
+  var tmpEl = document.createElement('div');
+  return function (str) {
+    var cleanedInput = str.trim();
+    tmpEl.innerHTML = cleanedInput;
+    var firldChild = tmpEl.children[0];
+
+    while (tmpEl.firstChild) {
+      tmpEl.removeChild(tmpEl.firstChild);
+    }
+
+    return firldChild;
+  };
+}();
+
+var sortByAlpha = function (_a, _b) {
+  var value = _a.value,
+      _c = _a.label,
+      label = _c === void 0 ? value : _c;
+  var value2 = _b.value,
+      _d = _b.label,
+      label2 = _d === void 0 ? value2 : _d;
+  return label.localeCompare(label2, [], {
+    sensitivity: 'base',
+    ignorePunctuation: true,
+    numeric: true
+  });
+};
+
+exports.sortByAlpha = sortByAlpha;
+
+var sortByScore = function (a, b) {
+  var _a = a.score,
+      scoreA = _a === void 0 ? 0 : _a;
+  var _b = b.score,
+      scoreB = _b === void 0 ? 0 : _b;
+  return scoreA - scoreB;
+};
+
+exports.sortByScore = sortByScore;
+
+var dispatchEvent = function (element, type, customArgs) {
+  if (customArgs === void 0) {
+    customArgs = null;
+  }
+
+  var event = new CustomEvent(type, {
+    detail: customArgs,
+    bubbles: true,
+    cancelable: true
+  });
+  return element.dispatchEvent(event);
+};
+
+exports.dispatchEvent = dispatchEvent;
+
+var existsInArray = function (array, value, key) {
+  if (key === void 0) {
+    key = 'value';
+  }
+
+  return array.some(function (item) {
+    if (typeof value === 'string') {
+      return item[key] === value.trim();
+    }
+
+    return item[key] === value;
+  });
+};
+
+exports.existsInArray = existsInArray;
+
+var cloneObject = function (obj) {
+  return JSON.parse(JSON.stringify(obj));
+};
+
+exports.cloneObject = cloneObject;
+/**
+ * Returns an array of keys present on the first but missing on the second object
+ */
+
+var diff = function (a, b) {
+  var aKeys = Object.keys(a).sort();
+  var bKeys = Object.keys(b).sort();
+  return aKeys.filter(function (i) {
+    return bKeys.indexOf(i) < 0;
+  });
+};
+
+exports.diff = diff;
+
+/***/ }),
+
+/***/ 273:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+var __spreadArray = this && this.__spreadArray || function (to, from, pack) {
+  if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from));
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.defaultState = void 0;
+exports.defaultState = [];
+
+function choices(state, action) {
+  if (state === void 0) {
+    state = exports.defaultState;
+  }
+
+  if (action === void 0) {
+    action = {};
+  }
+
+  switch (action.type) {
+    case 'ADD_CHOICE':
+      {
+        var addChoiceAction = action;
+        var choice = {
+          id: addChoiceAction.id,
+          elementId: addChoiceAction.elementId,
+          groupId: addChoiceAction.groupId,
+          value: addChoiceAction.value,
+          label: addChoiceAction.label || addChoiceAction.value,
+          disabled: addChoiceAction.disabled || false,
+          selected: false,
+          active: true,
+          score: 9999,
+          customProperties: addChoiceAction.customProperties,
+          placeholder: addChoiceAction.placeholder || false
+        };
+        /*
+          A disabled choice appears in the choice dropdown but cannot be selected
+          A selected choice has been added to the passed input's value (added as an item)
+          An active choice appears within the choice dropdown
+        */
+
+        return __spreadArray(__spreadArray([], state, true), [choice], false);
+      }
+
+    case 'ADD_ITEM':
+      {
+        var addItemAction_1 = action; // When an item is added and it has an associated choice,
+        // we want to disable it so it can't be chosen again
+
+        if (addItemAction_1.choiceId > -1) {
+          return state.map(function (obj) {
+            var choice = obj;
+
+            if (choice.id === parseInt("".concat(addItemAction_1.choiceId), 10)) {
+              choice.selected = true;
+            }
+
+            return choice;
+          });
+        }
+
+        return state;
+      }
+
+    case 'REMOVE_ITEM':
+      {
+        var removeItemAction_1 = action; // When an item is removed and it has an associated choice,
+        // we want to re-enable it so it can be chosen again
+
+        if (removeItemAction_1.choiceId && removeItemAction_1.choiceId > -1) {
+          return state.map(function (obj) {
+            var choice = obj;
+
+            if (choice.id === parseInt("".concat(removeItemAction_1.choiceId), 10)) {
+              choice.selected = false;
+            }
+
+            return choice;
+          });
+        }
+
+        return state;
+      }
+
+    case 'FILTER_CHOICES':
+      {
+        var filterChoicesAction_1 = action;
+        return state.map(function (obj) {
+          var choice = obj; // Set active state based on whether choice is
+          // within filtered results
+
+          choice.active = filterChoicesAction_1.results.some(function (_a) {
+            var item = _a.item,
+                score = _a.score;
+
+            if (item.id === choice.id) {
+              choice.score = score;
+              return true;
+            }
+
+            return false;
+          });
+          return choice;
+        });
+      }
+
+    case 'ACTIVATE_CHOICES':
+      {
+        var activateChoicesAction_1 = action;
+        return state.map(function (obj) {
+          var choice = obj;
+          choice.active = activateChoicesAction_1.active;
+          return choice;
+        });
+      }
+
+    case 'CLEAR_CHOICES':
+      {
+        return exports.defaultState;
+      }
+
+    default:
+      {
+        return state;
+      }
+  }
+}
+
+exports["default"] = choices;
+
+/***/ }),
+
+/***/ 871:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+var __spreadArray = this && this.__spreadArray || function (to, from, pack) {
+  if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from));
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.defaultState = void 0;
+exports.defaultState = [];
+
+function groups(state, action) {
+  if (state === void 0) {
+    state = exports.defaultState;
+  }
+
+  if (action === void 0) {
+    action = {};
+  }
+
+  switch (action.type) {
+    case 'ADD_GROUP':
+      {
+        var addGroupAction = action;
+        return __spreadArray(__spreadArray([], state, true), [{
+          id: addGroupAction.id,
+          value: addGroupAction.value,
+          active: addGroupAction.active,
+          disabled: addGroupAction.disabled
+        }], false);
+      }
+
+    case 'CLEAR_CHOICES':
+      {
+        return [];
+      }
+
+    default:
+      {
+        return state;
+      }
+  }
+}
+
+exports["default"] = groups;
+
+/***/ }),
+
+/***/ 655:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_114973__) {
+
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.defaultState = void 0;
+
+var redux_1 = __nested_webpack_require_114973__(857);
+
+var items_1 = __importDefault(__nested_webpack_require_114973__(52));
+
+var groups_1 = __importDefault(__nested_webpack_require_114973__(871));
+
+var choices_1 = __importDefault(__nested_webpack_require_114973__(273));
+
+var loading_1 = __importDefault(__nested_webpack_require_114973__(502));
+
+var utils_1 = __nested_webpack_require_114973__(799);
+
+exports.defaultState = {
+  groups: [],
+  items: [],
+  choices: [],
+  loading: false
+};
+var appReducer = (0, redux_1.combineReducers)({
+  items: items_1.default,
+  groups: groups_1.default,
+  choices: choices_1.default,
+  loading: loading_1.default
+});
+
+var rootReducer = function (passedState, action) {
+  var state = passedState; // If we are clearing all items, groups and options we reassign
+  // state and then pass that state to our proper reducer. This isn't
+  // mutating our actual state
+  // See: http://stackoverflow.com/a/35641992
+
+  if (action.type === 'CLEAR_ALL') {
+    state = exports.defaultState;
+  } else if (action.type === 'RESET_TO') {
+    return (0, utils_1.cloneObject)(action.state);
+  }
+
+  return appReducer(state, action);
+};
+
+exports["default"] = rootReducer;
+
+/***/ }),
+
+/***/ 52:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+var __spreadArray = this && this.__spreadArray || function (to, from, pack) {
+  if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from));
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.defaultState = void 0;
+exports.defaultState = [];
+
+function items(state, action) {
+  if (state === void 0) {
+    state = exports.defaultState;
+  }
+
+  if (action === void 0) {
+    action = {};
+  }
+
+  switch (action.type) {
+    case 'ADD_ITEM':
+      {
+        var addItemAction = action; // Add object to items array
+
+        var newState = __spreadArray(__spreadArray([], state, true), [{
+          id: addItemAction.id,
+          choiceId: addItemAction.choiceId,
+          groupId: addItemAction.groupId,
+          value: addItemAction.value,
+          label: addItemAction.label,
+          active: true,
+          highlighted: false,
+          customProperties: addItemAction.customProperties,
+          placeholder: addItemAction.placeholder || false,
+          keyCode: null
+        }], false);
+
+        return newState.map(function (obj) {
+          var item = obj;
+          item.highlighted = false;
+          return item;
+        });
+      }
+
+    case 'REMOVE_ITEM':
+      {
+        // Set item to inactive
+        return state.map(function (obj) {
+          var item = obj;
+
+          if (item.id === action.id) {
+            item.active = false;
+          }
+
+          return item;
+        });
+      }
+
+    case 'HIGHLIGHT_ITEM':
+      {
+        var highlightItemAction_1 = action;
+        return state.map(function (obj) {
+          var item = obj;
+
+          if (item.id === highlightItemAction_1.id) {
+            item.highlighted = highlightItemAction_1.highlighted;
+          }
+
+          return item;
+        });
+      }
+
+    default:
+      {
+        return state;
+      }
+  }
+}
+
+exports["default"] = items;
+
+/***/ }),
+
+/***/ 502:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.defaultState = void 0;
+exports.defaultState = false;
+
+var general = function (state, action) {
+  if (state === void 0) {
+    state = exports.defaultState;
+  }
+
+  if (action === void 0) {
+    action = {};
+  }
+
+  switch (action.type) {
+    case 'SET_IS_LOADING':
+      {
+        return action.isLoading;
+      }
+
+    default:
+      {
+        return state;
+      }
+  }
+};
+
+exports["default"] = general;
+
+/***/ }),
+
+/***/ 744:
+/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_119100__) {
+
+
+
+var __spreadArray = this && this.__spreadArray || function (to, from, pack) {
+  if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from));
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+var redux_1 = __nested_webpack_require_119100__(857);
+
+var index_1 = __importDefault(__nested_webpack_require_119100__(655));
+
+var Store =
+/** @class */
+function () {
+  function Store() {
+    this._store = (0, redux_1.createStore)(index_1.default, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  }
+  /**
+   * Subscribe store to function call (wrapped Redux method)
+   */
+
+
+  Store.prototype.subscribe = function (onChange) {
+    this._store.subscribe(onChange);
+  };
+  /**
+   * Dispatch event to store (wrapped Redux method)
+   */
+
+
+  Store.prototype.dispatch = function (action) {
+    this._store.dispatch(action);
+  };
+
+  Object.defineProperty(Store.prototype, "state", {
+    /**
+     * Get store object (wrapping Redux method)
+     */
+    get: function () {
+      return this._store.getState();
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Store.prototype, "items", {
+    /**
+     * Get items from store
+     */
+    get: function () {
+      return this.state.items;
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Store.prototype, "activeItems", {
+    /**
+     * Get active items from store
+     */
+    get: function () {
+      return this.items.filter(function (item) {
+        return item.active === true;
+      });
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Store.prototype, "highlightedActiveItems", {
+    /**
+     * Get highlighted items from store
+     */
+    get: function () {
+      return this.items.filter(function (item) {
+        return item.active && item.highlighted;
+      });
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Store.prototype, "choices", {
+    /**
+     * Get choices from store
+     */
+    get: function () {
+      return this.state.choices;
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Store.prototype, "activeChoices", {
+    /**
+     * Get active choices from store
+     */
+    get: function () {
+      return this.choices.filter(function (choice) {
+        return choice.active === true;
+      });
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Store.prototype, "selectableChoices", {
+    /**
+     * Get selectable choices from store
+     */
+    get: function () {
+      return this.choices.filter(function (choice) {
+        return choice.disabled !== true;
+      });
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Store.prototype, "searchableChoices", {
+    /**
+     * Get choices that can be searched (excluding placeholders)
+     */
+    get: function () {
+      return this.selectableChoices.filter(function (choice) {
+        return choice.placeholder !== true;
+      });
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Store.prototype, "placeholderChoice", {
+    /**
+     * Get placeholder choice from store
+     */
+    get: function () {
+      return __spreadArray([], this.choices, true).reverse().find(function (choice) {
+        return choice.placeholder === true;
+      });
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Store.prototype, "groups", {
+    /**
+     * Get groups from store
+     */
+    get: function () {
+      return this.state.groups;
+    },
+    enumerable: false,
+    configurable: true
+  });
+  Object.defineProperty(Store.prototype, "activeGroups", {
+    /**
+     * Get active groups from store
+     */
+    get: function () {
+      var _a = this,
+          groups = _a.groups,
+          choices = _a.choices;
+
+      return groups.filter(function (group) {
+        var isActive = group.active === true && group.disabled === false;
+        var hasActiveOptions = choices.some(function (choice) {
+          return choice.active === true && choice.disabled === false;
+        });
+        return isActive && hasActiveOptions;
+      }, []);
+    },
+    enumerable: false,
+    configurable: true
+  });
+  /**
+   * Get loading state from store
+   */
+
+  Store.prototype.isLoading = function () {
+    return this.state.loading;
+  };
+  /**
+   * Get single choice by it's ID
+   */
+
+
+  Store.prototype.getChoiceById = function (id) {
+    return this.activeChoices.find(function (choice) {
+      return choice.id === parseInt(id, 10);
+    });
+  };
+  /**
+   * Get group by group id
+   */
+
+
+  Store.prototype.getGroupById = function (id) {
+    return this.groups.find(function (group) {
+      return group.id === id;
+    });
+  };
+
+  return Store;
+}();
+
+exports["default"] = Store;
+
+/***/ }),
+
+/***/ 686:
+/***/ (function(__unused_webpack_module, exports) {
+
+
+/**
+ * Helpers to create HTML elements used by Choices
+ * Can be overridden by providing `callbackOnCreateTemplates` option
+ */
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var templates = {
+  containerOuter: function (_a, dir, isSelectElement, isSelectOneElement, searchEnabled, passedElementType, labelId) {
+    var containerOuter = _a.classNames.containerOuter;
+    var div = Object.assign(document.createElement('div'), {
+      className: containerOuter
+    });
+    div.dataset.type = passedElementType;
+
+    if (dir) {
+      div.dir = dir;
+    }
+
+    if (isSelectOneElement) {
+      div.tabIndex = 0;
+    }
+
+    if (isSelectElement) {
+      div.setAttribute('role', searchEnabled ? 'combobox' : 'listbox');
+
+      if (searchEnabled) {
+        div.setAttribute('aria-autocomplete', 'list');
+      }
+    }
+
+    div.setAttribute('aria-haspopup', 'true');
+    div.setAttribute('aria-expanded', 'false');
+
+    if (labelId) {
+      div.setAttribute('aria-labeledby', labelId);
+    }
+
+    return div;
+  },
+  containerInner: function (_a) {
+    var containerInner = _a.classNames.containerInner;
+    return Object.assign(document.createElement('div'), {
+      className: containerInner
+    });
+  },
+  itemList: function (_a, isSelectOneElement) {
+    var _b = _a.classNames,
+        list = _b.list,
+        listSingle = _b.listSingle,
+        listItems = _b.listItems;
+    return Object.assign(document.createElement('div'), {
+      className: "".concat(list, " ").concat(isSelectOneElement ? listSingle : listItems)
+    });
+  },
+  placeholder: function (_a, value) {
+    var _b;
+
+    var allowHTML = _a.allowHTML,
+        placeholder = _a.classNames.placeholder;
+    return Object.assign(document.createElement('div'), (_b = {
+      className: placeholder
+    }, _b[allowHTML ? 'innerHTML' : 'innerText'] = value, _b));
+  },
+  item: function (_a, _b, removeItemButton) {
+    var _c, _d;
+
+    var allowHTML = _a.allowHTML,
+        _e = _a.classNames,
+        item = _e.item,
+        button = _e.button,
+        highlightedState = _e.highlightedState,
+        itemSelectable = _e.itemSelectable,
+        placeholder = _e.placeholder;
+    var id = _b.id,
+        value = _b.value,
+        label = _b.label,
+        customProperties = _b.customProperties,
+        active = _b.active,
+        disabled = _b.disabled,
+        highlighted = _b.highlighted,
+        isPlaceholder = _b.placeholder;
+    var div = Object.assign(document.createElement('div'), (_c = {
+      className: item
+    }, _c[allowHTML ? 'innerHTML' : 'innerText'] = label, _c));
+    Object.assign(div.dataset, {
+      item: '',
+      id: id,
+      value: value,
+      customProperties: customProperties
+    });
+
+    if (active) {
+      div.setAttribute('aria-selected', 'true');
+    }
+
+    if (disabled) {
+      div.setAttribute('aria-disabled', 'true');
+    }
+
+    if (isPlaceholder) {
+      div.classList.add(placeholder);
+    }
+
+    div.classList.add(highlighted ? highlightedState : itemSelectable);
+
+    if (removeItemButton) {
+      if (disabled) {
+        div.classList.remove(itemSelectable);
+      }
+
+      div.dataset.deletable = '';
+      /** @todo This MUST be localizable, not hardcoded! */
+
+      var REMOVE_ITEM_TEXT = 'Remove item';
+      var removeButton = Object.assign(document.createElement('button'), (_d = {
+        type: 'button',
+        className: button
+      }, _d[allowHTML ? 'innerHTML' : 'innerText'] = REMOVE_ITEM_TEXT, _d));
+      removeButton.setAttribute('aria-label', "".concat(REMOVE_ITEM_TEXT, ": '").concat(value, "'"));
+      removeButton.dataset.button = '';
+      div.appendChild(removeButton);
+    }
+
+    return div;
+  },
+  choiceList: function (_a, isSelectOneElement) {
+    var list = _a.classNames.list;
+    var div = Object.assign(document.createElement('div'), {
+      className: list
+    });
+
+    if (!isSelectOneElement) {
+      div.setAttribute('aria-multiselectable', 'true');
+    }
+
+    div.setAttribute('role', 'listbox');
+    return div;
+  },
+  choiceGroup: function (_a, _b) {
+    var _c;
+
+    var allowHTML = _a.allowHTML,
+        _d = _a.classNames,
+        group = _d.group,
+        groupHeading = _d.groupHeading,
+        itemDisabled = _d.itemDisabled;
+    var id = _b.id,
+        value = _b.value,
+        disabled = _b.disabled;
+    var div = Object.assign(document.createElement('div'), {
+      className: "".concat(group, " ").concat(disabled ? itemDisabled : '')
+    });
+    div.setAttribute('role', 'group');
+    Object.assign(div.dataset, {
+      group: '',
+      id: id,
+      value: value
+    });
+
+    if (disabled) {
+      div.setAttribute('aria-disabled', 'true');
+    }
+
+    div.appendChild(Object.assign(document.createElement('div'), (_c = {
+      className: groupHeading
+    }, _c[allowHTML ? 'innerHTML' : 'innerText'] = value, _c)));
+    return div;
+  },
+  choice: function (_a, _b, selectText) {
+    var _c;
+
+    var allowHTML = _a.allowHTML,
+        _d = _a.classNames,
+        item = _d.item,
+        itemChoice = _d.itemChoice,
+        itemSelectable = _d.itemSelectable,
+        selectedState = _d.selectedState,
+        itemDisabled = _d.itemDisabled,
+        placeholder = _d.placeholder;
+    var id = _b.id,
+        value = _b.value,
+        label = _b.label,
+        groupId = _b.groupId,
+        elementId = _b.elementId,
+        isDisabled = _b.disabled,
+        isSelected = _b.selected,
+        isPlaceholder = _b.placeholder;
+    var div = Object.assign(document.createElement('div'), (_c = {
+      id: elementId
+    }, _c[allowHTML ? 'innerHTML' : 'innerText'] = label, _c.className = "".concat(item, " ").concat(itemChoice), _c));
+
+    if (isSelected) {
+      div.classList.add(selectedState);
+    }
+
+    if (isPlaceholder) {
+      div.classList.add(placeholder);
+    }
+
+    div.setAttribute('role', groupId && groupId > 0 ? 'treeitem' : 'option');
+    Object.assign(div.dataset, {
+      choice: '',
+      id: id,
+      value: value,
+      selectText: selectText
+    });
+
+    if (isDisabled) {
+      div.classList.add(itemDisabled);
+      div.dataset.choiceDisabled = '';
+      div.setAttribute('aria-disabled', 'true');
+    } else {
+      div.classList.add(itemSelectable);
+      div.dataset.choiceSelectable = '';
+    }
+
+    return div;
+  },
+  input: function (_a, placeholderValue) {
+    var _b = _a.classNames,
+        input = _b.input,
+        inputCloned = _b.inputCloned;
+    var inp = Object.assign(document.createElement('input'), {
+      type: 'search',
+      name: 'search_terms',
+      className: "".concat(input, " ").concat(inputCloned),
+      autocomplete: 'off',
+      autocapitalize: 'off',
+      spellcheck: false
+    });
+    inp.setAttribute('role', 'textbox');
+    inp.setAttribute('aria-autocomplete', 'list');
+    inp.setAttribute('aria-label', placeholderValue);
+    return inp;
+  },
+  dropdown: function (_a) {
+    var _b = _a.classNames,
+        list = _b.list,
+        listDropdown = _b.listDropdown;
+    var div = document.createElement('div');
+    div.classList.add(list, listDropdown);
+    div.setAttribute('aria-expanded', 'false');
+    return div;
+  },
+  notice: function (_a, innerText, type) {
+    var _b;
+
+    var allowHTML = _a.allowHTML,
+        _c = _a.classNames,
+        item = _c.item,
+        itemChoice = _c.itemChoice,
+        noResults = _c.noResults,
+        noChoices = _c.noChoices;
+
+    if (type === void 0) {
+      type = '';
+    }
+
+    var classes = [item, itemChoice];
+
+    if (type === 'no-choices') {
+      classes.push(noChoices);
+    } else if (type === 'no-results') {
+      classes.push(noResults);
+    }
+
+    return Object.assign(document.createElement('div'), (_b = {}, _b[allowHTML ? 'innerHTML' : 'innerText'] = innerText, _b.className = classes.join(' '), _b));
+  },
+  option: function (_a) {
+    var label = _a.label,
+        value = _a.value,
+        customProperties = _a.customProperties,
+        active = _a.active,
+        disabled = _a.disabled;
+    var opt = new Option(label, value, false, active);
+
+    if (customProperties) {
+      opt.dataset.customProperties = "".concat(customProperties);
+    }
+
+    opt.disabled = !!disabled;
+    return opt;
+  }
+};
+exports["default"] = templates;
+
+/***/ }),
+
+/***/ 996:
+/***/ (function(module) {
+
 
 
 var isMergeableObject = function isMergeableObject(value) {
@@ -616,17 +6004,19 @@ function getKeys(target) {
 	return Object.keys(target).concat(getEnumerableOwnPropertySymbols(target))
 }
 
-// Protects from prototype poisoning and unexpected merging up the prototype chain.
-function propertyIsUnsafe(target, key) {
+function propertyIsOnObject(object, property) {
 	try {
-		return (key in target) // Properties are safe to merge if they don't exist in the target yet,
-			&& !(Object.hasOwnProperty.call(target, key) // unsafe if they exist up the prototype chain,
-				&& Object.propertyIsEnumerable.call(target, key)) // and also unsafe if they're nonenumerable.
-	} catch (unused) {
-		// Counterintuitively, it's safe to merge any property on a target that causes the `in` operator to throw.
-		// This happens when trying to copy an object in the source over a plain string in the target.
+		return property in object
+	} catch(_) {
 		return false
 	}
+}
+
+// Protects from prototype poisoning and unexpected merging up the prototype chain.
+function propertyIsUnsafe(target, key) {
+	return propertyIsOnObject(target, key) // Properties are safe to merge if they don't exist in the target yet,
+		&& !(Object.hasOwnProperty.call(target, key) // unsafe if they exist up the prototype chain,
+			&& Object.propertyIsEnumerable.call(target, key)) // and also unsafe if they're nonenumerable.
 }
 
 function mergeObject(target, source, options) {
@@ -641,10 +6031,10 @@ function mergeObject(target, source, options) {
 			return
 		}
 
-		if (!options.isMergeableObject(source[key]) || !target[key]) {
-			destination[key] = cloneUnlessOtherwiseSpecified(source[key], options);
-		} else {
+		if (propertyIsOnObject(target, key) && options.isMergeableObject(source[key])) {
 			destination[key] = getMergeFunction(key, options)(target[key], source[key], options);
+		} else {
+			destination[key] = cloneUnlessOtherwiseSpecified(source[key], options);
 		}
 	});
 	return destination
@@ -687,153 +6077,1872 @@ module.exports = deepmerge_1;
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var _ponyfill_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* global window */
+/***/ 221:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __nested_webpack_require_136676__) {
 
-
-var root;
-
-if (typeof self !== 'undefined') {
-  root = self;
-} else if (typeof window !== 'undefined') {
-  root = window;
-} else if (typeof global !== 'undefined') {
-  root = global;
-} else if (true) {
-  root = module;
-} else {}
-
-var result = Object(_ponyfill_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(root);
-/* harmony default export */ __webpack_exports__["a"] = (result);
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(5), __webpack_require__(6)(module)))
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*!
- * Fuse.js v3.4.5 - Lightweight fuzzy-search (http://fusejs.io)
- * 
- * Copyright (c) 2012-2017 Kirollos Risk (http://kiro.me)
+__nested_webpack_require_136676__.r(__webpack_exports__);
+/* harmony export */ __nested_webpack_require_136676__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ Fuse; }
+/* harmony export */ });
+/**
+ * Fuse.js v6.5.3 - Lightweight fuzzy-search (http://fusejs.io)
+ *
+ * Copyright (c) 2021 Kiro Risk (http://kiro.me)
  * All Rights Reserved. Apache Software License 2.0
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
  */
-!function(e,t){ true?module.exports=t():undefined}(this,function(){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=1)}([function(e,t){e.exports=function(e){return Array.isArray?Array.isArray(e):"[object Array]"===Object.prototype.toString.call(e)}},function(e,t,n){function r(e){return(r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function o(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}var i=n(2),a=n(8),s=n(0),c=function(){function e(t,n){var r=n.location,o=void 0===r?0:r,i=n.distance,s=void 0===i?100:i,c=n.threshold,h=void 0===c?.6:c,l=n.maxPatternLength,u=void 0===l?32:l,f=n.caseSensitive,d=void 0!==f&&f,v=n.tokenSeparator,p=void 0===v?/ +/g:v,g=n.findAllMatches,y=void 0!==g&&g,m=n.minMatchCharLength,k=void 0===m?1:m,S=n.id,x=void 0===S?null:S,b=n.keys,M=void 0===b?[]:b,_=n.shouldSort,L=void 0===_||_,w=n.getFn,A=void 0===w?a:w,C=n.sortFn,I=void 0===C?function(e,t){return e.score-t.score}:C,O=n.tokenize,j=void 0!==O&&O,P=n.matchAllTokens,F=void 0!==P&&P,T=n.includeMatches,z=void 0!==T&&T,E=n.includeScore,K=void 0!==E&&E,$=n.verbose,J=void 0!==$&&$;!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e),this.options={location:o,distance:s,threshold:h,maxPatternLength:u,isCaseSensitive:d,tokenSeparator:p,findAllMatches:y,minMatchCharLength:k,id:x,keys:M,includeMatches:z,includeScore:K,shouldSort:L,getFn:A,sortFn:I,verbose:J,tokenize:j,matchAllTokens:F},this.setCollection(t)}var t,n,c;return t=e,(n=[{key:"setCollection",value:function(e){return this.list=e,e}},{key:"search",value:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{limit:!1};this._log('---------\nSearch pattern: "'.concat(e,'"'));var n=this._prepareSearchers(e),r=n.tokenSearchers,o=n.fullSearcher,i=this._search(r,o),a=i.weights,s=i.results;return this._computeScore(a,s),this.options.shouldSort&&this._sort(s),t.limit&&"number"==typeof t.limit&&(s=s.slice(0,t.limit)),this._format(s)}},{key:"_prepareSearchers",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",t=[];if(this.options.tokenize)for(var n=e.split(this.options.tokenSeparator),r=0,o=n.length;r<o;r+=1)t.push(new i(n[r],this.options));return{tokenSearchers:t,fullSearcher:new i(e,this.options)}}},{key:"_search",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],t=arguments.length>1?arguments[1]:void 0,n=this.list,r={},o=[];if("string"==typeof n[0]){for(var i=0,a=n.length;i<a;i+=1)this._analyze({key:"",value:n[i],record:i,index:i},{resultMap:r,results:o,tokenSearchers:e,fullSearcher:t});return{weights:null,results:o}}for(var s={},c=0,h=n.length;c<h;c+=1)for(var l=n[c],u=0,f=this.options.keys.length;u<f;u+=1){var d=this.options.keys[u];if("string"!=typeof d){if(s[d.name]={weight:1-d.weight||1},d.weight<=0||d.weight>1)throw new Error("Key weight has to be > 0 and <= 1");d=d.name}else s[d]={weight:1};this._analyze({key:d,value:this.options.getFn(l,d),record:l,index:c},{resultMap:r,results:o,tokenSearchers:e,fullSearcher:t})}return{weights:s,results:o}}},{key:"_analyze",value:function(e,t){var n=e.key,r=e.arrayIndex,o=void 0===r?-1:r,i=e.value,a=e.record,c=e.index,h=t.tokenSearchers,l=void 0===h?[]:h,u=t.fullSearcher,f=void 0===u?[]:u,d=t.resultMap,v=void 0===d?{}:d,p=t.results,g=void 0===p?[]:p;if(null!=i){var y=!1,m=-1,k=0;if("string"==typeof i){this._log("\nKey: ".concat(""===n?"-":n));var S=f.search(i);if(this._log('Full text: "'.concat(i,'", score: ').concat(S.score)),this.options.tokenize){for(var x=i.split(this.options.tokenSeparator),b=[],M=0;M<l.length;M+=1){var _=l[M];this._log('\nPattern: "'.concat(_.pattern,'"'));for(var L=!1,w=0;w<x.length;w+=1){var A=x[w],C=_.search(A),I={};C.isMatch?(I[A]=C.score,y=!0,L=!0,b.push(C.score)):(I[A]=1,this.options.matchAllTokens||b.push(1)),this._log('Token: "'.concat(A,'", score: ').concat(I[A]))}L&&(k+=1)}m=b[0];for(var O=b.length,j=1;j<O;j+=1)m+=b[j];m/=O,this._log("Token score average:",m)}var P=S.score;m>-1&&(P=(P+m)/2),this._log("Score average:",P);var F=!this.options.tokenize||!this.options.matchAllTokens||k>=l.length;if(this._log("\nCheck Matches: ".concat(F)),(y||S.isMatch)&&F){var T=v[c];T?T.output.push({key:n,arrayIndex:o,value:i,score:P,matchedIndices:S.matchedIndices}):(v[c]={item:a,output:[{key:n,arrayIndex:o,value:i,score:P,matchedIndices:S.matchedIndices}]},g.push(v[c]))}}else if(s(i))for(var z=0,E=i.length;z<E;z+=1)this._analyze({key:n,arrayIndex:z,value:i[z],record:a,index:c},{resultMap:v,results:g,tokenSearchers:l,fullSearcher:f})}}},{key:"_computeScore",value:function(e,t){this._log("\n\nComputing score:\n");for(var n=0,r=t.length;n<r;n+=1){for(var o=t[n].output,i=o.length,a=1,s=1,c=0;c<i;c+=1){var h=e?e[o[c].key].weight:1,l=(1===h?o[c].score:o[c].score||.001)*h;1!==h?s=Math.min(s,l):(o[c].nScore=l,a*=l)}t[n].score=1===s?a:s,this._log(t[n])}}},{key:"_sort",value:function(e){this._log("\n\nSorting...."),e.sort(this.options.sortFn)}},{key:"_format",value:function(e){var t=[];if(this.options.verbose){var n=[];this._log("\n\nOutput:\n\n",JSON.stringify(e,function(e,t){if("object"===r(t)&&null!==t){if(-1!==n.indexOf(t))return;n.push(t)}return t})),n=null}var o=[];this.options.includeMatches&&o.push(function(e,t){var n=e.output;t.matches=[];for(var r=0,o=n.length;r<o;r+=1){var i=n[r];if(0!==i.matchedIndices.length){var a={indices:i.matchedIndices,value:i.value};i.key&&(a.key=i.key),i.hasOwnProperty("arrayIndex")&&i.arrayIndex>-1&&(a.arrayIndex=i.arrayIndex),t.matches.push(a)}}}),this.options.includeScore&&o.push(function(e,t){t.score=e.score});for(var i=0,a=e.length;i<a;i+=1){var s=e[i];if(this.options.id&&(s.item=this.options.getFn(s.item,this.options.id)[0]),o.length){for(var c={item:s.item},h=0,l=o.length;h<l;h+=1)o[h](s,c);t.push(c)}else t.push(s.item)}return t}},{key:"_log",value:function(){var e;this.options.verbose&&(e=console).log.apply(e,arguments)}}])&&o(t.prototype,n),c&&o(t,c),e}();e.exports=c},function(e,t,n){function r(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}var o=n(3),i=n(4),a=n(7),s=function(){function e(t,n){var r=n.location,o=void 0===r?0:r,i=n.distance,s=void 0===i?100:i,c=n.threshold,h=void 0===c?.6:c,l=n.maxPatternLength,u=void 0===l?32:l,f=n.isCaseSensitive,d=void 0!==f&&f,v=n.tokenSeparator,p=void 0===v?/ +/g:v,g=n.findAllMatches,y=void 0!==g&&g,m=n.minMatchCharLength,k=void 0===m?1:m;!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e),this.options={location:o,distance:s,threshold:h,maxPatternLength:u,isCaseSensitive:d,tokenSeparator:p,findAllMatches:y,minMatchCharLength:k},this.pattern=this.options.isCaseSensitive?t:t.toLowerCase(),this.pattern.length<=u&&(this.patternAlphabet=a(this.pattern))}var t,n,s;return t=e,(n=[{key:"search",value:function(e){if(this.options.isCaseSensitive||(e=e.toLowerCase()),this.pattern===e)return{isMatch:!0,score:0,matchedIndices:[[0,e.length-1]]};var t=this.options,n=t.maxPatternLength,r=t.tokenSeparator;if(this.pattern.length>n)return o(e,this.pattern,r);var a=this.options,s=a.location,c=a.distance,h=a.threshold,l=a.findAllMatches,u=a.minMatchCharLength;return i(e,this.pattern,this.patternAlphabet,{location:s,distance:c,threshold:h,findAllMatches:l,minMatchCharLength:u})}}])&&r(t.prototype,n),s&&r(t,s),e}();e.exports=s},function(e,t){var n=/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g;e.exports=function(e,t){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:/ +/g,o=new RegExp(t.replace(n,"\\$&").replace(r,"|")),i=e.match(o),a=!!i,s=[];if(a)for(var c=0,h=i.length;c<h;c+=1){var l=i[c];s.push([e.indexOf(l),l.length-1])}return{score:a?.5:1,isMatch:a,matchedIndices:s}}},function(e,t,n){var r=n(5),o=n(6);e.exports=function(e,t,n,i){for(var a=i.location,s=void 0===a?0:a,c=i.distance,h=void 0===c?100:c,l=i.threshold,u=void 0===l?.6:l,f=i.findAllMatches,d=void 0!==f&&f,v=i.minMatchCharLength,p=void 0===v?1:v,g=s,y=e.length,m=u,k=e.indexOf(t,g),S=t.length,x=[],b=0;b<y;b+=1)x[b]=0;if(-1!==k){var M=r(t,{errors:0,currentLocation:k,expectedLocation:g,distance:h});if(m=Math.min(M,m),-1!==(k=e.lastIndexOf(t,g+S))){var _=r(t,{errors:0,currentLocation:k,expectedLocation:g,distance:h});m=Math.min(_,m)}}k=-1;for(var L=[],w=1,A=S+y,C=1<<S-1,I=0;I<S;I+=1){for(var O=0,j=A;O<j;){r(t,{errors:I,currentLocation:g+j,expectedLocation:g,distance:h})<=m?O=j:A=j,j=Math.floor((A-O)/2+O)}A=j;var P=Math.max(1,g-j+1),F=d?y:Math.min(g+j,y)+S,T=Array(F+2);T[F+1]=(1<<I)-1;for(var z=F;z>=P;z-=1){var E=z-1,K=n[e.charAt(E)];if(K&&(x[E]=1),T[z]=(T[z+1]<<1|1)&K,0!==I&&(T[z]|=(L[z+1]|L[z])<<1|1|L[z+1]),T[z]&C&&(w=r(t,{errors:I,currentLocation:E,expectedLocation:g,distance:h}))<=m){if(m=w,(k=E)<=g)break;P=Math.max(1,2*g-k)}}if(r(t,{errors:I+1,currentLocation:g,expectedLocation:g,distance:h})>m)break;L=T}return{isMatch:k>=0,score:0===w?.001:w,matchedIndices:o(x,p)}}},function(e,t){e.exports=function(e,t){var n=t.errors,r=void 0===n?0:n,o=t.currentLocation,i=void 0===o?0:o,a=t.expectedLocation,s=void 0===a?0:a,c=t.distance,h=void 0===c?100:c,l=r/e.length,u=Math.abs(s-i);return h?l+u/h:u?1:l}},function(e,t){e.exports=function(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:1,n=[],r=-1,o=-1,i=0,a=e.length;i<a;i+=1){var s=e[i];s&&-1===r?r=i:s||-1===r||((o=i-1)-r+1>=t&&n.push([r,o]),r=-1)}return e[i-1]&&i-r>=t&&n.push([r,i-1]),n}},function(e,t){e.exports=function(e){for(var t={},n=e.length,r=0;r<n;r+=1)t[e.charAt(r)]=0;for(var o=0;o<n;o+=1)t[e.charAt(o)]|=1<<n-o-1;return t}},function(e,t,n){var r=n(0);e.exports=function(e,t){return function e(t,n,o){if(n){var i=n.indexOf("."),a=n,s=null;-1!==i&&(a=n.slice(0,i),s=n.slice(i+1));var c=t[a];if(null!=c)if(s||"string"!=typeof c&&"number"!=typeof c)if(r(c))for(var h=0,l=c.length;h<l;h+=1)e(c[h],s,o);else s&&e(c,s,o);else o.push(c.toString())}else o.push(t);return o}(e,t,[])}}])});
 
-/***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return symbolObservablePonyfill; });
-function symbolObservablePonyfill(root) {
-	var result;
-	var Symbol = root.Symbol;
-
-	if (typeof Symbol === 'function') {
-		if (Symbol.observable) {
-			result = Symbol.observable;
-		} else {
-			result = Symbol('observable');
-			Symbol.observable = result;
-		}
-	} else {
-		result = '@@observable';
-	}
-
-	return result;
-};
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(7);
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
+function isArray(value) {
+  return !Array.isArray
+    ? getTag(value) === '[object Array]'
+    : Array.isArray(value)
 }
 
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
+// Adapted from: https://github.com/lodash/lodash/blob/master/.internal/baseToString.js
+const INFINITY = 1 / 0;
+function baseToString(value) {
+  // Exit early for strings to avoid a performance hit in some environments.
+  if (typeof value == 'string') {
+    return value
+  }
+  let result = value + '';
+  return result == '0' && 1 / value == -INFINITY ? '-0' : result
+}
 
-module.exports = g;
+function toString(value) {
+  return value == null ? '' : baseToString(value)
+}
 
+function isString(value) {
+  return typeof value === 'string'
+}
 
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
+function isNumber(value) {
+  return typeof value === 'number'
+}
 
-module.exports = function(originalModule) {
-	if (!originalModule.webpackPolyfill) {
-		var module = Object.create(originalModule);
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		Object.defineProperty(module, "exports", {
-			enumerable: true
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
+// Adapted from: https://github.com/lodash/lodash/blob/master/isBoolean.js
+function isBoolean(value) {
+  return (
+    value === true ||
+    value === false ||
+    (isObjectLike(value) && getTag(value) == '[object Boolean]')
+  )
+}
+
+function isObject(value) {
+  return typeof value === 'object'
+}
+
+// Checks if `value` is object-like.
+function isObjectLike(value) {
+  return isObject(value) && value !== null
+}
+
+function isDefined(value) {
+  return value !== undefined && value !== null
+}
+
+function isBlank(value) {
+  return !value.trim().length
+}
+
+// Gets the `toStringTag` of `value`.
+// Adapted from: https://github.com/lodash/lodash/blob/master/.internal/getTag.js
+function getTag(value) {
+  return value == null
+    ? value === undefined
+      ? '[object Undefined]'
+      : '[object Null]'
+    : Object.prototype.toString.call(value)
+}
+
+const EXTENDED_SEARCH_UNAVAILABLE = 'Extended search is not available';
+
+const INCORRECT_INDEX_TYPE = "Incorrect 'index' type";
+
+const LOGICAL_SEARCH_INVALID_QUERY_FOR_KEY = (key) =>
+  `Invalid value for key ${key}`;
+
+const PATTERN_LENGTH_TOO_LARGE = (max) =>
+  `Pattern length exceeds max of ${max}.`;
+
+const MISSING_KEY_PROPERTY = (name) => `Missing ${name} property in key`;
+
+const INVALID_KEY_WEIGHT_VALUE = (key) =>
+  `Property 'weight' in key '${key}' must be a positive integer`;
+
+const hasOwn = Object.prototype.hasOwnProperty;
+
+class KeyStore {
+  constructor(keys) {
+    this._keys = [];
+    this._keyMap = {};
+
+    let totalWeight = 0;
+
+    keys.forEach((key) => {
+      let obj = createKey(key);
+
+      totalWeight += obj.weight;
+
+      this._keys.push(obj);
+      this._keyMap[obj.id] = obj;
+
+      totalWeight += obj.weight;
+    });
+
+    // Normalize weights so that their sum is equal to 1
+    this._keys.forEach((key) => {
+      key.weight /= totalWeight;
+    });
+  }
+  get(keyId) {
+    return this._keyMap[keyId]
+  }
+  keys() {
+    return this._keys
+  }
+  toJSON() {
+    return JSON.stringify(this._keys)
+  }
+}
+
+function createKey(key) {
+  let path = null;
+  let id = null;
+  let src = null;
+  let weight = 1;
+
+  if (isString(key) || isArray(key)) {
+    src = key;
+    path = createKeyPath(key);
+    id = createKeyId(key);
+  } else {
+    if (!hasOwn.call(key, 'name')) {
+      throw new Error(MISSING_KEY_PROPERTY('name'))
+    }
+
+    const name = key.name;
+    src = name;
+
+    if (hasOwn.call(key, 'weight')) {
+      weight = key.weight;
+
+      if (weight <= 0) {
+        throw new Error(INVALID_KEY_WEIGHT_VALUE(name))
+      }
+    }
+
+    path = createKeyPath(name);
+    id = createKeyId(name);
+  }
+
+  return { path, id, weight, src }
+}
+
+function createKeyPath(key) {
+  return isArray(key) ? key : key.split('.')
+}
+
+function createKeyId(key) {
+  return isArray(key) ? key.join('.') : key
+}
+
+function get(obj, path) {
+  let list = [];
+  let arr = false;
+
+  const deepGet = (obj, path, index) => {
+    if (!isDefined(obj)) {
+      return
+    }
+    if (!path[index]) {
+      // If there's no path left, we've arrived at the object we care about.
+      list.push(obj);
+    } else {
+      let key = path[index];
+
+      const value = obj[key];
+
+      if (!isDefined(value)) {
+        return
+      }
+
+      // If we're at the last value in the path, and if it's a string/number/bool,
+      // add it to the list
+      if (
+        index === path.length - 1 &&
+        (isString(value) || isNumber(value) || isBoolean(value))
+      ) {
+        list.push(toString(value));
+      } else if (isArray(value)) {
+        arr = true;
+        // Search each item in the array.
+        for (let i = 0, len = value.length; i < len; i += 1) {
+          deepGet(value[i], path, index + 1);
+        }
+      } else if (path.length) {
+        // An object. Recurse further.
+        deepGet(value, path, index + 1);
+      }
+    }
+  };
+
+  // Backwards compatibility (since path used to be a string)
+  deepGet(obj, isString(path) ? path.split('.') : path, 0);
+
+  return arr ? list : list[0]
+}
+
+const MatchOptions = {
+  // Whether the matches should be included in the result set. When `true`, each record in the result
+  // set will include the indices of the matched characters.
+  // These can consequently be used for highlighting purposes.
+  includeMatches: false,
+  // When `true`, the matching function will continue to the end of a search pattern even if
+  // a perfect match has already been located in the string.
+  findAllMatches: false,
+  // Minimum number of characters that must be matched before a result is considered a match
+  minMatchCharLength: 1
 };
 
+const BasicOptions = {
+  // When `true`, the algorithm continues searching to the end of the input even if a perfect
+  // match is found before the end of the same input.
+  isCaseSensitive: false,
+  // When true, the matching function will continue to the end of a search pattern even if
+  includeScore: false,
+  // List of properties that will be searched. This also supports nested properties.
+  keys: [],
+  // Whether to sort the result list, by score
+  shouldSort: true,
+  // Default sort function: sort by ascending score, ascending index
+  sortFn: (a, b) =>
+    a.score === b.score ? (a.idx < b.idx ? -1 : 1) : a.score < b.score ? -1 : 1
+};
+
+const FuzzyOptions = {
+  // Approximately where in the text is the pattern expected to be found?
+  location: 0,
+  // At what point does the match algorithm give up. A threshold of '0.0' requires a perfect match
+  // (of both letters and location), a threshold of '1.0' would match anything.
+  threshold: 0.6,
+  // Determines how close the match must be to the fuzzy location (specified above).
+  // An exact letter match which is 'distance' characters away from the fuzzy location
+  // would score as a complete mismatch. A distance of '0' requires the match be at
+  // the exact location specified, a threshold of '1000' would require a perfect match
+  // to be within 800 characters of the fuzzy location to be found using a 0.8 threshold.
+  distance: 100
+};
+
+const AdvancedOptions = {
+  // When `true`, it enables the use of unix-like search commands
+  useExtendedSearch: false,
+  // The get function to use when fetching an object's properties.
+  // The default will search nested paths *ie foo.bar.baz*
+  getFn: get,
+  // When `true`, search will ignore `location` and `distance`, so it won't matter
+  // where in the string the pattern appears.
+  // More info: https://fusejs.io/concepts/scoring-theory.html#fuzziness-score
+  ignoreLocation: false,
+  // When `true`, the calculation for the relevance score (used for sorting) will
+  // ignore the field-length norm.
+  // More info: https://fusejs.io/concepts/scoring-theory.html#field-length-norm
+  ignoreFieldNorm: false,
+  // The weight to determine how much field length norm effects scoring.
+  fieldNormWeight: 1
+};
+
+var Config = {
+  ...BasicOptions,
+  ...MatchOptions,
+  ...FuzzyOptions,
+  ...AdvancedOptions
+};
+
+const SPACE = /[^ ]+/g;
+
+// Field-length norm: the shorter the field, the higher the weight.
+// Set to 3 decimals to reduce index size.
+function norm(weight = 1, mantissa = 3) {
+  const cache = new Map();
+  const m = Math.pow(10, mantissa);
+
+  return {
+    get(value) {
+      const numTokens = value.match(SPACE).length;
+
+      if (cache.has(numTokens)) {
+        return cache.get(numTokens)
+      }
+
+      // Default function is 1/sqrt(x), weight makes that variable
+      const norm = 1 / Math.pow(numTokens, 0.5 * weight);
+
+      // In place of `toFixed(mantissa)`, for faster computation
+      const n = parseFloat(Math.round(norm * m) / m);
+
+      cache.set(numTokens, n);
+
+      return n
+    },
+    clear() {
+      cache.clear();
+    }
+  }
+}
+
+class FuseIndex {
+  constructor({
+    getFn = Config.getFn,
+    fieldNormWeight = Config.fieldNormWeight
+  } = {}) {
+    this.norm = norm(fieldNormWeight, 3);
+    this.getFn = getFn;
+    this.isCreated = false;
+
+    this.setIndexRecords();
+  }
+  setSources(docs = []) {
+    this.docs = docs;
+  }
+  setIndexRecords(records = []) {
+    this.records = records;
+  }
+  setKeys(keys = []) {
+    this.keys = keys;
+    this._keysMap = {};
+    keys.forEach((key, idx) => {
+      this._keysMap[key.id] = idx;
+    });
+  }
+  create() {
+    if (this.isCreated || !this.docs.length) {
+      return
+    }
+
+    this.isCreated = true;
+
+    // List is Array<String>
+    if (isString(this.docs[0])) {
+      this.docs.forEach((doc, docIndex) => {
+        this._addString(doc, docIndex);
+      });
+    } else {
+      // List is Array<Object>
+      this.docs.forEach((doc, docIndex) => {
+        this._addObject(doc, docIndex);
+      });
+    }
+
+    this.norm.clear();
+  }
+  // Adds a doc to the end of the index
+  add(doc) {
+    const idx = this.size();
+
+    if (isString(doc)) {
+      this._addString(doc, idx);
+    } else {
+      this._addObject(doc, idx);
+    }
+  }
+  // Removes the doc at the specified index of the index
+  removeAt(idx) {
+    this.records.splice(idx, 1);
+
+    // Change ref index of every subsquent doc
+    for (let i = idx, len = this.size(); i < len; i += 1) {
+      this.records[i].i -= 1;
+    }
+  }
+  getValueForItemAtKeyId(item, keyId) {
+    return item[this._keysMap[keyId]]
+  }
+  size() {
+    return this.records.length
+  }
+  _addString(doc, docIndex) {
+    if (!isDefined(doc) || isBlank(doc)) {
+      return
+    }
+
+    let record = {
+      v: doc,
+      i: docIndex,
+      n: this.norm.get(doc)
+    };
+
+    this.records.push(record);
+  }
+  _addObject(doc, docIndex) {
+    let record = { i: docIndex, $: {} };
+
+    // Iterate over every key (i.e, path), and fetch the value at that key
+    this.keys.forEach((key, keyIndex) => {
+      // console.log(key)
+      let value = this.getFn(doc, key.path);
+
+      if (!isDefined(value)) {
+        return
+      }
+
+      if (isArray(value)) {
+        let subRecords = [];
+        const stack = [{ nestedArrIndex: -1, value }];
+
+        while (stack.length) {
+          const { nestedArrIndex, value } = stack.pop();
+
+          if (!isDefined(value)) {
+            continue
+          }
+
+          if (isString(value) && !isBlank(value)) {
+            let subRecord = {
+              v: value,
+              i: nestedArrIndex,
+              n: this.norm.get(value)
+            };
+
+            subRecords.push(subRecord);
+          } else if (isArray(value)) {
+            value.forEach((item, k) => {
+              stack.push({
+                nestedArrIndex: k,
+                value: item
+              });
+            });
+          } else ;
+        }
+        record.$[keyIndex] = subRecords;
+      } else if (!isBlank(value)) {
+        let subRecord = {
+          v: value,
+          n: this.norm.get(value)
+        };
+
+        record.$[keyIndex] = subRecord;
+      }
+    });
+
+    this.records.push(record);
+  }
+  toJSON() {
+    return {
+      keys: this.keys,
+      records: this.records
+    }
+  }
+}
+
+function createIndex(
+  keys,
+  docs,
+  { getFn = Config.getFn, fieldNormWeight = Config.fieldNormWeight } = {}
+) {
+  const myIndex = new FuseIndex({ getFn, fieldNormWeight });
+  myIndex.setKeys(keys.map(createKey));
+  myIndex.setSources(docs);
+  myIndex.create();
+  return myIndex
+}
+
+function parseIndex(
+  data,
+  { getFn = Config.getFn, fieldNormWeight = Config.fieldNormWeight } = {}
+) {
+  const { keys, records } = data;
+  const myIndex = new FuseIndex({ getFn, fieldNormWeight });
+  myIndex.setKeys(keys);
+  myIndex.setIndexRecords(records);
+  return myIndex
+}
+
+function computeScore$1(
+  pattern,
+  {
+    errors = 0,
+    currentLocation = 0,
+    expectedLocation = 0,
+    distance = Config.distance,
+    ignoreLocation = Config.ignoreLocation
+  } = {}
+) {
+  const accuracy = errors / pattern.length;
+
+  if (ignoreLocation) {
+    return accuracy
+  }
+
+  const proximity = Math.abs(expectedLocation - currentLocation);
+
+  if (!distance) {
+    // Dodge divide by zero error.
+    return proximity ? 1.0 : accuracy
+  }
+
+  return accuracy + proximity / distance
+}
+
+function convertMaskToIndices(
+  matchmask = [],
+  minMatchCharLength = Config.minMatchCharLength
+) {
+  let indices = [];
+  let start = -1;
+  let end = -1;
+  let i = 0;
+
+  for (let len = matchmask.length; i < len; i += 1) {
+    let match = matchmask[i];
+    if (match && start === -1) {
+      start = i;
+    } else if (!match && start !== -1) {
+      end = i - 1;
+      if (end - start + 1 >= minMatchCharLength) {
+        indices.push([start, end]);
+      }
+      start = -1;
+    }
+  }
+
+  // (i-1 - start) + 1 => i - start
+  if (matchmask[i - 1] && i - start >= minMatchCharLength) {
+    indices.push([start, i - 1]);
+  }
+
+  return indices
+}
+
+// Machine word size
+const MAX_BITS = 32;
+
+function search(
+  text,
+  pattern,
+  patternAlphabet,
+  {
+    location = Config.location,
+    distance = Config.distance,
+    threshold = Config.threshold,
+    findAllMatches = Config.findAllMatches,
+    minMatchCharLength = Config.minMatchCharLength,
+    includeMatches = Config.includeMatches,
+    ignoreLocation = Config.ignoreLocation
+  } = {}
+) {
+  if (pattern.length > MAX_BITS) {
+    throw new Error(PATTERN_LENGTH_TOO_LARGE(MAX_BITS))
+  }
+
+  const patternLen = pattern.length;
+  // Set starting location at beginning text and initialize the alphabet.
+  const textLen = text.length;
+  // Handle the case when location > text.length
+  const expectedLocation = Math.max(0, Math.min(location, textLen));
+  // Highest score beyond which we give up.
+  let currentThreshold = threshold;
+  // Is there a nearby exact match? (speedup)
+  let bestLocation = expectedLocation;
+
+  // Performance: only computer matches when the minMatchCharLength > 1
+  // OR if `includeMatches` is true.
+  const computeMatches = minMatchCharLength > 1 || includeMatches;
+  // A mask of the matches, used for building the indices
+  const matchMask = computeMatches ? Array(textLen) : [];
+
+  let index;
+
+  // Get all exact matches, here for speed up
+  while ((index = text.indexOf(pattern, bestLocation)) > -1) {
+    let score = computeScore$1(pattern, {
+      currentLocation: index,
+      expectedLocation,
+      distance,
+      ignoreLocation
+    });
+
+    currentThreshold = Math.min(score, currentThreshold);
+    bestLocation = index + patternLen;
+
+    if (computeMatches) {
+      let i = 0;
+      while (i < patternLen) {
+        matchMask[index + i] = 1;
+        i += 1;
+      }
+    }
+  }
+
+  // Reset the best location
+  bestLocation = -1;
+
+  let lastBitArr = [];
+  let finalScore = 1;
+  let binMax = patternLen + textLen;
+
+  const mask = 1 << (patternLen - 1);
+
+  for (let i = 0; i < patternLen; i += 1) {
+    // Scan for the best match; each iteration allows for one more error.
+    // Run a binary search to determine how far from the match location we can stray
+    // at this error level.
+    let binMin = 0;
+    let binMid = binMax;
+
+    while (binMin < binMid) {
+      const score = computeScore$1(pattern, {
+        errors: i,
+        currentLocation: expectedLocation + binMid,
+        expectedLocation,
+        distance,
+        ignoreLocation
+      });
+
+      if (score <= currentThreshold) {
+        binMin = binMid;
+      } else {
+        binMax = binMid;
+      }
+
+      binMid = Math.floor((binMax - binMin) / 2 + binMin);
+    }
+
+    // Use the result from this iteration as the maximum for the next.
+    binMax = binMid;
+
+    let start = Math.max(1, expectedLocation - binMid + 1);
+    let finish = findAllMatches
+      ? textLen
+      : Math.min(expectedLocation + binMid, textLen) + patternLen;
+
+    // Initialize the bit array
+    let bitArr = Array(finish + 2);
+
+    bitArr[finish + 1] = (1 << i) - 1;
+
+    for (let j = finish; j >= start; j -= 1) {
+      let currentLocation = j - 1;
+      let charMatch = patternAlphabet[text.charAt(currentLocation)];
+
+      if (computeMatches) {
+        // Speed up: quick bool to int conversion (i.e, `charMatch ? 1 : 0`)
+        matchMask[currentLocation] = +!!charMatch;
+      }
+
+      // First pass: exact match
+      bitArr[j] = ((bitArr[j + 1] << 1) | 1) & charMatch;
+
+      // Subsequent passes: fuzzy match
+      if (i) {
+        bitArr[j] |=
+          ((lastBitArr[j + 1] | lastBitArr[j]) << 1) | 1 | lastBitArr[j + 1];
+      }
+
+      if (bitArr[j] & mask) {
+        finalScore = computeScore$1(pattern, {
+          errors: i,
+          currentLocation,
+          expectedLocation,
+          distance,
+          ignoreLocation
+        });
+
+        // This match will almost certainly be better than any existing match.
+        // But check anyway.
+        if (finalScore <= currentThreshold) {
+          // Indeed it is
+          currentThreshold = finalScore;
+          bestLocation = currentLocation;
+
+          // Already passed `loc`, downhill from here on in.
+          if (bestLocation <= expectedLocation) {
+            break
+          }
+
+          // When passing `bestLocation`, don't exceed our current distance from `expectedLocation`.
+          start = Math.max(1, 2 * expectedLocation - bestLocation);
+        }
+      }
+    }
+
+    // No hope for a (better) match at greater error levels.
+    const score = computeScore$1(pattern, {
+      errors: i + 1,
+      currentLocation: expectedLocation,
+      expectedLocation,
+      distance,
+      ignoreLocation
+    });
+
+    if (score > currentThreshold) {
+      break
+    }
+
+    lastBitArr = bitArr;
+  }
+
+  const result = {
+    isMatch: bestLocation >= 0,
+    // Count exact matches (those with a score of 0) to be "almost" exact
+    score: Math.max(0.001, finalScore)
+  };
+
+  if (computeMatches) {
+    const indices = convertMaskToIndices(matchMask, minMatchCharLength);
+    if (!indices.length) {
+      result.isMatch = false;
+    } else if (includeMatches) {
+      result.indices = indices;
+    }
+  }
+
+  return result
+}
+
+function createPatternAlphabet(pattern) {
+  let mask = {};
+
+  for (let i = 0, len = pattern.length; i < len; i += 1) {
+    const char = pattern.charAt(i);
+    mask[char] = (mask[char] || 0) | (1 << (len - i - 1));
+  }
+
+  return mask
+}
+
+class BitapSearch {
+  constructor(
+    pattern,
+    {
+      location = Config.location,
+      threshold = Config.threshold,
+      distance = Config.distance,
+      includeMatches = Config.includeMatches,
+      findAllMatches = Config.findAllMatches,
+      minMatchCharLength = Config.minMatchCharLength,
+      isCaseSensitive = Config.isCaseSensitive,
+      ignoreLocation = Config.ignoreLocation
+    } = {}
+  ) {
+    this.options = {
+      location,
+      threshold,
+      distance,
+      includeMatches,
+      findAllMatches,
+      minMatchCharLength,
+      isCaseSensitive,
+      ignoreLocation
+    };
+
+    this.pattern = isCaseSensitive ? pattern : pattern.toLowerCase();
+
+    this.chunks = [];
+
+    if (!this.pattern.length) {
+      return
+    }
+
+    const addChunk = (pattern, startIndex) => {
+      this.chunks.push({
+        pattern,
+        alphabet: createPatternAlphabet(pattern),
+        startIndex
+      });
+    };
+
+    const len = this.pattern.length;
+
+    if (len > MAX_BITS) {
+      let i = 0;
+      const remainder = len % MAX_BITS;
+      const end = len - remainder;
+
+      while (i < end) {
+        addChunk(this.pattern.substr(i, MAX_BITS), i);
+        i += MAX_BITS;
+      }
+
+      if (remainder) {
+        const startIndex = len - MAX_BITS;
+        addChunk(this.pattern.substr(startIndex), startIndex);
+      }
+    } else {
+      addChunk(this.pattern, 0);
+    }
+  }
+
+  searchIn(text) {
+    const { isCaseSensitive, includeMatches } = this.options;
+
+    if (!isCaseSensitive) {
+      text = text.toLowerCase();
+    }
+
+    // Exact match
+    if (this.pattern === text) {
+      let result = {
+        isMatch: true,
+        score: 0
+      };
+
+      if (includeMatches) {
+        result.indices = [[0, text.length - 1]];
+      }
+
+      return result
+    }
+
+    // Otherwise, use Bitap algorithm
+    const {
+      location,
+      distance,
+      threshold,
+      findAllMatches,
+      minMatchCharLength,
+      ignoreLocation
+    } = this.options;
+
+    let allIndices = [];
+    let totalScore = 0;
+    let hasMatches = false;
+
+    this.chunks.forEach(({ pattern, alphabet, startIndex }) => {
+      const { isMatch, score, indices } = search(text, pattern, alphabet, {
+        location: location + startIndex,
+        distance,
+        threshold,
+        findAllMatches,
+        minMatchCharLength,
+        includeMatches,
+        ignoreLocation
+      });
+
+      if (isMatch) {
+        hasMatches = true;
+      }
+
+      totalScore += score;
+
+      if (isMatch && indices) {
+        allIndices = [...allIndices, ...indices];
+      }
+    });
+
+    let result = {
+      isMatch: hasMatches,
+      score: hasMatches ? totalScore / this.chunks.length : 1
+    };
+
+    if (hasMatches && includeMatches) {
+      result.indices = allIndices;
+    }
+
+    return result
+  }
+}
+
+class BaseMatch {
+  constructor(pattern) {
+    this.pattern = pattern;
+  }
+  static isMultiMatch(pattern) {
+    return getMatch(pattern, this.multiRegex)
+  }
+  static isSingleMatch(pattern) {
+    return getMatch(pattern, this.singleRegex)
+  }
+  search(/*text*/) {}
+}
+
+function getMatch(pattern, exp) {
+  const matches = pattern.match(exp);
+  return matches ? matches[1] : null
+}
+
+// Token: 'file
+
+class ExactMatch extends BaseMatch {
+  constructor(pattern) {
+    super(pattern);
+  }
+  static get type() {
+    return 'exact'
+  }
+  static get multiRegex() {
+    return /^="(.*)"$/
+  }
+  static get singleRegex() {
+    return /^=(.*)$/
+  }
+  search(text) {
+    const isMatch = text === this.pattern;
+
+    return {
+      isMatch,
+      score: isMatch ? 0 : 1,
+      indices: [0, this.pattern.length - 1]
+    }
+  }
+}
+
+// Token: !fire
+
+class InverseExactMatch extends BaseMatch {
+  constructor(pattern) {
+    super(pattern);
+  }
+  static get type() {
+    return 'inverse-exact'
+  }
+  static get multiRegex() {
+    return /^!"(.*)"$/
+  }
+  static get singleRegex() {
+    return /^!(.*)$/
+  }
+  search(text) {
+    const index = text.indexOf(this.pattern);
+    const isMatch = index === -1;
+
+    return {
+      isMatch,
+      score: isMatch ? 0 : 1,
+      indices: [0, text.length - 1]
+    }
+  }
+}
+
+// Token: ^file
+
+class PrefixExactMatch extends BaseMatch {
+  constructor(pattern) {
+    super(pattern);
+  }
+  static get type() {
+    return 'prefix-exact'
+  }
+  static get multiRegex() {
+    return /^\^"(.*)"$/
+  }
+  static get singleRegex() {
+    return /^\^(.*)$/
+  }
+  search(text) {
+    const isMatch = text.startsWith(this.pattern);
+
+    return {
+      isMatch,
+      score: isMatch ? 0 : 1,
+      indices: [0, this.pattern.length - 1]
+    }
+  }
+}
+
+// Token: !^fire
+
+class InversePrefixExactMatch extends BaseMatch {
+  constructor(pattern) {
+    super(pattern);
+  }
+  static get type() {
+    return 'inverse-prefix-exact'
+  }
+  static get multiRegex() {
+    return /^!\^"(.*)"$/
+  }
+  static get singleRegex() {
+    return /^!\^(.*)$/
+  }
+  search(text) {
+    const isMatch = !text.startsWith(this.pattern);
+
+    return {
+      isMatch,
+      score: isMatch ? 0 : 1,
+      indices: [0, text.length - 1]
+    }
+  }
+}
+
+// Token: .file$
+
+class SuffixExactMatch extends BaseMatch {
+  constructor(pattern) {
+    super(pattern);
+  }
+  static get type() {
+    return 'suffix-exact'
+  }
+  static get multiRegex() {
+    return /^"(.*)"\$$/
+  }
+  static get singleRegex() {
+    return /^(.*)\$$/
+  }
+  search(text) {
+    const isMatch = text.endsWith(this.pattern);
+
+    return {
+      isMatch,
+      score: isMatch ? 0 : 1,
+      indices: [text.length - this.pattern.length, text.length - 1]
+    }
+  }
+}
+
+// Token: !.file$
+
+class InverseSuffixExactMatch extends BaseMatch {
+  constructor(pattern) {
+    super(pattern);
+  }
+  static get type() {
+    return 'inverse-suffix-exact'
+  }
+  static get multiRegex() {
+    return /^!"(.*)"\$$/
+  }
+  static get singleRegex() {
+    return /^!(.*)\$$/
+  }
+  search(text) {
+    const isMatch = !text.endsWith(this.pattern);
+    return {
+      isMatch,
+      score: isMatch ? 0 : 1,
+      indices: [0, text.length - 1]
+    }
+  }
+}
+
+class FuzzyMatch extends BaseMatch {
+  constructor(
+    pattern,
+    {
+      location = Config.location,
+      threshold = Config.threshold,
+      distance = Config.distance,
+      includeMatches = Config.includeMatches,
+      findAllMatches = Config.findAllMatches,
+      minMatchCharLength = Config.minMatchCharLength,
+      isCaseSensitive = Config.isCaseSensitive,
+      ignoreLocation = Config.ignoreLocation
+    } = {}
+  ) {
+    super(pattern);
+    this._bitapSearch = new BitapSearch(pattern, {
+      location,
+      threshold,
+      distance,
+      includeMatches,
+      findAllMatches,
+      minMatchCharLength,
+      isCaseSensitive,
+      ignoreLocation
+    });
+  }
+  static get type() {
+    return 'fuzzy'
+  }
+  static get multiRegex() {
+    return /^"(.*)"$/
+  }
+  static get singleRegex() {
+    return /^(.*)$/
+  }
+  search(text) {
+    return this._bitapSearch.searchIn(text)
+  }
+}
+
+// Token: 'file
+
+class IncludeMatch extends BaseMatch {
+  constructor(pattern) {
+    super(pattern);
+  }
+  static get type() {
+    return 'include'
+  }
+  static get multiRegex() {
+    return /^'"(.*)"$/
+  }
+  static get singleRegex() {
+    return /^'(.*)$/
+  }
+  search(text) {
+    let location = 0;
+    let index;
+
+    const indices = [];
+    const patternLen = this.pattern.length;
+
+    // Get all exact matches
+    while ((index = text.indexOf(this.pattern, location)) > -1) {
+      location = index + patternLen;
+      indices.push([index, location - 1]);
+    }
+
+    const isMatch = !!indices.length;
+
+    return {
+      isMatch,
+      score: isMatch ? 0 : 1,
+      indices
+    }
+  }
+}
+
+// ❗Order is important. DO NOT CHANGE.
+const searchers = [
+  ExactMatch,
+  IncludeMatch,
+  PrefixExactMatch,
+  InversePrefixExactMatch,
+  InverseSuffixExactMatch,
+  SuffixExactMatch,
+  InverseExactMatch,
+  FuzzyMatch
+];
+
+const searchersLen = searchers.length;
+
+// Regex to split by spaces, but keep anything in quotes together
+const SPACE_RE = / +(?=([^\"]*\"[^\"]*\")*[^\"]*$)/;
+const OR_TOKEN = '|';
+
+// Return a 2D array representation of the query, for simpler parsing.
+// Example:
+// "^core go$ | rb$ | py$ xy$" => [["^core", "go$"], ["rb$"], ["py$", "xy$"]]
+function parseQuery(pattern, options = {}) {
+  return pattern.split(OR_TOKEN).map((item) => {
+    let query = item
+      .trim()
+      .split(SPACE_RE)
+      .filter((item) => item && !!item.trim());
+
+    let results = [];
+    for (let i = 0, len = query.length; i < len; i += 1) {
+      const queryItem = query[i];
+
+      // 1. Handle multiple query match (i.e, once that are quoted, like `"hello world"`)
+      let found = false;
+      let idx = -1;
+      while (!found && ++idx < searchersLen) {
+        const searcher = searchers[idx];
+        let token = searcher.isMultiMatch(queryItem);
+        if (token) {
+          results.push(new searcher(token, options));
+          found = true;
+        }
+      }
+
+      if (found) {
+        continue
+      }
+
+      // 2. Handle single query matches (i.e, once that are *not* quoted)
+      idx = -1;
+      while (++idx < searchersLen) {
+        const searcher = searchers[idx];
+        let token = searcher.isSingleMatch(queryItem);
+        if (token) {
+          results.push(new searcher(token, options));
+          break
+        }
+      }
+    }
+
+    return results
+  })
+}
+
+// These extended matchers can return an array of matches, as opposed
+// to a singl match
+const MultiMatchSet = new Set([FuzzyMatch.type, IncludeMatch.type]);
+
+/**
+ * Command-like searching
+ * ======================
+ *
+ * Given multiple search terms delimited by spaces.e.g. `^jscript .python$ ruby !java`,
+ * search in a given text.
+ *
+ * Search syntax:
+ *
+ * | Token       | Match type                 | Description                            |
+ * | ----------- | -------------------------- | -------------------------------------- |
+ * | `jscript`   | fuzzy-match                | Items that fuzzy match `jscript`       |
+ * | `=scheme`   | exact-match                | Items that are `scheme`                |
+ * | `'python`   | include-match              | Items that include `python`            |
+ * | `!ruby`     | inverse-exact-match        | Items that do not include `ruby`       |
+ * | `^java`     | prefix-exact-match         | Items that start with `java`           |
+ * | `!^earlang` | inverse-prefix-exact-match | Items that do not start with `earlang` |
+ * | `.js$`      | suffix-exact-match         | Items that end with `.js`              |
+ * | `!.go$`     | inverse-suffix-exact-match | Items that do not end with `.go`       |
+ *
+ * A single pipe character acts as an OR operator. For example, the following
+ * query matches entries that start with `core` and end with either`go`, `rb`,
+ * or`py`.
+ *
+ * ```
+ * ^core go$ | rb$ | py$
+ * ```
+ */
+class ExtendedSearch {
+  constructor(
+    pattern,
+    {
+      isCaseSensitive = Config.isCaseSensitive,
+      includeMatches = Config.includeMatches,
+      minMatchCharLength = Config.minMatchCharLength,
+      ignoreLocation = Config.ignoreLocation,
+      findAllMatches = Config.findAllMatches,
+      location = Config.location,
+      threshold = Config.threshold,
+      distance = Config.distance
+    } = {}
+  ) {
+    this.query = null;
+    this.options = {
+      isCaseSensitive,
+      includeMatches,
+      minMatchCharLength,
+      findAllMatches,
+      ignoreLocation,
+      location,
+      threshold,
+      distance
+    };
+
+    this.pattern = isCaseSensitive ? pattern : pattern.toLowerCase();
+    this.query = parseQuery(this.pattern, this.options);
+  }
+
+  static condition(_, options) {
+    return options.useExtendedSearch
+  }
+
+  searchIn(text) {
+    const query = this.query;
+
+    if (!query) {
+      return {
+        isMatch: false,
+        score: 1
+      }
+    }
+
+    const { includeMatches, isCaseSensitive } = this.options;
+
+    text = isCaseSensitive ? text : text.toLowerCase();
+
+    let numMatches = 0;
+    let allIndices = [];
+    let totalScore = 0;
+
+    // ORs
+    for (let i = 0, qLen = query.length; i < qLen; i += 1) {
+      const searchers = query[i];
+
+      // Reset indices
+      allIndices.length = 0;
+      numMatches = 0;
+
+      // ANDs
+      for (let j = 0, pLen = searchers.length; j < pLen; j += 1) {
+        const searcher = searchers[j];
+        const { isMatch, indices, score } = searcher.search(text);
+
+        if (isMatch) {
+          numMatches += 1;
+          totalScore += score;
+          if (includeMatches) {
+            const type = searcher.constructor.type;
+            if (MultiMatchSet.has(type)) {
+              allIndices = [...allIndices, ...indices];
+            } else {
+              allIndices.push(indices);
+            }
+          }
+        } else {
+          totalScore = 0;
+          numMatches = 0;
+          allIndices.length = 0;
+          break
+        }
+      }
+
+      // OR condition, so if TRUE, return
+      if (numMatches) {
+        let result = {
+          isMatch: true,
+          score: totalScore / numMatches
+        };
+
+        if (includeMatches) {
+          result.indices = allIndices;
+        }
+
+        return result
+      }
+    }
+
+    // Nothing was matched
+    return {
+      isMatch: false,
+      score: 1
+    }
+  }
+}
+
+const registeredSearchers = [];
+
+function register(...args) {
+  registeredSearchers.push(...args);
+}
+
+function createSearcher(pattern, options) {
+  for (let i = 0, len = registeredSearchers.length; i < len; i += 1) {
+    let searcherClass = registeredSearchers[i];
+    if (searcherClass.condition(pattern, options)) {
+      return new searcherClass(pattern, options)
+    }
+  }
+
+  return new BitapSearch(pattern, options)
+}
+
+const LogicalOperator = {
+  AND: '$and',
+  OR: '$or'
+};
+
+const KeyType = {
+  PATH: '$path',
+  PATTERN: '$val'
+};
+
+const isExpression = (query) =>
+  !!(query[LogicalOperator.AND] || query[LogicalOperator.OR]);
+
+const isPath = (query) => !!query[KeyType.PATH];
+
+const isLeaf = (query) =>
+  !isArray(query) && isObject(query) && !isExpression(query);
+
+const convertToExplicit = (query) => ({
+  [LogicalOperator.AND]: Object.keys(query).map((key) => ({
+    [key]: query[key]
+  }))
+});
+
+// When `auto` is `true`, the parse function will infer and initialize and add
+// the appropriate `Searcher` instance
+function parse(query, options, { auto = true } = {}) {
+  const next = (query) => {
+    let keys = Object.keys(query);
+
+    const isQueryPath = isPath(query);
+
+    if (!isQueryPath && keys.length > 1 && !isExpression(query)) {
+      return next(convertToExplicit(query))
+    }
+
+    if (isLeaf(query)) {
+      const key = isQueryPath ? query[KeyType.PATH] : keys[0];
+
+      const pattern = isQueryPath ? query[KeyType.PATTERN] : query[key];
+
+      if (!isString(pattern)) {
+        throw new Error(LOGICAL_SEARCH_INVALID_QUERY_FOR_KEY(key))
+      }
+
+      const obj = {
+        keyId: createKeyId(key),
+        pattern
+      };
+
+      if (auto) {
+        obj.searcher = createSearcher(pattern, options);
+      }
+
+      return obj
+    }
+
+    let node = {
+      children: [],
+      operator: keys[0]
+    };
+
+    keys.forEach((key) => {
+      const value = query[key];
+
+      if (isArray(value)) {
+        value.forEach((item) => {
+          node.children.push(next(item));
+        });
+      }
+    });
+
+    return node
+  };
+
+  if (!isExpression(query)) {
+    query = convertToExplicit(query);
+  }
+
+  return next(query)
+}
+
+// Practical scoring function
+function computeScore(
+  results,
+  { ignoreFieldNorm = Config.ignoreFieldNorm }
+) {
+  results.forEach((result) => {
+    let totalScore = 1;
+
+    result.matches.forEach(({ key, norm, score }) => {
+      const weight = key ? key.weight : null;
+
+      totalScore *= Math.pow(
+        score === 0 && weight ? Number.EPSILON : score,
+        (weight || 1) * (ignoreFieldNorm ? 1 : norm)
+      );
+    });
+
+    result.score = totalScore;
+  });
+}
+
+function transformMatches(result, data) {
+  const matches = result.matches;
+  data.matches = [];
+
+  if (!isDefined(matches)) {
+    return
+  }
+
+  matches.forEach((match) => {
+    if (!isDefined(match.indices) || !match.indices.length) {
+      return
+    }
+
+    const { indices, value } = match;
+
+    let obj = {
+      indices,
+      value
+    };
+
+    if (match.key) {
+      obj.key = match.key.src;
+    }
+
+    if (match.idx > -1) {
+      obj.refIndex = match.idx;
+    }
+
+    data.matches.push(obj);
+  });
+}
+
+function transformScore(result, data) {
+  data.score = result.score;
+}
+
+function format(
+  results,
+  docs,
+  {
+    includeMatches = Config.includeMatches,
+    includeScore = Config.includeScore
+  } = {}
+) {
+  const transformers = [];
+
+  if (includeMatches) transformers.push(transformMatches);
+  if (includeScore) transformers.push(transformScore);
+
+  return results.map((result) => {
+    const { idx } = result;
+
+    const data = {
+      item: docs[idx],
+      refIndex: idx
+    };
+
+    if (transformers.length) {
+      transformers.forEach((transformer) => {
+        transformer(result, data);
+      });
+    }
+
+    return data
+  })
+}
+
+class Fuse {
+  constructor(docs, options = {}, index) {
+    this.options = { ...Config, ...options };
+
+    if (
+      this.options.useExtendedSearch &&
+      !true
+    ) {}
+
+    this._keyStore = new KeyStore(this.options.keys);
+
+    this.setCollection(docs, index);
+  }
+
+  setCollection(docs, index) {
+    this._docs = docs;
+
+    if (index && !(index instanceof FuseIndex)) {
+      throw new Error(INCORRECT_INDEX_TYPE)
+    }
+
+    this._myIndex =
+      index ||
+      createIndex(this.options.keys, this._docs, {
+        getFn: this.options.getFn,
+        fieldNormWeight: this.options.fieldNormWeight
+      });
+  }
+
+  add(doc) {
+    if (!isDefined(doc)) {
+      return
+    }
+
+    this._docs.push(doc);
+    this._myIndex.add(doc);
+  }
+
+  remove(predicate = (/* doc, idx */) => false) {
+    const results = [];
+
+    for (let i = 0, len = this._docs.length; i < len; i += 1) {
+      const doc = this._docs[i];
+      if (predicate(doc, i)) {
+        this.removeAt(i);
+        i -= 1;
+        len -= 1;
+
+        results.push(doc);
+      }
+    }
+
+    return results
+  }
+
+  removeAt(idx) {
+    this._docs.splice(idx, 1);
+    this._myIndex.removeAt(idx);
+  }
+
+  getIndex() {
+    return this._myIndex
+  }
+
+  search(query, { limit = -1 } = {}) {
+    const {
+      includeMatches,
+      includeScore,
+      shouldSort,
+      sortFn,
+      ignoreFieldNorm
+    } = this.options;
+
+    let results = isString(query)
+      ? isString(this._docs[0])
+        ? this._searchStringList(query)
+        : this._searchObjectList(query)
+      : this._searchLogical(query);
+
+    computeScore(results, { ignoreFieldNorm });
+
+    if (shouldSort) {
+      results.sort(sortFn);
+    }
+
+    if (isNumber(limit) && limit > -1) {
+      results = results.slice(0, limit);
+    }
+
+    return format(results, this._docs, {
+      includeMatches,
+      includeScore
+    })
+  }
+
+  _searchStringList(query) {
+    const searcher = createSearcher(query, this.options);
+    const { records } = this._myIndex;
+    const results = [];
+
+    // Iterate over every string in the index
+    records.forEach(({ v: text, i: idx, n: norm }) => {
+      if (!isDefined(text)) {
+        return
+      }
+
+      const { isMatch, score, indices } = searcher.searchIn(text);
+
+      if (isMatch) {
+        results.push({
+          item: text,
+          idx,
+          matches: [{ score, value: text, norm, indices }]
+        });
+      }
+    });
+
+    return results
+  }
+
+  _searchLogical(query) {
+
+    const expression = parse(query, this.options);
+
+    const evaluate = (node, item, idx) => {
+      if (!node.children) {
+        const { keyId, searcher } = node;
+
+        const matches = this._findMatches({
+          key: this._keyStore.get(keyId),
+          value: this._myIndex.getValueForItemAtKeyId(item, keyId),
+          searcher
+        });
+
+        if (matches && matches.length) {
+          return [
+            {
+              idx,
+              item,
+              matches
+            }
+          ]
+        }
+
+        return []
+      }
+
+      const res = [];
+      for (let i = 0, len = node.children.length; i < len; i += 1) {
+        const child = node.children[i];
+        const result = evaluate(child, item, idx);
+        if (result.length) {
+          res.push(...result);
+        } else if (node.operator === LogicalOperator.AND) {
+          return []
+        }
+      }
+      return res
+    };
+
+    const records = this._myIndex.records;
+    const resultMap = {};
+    const results = [];
+
+    records.forEach(({ $: item, i: idx }) => {
+      if (isDefined(item)) {
+        let expResults = evaluate(expression, item, idx);
+
+        if (expResults.length) {
+          // Dedupe when adding
+          if (!resultMap[idx]) {
+            resultMap[idx] = { idx, item, matches: [] };
+            results.push(resultMap[idx]);
+          }
+          expResults.forEach(({ matches }) => {
+            resultMap[idx].matches.push(...matches);
+          });
+        }
+      }
+    });
+
+    return results
+  }
+
+  _searchObjectList(query) {
+    const searcher = createSearcher(query, this.options);
+    const { keys, records } = this._myIndex;
+    const results = [];
+
+    // List is Array<Object>
+    records.forEach(({ $: item, i: idx }) => {
+      if (!isDefined(item)) {
+        return
+      }
+
+      let matches = [];
+
+      // Iterate over every key (i.e, path), and fetch the value at that key
+      keys.forEach((key, keyIndex) => {
+        matches.push(
+          ...this._findMatches({
+            key,
+            value: item[keyIndex],
+            searcher
+          })
+        );
+      });
+
+      if (matches.length) {
+        results.push({
+          idx,
+          item,
+          matches
+        });
+      }
+    });
+
+    return results
+  }
+  _findMatches({ key, value, searcher }) {
+    if (!isDefined(value)) {
+      return []
+    }
+
+    let matches = [];
+
+    if (isArray(value)) {
+      value.forEach(({ v: text, i: idx, n: norm }) => {
+        if (!isDefined(text)) {
+          return
+        }
+
+        const { isMatch, score, indices } = searcher.searchIn(text);
+
+        if (isMatch) {
+          matches.push({
+            score,
+            key,
+            value: text,
+            idx,
+            norm,
+            indices
+          });
+        }
+      });
+    } else {
+      const { v: text, n: norm } = value;
+
+      const { isMatch, score, indices } = searcher.searchIn(text);
+
+      if (isMatch) {
+        matches.push({ score, key, value: text, norm, indices });
+      }
+    }
+
+    return matches
+  }
+}
+
+Fuse.version = '6.5.3';
+Fuse.createIndex = createIndex;
+Fuse.parseIndex = parseIndex;
+Fuse.config = Config;
+
+{
+  Fuse.parseQuery = parse;
+}
+
+{
+  register(ExtendedSearch);
+}
+
+
+
 
 /***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
+/***/ 857:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __nested_webpack_require_178160__) {
 
-// EXTERNAL MODULE: ./node_modules/fuse.js/dist/fuse.js
-var dist_fuse = __webpack_require__(2);
-var fuse_default = /*#__PURE__*/__webpack_require__.n(dist_fuse);
+// ESM COMPAT FLAG
+__nested_webpack_require_178160__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: ./node_modules/deepmerge/dist/cjs.js
-var cjs = __webpack_require__(0);
-var cjs_default = /*#__PURE__*/__webpack_require__.n(cjs);
+// EXPORTS
+__nested_webpack_require_178160__.d(__webpack_exports__, {
+  "__DO_NOT_USE__ActionTypes": function() { return /* binding */ ActionTypes; },
+  "applyMiddleware": function() { return /* binding */ applyMiddleware; },
+  "bindActionCreators": function() { return /* binding */ bindActionCreators; },
+  "combineReducers": function() { return /* binding */ combineReducers; },
+  "compose": function() { return /* binding */ compose; },
+  "createStore": function() { return /* binding */ createStore; }
+});
 
-// EXTERNAL MODULE: ./node_modules/symbol-observable/es/index.js
-var es = __webpack_require__(1);
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
 
-// CONCATENATED MODULE: ./node_modules/redux/es/redux.js
+  return obj;
+}
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
 
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    enumerableOnly && (symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    })), keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = null != arguments[i] ? arguments[i] : {};
+    i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    });
+  }
+
+  return target;
+}
+;// CONCATENATED MODULE: ./node_modules/redux/es/redux.js
+
+
+/**
+ * Adapted from React: https://github.com/facebook/react/blob/master/packages/shared/formatProdErrorMessage.js
+ *
+ * Do not require this module directly! Use normal throw error calls. These messages will be replaced with error codes
+ * during build.
+ * @param {number} code
+ */
+function formatProdErrorMessage(code) {
+  return "Minified Redux error #" + code + "; visit https://redux.js.org/Errors?code=" + code + " for the full message or " + 'use the non-minified dev environment for full errors. ';
+}
+
+// Inlined version of the `symbol-observable` polyfill
+var $$observable = (function () {
+  return typeof Symbol === 'function' && Symbol.observable || '@@observable';
+})();
 
 /**
  * These are private action types reserved by Redux.
@@ -868,6 +7977,63 @@ function isPlainObject(obj) {
   return Object.getPrototypeOf(obj) === proto;
 }
 
+// Inlined / shortened version of `kindOf` from https://github.com/jonschlinkert/kind-of
+function miniKindOf(val) {
+  if (val === void 0) return 'undefined';
+  if (val === null) return 'null';
+  var type = typeof val;
+
+  switch (type) {
+    case 'boolean':
+    case 'string':
+    case 'number':
+    case 'symbol':
+    case 'function':
+      {
+        return type;
+      }
+  }
+
+  if (Array.isArray(val)) return 'array';
+  if (isDate(val)) return 'date';
+  if (isError(val)) return 'error';
+  var constructorName = ctorName(val);
+
+  switch (constructorName) {
+    case 'Symbol':
+    case 'Promise':
+    case 'WeakMap':
+    case 'WeakSet':
+    case 'Map':
+    case 'Set':
+      return constructorName;
+  } // other
+
+
+  return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
+}
+
+function ctorName(val) {
+  return typeof val.constructor === 'function' ? val.constructor.name : null;
+}
+
+function isError(val) {
+  return val instanceof Error || typeof val.message === 'string' && val.constructor && typeof val.constructor.stackTraceLimit === 'number';
+}
+
+function isDate(val) {
+  if (val instanceof Date) return true;
+  return typeof val.toDateString === 'function' && typeof val.getDate === 'function' && typeof val.setDate === 'function';
+}
+
+function kindOf(val) {
+  var typeOfVal = typeof val;
+
+  if (false) {}
+
+  return typeOfVal;
+}
+
 /**
  * Creates a Redux store that holds the state tree.
  * The only way to change the data in the store is to call `dispatch()` on it.
@@ -898,7 +8064,7 @@ function createStore(reducer, preloadedState, enhancer) {
   var _ref2;
 
   if (typeof preloadedState === 'function' && typeof enhancer === 'function' || typeof enhancer === 'function' && typeof arguments[3] === 'function') {
-    throw new Error('It looks like you are passing several store enhancers to ' + 'createStore(). This is not supported. Instead, compose them ' + 'together to a single function.');
+    throw new Error(  true ? formatProdErrorMessage(0) : 0);
   }
 
   if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
@@ -908,14 +8074,14 @@ function createStore(reducer, preloadedState, enhancer) {
 
   if (typeof enhancer !== 'undefined') {
     if (typeof enhancer !== 'function') {
-      throw new Error('Expected the enhancer to be a function.');
+      throw new Error(  true ? formatProdErrorMessage(1) : 0);
     }
 
     return enhancer(createStore)(reducer, preloadedState);
   }
 
   if (typeof reducer !== 'function') {
-    throw new Error('Expected the reducer to be a function.');
+    throw new Error(  true ? formatProdErrorMessage(2) : 0);
   }
 
   var currentReducer = reducer;
@@ -945,7 +8111,7 @@ function createStore(reducer, preloadedState, enhancer) {
 
   function getState() {
     if (isDispatching) {
-      throw new Error('You may not call store.getState() while the reducer is executing. ' + 'The reducer has already received the state as an argument. ' + 'Pass it down from the top reducer instead of reading it from the store.');
+      throw new Error(  true ? formatProdErrorMessage(3) : 0);
     }
 
     return currentState;
@@ -977,11 +8143,11 @@ function createStore(reducer, preloadedState, enhancer) {
 
   function subscribe(listener) {
     if (typeof listener !== 'function') {
-      throw new Error('Expected the listener to be a function.');
+      throw new Error(  true ? formatProdErrorMessage(4) : 0);
     }
 
     if (isDispatching) {
-      throw new Error('You may not call store.subscribe() while the reducer is executing. ' + 'If you would like to be notified after the store has been updated, subscribe from a ' + 'component and invoke store.getState() in the callback to access the latest state. ' + 'See https://redux.js.org/api-reference/store#subscribe(listener) for more details.');
+      throw new Error(  true ? formatProdErrorMessage(5) : 0);
     }
 
     var isSubscribed = true;
@@ -993,13 +8159,14 @@ function createStore(reducer, preloadedState, enhancer) {
       }
 
       if (isDispatching) {
-        throw new Error('You may not unsubscribe from a store listener while the reducer is executing. ' + 'See https://redux.js.org/api-reference/store#subscribe(listener) for more details.');
+        throw new Error(  true ? formatProdErrorMessage(6) : 0);
       }
 
       isSubscribed = false;
       ensureCanMutateNextListeners();
       var index = nextListeners.indexOf(listener);
       nextListeners.splice(index, 1);
+      currentListeners = null;
     };
   }
   /**
@@ -1031,15 +8198,15 @@ function createStore(reducer, preloadedState, enhancer) {
 
   function dispatch(action) {
     if (!isPlainObject(action)) {
-      throw new Error('Actions must be plain objects. ' + 'Use custom middleware for async actions.');
+      throw new Error(  true ? formatProdErrorMessage(7) : 0);
     }
 
     if (typeof action.type === 'undefined') {
-      throw new Error('Actions may not have an undefined "type" property. ' + 'Have you misspelled a constant?');
+      throw new Error(  true ? formatProdErrorMessage(8) : 0);
     }
 
     if (isDispatching) {
-      throw new Error('Reducers may not dispatch actions.');
+      throw new Error(  true ? formatProdErrorMessage(9) : 0);
     }
 
     try {
@@ -1072,7 +8239,7 @@ function createStore(reducer, preloadedState, enhancer) {
 
   function replaceReducer(nextReducer) {
     if (typeof nextReducer !== 'function') {
-      throw new Error('Expected the nextReducer to be a function.');
+      throw new Error(  true ? formatProdErrorMessage(10) : 0);
     }
 
     currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
@@ -1107,7 +8274,7 @@ function createStore(reducer, preloadedState, enhancer) {
        */
       subscribe: function subscribe(observer) {
         if (typeof observer !== 'object' || observer === null) {
-          throw new TypeError('Expected the observer to be an object.');
+          throw new Error(  true ? formatProdErrorMessage(11) : 0);
         }
 
         function observeState() {
@@ -1122,7 +8289,7 @@ function createStore(reducer, preloadedState, enhancer) {
           unsubscribe: unsubscribe
         };
       }
-    }, _ref[es["a" /* default */]] = function () {
+    }, _ref[$$observable] = function () {
       return this;
     }, _ref;
   } // When a store is created, an "INIT" action is dispatched so that every
@@ -1138,7 +8305,7 @@ function createStore(reducer, preloadedState, enhancer) {
     subscribe: subscribe,
     getState: getState,
     replaceReducer: replaceReducer
-  }, _ref2[es["a" /* default */]] = observable, _ref2;
+  }, _ref2[$$observable] = observable, _ref2;
 }
 
 /**
@@ -1164,12 +8331,6 @@ function warning(message) {
 
 }
 
-function getUndefinedStateErrorMessage(key, action) {
-  var actionType = action && action.type;
-  var actionDescription = actionType && "action \"" + String(actionType) + "\"" || 'an action';
-  return "Given " + actionDescription + ", reducer \"" + key + "\" returned undefined. " + "To ignore an action, you must explicitly return the previous state. " + "If you want this reducer to hold no value, you can return null instead of undefined.";
-}
-
 function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
   var reducerKeys = Object.keys(reducers);
   var argumentName = action && action.type === ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
@@ -1179,7 +8340,7 @@ function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, une
   }
 
   if (!isPlainObject(inputState)) {
-    return "The " + argumentName + " has unexpected type of \"" + {}.toString.call(inputState).match(/\s([a-z|A-Z]+)/)[1] + "\". Expected argument to be an object with the following " + ("keys: \"" + reducerKeys.join('", "') + "\"");
+    return "The " + argumentName + " has unexpected type of \"" + kindOf(inputState) + "\". Expected argument to be an object with the following " + ("keys: \"" + reducerKeys.join('", "') + "\"");
   }
 
   var unexpectedKeys = Object.keys(inputState).filter(function (key) {
@@ -1203,13 +8364,13 @@ function assertReducerShape(reducers) {
     });
 
     if (typeof initialState === 'undefined') {
-      throw new Error("Reducer \"" + key + "\" returned undefined during initialization. " + "If the state passed to the reducer is undefined, you must " + "explicitly return the initial state. The initial state may " + "not be undefined. If you don't want to set a value for this reducer, " + "you can use null instead of undefined.");
+      throw new Error(  true ? formatProdErrorMessage(12) : 0);
     }
 
     if (typeof reducer(undefined, {
       type: ActionTypes.PROBE_UNKNOWN_ACTION()
     }) === 'undefined') {
-      throw new Error("Reducer \"" + key + "\" returned undefined when probed with a random type. " + ("Don't try to handle " + ActionTypes.INIT + " or other actions in \"redux/*\" ") + "namespace. They are considered private. Instead, you must return the " + "current state for any unknown actions, unless it is undefined, " + "in which case you must return the initial state, regardless of the " + "action type. The initial state may not be undefined, but can be null.");
+      throw new Error(  true ? formatProdErrorMessage(13) : 0);
     }
   });
 }
@@ -1281,14 +8442,15 @@ function combineReducers(reducers) {
       var nextStateForKey = reducer(previousStateForKey, action);
 
       if (typeof nextStateForKey === 'undefined') {
-        var errorMessage = getUndefinedStateErrorMessage(_key, action);
-        throw new Error(errorMessage);
+        var actionType = action && action.type;
+        throw new Error(  true ? formatProdErrorMessage(14) : 0);
       }
 
       nextState[_key] = nextStateForKey;
       hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
     }
 
+    hasChanged = hasChanged || finalReducerKeys.length !== Object.keys(state).length;
     return hasChanged ? nextState : state;
   };
 }
@@ -1327,7 +8489,7 @@ function bindActionCreators(actionCreators, dispatch) {
   }
 
   if (typeof actionCreators !== 'object' || actionCreators === null) {
-    throw new Error("bindActionCreators expected an object or a function, instead received " + (actionCreators === null ? 'null' : typeof actionCreators) + ". " + "Did you write \"import ActionCreators from\" instead of \"import * as ActionCreators from\"?");
+    throw new Error(  true ? formatProdErrorMessage(16) : 0);
   }
 
   var boundActionCreators = {};
@@ -1341,54 +8503,6 @@ function bindActionCreators(actionCreators, dispatch) {
   }
 
   return boundActionCreators;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    keys.push.apply(keys, Object.getOwnPropertySymbols(object));
-  }
-
-  if (enumerableOnly) keys = keys.filter(function (sym) {
-    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-  });
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(source, true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(source).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
 }
 
 /**
@@ -1450,7 +8564,7 @@ function applyMiddleware() {
       var store = createStore.apply(void 0, arguments);
 
       var _dispatch = function dispatch() {
-        throw new Error('Dispatching while constructing your middleware is not allowed. ' + 'Other middleware would not be applied to this dispatch.');
+        throw new Error(  true ? formatProdErrorMessage(15) : 0);
       };
 
       var middlewareAPI = {
@@ -1463,7 +8577,7 @@ function applyMiddleware() {
         return middleware(middlewareAPI);
       });
       _dispatch = compose.apply(void 0, chain)(store.dispatch);
-      return _objectSpread2({}, store, {
+      return _objectSpread2(_objectSpread2({}, store), {}, {
         dispatch: _dispatch
       });
     };
@@ -1481,4578 +8595,101 @@ if (false) {}
 
 
 
-// CONCATENATED MODULE: ./src/scripts/reducers/items.js
-var defaultState = [];
-function items_items(state, action) {
-  if (state === void 0) {
-    state = defaultState;
-  }
-
-  switch (action.type) {
-    case 'ADD_ITEM':
-      {
-        // Add object to items array
-        var newState = [].concat(state, [{
-          id: action.id,
-          choiceId: action.choiceId,
-          groupId: action.groupId,
-          value: action.value,
-          label: action.label,
-          active: true,
-          highlighted: false,
-          customProperties: action.customProperties,
-          placeholder: action.placeholder || false,
-          keyCode: null
-        }]);
-        return newState.map(function (obj) {
-          var item = obj;
-          item.highlighted = false;
-          return item;
-        });
-      }
-
-    case 'REMOVE_ITEM':
-      {
-        // Set item to inactive
-        return state.map(function (obj) {
-          var item = obj;
-
-          if (item.id === action.id) {
-            item.active = false;
-          }
-
-          return item;
-        });
-      }
-
-    case 'HIGHLIGHT_ITEM':
-      {
-        return state.map(function (obj) {
-          var item = obj;
-
-          if (item.id === action.id) {
-            item.highlighted = action.highlighted;
-          }
-
-          return item;
-        });
-      }
-
-    default:
-      {
-        return state;
-      }
-  }
-}
-// CONCATENATED MODULE: ./src/scripts/reducers/groups.js
-var groups_defaultState = [];
-function groups(state, action) {
-  if (state === void 0) {
-    state = groups_defaultState;
-  }
-
-  switch (action.type) {
-    case 'ADD_GROUP':
-      {
-        return [].concat(state, [{
-          id: action.id,
-          value: action.value,
-          active: action.active,
-          disabled: action.disabled
-        }]);
-      }
-
-    case 'CLEAR_CHOICES':
-      {
-        return [];
-      }
-
-    default:
-      {
-        return state;
-      }
-  }
-}
-// CONCATENATED MODULE: ./src/scripts/reducers/choices.js
-var choices_defaultState = [];
-function choices_choices(state, action) {
-  if (state === void 0) {
-    state = choices_defaultState;
-  }
-
-  switch (action.type) {
-    case 'ADD_CHOICE':
-      {
-        /*
-            A disabled choice appears in the choice dropdown but cannot be selected
-            A selected choice has been added to the passed input's value (added as an item)
-            An active choice appears within the choice dropdown
-         */
-        return [].concat(state, [{
-          id: action.id,
-          elementId: action.elementId,
-          groupId: action.groupId,
-          value: action.value,
-          label: action.label || action.value,
-          disabled: action.disabled || false,
-          selected: false,
-          active: true,
-          score: 9999,
-          customProperties: action.customProperties,
-          placeholder: action.placeholder || false,
-          keyCode: null
-        }]);
-      }
-
-    case 'ADD_ITEM':
-      {
-        // If all choices need to be activated
-        if (action.activateOptions) {
-          return state.map(function (obj) {
-            var choice = obj;
-            choice.active = action.active;
-            return choice;
-          });
-        } // When an item is added and it has an associated choice,
-        // we want to disable it so it can't be chosen again
-
-
-        if (action.choiceId > -1) {
-          return state.map(function (obj) {
-            var choice = obj;
-
-            if (choice.id === parseInt(action.choiceId, 10)) {
-              choice.selected = true;
-            }
-
-            return choice;
-          });
-        }
-
-        return state;
-      }
-
-    case 'REMOVE_ITEM':
-      {
-        // When an item is removed and it has an associated choice,
-        // we want to re-enable it so it can be chosen again
-        if (action.choiceId > -1) {
-          return state.map(function (obj) {
-            var choice = obj;
-
-            if (choice.id === parseInt(action.choiceId, 10)) {
-              choice.selected = false;
-            }
-
-            return choice;
-          });
-        }
-
-        return state;
-      }
-
-    case 'FILTER_CHOICES':
-      {
-        return state.map(function (obj) {
-          var choice = obj; // Set active state based on whether choice is
-          // within filtered results
-
-          choice.active = action.results.some(function (_ref) {
-            var item = _ref.item,
-                score = _ref.score;
-
-            if (item.id === choice.id) {
-              choice.score = score;
-              return true;
-            }
-
-            return false;
-          });
-          return choice;
-        });
-      }
-
-    case 'ACTIVATE_CHOICES':
-      {
-        return state.map(function (obj) {
-          var choice = obj;
-          choice.active = action.active;
-          return choice;
-        });
-      }
-
-    case 'CLEAR_CHOICES':
-      {
-        return choices_defaultState;
-      }
-
-    default:
-      {
-        return state;
-      }
-  }
-}
-// CONCATENATED MODULE: ./src/scripts/reducers/general.js
-var general_defaultState = {
-  loading: false
-};
-
-var general = function general(state, action) {
-  if (state === void 0) {
-    state = general_defaultState;
-  }
-
-  switch (action.type) {
-    case 'SET_IS_LOADING':
-      {
-        return {
-          loading: action.isLoading
-        };
-      }
-
-    default:
-      {
-        return state;
-      }
-  }
-};
-
-/* harmony default export */ var reducers_general = (general);
-// CONCATENATED MODULE: ./src/scripts/lib/utils.js
-/**
- * @param {number} min
- * @param {number} max
- * @returns {number}
- */
-var getRandomNumber = function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-};
-/**
- * @param {number} length
- * @returns {string}
- */
-
-var generateChars = function generateChars(length) {
-  return Array.from({
-    length: length
-  }, function () {
-    return getRandomNumber(0, 36).toString(36);
-  }).join('');
-};
-/**
- * @param {HTMLInputElement | HTMLSelectElement} element
- * @param {string} prefix
- * @returns {string}
- */
-
-var generateId = function generateId(element, prefix) {
-  var id = element.id || element.name && element.name + "-" + generateChars(2) || generateChars(4);
-  id = id.replace(/(:|\.|\[|\]|,)/g, '');
-  id = prefix + "-" + id;
-  return id;
-};
-/**
- * @param {any} obj
- * @returns {string}
- */
-
-var getType = function getType(obj) {
-  return Object.prototype.toString.call(obj).slice(8, -1);
-};
-/**
- * @param {string} type
- * @param {any} obj
- * @returns {boolean}
- */
-
-var isType = function isType(type, obj) {
-  return obj !== undefined && obj !== null && getType(obj) === type;
-};
-/**
- * @param {HTMLElement} element
- * @param {HTMLElement} [wrapper={HTMLDivElement}]
- * @returns {HTMLElement}
- */
-
-var utils_wrap = function wrap(element, wrapper) {
-  if (wrapper === void 0) {
-    wrapper = document.createElement('div');
-  }
-
-  if (element.nextSibling) {
-    element.parentNode.insertBefore(wrapper, element.nextSibling);
-  } else {
-    element.parentNode.appendChild(wrapper);
-  }
-
-  return wrapper.appendChild(element);
-};
-/**
- * @param {Element} startEl
- * @param {string} selector
- * @param {1 | -1} direction
- * @returns {Element | undefined}
- */
-
-var getAdjacentEl = function getAdjacentEl(startEl, selector, direction) {
-  if (direction === void 0) {
-    direction = 1;
-  }
-
-  if (!(startEl instanceof Element) || typeof selector !== 'string') {
-    return undefined;
-  }
-
-  var prop = (direction > 0 ? 'next' : 'previous') + "ElementSibling";
-  var sibling = startEl[prop];
-
-  while (sibling) {
-    if (sibling.matches(selector)) {
-      return sibling;
-    }
-
-    sibling = sibling[prop];
-  }
-
-  return sibling;
-};
-/**
- * @param {Element} element
- * @param {Element} parent
- * @param {-1 | 1} direction
- * @returns {boolean}
- */
-
-var isScrolledIntoView = function isScrolledIntoView(element, parent, direction) {
-  if (direction === void 0) {
-    direction = 1;
-  }
-
-  if (!element) {
-    return false;
-  }
-
-  var isVisible;
-
-  if (direction > 0) {
-    // In view from bottom
-    isVisible = parent.scrollTop + parent.offsetHeight >= element.offsetTop + element.offsetHeight;
-  } else {
-    // In view from top
-    isVisible = element.offsetTop >= parent.scrollTop;
-  }
-
-  return isVisible;
-};
-/**
- * @param {any} value
- * @returns {any}
- */
-
-var sanitise = function sanitise(value) {
-  if (typeof value !== 'string') {
-    return value;
-  }
-
-  return value.replace(/&/g, '&amp;').replace(/>/g, '&rt;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-};
-/**
- * @returns {() => (str: string) => Element}
- */
-
-var strToEl = function () {
-  var tmpEl = document.createElement('div');
-  return function (str) {
-    var cleanedInput = str.trim();
-    tmpEl.innerHTML = cleanedInput;
-    var firldChild = tmpEl.children[0];
-
-    while (tmpEl.firstChild) {
-      tmpEl.removeChild(tmpEl.firstChild);
-    }
-
-    return firldChild;
-  };
-}();
-/**
- * @param {{ label?: string, value: string }} a
- * @param {{ label?: string, value: string }} b
- * @returns {number}
- */
-
-var sortByAlpha = function sortByAlpha(_ref, _ref2) {
-  var value = _ref.value,
-      _ref$label = _ref.label,
-      label = _ref$label === void 0 ? value : _ref$label;
-  var value2 = _ref2.value,
-      _ref2$label = _ref2.label,
-      label2 = _ref2$label === void 0 ? value2 : _ref2$label;
-  return label.localeCompare(label2, [], {
-    sensitivity: 'base',
-    ignorePunctuation: true,
-    numeric: true
-  });
-};
-/**
- * @param {{ score: number }} a
- * @param {{ score: number }} b
- */
-
-var sortByScore = function sortByScore(a, b) {
-  return a.score - b.score;
-};
-/**
- * @param {HTMLElement} element
- * @param {string} type
- * @param {object} customArgs
- */
-
-var dispatchEvent = function dispatchEvent(element, type, customArgs) {
-  if (customArgs === void 0) {
-    customArgs = null;
-  }
-
-  var event = new CustomEvent(type, {
-    detail: customArgs,
-    bubbles: true,
-    cancelable: true
-  });
-  return element.dispatchEvent(event);
-};
-/**
- * @param {array} array
- * @param {any} value
- * @param {string} [key="value"]
- * @returns {boolean}
- */
-
-var existsInArray = function existsInArray(array, value, key) {
-  if (key === void 0) {
-    key = 'value';
-  }
-
-  return array.some(function (item) {
-    if (typeof value === 'string') {
-      return item[key] === value.trim();
-    }
-
-    return item[key] === value;
-  });
-};
-/**
- * @param {any} obj
- * @returns {any}
- */
-
-var cloneObject = function cloneObject(obj) {
-  return JSON.parse(JSON.stringify(obj));
-};
-/**
- * Returns an array of keys present on the first but missing on the second object
- * @param {object} a
- * @param {object} b
- * @returns {string[]}
- */
-
-var diff = function diff(a, b) {
-  var aKeys = Object.keys(a).sort();
-  var bKeys = Object.keys(b).sort();
-  return aKeys.filter(function (i) {
-    return bKeys.indexOf(i) < 0;
-  });
-};
-// CONCATENATED MODULE: ./src/scripts/reducers/index.js
-
-
-
-
-
-
-var appReducer = combineReducers({
-  items: items_items,
-  groups: groups,
-  choices: choices_choices,
-  general: reducers_general
-});
-
-var reducers_rootReducer = function rootReducer(passedState, action) {
-  var state = passedState; // If we are clearing all items, groups and options we reassign
-  // state and then pass that state to our proper reducer. This isn't
-  // mutating our actual state
-  // See: http://stackoverflow.com/a/35641992
-
-  if (action.type === 'CLEAR_ALL') {
-    state = undefined;
-  } else if (action.type === 'RESET_TO') {
-    return cloneObject(action.state);
-  }
-
-  return appReducer(state, action);
-};
-
-/* harmony default export */ var reducers = (reducers_rootReducer);
-// CONCATENATED MODULE: ./src/scripts/store/store.js
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-/**
- * @typedef {import('../../../types/index').Choices.Choice} Choice
- * @typedef {import('../../../types/index').Choices.Group} Group
- * @typedef {import('../../../types/index').Choices.Item} Item
- */
-
-var store_Store =
-/*#__PURE__*/
-function () {
-  function Store() {
-    this._store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-  }
-  /**
-   * Subscribe store to function call (wrapped Redux method)
-   * @param  {Function} onChange Function to trigger when state changes
-   * @return
-   */
-
-
-  var _proto = Store.prototype;
-
-  _proto.subscribe = function subscribe(onChange) {
-    this._store.subscribe(onChange);
-  }
-  /**
-   * Dispatch event to store (wrapped Redux method)
-   * @param  {{ type: string, [x: string]: any }} action Action to trigger
-   * @return
-   */
-  ;
-
-  _proto.dispatch = function dispatch(action) {
-    this._store.dispatch(action);
-  }
-  /**
-   * Get store object (wrapping Redux method)
-   * @returns {object} State
-   */
-  ;
-
-  /**
-   * Get loading state from store
-   * @returns {boolean} Loading State
-   */
-  _proto.isLoading = function isLoading() {
-    return this.state.general.loading;
-  }
-  /**
-   * Get single choice by it's ID
-   * @param {string} id
-   * @returns {Choice | undefined} Found choice
-   */
-  ;
-
-  _proto.getChoiceById = function getChoiceById(id) {
-    return this.activeChoices.find(function (choice) {
-      return choice.id === parseInt(id, 10);
-    });
-  }
-  /**
-   * Get group by group id
-   * @param  {number} id Group ID
-   * @returns {Group | undefined} Group data
-   */
-  ;
-
-  _proto.getGroupById = function getGroupById(id) {
-    return this.groups.find(function (group) {
-      return group.id === id;
-    });
-  };
-
-  _createClass(Store, [{
-    key: "state",
-    get: function get() {
-      return this._store.getState();
-    }
-    /**
-     * Get items from store
-     * @returns {Item[]} Item objects
-     */
-
-  }, {
-    key: "items",
-    get: function get() {
-      return this.state.items;
-    }
-    /**
-     * Get active items from store
-     * @returns {Item[]} Item objects
-     */
-
-  }, {
-    key: "activeItems",
-    get: function get() {
-      return this.items.filter(function (item) {
-        return item.active === true;
-      });
-    }
-    /**
-     * Get highlighted items from store
-     * @returns {Item[]} Item objects
-     */
-
-  }, {
-    key: "highlightedActiveItems",
-    get: function get() {
-      return this.items.filter(function (item) {
-        return item.active && item.highlighted;
-      });
-    }
-    /**
-     * Get choices from store
-     * @returns {Choice[]} Option objects
-     */
-
-  }, {
-    key: "choices",
-    get: function get() {
-      return this.state.choices;
-    }
-    /**
-     * Get active choices from store
-     * @returns {Choice[]} Option objects
-     */
-
-  }, {
-    key: "activeChoices",
-    get: function get() {
-      return this.choices.filter(function (choice) {
-        return choice.active === true;
-      });
-    }
-    /**
-     * Get selectable choices from store
-     * @returns {Choice[]} Option objects
-     */
-
-  }, {
-    key: "selectableChoices",
-    get: function get() {
-      return this.choices.filter(function (choice) {
-        return choice.disabled !== true;
-      });
-    }
-    /**
-     * Get choices that can be searched (excluding placeholders)
-     * @returns {Choice[]} Option objects
-     */
-
-  }, {
-    key: "searchableChoices",
-    get: function get() {
-      return this.selectableChoices.filter(function (choice) {
-        return choice.placeholder !== true;
-      });
-    }
-    /**
-     * Get placeholder choice from store
-     * @returns {Choice | undefined} Found placeholder
-     */
-
-  }, {
-    key: "placeholderChoice",
-    get: function get() {
-      return [].concat(this.choices).reverse().find(function (choice) {
-        return choice.placeholder === true;
-      });
-    }
-    /**
-     * Get groups from store
-     * @returns {Group[]} Group objects
-     */
-
-  }, {
-    key: "groups",
-    get: function get() {
-      return this.state.groups;
-    }
-    /**
-     * Get active groups from store
-     * @returns {Group[]} Group objects
-     */
-
-  }, {
-    key: "activeGroups",
-    get: function get() {
-      var groups = this.groups,
-          choices = this.choices;
-      return groups.filter(function (group) {
-        var isActive = group.active === true && group.disabled === false;
-        var hasActiveOptions = choices.some(function (choice) {
-          return choice.active === true && choice.disabled === false;
-        });
-        return isActive && hasActiveOptions;
-      }, []);
-    }
-  }]);
-
-  return Store;
-}();
-
-
-// CONCATENATED MODULE: ./src/scripts/components/dropdown.js
-function dropdown_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function dropdown_createClass(Constructor, protoProps, staticProps) { if (protoProps) dropdown_defineProperties(Constructor.prototype, protoProps); if (staticProps) dropdown_defineProperties(Constructor, staticProps); return Constructor; }
-
-/**
- * @typedef {import('../../../types/index').Choices.passedElement} passedElement
- * @typedef {import('../../../types/index').Choices.ClassNames} ClassNames
- */
-var Dropdown =
-/*#__PURE__*/
-function () {
-  /**
-   * @param {{
-   *  element: HTMLElement,
-   *  type: passedElement['type'],
-   *  classNames: ClassNames,
-   * }} args
-   */
-  function Dropdown(_ref) {
-    var element = _ref.element,
-        type = _ref.type,
-        classNames = _ref.classNames;
-    this.element = element;
-    this.classNames = classNames;
-    this.type = type;
-    this.isActive = false;
-  }
-  /**
-   * Bottom position of dropdown in viewport coordinates
-   * @returns {number} Vertical position
-   */
-
-
-  var _proto = Dropdown.prototype;
-
-  /**
-   * Find element that matches passed selector
-   * @param {string} selector
-   * @returns {HTMLElement | null}
-   */
-  _proto.getChild = function getChild(selector) {
-    return this.element.querySelector(selector);
-  }
-  /**
-   * Show dropdown to user by adding active state class
-   * @returns {this}
-   */
-  ;
-
-  _proto.show = function show() {
-    this.element.classList.add(this.classNames.activeState);
-    this.element.setAttribute('aria-expanded', 'true');
-    this.isActive = true;
-    return this;
-  }
-  /**
-   * Hide dropdown from user
-   * @returns {this}
-   */
-  ;
-
-  _proto.hide = function hide() {
-    this.element.classList.remove(this.classNames.activeState);
-    this.element.setAttribute('aria-expanded', 'false');
-    this.isActive = false;
-    return this;
-  };
-
-  dropdown_createClass(Dropdown, [{
-    key: "distanceFromTopWindow",
-    get: function get() {
-      return this.element.getBoundingClientRect().bottom;
-    }
-  }]);
-
-  return Dropdown;
-}();
-
-
-// CONCATENATED MODULE: ./src/scripts/constants.js
-
-/**
- * @typedef {import('../../types/index').Choices.ClassNames} ClassNames
- * @typedef {import('../../types/index').Choices.Options} Options
- */
-
-/** @type {ClassNames} */
-
-var DEFAULT_CLASSNAMES = {
-  containerOuter: 'choices',
-  containerInner: 'choices__inner',
-  input: 'choices__input',
-  inputCloned: 'choices__input--cloned',
-  list: 'choices__list',
-  listItems: 'choices__list--multiple',
-  listSingle: 'choices__list--single',
-  listDropdown: 'choices__list--dropdown',
-  item: 'choices__item',
-  itemSelectable: 'choices__item--selectable',
-  itemDisabled: 'choices__item--disabled',
-  itemChoice: 'choices__item--choice',
-  placeholder: 'choices__placeholder',
-  group: 'choices__group',
-  groupHeading: 'choices__heading',
-  button: 'choices__button',
-  activeState: 'is-active',
-  focusState: 'is-focused',
-  openState: 'is-open',
-  disabledState: 'is-disabled',
-  highlightedState: 'is-highlighted',
-  selectedState: 'is-selected',
-  flippedState: 'is-flipped',
-  loadingState: 'is-loading',
-  noResults: 'has-no-results',
-  noChoices: 'has-no-choices'
-};
-/** @type {Options} */
-
-var DEFAULT_CONFIG = {
-  items: [],
-  choices: [],
-  silent: false,
-  renderChoiceLimit: -1,
-  maxItemCount: -1,
-  addItems: true,
-  addItemFilter: null,
-  removeItems: true,
-  removeItemButton: false,
-  editItems: false,
-  duplicateItemsAllowed: true,
-  delimiter: ',',
-  paste: true,
-  searchEnabled: true,
-  searchChoices: true,
-  searchFloor: 1,
-  searchResultLimit: 4,
-  searchFields: ['label', 'value'],
-  position: 'auto',
-  resetScrollPosition: true,
-  shouldSort: true,
-  shouldSortItems: false,
-  sorter: sortByAlpha,
-  placeholder: true,
-  placeholderValue: null,
-  searchPlaceholderValue: null,
-  prependValue: null,
-  appendValue: null,
-  renderSelectedChoices: 'auto',
-  loadingText: 'Loading...',
-  noResultsText: 'No results found',
-  noChoicesText: 'No choices to choose from',
-  itemSelectText: 'Press to select',
-  uniqueItemText: 'Only unique values can be added',
-  customAddItemText: 'Only values matching specific conditions can be added',
-  addItemText: function addItemText(value) {
-    return "Press Enter to add <b>\"" + sanitise(value) + "\"</b>";
-  },
-  maxItemText: function maxItemText(maxItemCount) {
-    return "Only " + maxItemCount + " values can be added";
-  },
-  valueComparer: function valueComparer(value1, value2) {
-    return value1 === value2;
-  },
-  fuseOptions: {
-    includeScore: true
-  },
-  callbackOnInit: null,
-  callbackOnCreateTemplates: null,
-  classNames: DEFAULT_CLASSNAMES
-};
-var EVENTS = {
-  showDropdown: 'showDropdown',
-  hideDropdown: 'hideDropdown',
-  change: 'change',
-  choice: 'choice',
-  search: 'search',
-  addItem: 'addItem',
-  removeItem: 'removeItem',
-  highlightItem: 'highlightItem',
-  highlightChoice: 'highlightChoice'
-};
-var ACTION_TYPES = {
-  ADD_CHOICE: 'ADD_CHOICE',
-  FILTER_CHOICES: 'FILTER_CHOICES',
-  ACTIVATE_CHOICES: 'ACTIVATE_CHOICES',
-  CLEAR_CHOICES: 'CLEAR_CHOICES',
-  ADD_GROUP: 'ADD_GROUP',
-  ADD_ITEM: 'ADD_ITEM',
-  REMOVE_ITEM: 'REMOVE_ITEM',
-  HIGHLIGHT_ITEM: 'HIGHLIGHT_ITEM',
-  CLEAR_ALL: 'CLEAR_ALL'
-};
-var KEY_CODES = {
-  BACK_KEY: 46,
-  DELETE_KEY: 8,
-  ENTER_KEY: 13,
-  A_KEY: 65,
-  ESC_KEY: 27,
-  UP_KEY: 38,
-  DOWN_KEY: 40,
-  PAGE_UP_KEY: 33,
-  PAGE_DOWN_KEY: 34
-};
-var TEXT_TYPE = 'text';
-var SELECT_ONE_TYPE = 'select-one';
-var SELECT_MULTIPLE_TYPE = 'select-multiple';
-var SCROLLING_SPEED = 4;
-// CONCATENATED MODULE: ./src/scripts/components/container.js
-
-
-/**
- * @typedef {import('../../../types/index').Choices.passedElement} passedElement
- * @typedef {import('../../../types/index').Choices.ClassNames} ClassNames
- */
-
-var container_Container =
-/*#__PURE__*/
-function () {
-  /**
-   * @param {{
-   *  element: HTMLElement,
-   *  type: passedElement['type'],
-   *  classNames: ClassNames,
-   *  position
-   * }} args
-   */
-  function Container(_ref) {
-    var element = _ref.element,
-        type = _ref.type,
-        classNames = _ref.classNames,
-        position = _ref.position;
-    this.element = element;
-    this.classNames = classNames;
-    this.type = type;
-    this.position = position;
-    this.isOpen = false;
-    this.isFlipped = false;
-    this.isFocussed = false;
-    this.isDisabled = false;
-    this.isLoading = false;
-    this._onFocus = this._onFocus.bind(this);
-    this._onBlur = this._onBlur.bind(this);
-  }
-
-  var _proto = Container.prototype;
-
-  _proto.addEventListeners = function addEventListeners() {
-    this.element.addEventListener('focus', this._onFocus);
-    this.element.addEventListener('blur', this._onBlur);
-  };
-
-  _proto.removeEventListeners = function removeEventListeners() {
-    this.element.removeEventListener('focus', this._onFocus);
-    this.element.removeEventListener('blur', this._onBlur);
-  }
-  /**
-   * Determine whether container should be flipped based on passed
-   * dropdown position
-   * @param {number} dropdownPos
-   * @returns {boolean}
-   */
-  ;
-
-  _proto.shouldFlip = function shouldFlip(dropdownPos) {
-    if (typeof dropdownPos !== 'number') {
-      return false;
-    } // If flip is enabled and the dropdown bottom position is
-    // greater than the window height flip the dropdown.
-
-
-    var shouldFlip = false;
-
-    if (this.position === 'auto') {
-      shouldFlip = !window.matchMedia("(min-height: " + (dropdownPos + 1) + "px)").matches;
-    } else if (this.position === 'top') {
-      shouldFlip = true;
-    }
-
-    return shouldFlip;
-  }
-  /**
-   * @param {string} activeDescendantID
-   */
-  ;
-
-  _proto.setActiveDescendant = function setActiveDescendant(activeDescendantID) {
-    this.element.setAttribute('aria-activedescendant', activeDescendantID);
-  };
-
-  _proto.removeActiveDescendant = function removeActiveDescendant() {
-    this.element.removeAttribute('aria-activedescendant');
-  }
-  /**
-   * @param {number} dropdownPos
-   */
-  ;
-
-  _proto.open = function open(dropdownPos) {
-    this.element.classList.add(this.classNames.openState);
-    this.element.setAttribute('aria-expanded', 'true');
-    this.isOpen = true;
-
-    if (this.shouldFlip(dropdownPos)) {
-      this.element.classList.add(this.classNames.flippedState);
-      this.isFlipped = true;
-    }
-  };
-
-  _proto.close = function close() {
-    this.element.classList.remove(this.classNames.openState);
-    this.element.setAttribute('aria-expanded', 'false');
-    this.removeActiveDescendant();
-    this.isOpen = false; // A dropdown flips if it does not have space within the page
-
-    if (this.isFlipped) {
-      this.element.classList.remove(this.classNames.flippedState);
-      this.isFlipped = false;
-    }
-  };
-
-  _proto.focus = function focus() {
-    if (!this.isFocussed) {
-      this.element.focus();
-    }
-  };
-
-  _proto.addFocusState = function addFocusState() {
-    this.element.classList.add(this.classNames.focusState);
-  };
-
-  _proto.removeFocusState = function removeFocusState() {
-    this.element.classList.remove(this.classNames.focusState);
-  };
-
-  _proto.enable = function enable() {
-    this.element.classList.remove(this.classNames.disabledState);
-    this.element.removeAttribute('aria-disabled');
-
-    if (this.type === SELECT_ONE_TYPE) {
-      this.element.setAttribute('tabindex', '0');
-    }
-
-    this.isDisabled = false;
-  };
-
-  _proto.disable = function disable() {
-    this.element.classList.add(this.classNames.disabledState);
-    this.element.setAttribute('aria-disabled', 'true');
-
-    if (this.type === SELECT_ONE_TYPE) {
-      this.element.setAttribute('tabindex', '-1');
-    }
-
-    this.isDisabled = true;
-  }
-  /**
-   * @param {HTMLElement} element
-   */
-  ;
-
-  _proto.wrap = function wrap(element) {
-    utils_wrap(element, this.element);
-  }
-  /**
-   * @param {Element} element
-   */
-  ;
-
-  _proto.unwrap = function unwrap(element) {
-    // Move passed element outside this element
-    this.element.parentNode.insertBefore(element, this.element); // Remove this element
-
-    this.element.parentNode.removeChild(this.element);
-  };
-
-  _proto.addLoadingState = function addLoadingState() {
-    this.element.classList.add(this.classNames.loadingState);
-    this.element.setAttribute('aria-busy', 'true');
-    this.isLoading = true;
-  };
-
-  _proto.removeLoadingState = function removeLoadingState() {
-    this.element.classList.remove(this.classNames.loadingState);
-    this.element.removeAttribute('aria-busy');
-    this.isLoading = false;
-  };
-
-  _proto._onFocus = function _onFocus() {
-    this.isFocussed = true;
-  };
-
-  _proto._onBlur = function _onBlur() {
-    this.isFocussed = false;
-  };
-
-  return Container;
-}();
-
-
-// CONCATENATED MODULE: ./src/scripts/components/input.js
-function input_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function input_createClass(Constructor, protoProps, staticProps) { if (protoProps) input_defineProperties(Constructor.prototype, protoProps); if (staticProps) input_defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-/**
- * @typedef {import('../../../types/index').Choices.passedElement} passedElement
- * @typedef {import('../../../types/index').Choices.ClassNames} ClassNames
- */
-
-var input_Input =
-/*#__PURE__*/
-function () {
-  /**
-   * @param {{
-   *  element: HTMLInputElement,
-   *  type: passedElement['type'],
-   *  classNames: ClassNames,
-   *  preventPaste: boolean
-   * }} args
-   */
-  function Input(_ref) {
-    var element = _ref.element,
-        type = _ref.type,
-        classNames = _ref.classNames,
-        preventPaste = _ref.preventPaste;
-    this.element = element;
-    this.type = type;
-    this.classNames = classNames;
-    this.preventPaste = preventPaste;
-    this.isFocussed = this.element === document.activeElement;
-    this.isDisabled = element.disabled;
-    this._onPaste = this._onPaste.bind(this);
-    this._onInput = this._onInput.bind(this);
-    this._onFocus = this._onFocus.bind(this);
-    this._onBlur = this._onBlur.bind(this);
-  }
-  /**
-   * @param {string} placeholder
-   */
-
-
-  var _proto = Input.prototype;
-
-  _proto.addEventListeners = function addEventListeners() {
-    this.element.addEventListener('paste', this._onPaste);
-    this.element.addEventListener('input', this._onInput, {
-      passive: true
-    });
-    this.element.addEventListener('focus', this._onFocus, {
-      passive: true
-    });
-    this.element.addEventListener('blur', this._onBlur, {
-      passive: true
-    });
-  };
-
-  _proto.removeEventListeners = function removeEventListeners() {
-    this.element.removeEventListener('input', this._onInput, {
-      passive: true
-    });
-    this.element.removeEventListener('paste', this._onPaste);
-    this.element.removeEventListener('focus', this._onFocus, {
-      passive: true
-    });
-    this.element.removeEventListener('blur', this._onBlur, {
-      passive: true
-    });
-  };
-
-  _proto.enable = function enable() {
-    this.element.removeAttribute('disabled');
-    this.isDisabled = false;
-  };
-
-  _proto.disable = function disable() {
-    this.element.setAttribute('disabled', '');
-    this.isDisabled = true;
-  };
-
-  _proto.focus = function focus() {
-    if (!this.isFocussed) {
-      this.element.focus();
-    }
-  };
-
-  _proto.blur = function blur() {
-    if (this.isFocussed) {
-      this.element.blur();
-    }
-  }
-  /**
-   * Set value of input to blank
-   * @param {boolean} setWidth
-   * @returns {this}
-   */
-  ;
-
-  _proto.clear = function clear(setWidth) {
-    if (setWidth === void 0) {
-      setWidth = true;
-    }
-
-    if (this.element.value) {
-      this.element.value = '';
-    }
-
-    if (setWidth) {
-      this.setWidth();
-    }
-
-    return this;
-  }
-  /**
-   * Set the correct input width based on placeholder
-   * value or input value
-   */
-  ;
-
-  _proto.setWidth = function setWidth() {
-    // Resize input to contents or placeholder
-    var _this$element = this.element,
-        style = _this$element.style,
-        value = _this$element.value,
-        placeholder = _this$element.placeholder;
-    style.minWidth = placeholder.length + 1 + "ch";
-    style.width = value.length + 1 + "ch";
-  }
-  /**
-   * @param {string} activeDescendantID
-   */
-  ;
-
-  _proto.setActiveDescendant = function setActiveDescendant(activeDescendantID) {
-    this.element.setAttribute('aria-activedescendant', activeDescendantID);
-  };
-
-  _proto.removeActiveDescendant = function removeActiveDescendant() {
-    this.element.removeAttribute('aria-activedescendant');
-  };
-
-  _proto._onInput = function _onInput() {
-    if (this.type !== SELECT_ONE_TYPE) {
-      this.setWidth();
-    }
-  }
-  /**
-   * @param {Event} event
-   */
-  ;
-
-  _proto._onPaste = function _onPaste(event) {
-    if (this.preventPaste) {
-      event.preventDefault();
-    }
-  };
-
-  _proto._onFocus = function _onFocus() {
-    this.isFocussed = true;
-  };
-
-  _proto._onBlur = function _onBlur() {
-    this.isFocussed = false;
-  };
-
-  input_createClass(Input, [{
-    key: "placeholder",
-    set: function set(placeholder) {
-      this.element.placeholder = placeholder;
-    }
-    /**
-     * @returns {string}
-     */
-
-  }, {
-    key: "value",
-    get: function get() {
-      return sanitise(this.element.value);
-    }
-    /**
-     * @param {string} value
-     */
-    ,
-    set: function set(value) {
-      this.element.value = value;
-    }
-  }]);
-
-  return Input;
-}();
-
-
-// CONCATENATED MODULE: ./src/scripts/components/list.js
-
-/**
- * @typedef {import('../../../types/index').Choices.Choice} Choice
- */
-
-var list_List =
-/*#__PURE__*/
-function () {
-  /**
-   * @param {{ element: HTMLElement }} args
-   */
-  function List(_ref) {
-    var element = _ref.element;
-    this.element = element;
-    this.scrollPos = this.element.scrollTop;
-    this.height = this.element.offsetHeight;
-  }
-
-  var _proto = List.prototype;
-
-  _proto.clear = function clear() {
-    this.element.innerHTML = '';
-  }
-  /**
-   * @param {Element | DocumentFragment} node
-   */
-  ;
-
-  _proto.append = function append(node) {
-    this.element.appendChild(node);
-  }
-  /**
-   * @param {string} selector
-   * @returns {Element | null}
-   */
-  ;
-
-  _proto.getChild = function getChild(selector) {
-    return this.element.querySelector(selector);
-  }
-  /**
-   * @returns {boolean}
-   */
-  ;
-
-  _proto.hasChildren = function hasChildren() {
-    return this.element.hasChildNodes();
-  };
-
-  _proto.scrollToTop = function scrollToTop() {
-    this.element.scrollTop = 0;
-  }
-  /**
-   * @param {Element} element
-   * @param {1 | -1} direction
-   */
-  ;
-
-  _proto.scrollToChildElement = function scrollToChildElement(element, direction) {
-    var _this = this;
-
-    if (!element) {
-      return;
-    }
-
-    var listHeight = this.element.offsetHeight; // Scroll position of dropdown
-
-    var listScrollPosition = this.element.scrollTop + listHeight;
-    var elementHeight = element.offsetHeight; // Distance from bottom of element to top of parent
-
-    var elementPos = element.offsetTop + elementHeight; // Difference between the element and scroll position
-
-    var destination = direction > 0 ? this.element.scrollTop + elementPos - listScrollPosition : element.offsetTop;
-    requestAnimationFrame(function () {
-      _this._animateScroll(destination, direction);
-    });
-  }
-  /**
-   * @param {number} scrollPos
-   * @param {number} strength
-   * @param {number} destination
-   */
-  ;
-
-  _proto._scrollDown = function _scrollDown(scrollPos, strength, destination) {
-    var easing = (destination - scrollPos) / strength;
-    var distance = easing > 1 ? easing : 1;
-    this.element.scrollTop = scrollPos + distance;
-  }
-  /**
-   * @param {number} scrollPos
-   * @param {number} strength
-   * @param {number} destination
-   */
-  ;
-
-  _proto._scrollUp = function _scrollUp(scrollPos, strength, destination) {
-    var easing = (scrollPos - destination) / strength;
-    var distance = easing > 1 ? easing : 1;
-    this.element.scrollTop = scrollPos - distance;
-  }
-  /**
-   * @param {*} destination
-   * @param {*} direction
-   */
-  ;
-
-  _proto._animateScroll = function _animateScroll(destination, direction) {
-    var _this2 = this;
-
-    var strength = SCROLLING_SPEED;
-    var choiceListScrollTop = this.element.scrollTop;
-    var continueAnimation = false;
-
-    if (direction > 0) {
-      this._scrollDown(choiceListScrollTop, strength, destination);
-
-      if (choiceListScrollTop < destination) {
-        continueAnimation = true;
-      }
-    } else {
-      this._scrollUp(choiceListScrollTop, strength, destination);
-
-      if (choiceListScrollTop > destination) {
-        continueAnimation = true;
-      }
-    }
-
-    if (continueAnimation) {
-      requestAnimationFrame(function () {
-        _this2._animateScroll(destination, direction);
-      });
-    }
-  };
-
-  return List;
-}();
-
-
-// CONCATENATED MODULE: ./src/scripts/components/wrapped-element.js
-function wrapped_element_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function wrapped_element_createClass(Constructor, protoProps, staticProps) { if (protoProps) wrapped_element_defineProperties(Constructor.prototype, protoProps); if (staticProps) wrapped_element_defineProperties(Constructor, staticProps); return Constructor; }
-
-
-/**
- * @typedef {import('../../../types/index').Choices.passedElement} passedElement
- * @typedef {import('../../../types/index').Choices.ClassNames} ClassNames
- */
-
-var wrapped_element_WrappedElement =
-/*#__PURE__*/
-function () {
-  /**
-   * @param {{
-   *  element: HTMLInputElement | HTMLSelectElement,
-   *  classNames: ClassNames,
-   * }} args
-   */
-  function WrappedElement(_ref) {
-    var element = _ref.element,
-        classNames = _ref.classNames;
-    this.element = element;
-    this.classNames = classNames;
-
-    if (!(element instanceof HTMLInputElement) && !(element instanceof HTMLSelectElement)) {
-      throw new TypeError('Invalid element passed');
-    }
-
-    this.isDisabled = false;
-  }
-
-  var _proto = WrappedElement.prototype;
-
-  _proto.conceal = function conceal() {
-    // Hide passed input
-    this.element.classList.add(this.classNames.input);
-    this.element.hidden = true; // Remove element from tab index
-
-    this.element.tabIndex = -1; // Backup original styles if any
-
-    var origStyle = this.element.getAttribute('style');
-
-    if (origStyle) {
-      this.element.setAttribute('data-choice-orig-style', origStyle);
-    }
-
-    this.element.setAttribute('data-choice', 'active');
-  };
-
-  _proto.reveal = function reveal() {
-    // Reinstate passed element
-    this.element.classList.remove(this.classNames.input);
-    this.element.hidden = false;
-    this.element.removeAttribute('tabindex'); // Recover original styles if any
-
-    var origStyle = this.element.getAttribute('data-choice-orig-style');
-
-    if (origStyle) {
-      this.element.removeAttribute('data-choice-orig-style');
-      this.element.setAttribute('style', origStyle);
-    } else {
-      this.element.removeAttribute('style');
-    }
-
-    this.element.removeAttribute('data-choice'); // Re-assign values - this is weird, I know
-    // @todo Figure out why we need to do this
-
-    this.element.value = this.element.value; // eslint-disable-line no-self-assign
-  };
-
-  _proto.enable = function enable() {
-    this.element.removeAttribute('disabled');
-    this.element.disabled = false;
-    this.isDisabled = false;
-  };
-
-  _proto.disable = function disable() {
-    this.element.setAttribute('disabled', '');
-    this.element.disabled = true;
-    this.isDisabled = true;
-  };
-
-  _proto.triggerEvent = function triggerEvent(eventType, data) {
-    dispatchEvent(this.element, eventType, data);
-  };
-
-  wrapped_element_createClass(WrappedElement, [{
-    key: "isActive",
-    get: function get() {
-      return this.element.dataset.choice === 'active';
-    }
-  }, {
-    key: "dir",
-    get: function get() {
-      return this.element.dir;
-    }
-  }, {
-    key: "value",
-    get: function get() {
-      return this.element.value;
-    },
-    set: function set(value) {
-      // you must define setter here otherwise it will be readonly property
-      this.element.value = value;
-    }
-  }]);
-
-  return WrappedElement;
-}();
-
-
-// CONCATENATED MODULE: ./src/scripts/components/wrapped-input.js
-function wrapped_input_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function wrapped_input_createClass(Constructor, protoProps, staticProps) { if (protoProps) wrapped_input_defineProperties(Constructor.prototype, protoProps); if (staticProps) wrapped_input_defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
-
-
-/**
- * @typedef {import('../../../types/index').Choices.ClassNames} ClassNames
- * @typedef {import('../../../types/index').Choices.Item} Item
- */
-
-var WrappedInput =
-/*#__PURE__*/
-function (_WrappedElement) {
-  _inheritsLoose(WrappedInput, _WrappedElement);
-
-  /**
-   * @param {{
-   *  element: HTMLInputElement,
-   *  classNames: ClassNames,
-   *  delimiter: string
-   * }} args
-   */
-  function WrappedInput(_ref) {
-    var _this;
-
-    var element = _ref.element,
-        classNames = _ref.classNames,
-        delimiter = _ref.delimiter;
-    _this = _WrappedElement.call(this, {
-      element: element,
-      classNames: classNames
-    }) || this;
-    _this.delimiter = delimiter;
-    return _this;
-  }
-  /**
-   * @returns {string}
-   */
-
-
-  wrapped_input_createClass(WrappedInput, [{
-    key: "value",
-    get: function get() {
-      return this.element.value;
-    }
-    /**
-     * @param {Item[]} items
-     */
-    ,
-    set: function set(items) {
-      var itemValues = items.map(function (_ref2) {
-        var value = _ref2.value;
-        return value;
-      });
-      var joinedValues = itemValues.join(this.delimiter);
-      this.element.setAttribute('value', joinedValues);
-      this.element.value = joinedValues;
-    }
-  }]);
-
-  return WrappedInput;
-}(wrapped_element_WrappedElement);
-
-
-// CONCATENATED MODULE: ./src/scripts/components/wrapped-select.js
-function wrapped_select_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function wrapped_select_createClass(Constructor, protoProps, staticProps) { if (protoProps) wrapped_select_defineProperties(Constructor.prototype, protoProps); if (staticProps) wrapped_select_defineProperties(Constructor, staticProps); return Constructor; }
-
-function wrapped_select_inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
-
-
-/**
- * @typedef {import('../../../types/index').Choices.ClassNames} ClassNames
- * @typedef {import('../../../types/index').Choices.Item} Item
- * @typedef {import('../../../types/index').Choices.Choice} Choice
- */
-
-var WrappedSelect =
-/*#__PURE__*/
-function (_WrappedElement) {
-  wrapped_select_inheritsLoose(WrappedSelect, _WrappedElement);
-
-  /**
-   * @param {{
-   *  element: HTMLSelectElement,
-   *  classNames: ClassNames,
-   *  delimiter: string
-   *  template: function
-   * }} args
-   */
-  function WrappedSelect(_ref) {
-    var _this;
-
-    var element = _ref.element,
-        classNames = _ref.classNames,
-        template = _ref.template;
-    _this = _WrappedElement.call(this, {
-      element: element,
-      classNames: classNames
-    }) || this;
-    _this.template = template;
-    return _this;
-  }
-
-  var _proto = WrappedSelect.prototype;
-
-  /**
-   * @param {DocumentFragment} fragment
-   */
-  _proto.appendDocFragment = function appendDocFragment(fragment) {
-    this.element.innerHTML = '';
-    this.element.appendChild(fragment);
-  };
-
-  wrapped_select_createClass(WrappedSelect, [{
-    key: "placeholderOption",
-    get: function get() {
-      return this.element.querySelector('option[value=""]') || // Backward compatibility layer for the non-standard placeholder attribute supported in older versions.
-      this.element.querySelector('option[placeholder]');
-    }
-    /**
-     * @returns {Element[]}
-     */
-
-  }, {
-    key: "optionGroups",
-    get: function get() {
-      return Array.from(this.element.getElementsByTagName('OPTGROUP'));
-    }
-    /**
-     * @returns {Item[] | Choice[]}
-     */
-
-  }, {
-    key: "options",
-    get: function get() {
-      return Array.from(this.element.options);
-    }
-    /**
-     * @param {Item[] | Choice[]} options
-     */
-    ,
-    set: function set(options) {
-      var _this2 = this;
-
-      var fragment = document.createDocumentFragment();
-
-      var addOptionToFragment = function addOptionToFragment(data) {
-        // Create a standard select option
-        var option = _this2.template(data); // Append it to fragment
-
-
-        fragment.appendChild(option);
-      }; // Add each list item to list
-
-
-      options.forEach(function (optionData) {
-        return addOptionToFragment(optionData);
-      });
-      this.appendDocFragment(fragment);
-    }
-  }]);
-
-  return WrappedSelect;
-}(wrapped_element_WrappedElement);
-
-
-// CONCATENATED MODULE: ./src/scripts/components/index.js
-
-
-
-
-
-
-
-// CONCATENATED MODULE: ./src/scripts/templates.js
-/**
- * Helpers to create HTML elements used by Choices
- * Can be overridden by providing `callbackOnCreateTemplates` option
- * @typedef {import('../../types/index').Choices.Templates} Templates
- * @typedef {import('../../types/index').Choices.ClassNames} ClassNames
- * @typedef {import('../../types/index').Choices.Options} Options
- * @typedef {import('../../types/index').Choices.Item} Item
- * @typedef {import('../../types/index').Choices.Choice} Choice
- * @typedef {import('../../types/index').Choices.Group} Group
- */
-var TEMPLATES =
-/** @type {Templates} */
-{
-  /**
-   * @param {Partial<ClassNames>} classNames
-   * @param {"ltr" | "rtl" | "auto"} dir
-   * @param {boolean} isSelectElement
-   * @param {boolean} isSelectOneElement
-   * @param {boolean} searchEnabled
-   * @param {"select-one" | "select-multiple" | "text"} passedElementType
-   */
-  containerOuter: function containerOuter(_ref, dir, isSelectElement, isSelectOneElement, searchEnabled, passedElementType) {
-    var _containerOuter = _ref.containerOuter;
-    var div = Object.assign(document.createElement('div'), {
-      className: _containerOuter
-    });
-    div.dataset.type = passedElementType;
-
-    if (dir) {
-      div.dir = dir;
-    }
-
-    if (isSelectOneElement) {
-      div.tabIndex = 0;
-    }
-
-    if (isSelectElement) {
-      div.setAttribute('role', searchEnabled ? 'combobox' : 'listbox');
-
-      if (searchEnabled) {
-        div.setAttribute('aria-autocomplete', 'list');
-      }
-    }
-
-    div.setAttribute('aria-haspopup', 'true');
-    div.setAttribute('aria-expanded', 'false');
-    return div;
-  },
-
-  /**
-   * @param {Partial<ClassNames>} classNames
-   */
-  containerInner: function containerInner(_ref2) {
-    var _containerInner = _ref2.containerInner;
-    return Object.assign(document.createElement('div'), {
-      className: _containerInner
-    });
-  },
-
-  /**
-   * @param {Partial<ClassNames>} classNames
-   * @param {boolean} isSelectOneElement
-   */
-  itemList: function itemList(_ref3, isSelectOneElement) {
-    var list = _ref3.list,
-        listSingle = _ref3.listSingle,
-        listItems = _ref3.listItems;
-    return Object.assign(document.createElement('div'), {
-      className: list + " " + (isSelectOneElement ? listSingle : listItems)
-    });
-  },
-
-  /**
-   * @param {Partial<ClassNames>} classNames
-   * @param {string} value
-   */
-  placeholder: function placeholder(_ref4, value) {
-    var _placeholder = _ref4.placeholder;
-    return Object.assign(document.createElement('div'), {
-      className: _placeholder,
-      innerHTML: value
-    });
-  },
-
-  /**
-   * @param {Partial<ClassNames>} classNames
-   * @param {Item} item
-   * @param {boolean} removeItemButton
-   */
-  item: function item(_ref5, _ref6, removeItemButton) {
-    var _item = _ref5.item,
-        button = _ref5.button,
-        highlightedState = _ref5.highlightedState,
-        itemSelectable = _ref5.itemSelectable,
-        placeholder = _ref5.placeholder;
-    var id = _ref6.id,
-        value = _ref6.value,
-        label = _ref6.label,
-        customProperties = _ref6.customProperties,
-        active = _ref6.active,
-        disabled = _ref6.disabled,
-        highlighted = _ref6.highlighted,
-        isPlaceholder = _ref6.placeholder;
-    var div = Object.assign(document.createElement('div'), {
-      className: _item,
-      innerHTML: label
-    });
-    Object.assign(div.dataset, {
-      item: '',
-      id: id,
-      value: value,
-      customProperties: customProperties
-    });
-
-    if (active) {
-      div.setAttribute('aria-selected', 'true');
-    }
-
-    if (disabled) {
-      div.setAttribute('aria-disabled', 'true');
-    }
-
-    if (isPlaceholder) {
-      div.classList.add(placeholder);
-    }
-
-    div.classList.add(highlighted ? highlightedState : itemSelectable);
-
-    if (removeItemButton) {
-      if (disabled) {
-        div.classList.remove(itemSelectable);
-      }
-
-      div.dataset.deletable = '';
-      /** @todo This MUST be localizable, not hardcoded! */
-
-      var REMOVE_ITEM_TEXT = 'Remove item';
-      var removeButton = Object.assign(document.createElement('button'), {
-        type: 'button',
-        className: button,
-        innerHTML: REMOVE_ITEM_TEXT
-      });
-      removeButton.setAttribute('aria-label', REMOVE_ITEM_TEXT + ": '" + value + "'");
-      removeButton.dataset.button = '';
-      div.appendChild(removeButton);
-    }
-
-    return div;
-  },
-
-  /**
-   * @param {Partial<ClassNames>} classNames
-   * @param {boolean} isSelectOneElement
-   */
-  choiceList: function choiceList(_ref7, isSelectOneElement) {
-    var list = _ref7.list;
-    var div = Object.assign(document.createElement('div'), {
-      className: list
-    });
-
-    if (!isSelectOneElement) {
-      div.setAttribute('aria-multiselectable', 'true');
-    }
-
-    div.setAttribute('role', 'listbox');
-    return div;
-  },
-
-  /**
-   * @param {Partial<ClassNames>} classNames
-   * @param {Group} group
-   */
-  choiceGroup: function choiceGroup(_ref8, _ref9) {
-    var group = _ref8.group,
-        groupHeading = _ref8.groupHeading,
-        itemDisabled = _ref8.itemDisabled;
-    var id = _ref9.id,
-        value = _ref9.value,
-        disabled = _ref9.disabled;
-    var div = Object.assign(document.createElement('div'), {
-      className: group + " " + (disabled ? itemDisabled : '')
-    });
-    div.setAttribute('role', 'group');
-    Object.assign(div.dataset, {
-      group: '',
-      id: id,
-      value: value
-    });
-
-    if (disabled) {
-      div.setAttribute('aria-disabled', 'true');
-    }
-
-    div.appendChild(Object.assign(document.createElement('div'), {
-      className: groupHeading,
-      innerHTML: value
-    }));
-    return div;
-  },
-
-  /**
-   * @param {Partial<ClassNames>} classNames
-   * @param {Choice} choice
-   * @param {Options['itemSelectText']} selectText
-   */
-  choice: function choice(_ref10, _ref11, selectText) {
-    var item = _ref10.item,
-        itemChoice = _ref10.itemChoice,
-        itemSelectable = _ref10.itemSelectable,
-        selectedState = _ref10.selectedState,
-        itemDisabled = _ref10.itemDisabled,
-        placeholder = _ref10.placeholder;
-    var id = _ref11.id,
-        value = _ref11.value,
-        label = _ref11.label,
-        groupId = _ref11.groupId,
-        elementId = _ref11.elementId,
-        isDisabled = _ref11.disabled,
-        isSelected = _ref11.selected,
-        isPlaceholder = _ref11.placeholder;
-    var div = Object.assign(document.createElement('div'), {
-      id: elementId,
-      innerHTML: label,
-      className: item + " " + itemChoice
-    });
-
-    if (isSelected) {
-      div.classList.add(selectedState);
-    }
-
-    if (isPlaceholder) {
-      div.classList.add(placeholder);
-    }
-
-    div.setAttribute('role', groupId > 0 ? 'treeitem' : 'option');
-    Object.assign(div.dataset, {
-      choice: '',
-      id: id,
-      value: value,
-      selectText: selectText
-    });
-
-    if (isDisabled) {
-      div.classList.add(itemDisabled);
-      div.dataset.choiceDisabled = '';
-      div.setAttribute('aria-disabled', 'true');
-    } else {
-      div.classList.add(itemSelectable);
-      div.dataset.choiceSelectable = '';
-    }
-
-    return div;
-  },
-
-  /**
-   * @param {Partial<ClassNames>} classNames
-   * @param {string} placeholderValue
-   */
-  input: function input(_ref12, placeholderValue) {
-    var _input = _ref12.input,
-        inputCloned = _ref12.inputCloned;
-    var inp = Object.assign(document.createElement('input'), {
-      type: 'text',
-      className: _input + " " + inputCloned,
-      autocomplete: 'off',
-      autocapitalize: 'off',
-      spellcheck: false
-    });
-    inp.setAttribute('role', 'textbox');
-    inp.setAttribute('aria-autocomplete', 'list');
-    inp.setAttribute('aria-label', placeholderValue);
-    return inp;
-  },
-
-  /**
-   * @param {Partial<ClassNames>} classNames
-   */
-  dropdown: function dropdown(_ref13) {
-    var list = _ref13.list,
-        listDropdown = _ref13.listDropdown;
-    var div = document.createElement('div');
-    div.classList.add(list, listDropdown);
-    div.setAttribute('aria-expanded', 'false');
-    return div;
-  },
-
-  /**
-   *
-   * @param {Partial<ClassNames>} classNames
-   * @param {string} innerHTML
-   * @param {"no-choices" | "no-results" | ""} type
-   */
-  notice: function notice(_ref14, innerHTML, type) {
-    var item = _ref14.item,
-        itemChoice = _ref14.itemChoice,
-        noResults = _ref14.noResults,
-        noChoices = _ref14.noChoices;
-
-    if (type === void 0) {
-      type = '';
-    }
-
-    var classes = [item, itemChoice];
-
-    if (type === 'no-choices') {
-      classes.push(noChoices);
-    } else if (type === 'no-results') {
-      classes.push(noResults);
-    }
-
-    return Object.assign(document.createElement('div'), {
-      innerHTML: innerHTML,
-      className: classes.join(' ')
-    });
-  },
-
-  /**
-   * @param {Item} option
-   */
-  option: function option(_ref15) {
-    var label = _ref15.label,
-        value = _ref15.value,
-        customProperties = _ref15.customProperties,
-        active = _ref15.active,
-        disabled = _ref15.disabled;
-    var opt = new Option(label, value, false, active);
-
-    if (customProperties) {
-      opt.dataset.customProperties = customProperties;
-    }
-
-    opt.disabled = disabled;
-    return opt;
-  }
-};
-/* harmony default export */ var templates = (TEMPLATES);
-// CONCATENATED MODULE: ./src/scripts/actions/choices.js
-/**
- * @typedef {import('redux').Action} Action
- * @typedef {import('../../../types/index').Choices.Choice} Choice
- */
-
-/**
- * @argument {Choice} choice
- * @returns {Action & Choice}
- */
-
-var choices_addChoice = function addChoice(_ref) {
-  var value = _ref.value,
-      label = _ref.label,
-      id = _ref.id,
-      groupId = _ref.groupId,
-      disabled = _ref.disabled,
-      elementId = _ref.elementId,
-      customProperties = _ref.customProperties,
-      placeholder = _ref.placeholder,
-      keyCode = _ref.keyCode;
-  return {
-    type: ACTION_TYPES.ADD_CHOICE,
-    value: value,
-    label: label,
-    id: id,
-    groupId: groupId,
-    disabled: disabled,
-    elementId: elementId,
-    customProperties: customProperties,
-    placeholder: placeholder,
-    keyCode: keyCode
-  };
-};
-/**
- * @argument {Choice[]} results
- * @returns {Action & { results: Choice[] }}
- */
-
-var choices_filterChoices = function filterChoices(results) {
-  return {
-    type: ACTION_TYPES.FILTER_CHOICES,
-    results: results
-  };
-};
-/**
- * @argument {boolean} active
- * @returns {Action & { active: boolean }}
- */
-
-var choices_activateChoices = function activateChoices(active) {
-  if (active === void 0) {
-    active = true;
-  }
-
-  return {
-    type: ACTION_TYPES.ACTIVATE_CHOICES,
-    active: active
-  };
-};
-/**
- * @returns {Action}
- */
-
-var choices_clearChoices = function clearChoices() {
-  return {
-    type: ACTION_TYPES.CLEAR_CHOICES
-  };
-};
-// CONCATENATED MODULE: ./src/scripts/actions/items.js
-
-/**
- * @typedef {import('redux').Action} Action
- * @typedef {import('../../../types/index').Choices.Item} Item
- */
-
-/**
- * @param {Item} item
- * @returns {Action & Item}
- */
-
-var items_addItem = function addItem(_ref) {
-  var value = _ref.value,
-      label = _ref.label,
-      id = _ref.id,
-      choiceId = _ref.choiceId,
-      groupId = _ref.groupId,
-      customProperties = _ref.customProperties,
-      placeholder = _ref.placeholder,
-      keyCode = _ref.keyCode;
-  return {
-    type: ACTION_TYPES.ADD_ITEM,
-    value: value,
-    label: label,
-    id: id,
-    choiceId: choiceId,
-    groupId: groupId,
-    customProperties: customProperties,
-    placeholder: placeholder,
-    keyCode: keyCode
-  };
-};
-/**
- * @param {string} id
- * @param {string} choiceId
- * @returns {Action & { id: string, choiceId: string }}
- */
-
-var items_removeItem = function removeItem(id, choiceId) {
-  return {
-    type: ACTION_TYPES.REMOVE_ITEM,
-    id: id,
-    choiceId: choiceId
-  };
-};
-/**
- * @param {string} id
- * @param {boolean} highlighted
- * @returns {Action & { id: string, highlighted: boolean }}
- */
-
-var items_highlightItem = function highlightItem(id, highlighted) {
-  return {
-    type: ACTION_TYPES.HIGHLIGHT_ITEM,
-    id: id,
-    highlighted: highlighted
-  };
-};
-// CONCATENATED MODULE: ./src/scripts/actions/groups.js
-
-/**
- * @typedef {import('redux').Action} Action
- * @typedef {import('../../../types/index').Choices.Group} Group
- */
-
-/**
- * @param {Group} group
- * @returns {Action & Group}
- */
-
-var groups_addGroup = function addGroup(_ref) {
-  var value = _ref.value,
-      id = _ref.id,
-      active = _ref.active,
-      disabled = _ref.disabled;
-  return {
-    type: ACTION_TYPES.ADD_GROUP,
-    value: value,
-    id: id,
-    active: active,
-    disabled: disabled
-  };
-};
-// CONCATENATED MODULE: ./src/scripts/actions/misc.js
-/**
- * @typedef {import('redux').Action} Action
- */
-
-/**
- * @returns {Action}
- */
-var clearAll = function clearAll() {
-  return {
-    type: 'CLEAR_ALL'
-  };
-};
-/**
- * @param {any} state
- * @returns {Action & { state: object }}
- */
-
-var resetTo = function resetTo(state) {
-  return {
-    type: 'RESET_TO',
-    state: state
-  };
-};
-/**
- * @param {boolean} isLoading
- * @returns {Action & { isLoading: boolean }}
- */
-
-var setIsLoading = function setIsLoading(isLoading) {
-  return {
-    type: 'SET_IS_LOADING',
-    isLoading: isLoading
-  };
-};
-// CONCATENATED MODULE: ./src/scripts/choices.js
-function choices_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function choices_createClass(Constructor, protoProps, staticProps) { if (protoProps) choices_defineProperties(Constructor.prototype, protoProps); if (staticProps) choices_defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-
-
-
-
-
-
-
-/** @see {@link http://browserhacks.com/#hack-acea075d0ac6954f275a70023906050c} */
-
-var IS_IE11 = '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style;
-/**
- * @typedef {import('../../types/index').Choices.Choice} Choice
- * @typedef {import('../../types/index').Choices.Item} Item
- * @typedef {import('../../types/index').Choices.Group} Group
- * @typedef {import('../../types/index').Choices.Options} Options
- */
-
-/** @type {Partial<Options>} */
-
-var USER_DEFAULTS = {};
-/**
- * Choices
- * @author Josh Johnson<josh@joshuajohnson.co.uk>
- */
-
-var choices_Choices =
-/*#__PURE__*/
-function () {
-  choices_createClass(Choices, null, [{
-    key: "defaults",
-    get: function get() {
-      return Object.preventExtensions({
-        get options() {
-          return USER_DEFAULTS;
-        },
-
-        get templates() {
-          return TEMPLATES;
-        }
-
-      });
-    }
-    /**
-     * @param {string | HTMLInputElement | HTMLSelectElement} element
-     * @param {Partial<Options>} userConfig
-     */
-
-  }]);
-
-  function Choices(element, userConfig) {
-    var _this = this;
-
-    if (element === void 0) {
-      element = '[data-choice]';
-    }
-
-    if (userConfig === void 0) {
-      userConfig = {};
-    }
-
-    /** @type {Partial<Options>} */
-    this.config = cjs_default.a.all([DEFAULT_CONFIG, Choices.defaults.options, userConfig], // When merging array configs, replace with a copy of the userConfig array,
-    // instead of concatenating with the default array
-    {
-      arrayMerge: function arrayMerge(_, sourceArray) {
-        return [].concat(sourceArray);
-      }
-    });
-    var invalidConfigOptions = diff(this.config, DEFAULT_CONFIG);
-
-    if (invalidConfigOptions.length) {
-      console.warn('Unknown config option(s) passed', invalidConfigOptions.join(', '));
-    }
-
-    var passedElement = typeof element === 'string' ? document.querySelector(element) : element;
-
-    if (!(passedElement instanceof HTMLInputElement || passedElement instanceof HTMLSelectElement)) {
-      throw TypeError('Expected one of the following types text|select-one|select-multiple');
-    }
-
-    this._isTextElement = passedElement.type === TEXT_TYPE;
-    this._isSelectOneElement = passedElement.type === SELECT_ONE_TYPE;
-    this._isSelectMultipleElement = passedElement.type === SELECT_MULTIPLE_TYPE;
-    this._isSelectElement = this._isSelectOneElement || this._isSelectMultipleElement;
-    this.config.searchEnabled = this._isSelectMultipleElement || this.config.searchEnabled;
-
-    if (!['auto', 'always'].includes(this.config.renderSelectedChoices)) {
-      this.config.renderSelectedChoices = 'auto';
-    }
-
-    if (userConfig.addItemFilter && typeof userConfig.addItemFilter !== 'function') {
-      var re = userConfig.addItemFilter instanceof RegExp ? userConfig.addItemFilter : new RegExp(userConfig.addItemFilter);
-      this.config.addItemFilter = re.test.bind(re);
-    }
-
-    if (this._isTextElement) {
-      this.passedElement = new WrappedInput({
-        element: passedElement,
-        classNames: this.config.classNames,
-        delimiter: this.config.delimiter
-      });
-    } else {
-      this.passedElement = new WrappedSelect({
-        element: passedElement,
-        classNames: this.config.classNames,
-        template: function template(data) {
-          return _this._templates.option(data);
-        }
-      });
-    }
-
-    this.initialised = false;
-    this._store = new store_Store();
-    this._initialState = {};
-    this._currentState = {};
-    this._prevState = {};
-    this._currentValue = '';
-    this._canSearch = this.config.searchEnabled;
-    this._isScrollingOnIe = false;
-    this._highlightPosition = 0;
-    this._wasTap = true;
-    this._placeholderValue = this._generatePlaceholderValue();
-    this._baseId = generateId(this.passedElement.element, 'choices-');
-    /**
-     * setting direction in cases where it's explicitly set on passedElement
-     * or when calculated direction is different from the document
-     * @type {HTMLElement['dir']}
-     */
-
-    this._direction = this.passedElement.dir;
-
-    if (!this._direction) {
-      var _window$getComputedSt = window.getComputedStyle(this.passedElement.element),
-          elementDirection = _window$getComputedSt.direction;
-
-      var _window$getComputedSt2 = window.getComputedStyle(document.documentElement),
-          documentDirection = _window$getComputedSt2.direction;
-
-      if (elementDirection !== documentDirection) {
-        this._direction = elementDirection;
-      }
-    }
-
-    this._idNames = {
-      itemChoice: 'item-choice'
-    }; // Assign preset groups from passed element
-
-    this._presetGroups = this.passedElement.optionGroups; // Assign preset options from passed element
-
-    this._presetOptions = this.passedElement.options; // Assign preset choices from passed object
-
-    this._presetChoices = this.config.choices; // Assign preset items from passed object first
-
-    this._presetItems = this.config.items; // Add any values passed from attribute
-
-    if (this.passedElement.value) {
-      this._presetItems = this._presetItems.concat(this.passedElement.value.split(this.config.delimiter));
-    } // Create array of choices from option elements
-
-
-    if (this.passedElement.options) {
-      this.passedElement.options.forEach(function (o) {
-        _this._presetChoices.push({
-          value: o.value,
-          label: o.innerHTML,
-          selected: o.selected,
-          disabled: o.disabled || o.parentNode.disabled,
-          placeholder: o.value === '' || o.hasAttribute('placeholder'),
-          customProperties: o.getAttribute('data-custom-properties')
-        });
-      });
-    }
-
-    this._render = this._render.bind(this);
-    this._onFocus = this._onFocus.bind(this);
-    this._onBlur = this._onBlur.bind(this);
-    this._onKeyUp = this._onKeyUp.bind(this);
-    this._onKeyDown = this._onKeyDown.bind(this);
-    this._onClick = this._onClick.bind(this);
-    this._onTouchMove = this._onTouchMove.bind(this);
-    this._onTouchEnd = this._onTouchEnd.bind(this);
-    this._onMouseDown = this._onMouseDown.bind(this);
-    this._onMouseOver = this._onMouseOver.bind(this);
-    this._onFormReset = this._onFormReset.bind(this);
-    this._onAKey = this._onAKey.bind(this);
-    this._onEnterKey = this._onEnterKey.bind(this);
-    this._onEscapeKey = this._onEscapeKey.bind(this);
-    this._onDirectionKey = this._onDirectionKey.bind(this);
-    this._onDeleteKey = this._onDeleteKey.bind(this); // If element has already been initialised with Choices, fail silently
-
-    if (this.passedElement.isActive) {
-      if (!this.config.silent) {
-        console.warn('Trying to initialise Choices on element already initialised');
-      }
-
-      this.initialised = true;
-      return;
-    } // Let's go
-
-
-    this.init();
-  }
-
-  var _proto = Choices.prototype;
-
-  _proto.init = function init() {
-    if (this.initialised) {
-      return;
-    }
-
-    this._createTemplates();
-
-    this._createElements();
-
-    this._createStructure(); // Set initial state (We need to clone the state because some reducers
-    // modify the inner objects properties in the state) 🤢
-
-
-    this._initialState = cloneObject(this._store.state);
-
-    this._store.subscribe(this._render);
-
-    this._render();
-
-    this._addEventListeners();
-
-    var shouldDisable = !this.config.addItems || this.passedElement.element.hasAttribute('disabled');
-
-    if (shouldDisable) {
-      this.disable();
-    }
-
-    this.initialised = true;
-    var callbackOnInit = this.config.callbackOnInit; // Run callback if it is a function
-
-    if (callbackOnInit && typeof callbackOnInit === 'function') {
-      callbackOnInit.call(this);
-    }
-  };
-
-  _proto.destroy = function destroy() {
-    if (!this.initialised) {
-      return;
-    }
-
-    this._removeEventListeners();
-
-    this.passedElement.reveal();
-    this.containerOuter.unwrap(this.passedElement.element);
-    this.clearStore();
-
-    if (this._isSelectElement) {
-      this.passedElement.options = this._presetOptions;
-    }
-
-    this._templates = null;
-    this.initialised = false;
-  };
-
-  _proto.enable = function enable() {
-    if (this.passedElement.isDisabled) {
-      this.passedElement.enable();
-    }
-
-    if (this.containerOuter.isDisabled) {
-      this._addEventListeners();
-
-      this.input.enable();
-      this.containerOuter.enable();
-    }
-
-    return this;
-  };
-
-  _proto.disable = function disable() {
-    if (!this.passedElement.isDisabled) {
-      this.passedElement.disable();
-    }
-
-    if (!this.containerOuter.isDisabled) {
-      this._removeEventListeners();
-
-      this.input.disable();
-      this.containerOuter.disable();
-    }
-
-    return this;
-  };
-
-  _proto.highlightItem = function highlightItem(item, runEvent) {
-    if (runEvent === void 0) {
-      runEvent = true;
-    }
-
-    if (!item) {
-      return this;
-    }
-
-    var id = item.id,
-        _item$groupId = item.groupId,
-        groupId = _item$groupId === void 0 ? -1 : _item$groupId,
-        _item$value = item.value,
-        value = _item$value === void 0 ? '' : _item$value,
-        _item$label = item.label,
-        label = _item$label === void 0 ? '' : _item$label;
-    var group = groupId >= 0 ? this._store.getGroupById(groupId) : null;
-
-    this._store.dispatch(items_highlightItem(id, true));
-
-    if (runEvent) {
-      this.passedElement.triggerEvent(EVENTS.highlightItem, {
-        id: id,
-        value: value,
-        label: label,
-        groupValue: group && group.value ? group.value : null
-      });
-    }
-
-    return this;
-  };
-
-  _proto.unhighlightItem = function unhighlightItem(item) {
-    if (!item) {
-      return this;
-    }
-
-    var id = item.id,
-        _item$groupId2 = item.groupId,
-        groupId = _item$groupId2 === void 0 ? -1 : _item$groupId2,
-        _item$value2 = item.value,
-        value = _item$value2 === void 0 ? '' : _item$value2,
-        _item$label2 = item.label,
-        label = _item$label2 === void 0 ? '' : _item$label2;
-    var group = groupId >= 0 ? this._store.getGroupById(groupId) : null;
-
-    this._store.dispatch(items_highlightItem(id, false));
-
-    this.passedElement.triggerEvent(EVENTS.highlightItem, {
-      id: id,
-      value: value,
-      label: label,
-      groupValue: group && group.value ? group.value : null
-    });
-    return this;
-  };
-
-  _proto.highlightAll = function highlightAll() {
-    var _this2 = this;
-
-    this._store.items.forEach(function (item) {
-      return _this2.highlightItem(item);
-    });
-
-    return this;
-  };
-
-  _proto.unhighlightAll = function unhighlightAll() {
-    var _this3 = this;
-
-    this._store.items.forEach(function (item) {
-      return _this3.unhighlightItem(item);
-    });
-
-    return this;
-  };
-
-  _proto.removeActiveItemsByValue = function removeActiveItemsByValue(value) {
-    var _this4 = this;
-
-    this._store.activeItems.filter(function (item) {
-      return item.value === value;
-    }).forEach(function (item) {
-      return _this4._removeItem(item);
-    });
-
-    return this;
-  };
-
-  _proto.removeActiveItems = function removeActiveItems(excludedId) {
-    var _this5 = this;
-
-    this._store.activeItems.filter(function (_ref) {
-      var id = _ref.id;
-      return id !== excludedId;
-    }).forEach(function (item) {
-      return _this5._removeItem(item);
-    });
-
-    return this;
-  };
-
-  _proto.removeHighlightedItems = function removeHighlightedItems(runEvent) {
-    var _this6 = this;
-
-    if (runEvent === void 0) {
-      runEvent = false;
-    }
-
-    this._store.highlightedActiveItems.forEach(function (item) {
-      _this6._removeItem(item); // If this action was performed by the user
-      // trigger the event
-
-
-      if (runEvent) {
-        _this6._triggerChange(item.value);
-      }
-    });
-
-    return this;
-  };
-
-  _proto.showDropdown = function showDropdown(preventInputFocus) {
-    var _this7 = this;
-
-    if (this.dropdown.isActive) {
-      return this;
-    }
-
-    requestAnimationFrame(function () {
-      _this7.dropdown.show();
-
-      _this7.containerOuter.open(_this7.dropdown.distanceFromTopWindow);
-
-      if (!preventInputFocus && _this7._canSearch) {
-        _this7.input.focus();
-      }
-
-      _this7.passedElement.triggerEvent(EVENTS.showDropdown, {});
-    });
-    return this;
-  };
-
-  _proto.hideDropdown = function hideDropdown(preventInputBlur) {
-    var _this8 = this;
-
-    if (!this.dropdown.isActive) {
-      return this;
-    }
-
-    requestAnimationFrame(function () {
-      _this8.dropdown.hide();
-
-      _this8.containerOuter.close();
-
-      if (!preventInputBlur && _this8._canSearch) {
-        _this8.input.removeActiveDescendant();
-
-        _this8.input.blur();
-      }
-
-      _this8.passedElement.triggerEvent(EVENTS.hideDropdown, {});
-    });
-    return this;
-  };
-
-  _proto.getValue = function getValue(valueOnly) {
-    if (valueOnly === void 0) {
-      valueOnly = false;
-    }
-
-    var values = this._store.activeItems.reduce(function (selectedItems, item) {
-      var itemValue = valueOnly ? item.value : item;
-      selectedItems.push(itemValue);
-      return selectedItems;
-    }, []);
-
-    return this._isSelectOneElement ? values[0] : values;
-  }
-  /**
-   * @param {string[] | import('../../types/index').Choices.Item[]} items
-   */
-  ;
-
-  _proto.setValue = function setValue(items) {
-    var _this9 = this;
-
-    if (!this.initialised) {
-      return this;
-    }
-
-    items.forEach(function (value) {
-      return _this9._setChoiceOrItem(value);
-    });
-    return this;
-  };
-
-  _proto.setChoiceByValue = function setChoiceByValue(value) {
-    var _this10 = this;
-
-    if (!this.initialised || this._isTextElement) {
-      return this;
-    } // If only one value has been passed, convert to array
-
-
-    var choiceValue = Array.isArray(value) ? value : [value]; // Loop through each value and
-
-    choiceValue.forEach(function (val) {
-      return _this10._findAndSelectChoiceByValue(val);
-    });
-    return this;
-  }
-  /**
-   * Set choices of select input via an array of objects (or function that returns array of object or promise of it),
-   * a value field name and a label field name.
-   * This behaves the same as passing items via the choices option but can be called after initialising Choices.
-   * This can also be used to add groups of choices (see example 2); Optionally pass a true `replaceChoices` value to remove any existing choices.
-   * Optionally pass a `customProperties` object to add additional data to your choices (useful when searching/filtering etc).
-   *
-   * **Input types affected:** select-one, select-multiple
-   *
-   * @template {Choice[] | ((instance: Choices) => object[] | Promise<object[]>)} T
-   * @param {T} [choicesArrayOrFetcher]
-   * @param {string} [value = 'value'] - name of `value` field
-   * @param {string} [label = 'label'] - name of 'label' field
-   * @param {boolean} [replaceChoices = false] - whether to replace of add choices
-   * @returns {this | Promise<this>}
-   *
-   * @example
-   * ```js
-   * const example = new Choices(element);
-   *
-   * example.setChoices([
-   *   {value: 'One', label: 'Label One', disabled: true},
-   *   {value: 'Two', label: 'Label Two', selected: true},
-   *   {value: 'Three', label: 'Label Three'},
-   * ], 'value', 'label', false);
-   * ```
-   *
-   * @example
-   * ```js
-   * const example = new Choices(element);
-   *
-   * example.setChoices(async () => {
-   *   try {
-   *      const items = await fetch('/items');
-   *      return items.json()
-   *   } catch(err) {
-   *      console.error(err)
-   *   }
-   * });
-   * ```
-   *
-   * @example
-   * ```js
-   * const example = new Choices(element);
-   *
-   * example.setChoices([{
-   *   label: 'Group one',
-   *   id: 1,
-   *   disabled: false,
-   *   choices: [
-   *     {value: 'Child One', label: 'Child One', selected: true},
-   *     {value: 'Child Two', label: 'Child Two',  disabled: true},
-   *     {value: 'Child Three', label: 'Child Three'},
-   *   ]
-   * },
-   * {
-   *   label: 'Group two',
-   *   id: 2,
-   *   disabled: false,
-   *   choices: [
-   *     {value: 'Child Four', label: 'Child Four', disabled: true},
-   *     {value: 'Child Five', label: 'Child Five'},
-   *     {value: 'Child Six', label: 'Child Six', customProperties: {
-   *       description: 'Custom description about child six',
-   *       random: 'Another random custom property'
-   *     }},
-   *   ]
-   * }], 'value', 'label', false);
-   * ```
-   */
-  ;
-
-  _proto.setChoices = function setChoices(choicesArrayOrFetcher, value, label, replaceChoices) {
-    var _this11 = this;
-
-    if (choicesArrayOrFetcher === void 0) {
-      choicesArrayOrFetcher = [];
-    }
-
-    if (value === void 0) {
-      value = 'value';
-    }
-
-    if (label === void 0) {
-      label = 'label';
-    }
-
-    if (replaceChoices === void 0) {
-      replaceChoices = false;
-    }
-
-    if (!this.initialised) {
-      throw new ReferenceError("setChoices was called on a non-initialized instance of Choices");
-    }
-
-    if (!this._isSelectElement) {
-      throw new TypeError("setChoices can't be used with INPUT based Choices");
-    }
-
-    if (typeof value !== 'string' || !value) {
-      throw new TypeError("value parameter must be a name of 'value' field in passed objects");
-    } // Clear choices if needed
-
-
-    if (replaceChoices) {
-      this.clearChoices();
-    }
-
-    if (typeof choicesArrayOrFetcher === 'function') {
-      // it's a choices fetcher function
-      var fetcher = choicesArrayOrFetcher(this);
-
-      if (typeof Promise === 'function' && fetcher instanceof Promise) {
-        // that's a promise
-        // eslint-disable-next-line compat/compat
-        return new Promise(function (resolve) {
-          return requestAnimationFrame(resolve);
-        }).then(function () {
-          return _this11._handleLoadingState(true);
-        }).then(function () {
-          return fetcher;
-        }).then(function (data) {
-          return _this11.setChoices(data, value, label, replaceChoices);
-        }).catch(function (err) {
-          if (!_this11.config.silent) {
-            console.error(err);
-          }
-        }).then(function () {
-          return _this11._handleLoadingState(false);
-        }).then(function () {
-          return _this11;
-        });
-      } // function returned something else than promise, let's check if it's an array of choices
-
-
-      if (!Array.isArray(fetcher)) {
-        throw new TypeError(".setChoices first argument function must return either array of choices or Promise, got: " + typeof fetcher);
-      } // recursion with results, it's sync and choices were cleared already
-
-
-      return this.setChoices(fetcher, value, label, false);
-    }
-
-    if (!Array.isArray(choicesArrayOrFetcher)) {
-      throw new TypeError(".setChoices must be called either with array of choices with a function resulting into Promise of array of choices");
-    }
-
-    this.containerOuter.removeLoadingState();
-
-    this._startLoading();
-
-    choicesArrayOrFetcher.forEach(function (groupOrChoice) {
-      if (groupOrChoice.choices) {
-        _this11._addGroup({
-          id: parseInt(groupOrChoice.id, 10) || null,
-          group: groupOrChoice,
-          valueKey: value,
-          labelKey: label
-        });
-      } else {
-        _this11._addChoice({
-          value: groupOrChoice[value],
-          label: groupOrChoice[label],
-          isSelected: groupOrChoice.selected,
-          isDisabled: groupOrChoice.disabled,
-          customProperties: groupOrChoice.customProperties,
-          placeholder: groupOrChoice.placeholder
-        });
-      }
-    });
-
-    this._stopLoading();
-
-    return this;
-  };
-
-  _proto.clearChoices = function clearChoices() {
-    this._store.dispatch(choices_clearChoices());
-
-    return this;
-  };
-
-  _proto.clearStore = function clearStore() {
-    this._store.dispatch(clearAll());
-
-    return this;
-  };
-
-  _proto.clearInput = function clearInput() {
-    var shouldSetInputWidth = !this._isSelectOneElement;
-    this.input.clear(shouldSetInputWidth);
-
-    if (!this._isTextElement && this._canSearch) {
-      this._isSearching = false;
-
-      this._store.dispatch(choices_activateChoices(true));
-    }
-
-    return this;
-  };
-
-  _proto._render = function _render() {
-    if (this._store.isLoading()) {
-      return;
-    }
-
-    this._currentState = this._store.state;
-    var stateChanged = this._currentState.choices !== this._prevState.choices || this._currentState.groups !== this._prevState.groups || this._currentState.items !== this._prevState.items;
-    var shouldRenderChoices = this._isSelectElement;
-    var shouldRenderItems = this._currentState.items !== this._prevState.items;
-
-    if (!stateChanged) {
-      return;
-    }
-
-    if (shouldRenderChoices) {
-      this._renderChoices();
-    }
-
-    if (shouldRenderItems) {
-      this._renderItems();
-    }
-
-    this._prevState = this._currentState;
-  };
-
-  _proto._renderChoices = function _renderChoices() {
-    var _this12 = this;
-
-    var _this$_store = this._store,
-        activeGroups = _this$_store.activeGroups,
-        activeChoices = _this$_store.activeChoices;
-    var choiceListFragment = document.createDocumentFragment();
-    this.choiceList.clear();
-
-    if (this.config.resetScrollPosition) {
-      requestAnimationFrame(function () {
-        return _this12.choiceList.scrollToTop();
-      });
-    } // If we have grouped options
-
-
-    if (activeGroups.length >= 1 && !this._isSearching) {
-      // If we have a placeholder choice along with groups
-      var activePlaceholders = activeChoices.filter(function (activeChoice) {
-        return activeChoice.placeholder === true && activeChoice.groupId === -1;
-      });
-
-      if (activePlaceholders.length >= 1) {
-        choiceListFragment = this._createChoicesFragment(activePlaceholders, choiceListFragment);
-      }
-
-      choiceListFragment = this._createGroupsFragment(activeGroups, activeChoices, choiceListFragment);
-    } else if (activeChoices.length >= 1) {
-      choiceListFragment = this._createChoicesFragment(activeChoices, choiceListFragment);
-    } // If we have choices to show
-
-
-    if (choiceListFragment.childNodes && choiceListFragment.childNodes.length > 0) {
-      var activeItems = this._store.activeItems;
-
-      var canAddItem = this._canAddItem(activeItems, this.input.value); // ...and we can select them
-
-
-      if (canAddItem.response) {
-        // ...append them and highlight the first choice
-        this.choiceList.append(choiceListFragment);
-
-        this._highlightChoice();
-      } else {
-        // ...otherwise show a notice
-        this.choiceList.append(this._getTemplate('notice', canAddItem.notice));
-      }
-    } else {
-      // Otherwise show a notice
-      var dropdownItem;
-      var notice;
-
-      if (this._isSearching) {
-        notice = typeof this.config.noResultsText === 'function' ? this.config.noResultsText() : this.config.noResultsText;
-        dropdownItem = this._getTemplate('notice', notice, 'no-results');
-      } else {
-        notice = typeof this.config.noChoicesText === 'function' ? this.config.noChoicesText() : this.config.noChoicesText;
-        dropdownItem = this._getTemplate('notice', notice, 'no-choices');
-      }
-
-      this.choiceList.append(dropdownItem);
-    }
-  };
-
-  _proto._renderItems = function _renderItems() {
-    var activeItems = this._store.activeItems || [];
-    this.itemList.clear(); // Create a fragment to store our list items
-    // (so we don't have to update the DOM for each item)
-
-    var itemListFragment = this._createItemsFragment(activeItems); // If we have items to add, append them
-
-
-    if (itemListFragment.childNodes) {
-      this.itemList.append(itemListFragment);
-    }
-  };
-
-  _proto._createGroupsFragment = function _createGroupsFragment(groups, choices, fragment) {
-    var _this13 = this;
-
-    if (fragment === void 0) {
-      fragment = document.createDocumentFragment();
-    }
-
-    var getGroupChoices = function getGroupChoices(group) {
-      return choices.filter(function (choice) {
-        if (_this13._isSelectOneElement) {
-          return choice.groupId === group.id;
-        }
-
-        return choice.groupId === group.id && (_this13.config.renderSelectedChoices === 'always' || !choice.selected);
-      });
-    }; // If sorting is enabled, filter groups
-
-
-    if (this.config.shouldSort) {
-      groups.sort(this.config.sorter);
-    }
-
-    groups.forEach(function (group) {
-      var groupChoices = getGroupChoices(group);
-
-      if (groupChoices.length >= 1) {
-        var dropdownGroup = _this13._getTemplate('choiceGroup', group);
-
-        fragment.appendChild(dropdownGroup);
-
-        _this13._createChoicesFragment(groupChoices, fragment, true);
-      }
-    });
-    return fragment;
-  };
-
-  _proto._createChoicesFragment = function _createChoicesFragment(choices, fragment, withinGroup) {
-    var _this14 = this;
-
-    if (fragment === void 0) {
-      fragment = document.createDocumentFragment();
-    }
-
-    if (withinGroup === void 0) {
-      withinGroup = false;
-    }
-
-    // Create a fragment to store our list items (so we don't have to update the DOM for each item)
-    var _this$config = this.config,
-        renderSelectedChoices = _this$config.renderSelectedChoices,
-        searchResultLimit = _this$config.searchResultLimit,
-        renderChoiceLimit = _this$config.renderChoiceLimit;
-    var filter = this._isSearching ? sortByScore : this.config.sorter;
-
-    var appendChoice = function appendChoice(choice) {
-      var shouldRender = renderSelectedChoices === 'auto' ? _this14._isSelectOneElement || !choice.selected : true;
-
-      if (shouldRender) {
-        var dropdownItem = _this14._getTemplate('choice', choice, _this14.config.itemSelectText);
-
-        fragment.appendChild(dropdownItem);
-      }
-    };
-
-    var rendererableChoices = choices;
-
-    if (renderSelectedChoices === 'auto' && !this._isSelectOneElement) {
-      rendererableChoices = choices.filter(function (choice) {
-        return !choice.selected;
-      });
-    } // Split array into placeholders and "normal" choices
-
-
-    var _rendererableChoices$ = rendererableChoices.reduce(function (acc, choice) {
-      if (choice.placeholder) {
-        acc.placeholderChoices.push(choice);
-      } else {
-        acc.normalChoices.push(choice);
-      }
-
-      return acc;
-    }, {
-      placeholderChoices: [],
-      normalChoices: []
-    }),
-        placeholderChoices = _rendererableChoices$.placeholderChoices,
-        normalChoices = _rendererableChoices$.normalChoices; // If sorting is enabled or the user is searching, filter choices
-
-
-    if (this.config.shouldSort || this._isSearching) {
-      normalChoices.sort(filter);
-    }
-
-    var choiceLimit = rendererableChoices.length; // Prepend placeholeder
-
-    var sortedChoices = this._isSelectOneElement ? [].concat(placeholderChoices, normalChoices) : normalChoices;
-
-    if (this._isSearching) {
-      choiceLimit = searchResultLimit;
-    } else if (renderChoiceLimit && renderChoiceLimit > 0 && !withinGroup) {
-      choiceLimit = renderChoiceLimit;
-    } // Add each choice to dropdown within range
-
-
-    for (var i = 0; i < choiceLimit; i += 1) {
-      if (sortedChoices[i]) {
-        appendChoice(sortedChoices[i]);
-      }
-    }
-
-    return fragment;
-  };
-
-  _proto._createItemsFragment = function _createItemsFragment(items, fragment) {
-    var _this15 = this;
-
-    if (fragment === void 0) {
-      fragment = document.createDocumentFragment();
-    }
-
-    // Create fragment to add elements to
-    var _this$config2 = this.config,
-        shouldSortItems = _this$config2.shouldSortItems,
-        sorter = _this$config2.sorter,
-        removeItemButton = _this$config2.removeItemButton; // If sorting is enabled, filter items
-
-    if (shouldSortItems && !this._isSelectOneElement) {
-      items.sort(sorter);
-    }
-
-    if (this._isTextElement) {
-      // Update the value of the hidden input
-      this.passedElement.value = items;
-    } else {
-      // Update the options of the hidden input
-      this.passedElement.options = items;
-    }
-
-    var addItemToFragment = function addItemToFragment(item) {
-      // Create new list element
-      var listItem = _this15._getTemplate('item', item, removeItemButton); // Append it to list
-
-
-      fragment.appendChild(listItem);
-    }; // Add each list item to list
-
-
-    items.forEach(addItemToFragment);
-    return fragment;
-  };
-
-  _proto._triggerChange = function _triggerChange(value) {
-    if (value === undefined || value === null) {
-      return;
-    }
-
-    this.passedElement.triggerEvent(EVENTS.change, {
-      value: value
-    });
-  };
-
-  _proto._selectPlaceholderChoice = function _selectPlaceholderChoice() {
-    var placeholderChoice = this._store.placeholderChoice;
-
-    if (placeholderChoice) {
-      this._addItem({
-        value: placeholderChoice.value,
-        label: placeholderChoice.label,
-        choiceId: placeholderChoice.id,
-        groupId: placeholderChoice.groupId,
-        placeholder: placeholderChoice.placeholder
-      });
-
-      this._triggerChange(placeholderChoice.value);
-    }
-  };
-
-  _proto._handleButtonAction = function _handleButtonAction(activeItems, element) {
-    if (!activeItems || !element || !this.config.removeItems || !this.config.removeItemButton) {
-      return;
-    }
-
-    var itemId = element.parentNode.getAttribute('data-id');
-    var itemToRemove = activeItems.find(function (item) {
-      return item.id === parseInt(itemId, 10);
-    }); // Remove item associated with button
-
-    this._removeItem(itemToRemove);
-
-    this._triggerChange(itemToRemove.value);
-
-    if (this._isSelectOneElement) {
-      this._selectPlaceholderChoice();
-    }
-  };
-
-  _proto._handleItemAction = function _handleItemAction(activeItems, element, hasShiftKey) {
-    var _this16 = this;
-
-    if (hasShiftKey === void 0) {
-      hasShiftKey = false;
-    }
-
-    if (!activeItems || !element || !this.config.removeItems || this._isSelectOneElement) {
-      return;
-    }
-
-    var passedId = element.getAttribute('data-id'); // We only want to select one item with a click
-    // so we deselect any items that aren't the target
-    // unless shift is being pressed
-
-    activeItems.forEach(function (item) {
-      if (item.id === parseInt(passedId, 10) && !item.highlighted) {
-        _this16.highlightItem(item);
-      } else if (!hasShiftKey && item.highlighted) {
-        _this16.unhighlightItem(item);
-      }
-    }); // Focus input as without focus, a user cannot do anything with a
-    // highlighted item
-
-    this.input.focus();
-  };
-
-  _proto._handleChoiceAction = function _handleChoiceAction(activeItems, element) {
-    if (!activeItems || !element) {
-      return;
-    } // If we are clicking on an option
-
-
-    var id = element.dataset.id;
-
-    var choice = this._store.getChoiceById(id);
-
-    if (!choice) {
-      return;
-    }
-
-    var passedKeyCode = activeItems[0] && activeItems[0].keyCode ? activeItems[0].keyCode : null;
-    var hasActiveDropdown = this.dropdown.isActive; // Update choice keyCode
-
-    choice.keyCode = passedKeyCode;
-    this.passedElement.triggerEvent(EVENTS.choice, {
-      choice: choice
-    });
-
-    if (!choice.selected && !choice.disabled) {
-      var canAddItem = this._canAddItem(activeItems, choice.value);
-
-      if (canAddItem.response) {
-        this._addItem({
-          value: choice.value,
-          label: choice.label,
-          choiceId: choice.id,
-          groupId: choice.groupId,
-          customProperties: choice.customProperties,
-          placeholder: choice.placeholder,
-          keyCode: choice.keyCode
-        });
-
-        this._triggerChange(choice.value);
-      }
-    }
-
-    this.clearInput(); // We want to close the dropdown if we are dealing with a single select box
-
-    if (hasActiveDropdown && this._isSelectOneElement) {
-      this.hideDropdown(true);
-      this.containerOuter.focus();
-    }
-  };
-
-  _proto._handleBackspace = function _handleBackspace(activeItems) {
-    if (!this.config.removeItems || !activeItems) {
-      return;
-    }
-
-    var lastItem = activeItems[activeItems.length - 1];
-    var hasHighlightedItems = activeItems.some(function (item) {
-      return item.highlighted;
-    }); // If editing the last item is allowed and there are not other selected items,
-    // we can edit the item value. Otherwise if we can remove items, remove all selected items
-
-    if (this.config.editItems && !hasHighlightedItems && lastItem) {
-      this.input.value = lastItem.value;
-      this.input.setWidth();
-
-      this._removeItem(lastItem);
-
-      this._triggerChange(lastItem.value);
-    } else {
-      if (!hasHighlightedItems) {
-        // Highlight last item if none already highlighted
-        this.highlightItem(lastItem, false);
-      }
-
-      this.removeHighlightedItems(true);
-    }
-  };
-
-  _proto._startLoading = function _startLoading() {
-    this._store.dispatch(setIsLoading(true));
-  };
-
-  _proto._stopLoading = function _stopLoading() {
-    this._store.dispatch(setIsLoading(false));
-  };
-
-  _proto._handleLoadingState = function _handleLoadingState(setLoading) {
-    if (setLoading === void 0) {
-      setLoading = true;
-    }
-
-    var placeholderItem = this.itemList.getChild("." + this.config.classNames.placeholder);
-
-    if (setLoading) {
-      this.disable();
-      this.containerOuter.addLoadingState();
-
-      if (this._isSelectOneElement) {
-        if (!placeholderItem) {
-          placeholderItem = this._getTemplate('placeholder', this.config.loadingText);
-          this.itemList.append(placeholderItem);
-        } else {
-          placeholderItem.innerHTML = this.config.loadingText;
-        }
-      } else {
-        this.input.placeholder = this.config.loadingText;
-      }
-    } else {
-      this.enable();
-      this.containerOuter.removeLoadingState();
-
-      if (this._isSelectOneElement) {
-        placeholderItem.innerHTML = this._placeholderValue || '';
-      } else {
-        this.input.placeholder = this._placeholderValue || '';
-      }
-    }
-  };
-
-  _proto._handleSearch = function _handleSearch(value) {
-    if (!value || !this.input.isFocussed) {
-      return;
-    }
-
-    var choices = this._store.choices;
-    var _this$config3 = this.config,
-        searchFloor = _this$config3.searchFloor,
-        searchChoices = _this$config3.searchChoices;
-    var hasUnactiveChoices = choices.some(function (option) {
-      return !option.active;
-    }); // Check that we have a value to search and the input was an alphanumeric character
-
-    if (value && value.length >= searchFloor) {
-      var resultCount = searchChoices ? this._searchChoices(value) : 0; // Trigger search event
-
-      this.passedElement.triggerEvent(EVENTS.search, {
-        value: value,
-        resultCount: resultCount
-      });
-    } else if (hasUnactiveChoices) {
-      // Otherwise reset choices to active
-      this._isSearching = false;
-
-      this._store.dispatch(choices_activateChoices(true));
-    }
-  };
-
-  _proto._canAddItem = function _canAddItem(activeItems, value) {
-    var canAddItem = true;
-    var notice = typeof this.config.addItemText === 'function' ? this.config.addItemText(value) : this.config.addItemText;
-
-    if (!this._isSelectOneElement) {
-      var isDuplicateValue = existsInArray(activeItems, value);
-
-      if (this.config.maxItemCount > 0 && this.config.maxItemCount <= activeItems.length) {
-        // If there is a max entry limit and we have reached that limit
-        // don't update
-        canAddItem = false;
-        notice = typeof this.config.maxItemText === 'function' ? this.config.maxItemText(this.config.maxItemCount) : this.config.maxItemText;
-      }
-
-      if (!this.config.duplicateItemsAllowed && isDuplicateValue && canAddItem) {
-        canAddItem = false;
-        notice = typeof this.config.uniqueItemText === 'function' ? this.config.uniqueItemText(value) : this.config.uniqueItemText;
-      }
-
-      if (this._isTextElement && this.config.addItems && canAddItem && typeof this.config.addItemFilter === 'function' && !this.config.addItemFilter(value)) {
-        canAddItem = false;
-        notice = typeof this.config.customAddItemText === 'function' ? this.config.customAddItemText(value) : this.config.customAddItemText;
-      }
-    }
-
-    return {
-      response: canAddItem,
-      notice: notice
-    };
-  };
-
-  _proto._searchChoices = function _searchChoices(value) {
-    var newValue = typeof value === 'string' ? value.trim() : value;
-    var currentValue = typeof this._currentValue === 'string' ? this._currentValue.trim() : this._currentValue;
-
-    if (newValue.length < 1 && newValue === currentValue + " ") {
-      return 0;
-    } // If new value matches the desired length and is not the same as the current value with a space
-
-
-    var haystack = this._store.searchableChoices;
-    var needle = newValue;
-    var keys = [].concat(this.config.searchFields);
-    var options = Object.assign(this.config.fuseOptions, {
-      keys: keys
-    });
-    var fuse = new fuse_default.a(haystack, options);
-    var results = fuse.search(needle);
-    this._currentValue = newValue;
-    this._highlightPosition = 0;
-    this._isSearching = true;
-
-    this._store.dispatch(choices_filterChoices(results));
-
-    return results.length;
-  };
-
-  _proto._addEventListeners = function _addEventListeners() {
-    var _document = document,
-        documentElement = _document.documentElement; // capture events - can cancel event processing or propagation
-
-    documentElement.addEventListener('touchend', this._onTouchEnd, true);
-    this.containerOuter.element.addEventListener('keydown', this._onKeyDown, true);
-    this.containerOuter.element.addEventListener('mousedown', this._onMouseDown, true); // passive events - doesn't call `preventDefault` or `stopPropagation`
-
-    documentElement.addEventListener('click', this._onClick, {
-      passive: true
-    });
-    documentElement.addEventListener('touchmove', this._onTouchMove, {
-      passive: true
-    });
-    this.dropdown.element.addEventListener('mouseover', this._onMouseOver, {
-      passive: true
-    });
-
-    if (this._isSelectOneElement) {
-      this.containerOuter.element.addEventListener('focus', this._onFocus, {
-        passive: true
-      });
-      this.containerOuter.element.addEventListener('blur', this._onBlur, {
-        passive: true
-      });
-    }
-
-    this.input.element.addEventListener('keyup', this._onKeyUp, {
-      passive: true
-    });
-    this.input.element.addEventListener('focus', this._onFocus, {
-      passive: true
-    });
-    this.input.element.addEventListener('blur', this._onBlur, {
-      passive: true
-    });
-
-    if (this.input.element.form) {
-      this.input.element.form.addEventListener('reset', this._onFormReset, {
-        passive: true
-      });
-    }
-
-    this.input.addEventListeners();
-  };
-
-  _proto._removeEventListeners = function _removeEventListeners() {
-    var _document2 = document,
-        documentElement = _document2.documentElement;
-    documentElement.removeEventListener('touchend', this._onTouchEnd, true);
-    this.containerOuter.element.removeEventListener('keydown', this._onKeyDown, true);
-    this.containerOuter.element.removeEventListener('mousedown', this._onMouseDown, true);
-    documentElement.removeEventListener('click', this._onClick);
-    documentElement.removeEventListener('touchmove', this._onTouchMove);
-    this.dropdown.element.removeEventListener('mouseover', this._onMouseOver);
-
-    if (this._isSelectOneElement) {
-      this.containerOuter.element.removeEventListener('focus', this._onFocus);
-      this.containerOuter.element.removeEventListener('blur', this._onBlur);
-    }
-
-    this.input.element.removeEventListener('keyup', this._onKeyUp);
-    this.input.element.removeEventListener('focus', this._onFocus);
-    this.input.element.removeEventListener('blur', this._onBlur);
-
-    if (this.input.element.form) {
-      this.input.element.form.removeEventListener('reset', this._onFormReset);
-    }
-
-    this.input.removeEventListeners();
-  }
-  /**
-   * @param {KeyboardEvent} event
-   */
-  ;
-
-  _proto._onKeyDown = function _onKeyDown(event) {
-    var _keyDownActions;
-
-    var target = event.target,
-        keyCode = event.keyCode,
-        ctrlKey = event.ctrlKey,
-        metaKey = event.metaKey;
-    var activeItems = this._store.activeItems;
-    var hasFocusedInput = this.input.isFocussed;
-    var hasActiveDropdown = this.dropdown.isActive;
-    var hasItems = this.itemList.hasChildren();
-    var keyString = String.fromCharCode(keyCode);
-    var BACK_KEY = KEY_CODES.BACK_KEY,
-        DELETE_KEY = KEY_CODES.DELETE_KEY,
-        ENTER_KEY = KEY_CODES.ENTER_KEY,
-        A_KEY = KEY_CODES.A_KEY,
-        ESC_KEY = KEY_CODES.ESC_KEY,
-        UP_KEY = KEY_CODES.UP_KEY,
-        DOWN_KEY = KEY_CODES.DOWN_KEY,
-        PAGE_UP_KEY = KEY_CODES.PAGE_UP_KEY,
-        PAGE_DOWN_KEY = KEY_CODES.PAGE_DOWN_KEY;
-    var hasCtrlDownKeyPressed = ctrlKey || metaKey; // If a user is typing and the dropdown is not active
-
-    if (!this._isTextElement && /[a-zA-Z0-9-_ ]/.test(keyString)) {
-      this.showDropdown();
-    } // Map keys to key actions
-
-
-    var keyDownActions = (_keyDownActions = {}, _keyDownActions[A_KEY] = this._onAKey, _keyDownActions[ENTER_KEY] = this._onEnterKey, _keyDownActions[ESC_KEY] = this._onEscapeKey, _keyDownActions[UP_KEY] = this._onDirectionKey, _keyDownActions[PAGE_UP_KEY] = this._onDirectionKey, _keyDownActions[DOWN_KEY] = this._onDirectionKey, _keyDownActions[PAGE_DOWN_KEY] = this._onDirectionKey, _keyDownActions[DELETE_KEY] = this._onDeleteKey, _keyDownActions[BACK_KEY] = this._onDeleteKey, _keyDownActions); // If keycode has a function, run it
-
-    if (keyDownActions[keyCode]) {
-      keyDownActions[keyCode]({
-        event: event,
-        target: target,
-        keyCode: keyCode,
-        metaKey: metaKey,
-        activeItems: activeItems,
-        hasFocusedInput: hasFocusedInput,
-        hasActiveDropdown: hasActiveDropdown,
-        hasItems: hasItems,
-        hasCtrlDownKeyPressed: hasCtrlDownKeyPressed
-      });
-    }
-  };
-
-  _proto._onKeyUp = function _onKeyUp(_ref2) {
-    var target = _ref2.target,
-        keyCode = _ref2.keyCode;
-    var value = this.input.value;
-    var activeItems = this._store.activeItems;
-
-    var canAddItem = this._canAddItem(activeItems, value);
-
-    var backKey = KEY_CODES.BACK_KEY,
-        deleteKey = KEY_CODES.DELETE_KEY; // We are typing into a text input and have a value, we want to show a dropdown
-    // notice. Otherwise hide the dropdown
-
-    if (this._isTextElement) {
-      var canShowDropdownNotice = canAddItem.notice && value;
-
-      if (canShowDropdownNotice) {
-        var dropdownItem = this._getTemplate('notice', canAddItem.notice);
-
-        this.dropdown.element.innerHTML = dropdownItem.outerHTML;
-        this.showDropdown(true);
-      } else {
-        this.hideDropdown(true);
-      }
-    } else {
-      var userHasRemovedValue = (keyCode === backKey || keyCode === deleteKey) && !target.value;
-      var canReactivateChoices = !this._isTextElement && this._isSearching;
-      var canSearch = this._canSearch && canAddItem.response;
-
-      if (userHasRemovedValue && canReactivateChoices) {
-        this._isSearching = false;
-
-        this._store.dispatch(choices_activateChoices(true));
-      } else if (canSearch) {
-        this._handleSearch(this.input.value);
-      }
-    }
-
-    this._canSearch = this.config.searchEnabled;
-  };
-
-  _proto._onAKey = function _onAKey(_ref3) {
-    var hasItems = _ref3.hasItems,
-        hasCtrlDownKeyPressed = _ref3.hasCtrlDownKeyPressed;
-
-    // If CTRL + A or CMD + A have been pressed and there are items to select
-    if (hasCtrlDownKeyPressed && hasItems) {
-      this._canSearch = false;
-      var shouldHightlightAll = this.config.removeItems && !this.input.value && this.input.element === document.activeElement;
-
-      if (shouldHightlightAll) {
-        this.highlightAll();
-      }
-    }
-  };
-
-  _proto._onEnterKey = function _onEnterKey(_ref4) {
-    var event = _ref4.event,
-        target = _ref4.target,
-        activeItems = _ref4.activeItems,
-        hasActiveDropdown = _ref4.hasActiveDropdown;
-    var enterKey = KEY_CODES.ENTER_KEY;
-    var targetWasButton = target.hasAttribute('data-button');
-
-    if (this._isTextElement && target.value) {
-      var value = this.input.value;
-
-      var canAddItem = this._canAddItem(activeItems, value);
-
-      if (canAddItem.response) {
-        this.hideDropdown(true);
-
-        this._addItem({
-          value: value
-        });
-
-        this._triggerChange(value);
-
-        this.clearInput();
-      }
-    }
-
-    if (targetWasButton) {
-      this._handleButtonAction(activeItems, target);
-
-      event.preventDefault();
-    }
-
-    if (hasActiveDropdown) {
-      var highlightedChoice = this.dropdown.getChild("." + this.config.classNames.highlightedState);
-
-      if (highlightedChoice) {
-        // add enter keyCode value
-        if (activeItems[0]) {
-          activeItems[0].keyCode = enterKey; // eslint-disable-line no-param-reassign
-        }
-
-        this._handleChoiceAction(activeItems, highlightedChoice);
-      }
-
-      event.preventDefault();
-    } else if (this._isSelectOneElement) {
-      this.showDropdown();
-      event.preventDefault();
-    }
-  };
-
-  _proto._onEscapeKey = function _onEscapeKey(_ref5) {
-    var hasActiveDropdown = _ref5.hasActiveDropdown;
-
-    if (hasActiveDropdown) {
-      this.hideDropdown(true);
-      this.containerOuter.focus();
-    }
-  };
-
-  _proto._onDirectionKey = function _onDirectionKey(_ref6) {
-    var event = _ref6.event,
-        hasActiveDropdown = _ref6.hasActiveDropdown,
-        keyCode = _ref6.keyCode,
-        metaKey = _ref6.metaKey;
-    var downKey = KEY_CODES.DOWN_KEY,
-        pageUpKey = KEY_CODES.PAGE_UP_KEY,
-        pageDownKey = KEY_CODES.PAGE_DOWN_KEY; // If up or down key is pressed, traverse through options
-
-    if (hasActiveDropdown || this._isSelectOneElement) {
-      this.showDropdown();
-      this._canSearch = false;
-      var directionInt = keyCode === downKey || keyCode === pageDownKey ? 1 : -1;
-      var skipKey = metaKey || keyCode === pageDownKey || keyCode === pageUpKey;
-      var selectableChoiceIdentifier = '[data-choice-selectable]';
-      var nextEl;
-
-      if (skipKey) {
-        if (directionInt > 0) {
-          nextEl = this.dropdown.element.querySelector(selectableChoiceIdentifier + ":last-of-type");
-        } else {
-          nextEl = this.dropdown.element.querySelector(selectableChoiceIdentifier);
-        }
-      } else {
-        var currentEl = this.dropdown.element.querySelector("." + this.config.classNames.highlightedState);
-
-        if (currentEl) {
-          nextEl = getAdjacentEl(currentEl, selectableChoiceIdentifier, directionInt);
-        } else {
-          nextEl = this.dropdown.element.querySelector(selectableChoiceIdentifier);
-        }
-      }
-
-      if (nextEl) {
-        // We prevent default to stop the cursor moving
-        // when pressing the arrow
-        if (!isScrolledIntoView(nextEl, this.choiceList.element, directionInt)) {
-          this.choiceList.scrollToChildElement(nextEl, directionInt);
-        }
-
-        this._highlightChoice(nextEl);
-      } // Prevent default to maintain cursor position whilst
-      // traversing dropdown options
-
-
-      event.preventDefault();
-    }
-  };
-
-  _proto._onDeleteKey = function _onDeleteKey(_ref7) {
-    var event = _ref7.event,
-        target = _ref7.target,
-        hasFocusedInput = _ref7.hasFocusedInput,
-        activeItems = _ref7.activeItems;
-
-    // If backspace or delete key is pressed and the input has no value
-    if (hasFocusedInput && !target.value && !this._isSelectOneElement) {
-      this._handleBackspace(activeItems);
-
-      event.preventDefault();
-    }
-  };
-
-  _proto._onTouchMove = function _onTouchMove() {
-    if (this._wasTap) {
-      this._wasTap = false;
-    }
-  };
-
-  _proto._onTouchEnd = function _onTouchEnd(event) {
-    var _ref8 = event || event.touches[0],
-        target = _ref8.target;
-
-    var touchWasWithinContainer = this._wasTap && this.containerOuter.element.contains(target);
-
-    if (touchWasWithinContainer) {
-      var containerWasExactTarget = target === this.containerOuter.element || target === this.containerInner.element;
-
-      if (containerWasExactTarget) {
-        if (this._isTextElement) {
-          this.input.focus();
-        } else if (this._isSelectMultipleElement) {
-          this.showDropdown();
-        }
-      } // Prevents focus event firing
-
-
-      event.stopPropagation();
-    }
-
-    this._wasTap = true;
-  }
-  /**
-   * Handles mousedown event in capture mode for containetOuter.element
-   * @param {MouseEvent} event
-   */
-  ;
-
-  _proto._onMouseDown = function _onMouseDown(event) {
-    var target = event.target;
-
-    if (!(target instanceof HTMLElement)) {
-      return;
-    } // If we have our mouse down on the scrollbar and are on IE11...
-
-
-    if (IS_IE11 && this.choiceList.element.contains(target)) {
-      // check if click was on a scrollbar area
-      var firstChoice =
-      /** @type {HTMLElement} */
-      this.choiceList.element.firstElementChild;
-      var isOnScrollbar = this._direction === 'ltr' ? event.offsetX >= firstChoice.offsetWidth : event.offsetX < firstChoice.offsetLeft;
-      this._isScrollingOnIe = isOnScrollbar;
-    }
-
-    if (target === this.input.element) {
-      return;
-    }
-
-    var item = target.closest('[data-button],[data-item],[data-choice]');
-
-    if (item instanceof HTMLElement) {
-      var hasShiftKey = event.shiftKey;
-      var activeItems = this._store.activeItems;
-      var dataset = item.dataset;
-
-      if ('button' in dataset) {
-        this._handleButtonAction(activeItems, item);
-      } else if ('item' in dataset) {
-        this._handleItemAction(activeItems, item, hasShiftKey);
-      } else if ('choice' in dataset) {
-        this._handleChoiceAction(activeItems, item);
-      }
-    }
-
-    event.preventDefault();
-  }
-  /**
-   * Handles mouseover event over this.dropdown
-   * @param {MouseEvent} event
-   */
-  ;
-
-  _proto._onMouseOver = function _onMouseOver(_ref9) {
-    var target = _ref9.target;
-
-    if (target instanceof HTMLElement && 'choice' in target.dataset) {
-      this._highlightChoice(target);
-    }
-  };
-
-  _proto._onClick = function _onClick(_ref10) {
-    var target = _ref10.target;
-    var clickWasWithinContainer = this.containerOuter.element.contains(target);
-
-    if (clickWasWithinContainer) {
-      if (!this.dropdown.isActive && !this.containerOuter.isDisabled) {
-        if (this._isTextElement) {
-          if (document.activeElement !== this.input.element) {
-            this.input.focus();
-          }
-        } else {
-          this.showDropdown();
-          this.containerOuter.focus();
-        }
-      } else if (this._isSelectOneElement && target !== this.input.element && !this.dropdown.element.contains(target)) {
-        this.hideDropdown();
-      }
-    } else {
-      var hasHighlightedItems = this._store.highlightedActiveItems.length > 0;
-
-      if (hasHighlightedItems) {
-        this.unhighlightAll();
-      }
-
-      this.containerOuter.removeFocusState();
-      this.hideDropdown(true);
-    }
-  };
-
-  _proto._onFocus = function _onFocus(_ref11) {
-    var _this17 = this,
-        _focusActions;
-
-    var target = _ref11.target;
-    var focusWasWithinContainer = this.containerOuter.element.contains(target);
-
-    if (!focusWasWithinContainer) {
-      return;
-    }
-
-    var focusActions = (_focusActions = {}, _focusActions[TEXT_TYPE] = function () {
-      if (target === _this17.input.element) {
-        _this17.containerOuter.addFocusState();
-      }
-    }, _focusActions[SELECT_ONE_TYPE] = function () {
-      _this17.containerOuter.addFocusState();
-
-      if (target === _this17.input.element) {
-        _this17.showDropdown(true);
-      }
-    }, _focusActions[SELECT_MULTIPLE_TYPE] = function () {
-      if (target === _this17.input.element) {
-        _this17.showDropdown(true); // If element is a select box, the focused element is the container and the dropdown
-        // isn't already open, focus and show dropdown
-
-
-        _this17.containerOuter.addFocusState();
-      }
-    }, _focusActions);
-    focusActions[this.passedElement.element.type]();
-  };
-
-  _proto._onBlur = function _onBlur(_ref12) {
-    var _this18 = this;
-
-    var target = _ref12.target;
-    var blurWasWithinContainer = this.containerOuter.element.contains(target);
-
-    if (blurWasWithinContainer && !this._isScrollingOnIe) {
-      var _blurActions;
-
-      var activeItems = this._store.activeItems;
-      var hasHighlightedItems = activeItems.some(function (item) {
-        return item.highlighted;
-      });
-      var blurActions = (_blurActions = {}, _blurActions[TEXT_TYPE] = function () {
-        if (target === _this18.input.element) {
-          _this18.containerOuter.removeFocusState();
-
-          if (hasHighlightedItems) {
-            _this18.unhighlightAll();
-          }
-
-          _this18.hideDropdown(true);
-        }
-      }, _blurActions[SELECT_ONE_TYPE] = function () {
-        _this18.containerOuter.removeFocusState();
-
-        if (target === _this18.input.element || target === _this18.containerOuter.element && !_this18._canSearch) {
-          _this18.hideDropdown(true);
-        }
-      }, _blurActions[SELECT_MULTIPLE_TYPE] = function () {
-        if (target === _this18.input.element) {
-          _this18.containerOuter.removeFocusState();
-
-          _this18.hideDropdown(true);
-
-          if (hasHighlightedItems) {
-            _this18.unhighlightAll();
-          }
-        }
-      }, _blurActions);
-      blurActions[this.passedElement.element.type]();
-    } else {
-      // On IE11, clicking the scollbar blurs our input and thus
-      // closes the dropdown. To stop this, we refocus our input
-      // if we know we are on IE *and* are scrolling.
-      this._isScrollingOnIe = false;
-      this.input.element.focus();
-    }
-  };
-
-  _proto._onFormReset = function _onFormReset() {
-    this._store.dispatch(resetTo(this._initialState));
-  };
-
-  _proto._highlightChoice = function _highlightChoice(el) {
-    var _this19 = this;
-
-    if (el === void 0) {
-      el = null;
-    }
-
-    var choices = Array.from(this.dropdown.element.querySelectorAll('[data-choice-selectable]'));
-
-    if (!choices.length) {
-      return;
-    }
-
-    var passedEl = el;
-    var highlightedChoices = Array.from(this.dropdown.element.querySelectorAll("." + this.config.classNames.highlightedState)); // Remove any highlighted choices
-
-    highlightedChoices.forEach(function (choice) {
-      choice.classList.remove(_this19.config.classNames.highlightedState);
-      choice.setAttribute('aria-selected', 'false');
-    });
-
-    if (passedEl) {
-      this._highlightPosition = choices.indexOf(passedEl);
-    } else {
-      // Highlight choice based on last known highlight location
-      if (choices.length > this._highlightPosition) {
-        // If we have an option to highlight
-        passedEl = choices[this._highlightPosition];
-      } else {
-        // Otherwise highlight the option before
-        passedEl = choices[choices.length - 1];
-      }
-
-      if (!passedEl) {
-        passedEl = choices[0];
-      }
-    }
-
-    passedEl.classList.add(this.config.classNames.highlightedState);
-    passedEl.setAttribute('aria-selected', 'true');
-    this.passedElement.triggerEvent(EVENTS.highlightChoice, {
-      el: passedEl
-    });
-
-    if (this.dropdown.isActive) {
-      // IE11 ignores aria-label and blocks virtual keyboard
-      // if aria-activedescendant is set without a dropdown
-      this.input.setActiveDescendant(passedEl.id);
-      this.containerOuter.setActiveDescendant(passedEl.id);
-    }
-  };
-
-  _proto._addItem = function _addItem(_ref13) {
-    var value = _ref13.value,
-        _ref13$label = _ref13.label,
-        label = _ref13$label === void 0 ? null : _ref13$label,
-        _ref13$choiceId = _ref13.choiceId,
-        choiceId = _ref13$choiceId === void 0 ? -1 : _ref13$choiceId,
-        _ref13$groupId = _ref13.groupId,
-        groupId = _ref13$groupId === void 0 ? -1 : _ref13$groupId,
-        _ref13$customProperti = _ref13.customProperties,
-        customProperties = _ref13$customProperti === void 0 ? null : _ref13$customProperti,
-        _ref13$placeholder = _ref13.placeholder,
-        placeholder = _ref13$placeholder === void 0 ? false : _ref13$placeholder,
-        _ref13$keyCode = _ref13.keyCode,
-        keyCode = _ref13$keyCode === void 0 ? null : _ref13$keyCode;
-    var passedValue = typeof value === 'string' ? value.trim() : value;
-    var passedKeyCode = keyCode;
-    var passedCustomProperties = customProperties;
-    var items = this._store.items;
-    var passedLabel = label || passedValue;
-    var passedOptionId = choiceId || -1;
-    var group = groupId >= 0 ? this._store.getGroupById(groupId) : null;
-    var id = items ? items.length + 1 : 1; // If a prepended value has been passed, prepend it
-
-    if (this.config.prependValue) {
-      passedValue = this.config.prependValue + passedValue.toString();
-    } // If an appended value has been passed, append it
-
-
-    if (this.config.appendValue) {
-      passedValue += this.config.appendValue.toString();
-    }
-
-    this._store.dispatch(items_addItem({
-      value: passedValue,
-      label: passedLabel,
-      id: id,
-      choiceId: passedOptionId,
-      groupId: groupId,
-      customProperties: customProperties,
-      placeholder: placeholder,
-      keyCode: passedKeyCode
-    }));
-
-    if (this._isSelectOneElement) {
-      this.removeActiveItems(id);
-    } // Trigger change event
-
-
-    this.passedElement.triggerEvent(EVENTS.addItem, {
-      id: id,
-      value: passedValue,
-      label: passedLabel,
-      customProperties: passedCustomProperties,
-      groupValue: group && group.value ? group.value : undefined,
-      keyCode: passedKeyCode
-    });
-    return this;
-  };
-
-  _proto._removeItem = function _removeItem(item) {
-    if (!item || !isType('Object', item)) {
-      return this;
-    }
-
-    var id = item.id,
-        value = item.value,
-        label = item.label,
-        choiceId = item.choiceId,
-        groupId = item.groupId;
-    var group = groupId >= 0 ? this._store.getGroupById(groupId) : null;
-
-    this._store.dispatch(items_removeItem(id, choiceId));
-
-    if (group && group.value) {
-      this.passedElement.triggerEvent(EVENTS.removeItem, {
-        id: id,
-        value: value,
-        label: label,
-        groupValue: group.value
-      });
-    } else {
-      this.passedElement.triggerEvent(EVENTS.removeItem, {
-        id: id,
-        value: value,
-        label: label
-      });
-    }
-
-    return this;
-  };
-
-  _proto._addChoice = function _addChoice(_ref14) {
-    var value = _ref14.value,
-        _ref14$label = _ref14.label,
-        label = _ref14$label === void 0 ? null : _ref14$label,
-        _ref14$isSelected = _ref14.isSelected,
-        isSelected = _ref14$isSelected === void 0 ? false : _ref14$isSelected,
-        _ref14$isDisabled = _ref14.isDisabled,
-        isDisabled = _ref14$isDisabled === void 0 ? false : _ref14$isDisabled,
-        _ref14$groupId = _ref14.groupId,
-        groupId = _ref14$groupId === void 0 ? -1 : _ref14$groupId,
-        _ref14$customProperti = _ref14.customProperties,
-        customProperties = _ref14$customProperti === void 0 ? null : _ref14$customProperti,
-        _ref14$placeholder = _ref14.placeholder,
-        placeholder = _ref14$placeholder === void 0 ? false : _ref14$placeholder,
-        _ref14$keyCode = _ref14.keyCode,
-        keyCode = _ref14$keyCode === void 0 ? null : _ref14$keyCode;
-
-    if (typeof value === 'undefined' || value === null) {
-      return;
-    } // Generate unique id
-
-
-    var choices = this._store.choices;
-    var choiceLabel = label || value;
-    var choiceId = choices ? choices.length + 1 : 1;
-    var choiceElementId = this._baseId + "-" + this._idNames.itemChoice + "-" + choiceId;
-
-    this._store.dispatch(choices_addChoice({
-      id: choiceId,
-      groupId: groupId,
-      elementId: choiceElementId,
-      value: value,
-      label: choiceLabel,
-      disabled: isDisabled,
-      customProperties: customProperties,
-      placeholder: placeholder,
-      keyCode: keyCode
-    }));
-
-    if (isSelected) {
-      this._addItem({
-        value: value,
-        label: choiceLabel,
-        choiceId: choiceId,
-        customProperties: customProperties,
-        placeholder: placeholder,
-        keyCode: keyCode
-      });
-    }
-  };
-
-  _proto._addGroup = function _addGroup(_ref15) {
-    var _this20 = this;
-
-    var group = _ref15.group,
-        id = _ref15.id,
-        _ref15$valueKey = _ref15.valueKey,
-        valueKey = _ref15$valueKey === void 0 ? 'value' : _ref15$valueKey,
-        _ref15$labelKey = _ref15.labelKey,
-        labelKey = _ref15$labelKey === void 0 ? 'label' : _ref15$labelKey;
-    var groupChoices = isType('Object', group) ? group.choices : Array.from(group.getElementsByTagName('OPTION'));
-    var groupId = id || Math.floor(new Date().valueOf() * Math.random());
-    var isDisabled = group.disabled ? group.disabled : false;
-
-    if (groupChoices) {
-      this._store.dispatch(groups_addGroup({
-        value: group.label,
-        id: groupId,
-        active: true,
-        disabled: isDisabled
-      }));
-
-      var addGroupChoices = function addGroupChoices(choice) {
-        var isOptDisabled = choice.disabled || choice.parentNode && choice.parentNode.disabled;
-
-        _this20._addChoice({
-          value: choice[valueKey],
-          label: isType('Object', choice) ? choice[labelKey] : choice.innerHTML,
-          isSelected: choice.selected,
-          isDisabled: isOptDisabled,
-          groupId: groupId,
-          customProperties: choice.customProperties,
-          placeholder: choice.placeholder
-        });
-      };
-
-      groupChoices.forEach(addGroupChoices);
-    } else {
-      this._store.dispatch(groups_addGroup({
-        value: group.label,
-        id: group.id,
-        active: false,
-        disabled: group.disabled
-      }));
-    }
-  };
-
-  _proto._getTemplate = function _getTemplate(template) {
-    var _this$_templates$temp;
-
-    if (!template) {
-      return null;
-    }
-
-    var classNames = this.config.classNames;
-
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    return (_this$_templates$temp = this._templates[template]).call.apply(_this$_templates$temp, [this, classNames].concat(args));
-  };
-
-  _proto._createTemplates = function _createTemplates() {
-    var callbackOnCreateTemplates = this.config.callbackOnCreateTemplates;
-    var userTemplates = {};
-
-    if (callbackOnCreateTemplates && typeof callbackOnCreateTemplates === 'function') {
-      userTemplates = callbackOnCreateTemplates.call(this, strToEl);
-    }
-
-    this._templates = cjs_default()(TEMPLATES, userTemplates);
-  };
-
-  _proto._createElements = function _createElements() {
-    this.containerOuter = new container_Container({
-      element: this._getTemplate('containerOuter', this._direction, this._isSelectElement, this._isSelectOneElement, this.config.searchEnabled, this.passedElement.element.type),
-      classNames: this.config.classNames,
-      type: this.passedElement.element.type,
-      position: this.config.position
-    });
-    this.containerInner = new container_Container({
-      element: this._getTemplate('containerInner'),
-      classNames: this.config.classNames,
-      type: this.passedElement.element.type,
-      position: this.config.position
-    });
-    this.input = new input_Input({
-      element: this._getTemplate('input', this._placeholderValue),
-      classNames: this.config.classNames,
-      type: this.passedElement.element.type,
-      preventPaste: !this.config.paste
-    });
-    this.choiceList = new list_List({
-      element: this._getTemplate('choiceList', this._isSelectOneElement)
-    });
-    this.itemList = new list_List({
-      element: this._getTemplate('itemList', this._isSelectOneElement)
-    });
-    this.dropdown = new Dropdown({
-      element: this._getTemplate('dropdown'),
-      classNames: this.config.classNames,
-      type: this.passedElement.element.type
-    });
-  };
-
-  _proto._createStructure = function _createStructure() {
-    // Hide original element
-    this.passedElement.conceal(); // Wrap input in container preserving DOM ordering
-
-    this.containerInner.wrap(this.passedElement.element); // Wrapper inner container with outer container
-
-    this.containerOuter.wrap(this.containerInner.element);
-
-    if (this._isSelectOneElement) {
-      this.input.placeholder = this.config.searchPlaceholderValue || '';
-    } else if (this._placeholderValue) {
-      this.input.placeholder = this._placeholderValue;
-      this.input.setWidth();
-    }
-
-    this.containerOuter.element.appendChild(this.containerInner.element);
-    this.containerOuter.element.appendChild(this.dropdown.element);
-    this.containerInner.element.appendChild(this.itemList.element);
-
-    if (!this._isTextElement) {
-      this.dropdown.element.appendChild(this.choiceList.element);
-    }
-
-    if (!this._isSelectOneElement) {
-      this.containerInner.element.appendChild(this.input.element);
-    } else if (this.config.searchEnabled) {
-      this.dropdown.element.insertBefore(this.input.element, this.dropdown.element.firstChild);
-    }
-
-    if (this._isSelectElement) {
-      this._highlightPosition = 0;
-      this._isSearching = false;
-
-      this._startLoading();
-
-      if (this._presetGroups.length) {
-        this._addPredefinedGroups(this._presetGroups);
-      } else {
-        this._addPredefinedChoices(this._presetChoices);
-      }
-
-      this._stopLoading();
-    }
-
-    if (this._isTextElement) {
-      this._addPredefinedItems(this._presetItems);
-    }
-  };
-
-  _proto._addPredefinedGroups = function _addPredefinedGroups(groups) {
-    var _this21 = this;
-
-    // If we have a placeholder option
-    var placeholderChoice = this.passedElement.placeholderOption;
-
-    if (placeholderChoice && placeholderChoice.parentNode.tagName === 'SELECT') {
-      this._addChoice({
-        value: placeholderChoice.value,
-        label: placeholderChoice.innerHTML,
-        isSelected: placeholderChoice.selected,
-        isDisabled: placeholderChoice.disabled,
-        placeholder: true
-      });
-    }
-
-    groups.forEach(function (group) {
-      return _this21._addGroup({
-        group: group,
-        id: group.id || null
-      });
-    });
-  };
-
-  _proto._addPredefinedChoices = function _addPredefinedChoices(choices) {
-    var _this22 = this;
-
-    // If sorting is enabled or the user is searching, filter choices
-    if (this.config.shouldSort) {
-      choices.sort(this.config.sorter);
-    }
-
-    var hasSelectedChoice = choices.some(function (choice) {
-      return choice.selected;
-    });
-    var firstEnabledChoiceIndex = choices.findIndex(function (choice) {
-      return choice.disabled === undefined || !choice.disabled;
-    });
-    choices.forEach(function (choice, index) {
-      var value = choice.value,
-          label = choice.label,
-          customProperties = choice.customProperties,
-          placeholder = choice.placeholder;
-
-      if (_this22._isSelectElement) {
-        // If the choice is actually a group
-        if (choice.choices) {
-          _this22._addGroup({
-            group: choice,
-            id: choice.id || null
-          });
-        } else {
-          /**
-           * If there is a selected choice already or the choice is not the first in
-           * the array, add each choice normally.
-           *
-           * Otherwise we pre-select the first enabled choice in the array ("select-one" only)
-           */
-          var shouldPreselect = _this22._isSelectOneElement && !hasSelectedChoice && index === firstEnabledChoiceIndex;
-          var isSelected = shouldPreselect ? true : choice.selected;
-          var isDisabled = choice.disabled;
-
-          _this22._addChoice({
-            value: value,
-            label: label,
-            isSelected: isSelected,
-            isDisabled: isDisabled,
-            customProperties: customProperties,
-            placeholder: placeholder
-          });
-        }
-      } else {
-        _this22._addChoice({
-          value: value,
-          label: label,
-          isSelected: choice.selected,
-          isDisabled: choice.disabled,
-          customProperties: customProperties,
-          placeholder: placeholder
-        });
-      }
-    });
-  }
-  /**
-   * @param {Item[]} items
-   */
-  ;
-
-  _proto._addPredefinedItems = function _addPredefinedItems(items) {
-    var _this23 = this;
-
-    items.forEach(function (item) {
-      if (typeof item === 'object' && item.value) {
-        _this23._addItem({
-          value: item.value,
-          label: item.label,
-          choiceId: item.id,
-          customProperties: item.customProperties,
-          placeholder: item.placeholder
-        });
-      }
-
-      if (typeof item === 'string') {
-        _this23._addItem({
-          value: item
-        });
-      }
-    });
-  };
-
-  _proto._setChoiceOrItem = function _setChoiceOrItem(item) {
-    var _this24 = this;
-
-    var itemType = getType(item).toLowerCase();
-    var handleType = {
-      object: function object() {
-        if (!item.value) {
-          return;
-        } // If we are dealing with a select input, we need to create an option first
-        // that is then selected. For text inputs we can just add items normally.
-
-
-        if (!_this24._isTextElement) {
-          _this24._addChoice({
-            value: item.value,
-            label: item.label,
-            isSelected: true,
-            isDisabled: false,
-            customProperties: item.customProperties,
-            placeholder: item.placeholder
-          });
-        } else {
-          _this24._addItem({
-            value: item.value,
-            label: item.label,
-            choiceId: item.id,
-            customProperties: item.customProperties,
-            placeholder: item.placeholder
-          });
-        }
-      },
-      string: function string() {
-        if (!_this24._isTextElement) {
-          _this24._addChoice({
-            value: item,
-            label: item,
-            isSelected: true,
-            isDisabled: false
-          });
-        } else {
-          _this24._addItem({
-            value: item
-          });
-        }
-      }
-    };
-    handleType[itemType]();
-  };
-
-  _proto._findAndSelectChoiceByValue = function _findAndSelectChoiceByValue(val) {
-    var _this25 = this;
-
-    var choices = this._store.choices; // Check 'value' property exists and the choice isn't already selected
-
-    var foundChoice = choices.find(function (choice) {
-      return _this25.config.valueComparer(choice.value, val);
-    });
-
-    if (foundChoice && !foundChoice.selected) {
-      this._addItem({
-        value: foundChoice.value,
-        label: foundChoice.label,
-        choiceId: foundChoice.id,
-        groupId: foundChoice.groupId,
-        customProperties: foundChoice.customProperties,
-        placeholder: foundChoice.placeholder,
-        keyCode: foundChoice.keyCode
-      });
-    }
-  };
-
-  _proto._generatePlaceholderValue = function _generatePlaceholderValue() {
-    if (this._isSelectElement) {
-      var placeholderOption = this.passedElement.placeholderOption;
-      return placeholderOption ? placeholderOption.text : false;
-    }
-
-    var _this$config4 = this.config,
-        placeholder = _this$config4.placeholder,
-        placeholderValue = _this$config4.placeholderValue;
-    var dataset = this.passedElement.element.dataset;
-
-    if (placeholder) {
-      if (placeholderValue) {
-        return placeholderValue;
-      }
-
-      if (dataset.placeholder) {
-        return dataset.placeholder;
-      }
-    }
-
-    return false;
-  };
-
-  return Choices;
-}();
-
-/* harmony default export */ var scripts_choices = __webpack_exports__["default"] = (choices_Choices);
 
 /***/ })
-/******/ ])["default"];
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __nested_webpack_require_201985__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __nested_webpack_require_201985__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__nested_webpack_require_201985__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__nested_webpack_require_201985__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__nested_webpack_require_201985__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__nested_webpack_require_201985__.o(definition, key) && !__nested_webpack_require_201985__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__nested_webpack_require_201985__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__nested_webpack_require_201985__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+!function() {
+/* harmony import */ var _scripts_choices__WEBPACK_IMPORTED_MODULE_0__ = __nested_webpack_require_201985__(373);
+/* harmony import */ var _scripts_choices__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nested_webpack_require_201985__.n(_scripts_choices__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _scripts_interfaces__WEBPACK_IMPORTED_MODULE_1__ = __nested_webpack_require_201985__(187);
+/* harmony import */ var _scripts_interfaces__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nested_webpack_require_201985__.n(_scripts_interfaces__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _scripts_constants__WEBPACK_IMPORTED_MODULE_2__ = __nested_webpack_require_201985__(883);
+/* harmony import */ var _scripts_defaults__WEBPACK_IMPORTED_MODULE_3__ = __nested_webpack_require_201985__(789);
+/* harmony import */ var _scripts_templates__WEBPACK_IMPORTED_MODULE_4__ = __nested_webpack_require_201985__(686);
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ((_scripts_choices__WEBPACK_IMPORTED_MODULE_0___default()));
+
+}();
+__webpack_exports__ = __webpack_exports__["default"];
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
 });
 
 /***/ }),
@@ -6061,8 +8698,7 @@ function () {
 /*!*********************************!*\
   !*** ./node_modules/d/index.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -6071,7 +8707,7 @@ var isValue         = __webpack_require__(/*! type/value/is */ "./node_modules/t
   , isPlainFunction = __webpack_require__(/*! type/plain-function/is */ "./node_modules/type/plain-function/is.js")
   , assign          = __webpack_require__(/*! es5-ext/object/assign */ "./node_modules/es5-ext/object/assign/index.js")
   , normalizeOpts   = __webpack_require__(/*! es5-ext/object/normalize-options */ "./node_modules/es5-ext/object/normalize-options.js")
-  , contains        = __webpack_require__(/*! es5-ext/string/#/contains */ "./node_modules/es5-ext/string/#/contains/index.js");
+  , contains        = __webpack_require__(/*! es5-ext/string/#/contains */ "./node_modules/es5-ext/string/\u0000#/contains/index.js");
 
 var d = (module.exports = function (dscr, value/*, options*/) {
 	var c, e, w, options, desc;
@@ -6135,8 +8771,7 @@ d.gs = function (dscr, get, set/*, options*/) {
 /*!***********************************************!*\
   !*** ./node_modules/es5-ext/function/noop.js ***!
   \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module) => {
 
 "use strict";
 
@@ -6151,8 +8786,7 @@ module.exports = function () {};
 /*!*****************************************************!*\
   !*** ./node_modules/es5-ext/object/assign/index.js ***!
   \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -6166,8 +8800,7 @@ module.exports = __webpack_require__(/*! ./is-implemented */ "./node_modules/es5
 /*!**************************************************************!*\
   !*** ./node_modules/es5-ext/object/assign/is-implemented.js ***!
   \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module) => {
 
 "use strict";
 
@@ -6187,8 +8820,7 @@ module.exports = function () {
 /*!****************************************************!*\
   !*** ./node_modules/es5-ext/object/assign/shim.js ***!
   \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -6197,7 +8829,7 @@ var keys  = __webpack_require__(/*! ../keys */ "./node_modules/es5-ext/object/ke
   , value = __webpack_require__(/*! ../valid-value */ "./node_modules/es5-ext/object/valid-value.js")
   , max   = Math.max;
 
-module.exports = function (dest, src/*, …srcn*/) {
+module.exports = function (dest, src /*, …srcn*/) {
 	var error, i, length = max(arguments.length, 2), assign;
 	dest = Object(value(dest));
 	assign = function (key) {
@@ -6222,8 +8854,7 @@ module.exports = function (dest, src/*, …srcn*/) {
 /*!*************************************************!*\
   !*** ./node_modules/es5-ext/object/is-value.js ***!
   \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -6239,8 +8870,7 @@ module.exports = function (val) { return val !== _undefined && val !== null; };
 /*!***************************************************!*\
   !*** ./node_modules/es5-ext/object/keys/index.js ***!
   \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -6254,8 +8884,7 @@ module.exports = __webpack_require__(/*! ./is-implemented */ "./node_modules/es5
 /*!************************************************************!*\
   !*** ./node_modules/es5-ext/object/keys/is-implemented.js ***!
   \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module) => {
 
 "use strict";
 
@@ -6276,8 +8905,7 @@ module.exports = function () {
 /*!**************************************************!*\
   !*** ./node_modules/es5-ext/object/keys/shim.js ***!
   \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -6295,8 +8923,7 @@ module.exports = function (object) { return keys(isValue(object) ? Object(object
 /*!**********************************************************!*\
   !*** ./node_modules/es5-ext/object/normalize-options.js ***!
   \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -6311,7 +8938,7 @@ var process = function (src, obj) {
 };
 
 // eslint-disable-next-line no-unused-vars
-module.exports = function (opts1/*, …options*/) {
+module.exports = function (opts1 /*, …options*/) {
 	var result = create(null);
 	forEach.call(arguments, function (options) {
 		if (!isValue(options)) return;
@@ -6327,8 +8954,7 @@ module.exports = function (opts1/*, …options*/) {
 /*!****************************************************!*\
   !*** ./node_modules/es5-ext/object/valid-value.js ***!
   \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -6343,27 +8969,25 @@ module.exports = function (value) {
 
 /***/ }),
 
-/***/ "./node_modules/es5-ext/string/#/contains/index.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/es5-ext/string/#/contains/index.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/es5-ext/string/\u0000#/contains/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/es5-ext/string/ #/contains/index.js ***!
+  \**********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
-module.exports = __webpack_require__(/*! ./is-implemented */ "./node_modules/es5-ext/string/#/contains/is-implemented.js")() ? String.prototype.contains : __webpack_require__(/*! ./shim */ "./node_modules/es5-ext/string/#/contains/shim.js");
+module.exports = __webpack_require__(/*! ./is-implemented */ "./node_modules/es5-ext/string/\u0000#/contains/is-implemented.js")() ? String.prototype.contains : __webpack_require__(/*! ./shim */ "./node_modules/es5-ext/string/\u0000#/contains/shim.js");
 
 
 /***/ }),
 
-/***/ "./node_modules/es5-ext/string/#/contains/is-implemented.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/es5-ext/string/#/contains/is-implemented.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/es5-ext/string/\u0000#/contains/is-implemented.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/es5-ext/string/ #/contains/is-implemented.js ***!
+  \*******************************************************************/
+/***/ ((module) => {
 
 "use strict";
 
@@ -6378,19 +9002,18 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ "./node_modules/es5-ext/string/#/contains/shim.js":
-/*!********************************************************!*\
-  !*** ./node_modules/es5-ext/string/#/contains/shim.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/es5-ext/string/\u0000#/contains/shim.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/es5-ext/string/ #/contains/shim.js ***!
+  \*********************************************************/
+/***/ ((module) => {
 
 "use strict";
 
 
 var indexOf = String.prototype.indexOf;
 
-module.exports = function (searchString/*, position*/) {
+module.exports = function (searchString /*, position*/) {
 	return indexOf.call(this, searchString, arguments[1]) > -1;
 };
 
@@ -6401,14 +9024,13 @@ module.exports = function (searchString/*, position*/) {
 /*!******************************************!*\
   !*** ./node_modules/es6-promise/auto.js ***!
   \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 // This file can be required in Browserify and Node.js for automatic polyfill
 // To use it:  require('es6-promise/auto');
 
-module.exports = __webpack_require__(/*! ./ */ "./node_modules/es6-promise/dist/es6-promise.js").polyfill();
+module.exports = (__webpack_require__(/*! ./ */ "./node_modules/es6-promise/dist/es6-promise.js").polyfill)();
 
 
 /***/ }),
@@ -6417,10 +9039,9 @@ module.exports = __webpack_require__(/*! ./ */ "./node_modules/es6-promise/dist/
 /*!******************************************************!*\
   !*** ./node_modules/es6-promise/dist/es6-promise.js ***!
   \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process, global) {/*!
+/*!
  * @overview es6-promise - a tiny implementation of Promises/A+.
  * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
  * @license   Licensed under MIT license
@@ -6430,7 +9051,7 @@ module.exports = __webpack_require__(/*! ./ */ "./node_modules/es6-promise/dist/
 
 (function (global, factory) {
 	 true ? module.exports = factory() :
-	undefined;
+	0;
 }(this, (function () { 'use strict';
 
 function objectOrFunction(x) {
@@ -7552,8 +10173,8 @@ Promise$1._asap = asap;
 function polyfill() {
   var local = void 0;
 
-  if (typeof global !== 'undefined') {
-    local = global;
+  if (typeof __webpack_require__.g !== 'undefined') {
+    local = __webpack_require__.g;
   } else if (typeof self !== 'undefined') {
     local = self;
   } else {
@@ -7594,7 +10215,6 @@ return Promise$1;
 
 //# sourceMappingURL=es6-promise.map
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js"), __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -7602,8 +10222,7 @@ return Promise$1;
 /*!**********************************************!*\
   !*** ./node_modules/es6-symbol/implement.js ***!
   \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -7624,8 +10243,7 @@ if (!__webpack_require__(/*! ./is-implemented */ "./node_modules/es6-symbol/is-i
 /*!***************************************************!*\
   !*** ./node_modules/es6-symbol/is-implemented.js ***!
   \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -7656,8 +10274,7 @@ module.exports = function () {
 /*!**********************************************!*\
   !*** ./node_modules/es6-symbol/is-symbol.js ***!
   \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module) => {
 
 "use strict";
 
@@ -7677,8 +10294,7 @@ module.exports = function (value) {
 /*!**************************************************************!*\
   !*** ./node_modules/es6-symbol/lib/private/generate-name.js ***!
   \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -7718,14 +10334,13 @@ module.exports = function (desc) {
 /*!***********************************************************************!*\
   !*** ./node_modules/es6-symbol/lib/private/setup/standard-symbols.js ***!
   \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 var d            = __webpack_require__(/*! d */ "./node_modules/d/index.js")
-  , NativeSymbol = __webpack_require__(/*! ext/global-this */ "./node_modules/ext/global-this/index.js").Symbol;
+  , NativeSymbol = (__webpack_require__(/*! ext/global-this */ "./node_modules/ext/global-this/index.js").Symbol);
 
 module.exports = function (SymbolPolyfill) {
 	return Object.defineProperties(SymbolPolyfill, {
@@ -7764,8 +10379,7 @@ module.exports = function (SymbolPolyfill) {
 /*!**********************************************************************!*\
   !*** ./node_modules/es6-symbol/lib/private/setup/symbol-registry.js ***!
   \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -7799,8 +10413,7 @@ module.exports = function (SymbolPolyfill) {
 /*!*********************************************!*\
   !*** ./node_modules/es6-symbol/polyfill.js ***!
   \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 // ES2015 Symbol polyfill for environments that do not (or partially) support it
@@ -7809,7 +10422,7 @@ module.exports = function (SymbolPolyfill) {
 
 var d                    = __webpack_require__(/*! d */ "./node_modules/d/index.js")
   , validateSymbol       = __webpack_require__(/*! ./validate-symbol */ "./node_modules/es6-symbol/validate-symbol.js")
-  , NativeSymbol         = __webpack_require__(/*! ext/global-this */ "./node_modules/ext/global-this/index.js").Symbol
+  , NativeSymbol         = (__webpack_require__(/*! ext/global-this */ "./node_modules/ext/global-this/index.js").Symbol)
   , generateName         = __webpack_require__(/*! ./lib/private/generate-name */ "./node_modules/es6-symbol/lib/private/generate-name.js")
   , setupStandardSymbols = __webpack_require__(/*! ./lib/private/setup/standard-symbols */ "./node_modules/es6-symbol/lib/private/setup/standard-symbols.js")
   , setupSymbolRegistry  = __webpack_require__(/*! ./lib/private/setup/symbol-registry */ "./node_modules/es6-symbol/lib/private/setup/symbol-registry.js");
@@ -7898,8 +10511,7 @@ defineProperty(
 /*!****************************************************!*\
   !*** ./node_modules/es6-symbol/validate-symbol.js ***!
   \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -7918,8 +10530,7 @@ module.exports = function (value) {
 /*!********************************************************!*\
   !*** ./node_modules/ext/global-this/implementation.js ***!
   \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((module) => {
 
 var naiveFallback = function () {
 	if (typeof self === "object" && self) return self;
@@ -7960,8 +10571,7 @@ module.exports = (function () {
 /*!***********************************************!*\
   !*** ./node_modules/ext/global-this/index.js ***!
   \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -7975,8 +10585,7 @@ module.exports = __webpack_require__(/*! ./is-implemented */ "./node_modules/ext
 /*!********************************************************!*\
   !*** ./node_modules/ext/global-this/is-implemented.js ***!
   \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module) => {
 
 "use strict";
 
@@ -7994,11 +10603,13 @@ module.exports = function () {
 /*!**************************************************!*\
   !*** ./node_modules/flatpickr/dist/esm/index.js ***!
   \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 /* harmony import */ var _types_options__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types/options */ "./node_modules/flatpickr/dist/esm/types/options.js");
 /* harmony import */ var _l10n_default__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./l10n/default */ "./node_modules/flatpickr/dist/esm/l10n/default.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./node_modules/flatpickr/dist/esm/utils/index.js");
@@ -8007,6 +10618,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_formatting__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/formatting */ "./node_modules/flatpickr/dist/esm/utils/formatting.js");
 /* harmony import */ var _utils_polyfills__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/polyfills */ "./node_modules/flatpickr/dist/esm/utils/polyfills.js");
 /* harmony import */ var _utils_polyfills__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_utils_polyfills__WEBPACK_IMPORTED_MODULE_6__);
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __spreadArrays = (undefined && undefined.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 
 
 
@@ -8014,13 +10643,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const DEBOUNCED_CHANGE_MS = 300;
+var DEBOUNCED_CHANGE_MS = 300;
 function FlatpickrInstance(element, instanceConfig) {
-    const self = {
-        config: Object.assign(Object.assign({}, _types_options__WEBPACK_IMPORTED_MODULE_0__["defaults"]), flatpickr.defaultConfig),
+    var self = {
+        config: __assign(__assign({}, _types_options__WEBPACK_IMPORTED_MODULE_0__.defaults), flatpickr.defaultConfig),
         l10n: _l10n_default__WEBPACK_IMPORTED_MODULE_1__["default"],
     };
-    self.parseDate = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["createDateParser"])({ config: self.config, l10n: self.l10n });
+    self.parseDate = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.createDateParser)({ config: self.config, l10n: self.l10n });
     self._handlers = [];
     self.pluginElements = [];
     self.loadedPlugins = [];
@@ -8031,10 +10660,13 @@ function FlatpickrInstance(element, instanceConfig) {
     self.changeYear = changeYear;
     self.clear = clear;
     self.close = close;
-    self._createElement = _utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"];
+    self.onMouseOver = onMouseOver;
+    self._createElement = _utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement;
+    self.createDay = createDay;
     self.destroy = destroy;
     self.isEnabled = isEnabled;
     self.jumpToDate = jumpToDate;
+    self.updateValue = updateValue;
     self.open = open;
     self.redraw = redraw;
     self.set = set;
@@ -8042,7 +10674,9 @@ function FlatpickrInstance(element, instanceConfig) {
     self.toggle = toggle;
     function setupHelperFunctions() {
         self.utils = {
-            getDaysInMonth(month = self.currentMonth, yr = self.currentYear) {
+            getDaysInMonth: function (month, yr) {
+                if (month === void 0) { month = self.currentMonth; }
+                if (yr === void 0) { yr = self.currentYear; }
                 if (month === 1 && ((yr % 4 === 0 && yr % 100 !== 0) || yr % 400 === 0))
                     return 29;
                 return self.l10n.daysInMonth[month];
@@ -8067,17 +10701,22 @@ function FlatpickrInstance(element, instanceConfig) {
             updateValue(false);
         }
         setCalendarWidth();
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
         if (!self.isMobile && isSafari) {
             positionCalendar();
         }
         triggerEvent("onReady");
     }
+    function getClosestActiveElement() {
+        var _a;
+        return (((_a = self.calendarContainer) === null || _a === void 0 ? void 0 : _a.getRootNode())
+            .activeElement || document.activeElement);
+    }
     function bindToInstance(fn) {
         return fn.bind(self);
     }
     function setCalendarWidth() {
-        const config = self.config;
+        var config = self.config;
         if (config.weekNumbers === false && config.showMonths === 1) {
             return;
         }
@@ -8088,7 +10727,7 @@ function FlatpickrInstance(element, instanceConfig) {
                     self.calendarContainer.style.display = "block";
                 }
                 if (self.daysContainer !== undefined) {
-                    const daysWidth = (self.days.offsetWidth + 1) * config.showMonths;
+                    var daysWidth = (self.days.offsetWidth + 1) * config.showMonths;
                     self.daysContainer.style.width = daysWidth + "px";
                     self.calendarContainer.style.width =
                         daysWidth +
@@ -8104,11 +10743,11 @@ function FlatpickrInstance(element, instanceConfig) {
     }
     function updateTime(e) {
         if (self.selectedDates.length === 0) {
-            const defaultDate = self.config.minDate === undefined ||
-                Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(new Date(), self.config.minDate) >= 0
+            var defaultDate = self.config.minDate === undefined ||
+                (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(new Date(), self.config.minDate) >= 0
                 ? new Date()
                 : new Date(self.config.minDate.getTime());
-            const defaults = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["getDefaultHours"])(self.config);
+            var defaults = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.getDefaultHours)(self.config);
             defaultDate.setHours(defaults.hours, defaults.minutes, defaults.seconds, defaultDate.getMilliseconds());
             self.selectedDates = [defaultDate];
             self.latestSelectedDateObj = defaultDate;
@@ -8116,7 +10755,7 @@ function FlatpickrInstance(element, instanceConfig) {
         if (e !== undefined && e.type !== "blur") {
             timeWrapper(e);
         }
-        const prevValue = self._input.value;
+        var prevValue = self._input.value;
         setHoursFromInputs();
         updateValue();
         if (self._input.value !== prevValue) {
@@ -8124,7 +10763,7 @@ function FlatpickrInstance(element, instanceConfig) {
         }
     }
     function ampm2military(hour, amPM) {
-        return (hour % 12) + 12 * Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(amPM === self.l10n.amPM[1]);
+        return (hour % 12) + 12 * (0,_utils__WEBPACK_IMPORTED_MODULE_2__.int)(amPM === self.l10n.amPM[1]);
     }
     function military2ampm(hour) {
         switch (hour % 24) {
@@ -8138,49 +10777,64 @@ function FlatpickrInstance(element, instanceConfig) {
     function setHoursFromInputs() {
         if (self.hourElement === undefined || self.minuteElement === undefined)
             return;
-        let hours = (parseInt(self.hourElement.value.slice(-2), 10) || 0) % 24, minutes = (parseInt(self.minuteElement.value, 10) || 0) % 60, seconds = self.secondElement !== undefined
+        var hours = (parseInt(self.hourElement.value.slice(-2), 10) || 0) % 24, minutes = (parseInt(self.minuteElement.value, 10) || 0) % 60, seconds = self.secondElement !== undefined
             ? (parseInt(self.secondElement.value, 10) || 0) % 60
             : 0;
         if (self.amPM !== undefined) {
             hours = ampm2military(hours, self.amPM.textContent);
         }
-        const limitMinHours = self.config.minTime !== undefined ||
+        var limitMinHours = self.config.minTime !== undefined ||
             (self.config.minDate &&
                 self.minDateHasTime &&
                 self.latestSelectedDateObj &&
-                Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(self.latestSelectedDateObj, self.config.minDate, true) ===
+                (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(self.latestSelectedDateObj, self.config.minDate, true) ===
                     0);
-        const limitMaxHours = self.config.maxTime !== undefined ||
+        var limitMaxHours = self.config.maxTime !== undefined ||
             (self.config.maxDate &&
                 self.maxDateHasTime &&
                 self.latestSelectedDateObj &&
-                Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(self.latestSelectedDateObj, self.config.maxDate, true) ===
+                (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(self.latestSelectedDateObj, self.config.maxDate, true) ===
                     0);
-        if (limitMaxHours) {
-            const maxTime = self.config.maxTime !== undefined
-                ? self.config.maxTime
-                : self.config.maxDate;
-            hours = Math.min(hours, maxTime.getHours());
-            if (hours === maxTime.getHours())
-                minutes = Math.min(minutes, maxTime.getMinutes());
-            if (minutes === maxTime.getMinutes())
-                seconds = Math.min(seconds, maxTime.getSeconds());
+        if (self.config.maxTime !== undefined &&
+            self.config.minTime !== undefined &&
+            self.config.minTime > self.config.maxTime) {
+            var minBound = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.calculateSecondsSinceMidnight)(self.config.minTime.getHours(), self.config.minTime.getMinutes(), self.config.minTime.getSeconds());
+            var maxBound = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.calculateSecondsSinceMidnight)(self.config.maxTime.getHours(), self.config.maxTime.getMinutes(), self.config.maxTime.getSeconds());
+            var currentTime = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.calculateSecondsSinceMidnight)(hours, minutes, seconds);
+            if (currentTime > maxBound && currentTime < minBound) {
+                var result = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.parseSeconds)(minBound);
+                hours = result[0];
+                minutes = result[1];
+                seconds = result[2];
+            }
         }
-        if (limitMinHours) {
-            const minTime = self.config.minTime !== undefined
-                ? self.config.minTime
-                : self.config.minDate;
-            hours = Math.max(hours, minTime.getHours());
-            if (hours === minTime.getHours() && minutes < minTime.getMinutes())
-                minutes = minTime.getMinutes();
-            if (minutes === minTime.getMinutes())
-                seconds = Math.max(seconds, minTime.getSeconds());
+        else {
+            if (limitMaxHours) {
+                var maxTime = self.config.maxTime !== undefined
+                    ? self.config.maxTime
+                    : self.config.maxDate;
+                hours = Math.min(hours, maxTime.getHours());
+                if (hours === maxTime.getHours())
+                    minutes = Math.min(minutes, maxTime.getMinutes());
+                if (minutes === maxTime.getMinutes())
+                    seconds = Math.min(seconds, maxTime.getSeconds());
+            }
+            if (limitMinHours) {
+                var minTime = self.config.minTime !== undefined
+                    ? self.config.minTime
+                    : self.config.minDate;
+                hours = Math.max(hours, minTime.getHours());
+                if (hours === minTime.getHours() && minutes < minTime.getMinutes())
+                    minutes = minTime.getMinutes();
+                if (minutes === minTime.getMinutes())
+                    seconds = Math.max(seconds, minTime.getSeconds());
+            }
         }
         setHours(hours, minutes, seconds);
     }
     function setHoursFromDate(dateObj) {
-        const date = dateObj || self.latestSelectedDateObj;
-        if (date) {
+        var date = dateObj || self.latestSelectedDateObj;
+        if (date && date instanceof Date) {
             setHours(date.getHours(), date.getMinutes(), date.getSeconds());
         }
     }
@@ -8190,18 +10844,18 @@ function FlatpickrInstance(element, instanceConfig) {
         }
         if (!self.hourElement || !self.minuteElement || self.isMobile)
             return;
-        self.hourElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(!self.config.time_24hr
-            ? ((12 + hours) % 12) + 12 * Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(hours % 12 === 0)
+        self.hourElement.value = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.pad)(!self.config.time_24hr
+            ? ((12 + hours) % 12) + 12 * (0,_utils__WEBPACK_IMPORTED_MODULE_2__.int)(hours % 12 === 0)
             : hours);
-        self.minuteElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(minutes);
+        self.minuteElement.value = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.pad)(minutes);
         if (self.amPM !== undefined)
-            self.amPM.textContent = self.l10n.amPM[Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(hours >= 12)];
+            self.amPM.textContent = self.l10n.amPM[(0,_utils__WEBPACK_IMPORTED_MODULE_2__.int)(hours >= 12)];
         if (self.secondElement !== undefined)
-            self.secondElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(seconds);
+            self.secondElement.value = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.pad)(seconds);
     }
     function onYearInput(event) {
-        const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(event);
-        const year = parseInt(eventTarget.value) + (event.delta || 0);
+        var eventTarget = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(event);
+        var year = parseInt(eventTarget.value) + (event.delta || 0);
         if (year / 1000 > 1 ||
             (event.key === "Enter" && !/[^\d]/.test(year.toString()))) {
             changeYear(year);
@@ -8209,12 +10863,12 @@ function FlatpickrInstance(element, instanceConfig) {
     }
     function bind(element, event, handler, options) {
         if (event instanceof Array)
-            return event.forEach((ev) => bind(element, ev, handler, options));
+            return event.forEach(function (ev) { return bind(element, ev, handler, options); });
         if (element instanceof Array)
-            return element.forEach((el) => bind(el, event, handler, options));
+            return element.forEach(function (el) { return bind(el, event, handler, options); });
         element.addEventListener(event, handler, options);
         self._handlers.push({
-            remove: () => element.removeEventListener(event, handler),
+            remove: function () { return element.removeEventListener(event, handler, options); },
         });
     }
     function triggerChange() {
@@ -8222,22 +10876,27 @@ function FlatpickrInstance(element, instanceConfig) {
     }
     function bindEvents() {
         if (self.config.wrap) {
-            ["open", "close", "toggle", "clear"].forEach((evt) => {
-                Array.prototype.forEach.call(self.element.querySelectorAll(`[data-${evt}]`), (el) => bind(el, "click", self[evt]));
+            ["open", "close", "toggle", "clear"].forEach(function (evt) {
+                Array.prototype.forEach.call(self.element.querySelectorAll("[data-" + evt + "]"), function (el) {
+                    return bind(el, "click", self[evt]);
+                });
             });
         }
         if (self.isMobile) {
             setupMobile();
             return;
         }
-        const debouncedResize = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["debounce"])(onResize, 50);
-        self._debouncedChange = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["debounce"])(triggerChange, DEBOUNCED_CHANGE_MS);
+        var debouncedResize = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.debounce)(onResize, 50);
+        self._debouncedChange = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.debounce)(triggerChange, DEBOUNCED_CHANGE_MS);
         if (self.daysContainer && !/iPhone|iPad|iPod/i.test(navigator.userAgent))
-            bind(self.daysContainer, "mouseover", (e) => {
+            bind(self.daysContainer, "mouseover", function (e) {
                 if (self.config.mode === "range")
-                    onMouseOver(Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e));
+                    onMouseOver((0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e));
             });
-        bind(window.document.body, "keydown", onKeyDown);
+        bind(self._input, "keydown", onKeyDown);
+        if (self.calendarContainer !== undefined) {
+            bind(self.calendarContainer, "keydown", onKeyDown);
+        }
         if (!self.config.inline && !self.config.static)
             bind(window, "resize", debouncedResize);
         if (window.ontouchstart !== undefined)
@@ -8257,17 +10916,18 @@ function FlatpickrInstance(element, instanceConfig) {
         if (self.timeContainer !== undefined &&
             self.minuteElement !== undefined &&
             self.hourElement !== undefined) {
-            const selText = (e) => Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e).select();
+            var selText = function (e) {
+                return (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e).select();
+            };
             bind(self.timeContainer, ["increment"], updateTime);
             bind(self.timeContainer, "blur", updateTime, { capture: true });
             bind(self.timeContainer, "click", timeIncrement);
             bind([self.hourElement, self.minuteElement], ["focus", "click"], selText);
             if (self.secondElement !== undefined)
-                bind(self.secondElement, "focus", () => self.secondElement && self.secondElement.select());
+                bind(self.secondElement, "focus", function () { return self.secondElement && self.secondElement.select(); });
             if (self.amPM !== undefined) {
-                bind(self.amPM, "click", (e) => {
+                bind(self.amPM, "click", function (e) {
                     updateTime(e);
-                    triggerChange();
                 });
             }
         }
@@ -8276,7 +10936,7 @@ function FlatpickrInstance(element, instanceConfig) {
         }
     }
     function jumpToDate(jumpDate, triggerChange) {
-        const jumpTo = jumpDate !== undefined
+        var jumpTo = jumpDate !== undefined
             ? self.parseDate(jumpDate)
             : self.latestSelectedDateObj ||
                 (self.config.minDate && self.config.minDate > self.now
@@ -8284,8 +10944,8 @@ function FlatpickrInstance(element, instanceConfig) {
                     : self.config.maxDate && self.config.maxDate < self.now
                         ? self.config.maxDate
                         : self.now);
-        const oldYear = self.currentYear;
-        const oldMonth = self.currentMonth;
+        var oldYear = self.currentYear;
+        var oldMonth = self.currentMonth;
         try {
             if (jumpTo !== undefined) {
                 self.currentYear = jumpTo.getFullYear();
@@ -8307,35 +10967,35 @@ function FlatpickrInstance(element, instanceConfig) {
         self.redraw();
     }
     function timeIncrement(e) {
-        const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
+        var eventTarget = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e);
         if (~eventTarget.className.indexOf("arrow"))
             incrementNumInput(e, eventTarget.classList.contains("arrowUp") ? 1 : -1);
     }
     function incrementNumInput(e, delta, inputElem) {
-        const target = e && Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-        const input = inputElem ||
+        var target = e && (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e);
+        var input = inputElem ||
             (target && target.parentNode && target.parentNode.firstChild);
-        const event = createEvent("increment");
+        var event = createEvent("increment");
         event.delta = delta;
         input && input.dispatchEvent(event);
     }
     function build() {
-        const fragment = window.document.createDocumentFragment();
-        self.calendarContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-calendar");
+        var fragment = window.document.createDocumentFragment();
+        self.calendarContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-calendar");
         self.calendarContainer.tabIndex = -1;
         if (!self.config.noCalendar) {
             fragment.appendChild(buildMonthNav());
-            self.innerContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-innerContainer");
+            self.innerContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-innerContainer");
             if (self.config.weekNumbers) {
-                const { weekWrapper, weekNumbers } = buildWeeks();
+                var _a = buildWeeks(), weekWrapper = _a.weekWrapper, weekNumbers = _a.weekNumbers;
                 self.innerContainer.appendChild(weekWrapper);
                 self.weekNumbers = weekNumbers;
                 self.weekWrapper = weekWrapper;
             }
-            self.rContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-rContainer");
+            self.rContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-rContainer");
             self.rContainer.appendChild(buildWeekdays());
             if (!self.daysContainer) {
-                self.daysContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-days");
+                self.daysContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-days");
                 self.daysContainer.tabIndex = -1;
             }
             buildDays();
@@ -8346,11 +11006,11 @@ function FlatpickrInstance(element, instanceConfig) {
         if (self.config.enableTime) {
             fragment.appendChild(buildTime());
         }
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "rangeMode", self.config.mode === "range");
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "animate", self.config.animate === true);
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "multiMonth", self.config.showMonths > 1);
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "rangeMode", self.config.mode === "range");
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "animate", self.config.animate === true);
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "multiMonth", self.config.showMonths > 1);
         self.calendarContainer.appendChild(fragment);
-        const customAppend = self.config.appendTo !== undefined &&
+        var customAppend = self.config.appendTo !== undefined &&
             self.config.appendTo.nodeType !== undefined;
         if (self.config.inline || self.config.static) {
             self.calendarContainer.classList.add(self.config.inline ? "inline" : "static");
@@ -8361,7 +11021,7 @@ function FlatpickrInstance(element, instanceConfig) {
                     self.config.appendTo.appendChild(self.calendarContainer);
             }
             if (self.config.static) {
-                const wrapper = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-wrapper");
+                var wrapper = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-wrapper");
                 if (self.element.parentNode)
                     self.element.parentNode.insertBefore(wrapper, self.element);
                 wrapper.appendChild(self.element);
@@ -8375,13 +11035,13 @@ function FlatpickrInstance(element, instanceConfig) {
                 ? self.config.appendTo
                 : window.document.body).appendChild(self.calendarContainer);
     }
-    function createDay(className, date, dayNumber, i) {
-        const dateIsEnabled = isEnabled(date, true), dayElement = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-day " + className, date.getDate().toString());
+    function createDay(className, date, _dayNumber, i) {
+        var dateIsEnabled = isEnabled(date, true), dayElement = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", className, date.getDate().toString());
         dayElement.dateObj = date;
         dayElement.$i = i;
         dayElement.setAttribute("aria-label", self.formatDate(date, self.config.ariaDateFormat));
         if (className.indexOf("hidden") === -1 &&
-            Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(date, self.now) === 0) {
+            (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(date, self.now) === 0) {
             self.todayDateElem = dayElement;
             dayElement.classList.add("today");
             dayElement.setAttribute("aria-current", "date");
@@ -8392,10 +11052,10 @@ function FlatpickrInstance(element, instanceConfig) {
                 dayElement.classList.add("selected");
                 self.selectedDateElem = dayElement;
                 if (self.config.mode === "range") {
-                    Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(dayElement, "startRange", self.selectedDates[0] &&
-                        Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(date, self.selectedDates[0], true) === 0);
-                    Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(dayElement, "endRange", self.selectedDates[1] &&
-                        Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(date, self.selectedDates[1], true) === 0);
+                    (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(dayElement, "startRange", self.selectedDates[0] &&
+                        (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(date, self.selectedDates[0], true) === 0);
+                    (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(dayElement, "endRange", self.selectedDates[1] &&
+                        (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(date, self.selectedDates[1], true) === 0);
                     if (className === "nextMonthDay")
                         dayElement.classList.add("inRange");
                 }
@@ -8411,7 +11071,7 @@ function FlatpickrInstance(element, instanceConfig) {
         if (self.weekNumbers &&
             self.config.showMonths === 1 &&
             className !== "prevMonthDay" &&
-            dayNumber % 7 === 1) {
+            i % 7 === 6) {
             self.weekNumbers.insertAdjacentHTML("beforeend", "<span class='flatpickr-day'>" + self.config.getWeek(date) + "</span>");
         }
         triggerEvent("onDayCreate", dayElement);
@@ -8423,14 +11083,14 @@ function FlatpickrInstance(element, instanceConfig) {
             onMouseOver(targetNode);
     }
     function getFirstAvailableDay(delta) {
-        const startMonth = delta > 0 ? 0 : self.config.showMonths - 1;
-        const endMonth = delta > 0 ? self.config.showMonths : -1;
-        for (let m = startMonth; m != endMonth; m += delta) {
-            const month = self.daysContainer.children[m];
-            const startIndex = delta > 0 ? 0 : month.children.length - 1;
-            const endIndex = delta > 0 ? month.children.length : -1;
-            for (let i = startIndex; i != endIndex; i += delta) {
-                const c = month.children[i];
+        var startMonth = delta > 0 ? 0 : self.config.showMonths - 1;
+        var endMonth = delta > 0 ? self.config.showMonths : -1;
+        for (var m = startMonth; m != endMonth; m += delta) {
+            var month = self.daysContainer.children[m];
+            var startIndex = delta > 0 ? 0 : month.children.length - 1;
+            var endIndex = delta > 0 ? month.children.length : -1;
+            for (var i = startIndex; i != endIndex; i += delta) {
+                var c = month.children[i];
                 if (c.className.indexOf("hidden") === -1 && isEnabled(c.dateObj))
                     return c;
             }
@@ -8438,21 +11098,21 @@ function FlatpickrInstance(element, instanceConfig) {
         return undefined;
     }
     function getNextAvailableDay(current, delta) {
-        const givenMonth = current.className.indexOf("Month") === -1
+        var givenMonth = current.className.indexOf("Month") === -1
             ? current.dateObj.getMonth()
             : self.currentMonth;
-        const endMonth = delta > 0 ? self.config.showMonths : -1;
-        const loopDelta = delta > 0 ? 1 : -1;
-        for (let m = givenMonth - self.currentMonth; m != endMonth; m += loopDelta) {
-            const month = self.daysContainer.children[m];
-            const startIndex = givenMonth - self.currentMonth === m
+        var endMonth = delta > 0 ? self.config.showMonths : -1;
+        var loopDelta = delta > 0 ? 1 : -1;
+        for (var m = givenMonth - self.currentMonth; m != endMonth; m += loopDelta) {
+            var month = self.daysContainer.children[m];
+            var startIndex = givenMonth - self.currentMonth === m
                 ? current.$i + delta
                 : delta < 0
                     ? month.children.length - 1
                     : 0;
-            const numMonthDays = month.children.length;
-            for (let i = startIndex; i >= 0 && i < numMonthDays && i != (delta > 0 ? numMonthDays : -1); i += loopDelta) {
-                const c = month.children[i];
+            var numMonthDays = month.children.length;
+            for (var i = startIndex; i >= 0 && i < numMonthDays && i != (delta > 0 ? numMonthDays : -1); i += loopDelta) {
+                var c = month.children[i];
                 if (c.className.indexOf("hidden") === -1 &&
                     isEnabled(c.dateObj) &&
                     Math.abs(current.$i - i) >= Math.abs(delta))
@@ -8464,11 +11124,12 @@ function FlatpickrInstance(element, instanceConfig) {
         return undefined;
     }
     function focusOnDay(current, offset) {
-        const dayFocused = isInView(document.activeElement || document.body);
-        const startElem = current !== undefined
+        var activeElement = getClosestActiveElement();
+        var dayFocused = isInView(activeElement || document.body);
+        var startElem = current !== undefined
             ? current
             : dayFocused
-                ? document.activeElement
+                ? activeElement
                 : self.selectedDateElem !== undefined && isInView(self.selectedDateElem)
                     ? self.selectedDateElem
                     : self.todayDateElem !== undefined && isInView(self.todayDateElem)
@@ -8485,21 +11146,21 @@ function FlatpickrInstance(element, instanceConfig) {
         }
     }
     function buildMonthDays(year, month) {
-        const firstOfMonth = (new Date(year, month, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7;
-        const prevMonthDays = self.utils.getDaysInMonth((month - 1 + 12) % 12, year);
-        const daysInMonth = self.utils.getDaysInMonth(month, year), days = window.document.createDocumentFragment(), isMultiMonth = self.config.showMonths > 1, prevMonthDayClass = isMultiMonth ? "prevMonthDay hidden" : "prevMonthDay", nextMonthDayClass = isMultiMonth ? "nextMonthDay hidden" : "nextMonthDay";
-        let dayNumber = prevMonthDays + 1 - firstOfMonth, dayIndex = 0;
+        var firstOfMonth = (new Date(year, month, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7;
+        var prevMonthDays = self.utils.getDaysInMonth((month - 1 + 12) % 12, year);
+        var daysInMonth = self.utils.getDaysInMonth(month, year), days = window.document.createDocumentFragment(), isMultiMonth = self.config.showMonths > 1, prevMonthDayClass = isMultiMonth ? "prevMonthDay hidden" : "prevMonthDay", nextMonthDayClass = isMultiMonth ? "nextMonthDay hidden" : "nextMonthDay";
+        var dayNumber = prevMonthDays + 1 - firstOfMonth, dayIndex = 0;
         for (; dayNumber <= prevMonthDays; dayNumber++, dayIndex++) {
-            days.appendChild(createDay(prevMonthDayClass, new Date(year, month - 1, dayNumber), dayNumber, dayIndex));
+            days.appendChild(createDay("flatpickr-day " + prevMonthDayClass, new Date(year, month - 1, dayNumber), dayNumber, dayIndex));
         }
         for (dayNumber = 1; dayNumber <= daysInMonth; dayNumber++, dayIndex++) {
-            days.appendChild(createDay("", new Date(year, month, dayNumber), dayNumber, dayIndex));
+            days.appendChild(createDay("flatpickr-day", new Date(year, month, dayNumber), dayNumber, dayIndex));
         }
-        for (let dayNum = daysInMonth + 1; dayNum <= 42 - firstOfMonth &&
+        for (var dayNum = daysInMonth + 1; dayNum <= 42 - firstOfMonth &&
             (self.config.showMonths === 1 || dayIndex % 7 !== 0); dayNum++, dayIndex++) {
-            days.appendChild(createDay(nextMonthDayClass, new Date(year, month + 1, dayNum % daysInMonth), dayNum, dayIndex));
+            days.appendChild(createDay("flatpickr-day " + nextMonthDayClass, new Date(year, month + 1, dayNum % daysInMonth), dayNum, dayIndex));
         }
-        const dayContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "dayContainer");
+        var dayContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "dayContainer");
         dayContainer.appendChild(days);
         return dayContainer;
     }
@@ -8507,12 +11168,12 @@ function FlatpickrInstance(element, instanceConfig) {
         if (self.daysContainer === undefined) {
             return;
         }
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["clearNode"])(self.daysContainer);
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.clearNode)(self.daysContainer);
         if (self.weekNumbers)
-            Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["clearNode"])(self.weekNumbers);
-        const frag = document.createDocumentFragment();
-        for (let i = 0; i < self.config.showMonths; i++) {
-            const d = new Date(self.currentYear, self.currentMonth, 1);
+            (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.clearNode)(self.weekNumbers);
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < self.config.showMonths; i++) {
+            var d = new Date(self.currentYear, self.currentMonth, 1);
             d.setMonth(self.currentMonth + i);
             frag.appendChild(buildMonthDays(d.getFullYear(), d.getMonth()));
         }
@@ -8526,7 +11187,7 @@ function FlatpickrInstance(element, instanceConfig) {
         if (self.config.showMonths > 1 ||
             self.config.monthSelectorType !== "dropdown")
             return;
-        const shouldBuildMonth = function (month) {
+        var shouldBuildMonth = function (month) {
             if (self.config.minDate !== undefined &&
                 self.currentYear === self.config.minDate.getFullYear() &&
                 month < self.config.minDate.getMonth()) {
@@ -8538,12 +11199,12 @@ function FlatpickrInstance(element, instanceConfig) {
         };
         self.monthsDropdownContainer.tabIndex = -1;
         self.monthsDropdownContainer.innerHTML = "";
-        for (let i = 0; i < 12; i++) {
+        for (var i = 0; i < 12; i++) {
             if (!shouldBuildMonth(i))
                 continue;
-            const month = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("option", "flatpickr-monthDropdown-month");
+            var month = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("option", "flatpickr-monthDropdown-month");
             month.value = new Date(self.currentYear, i).getMonth().toString();
-            month.textContent = Object(_utils_formatting__WEBPACK_IMPORTED_MODULE_5__["monthToStr"])(i, self.config.shorthandCurrentMonth, self.l10n);
+            month.textContent = (0,_utils_formatting__WEBPACK_IMPORTED_MODULE_5__.monthToStr)(i, self.config.shorthandCurrentMonth, self.l10n);
             month.tabIndex = -1;
             if (self.currentMonth === i) {
                 month.selected = true;
@@ -8552,27 +11213,27 @@ function FlatpickrInstance(element, instanceConfig) {
         }
     }
     function buildMonth() {
-        const container = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-month");
-        const monthNavFragment = window.document.createDocumentFragment();
-        let monthElement;
+        var container = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-month");
+        var monthNavFragment = window.document.createDocumentFragment();
+        var monthElement;
         if (self.config.showMonths > 1 ||
             self.config.monthSelectorType === "static") {
-            monthElement = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "cur-month");
+            monthElement = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", "cur-month");
         }
         else {
-            self.monthsDropdownContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("select", "flatpickr-monthDropdown-months");
+            self.monthsDropdownContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("select", "flatpickr-monthDropdown-months");
             self.monthsDropdownContainer.setAttribute("aria-label", self.l10n.monthAriaLabel);
-            bind(self.monthsDropdownContainer, "change", (e) => {
-                const target = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-                const selectedMonth = parseInt(target.value, 10);
+            bind(self.monthsDropdownContainer, "change", function (e) {
+                var target = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e);
+                var selectedMonth = parseInt(target.value, 10);
                 self.changeMonth(selectedMonth - self.currentMonth);
                 triggerEvent("onMonthChange");
             });
             buildMonthSwitch();
             monthElement = self.monthsDropdownContainer;
         }
-        const yearInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createNumberInput"])("cur-year", { tabindex: "-1" });
-        const yearElement = yearInput.getElementsByTagName("input")[0];
+        var yearInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createNumberInput)("cur-year", { tabindex: "-1" });
+        var yearElement = yearInput.getElementsByTagName("input")[0];
         yearElement.setAttribute("aria-label", self.l10n.yearAriaLabel);
         if (self.config.minDate) {
             yearElement.setAttribute("min", self.config.minDate.getFullYear().toString());
@@ -8583,26 +11244,26 @@ function FlatpickrInstance(element, instanceConfig) {
                 !!self.config.minDate &&
                     self.config.minDate.getFullYear() === self.config.maxDate.getFullYear();
         }
-        const currentMonth = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-current-month");
+        var currentMonth = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-current-month");
         currentMonth.appendChild(monthElement);
         currentMonth.appendChild(yearInput);
         monthNavFragment.appendChild(currentMonth);
         container.appendChild(monthNavFragment);
         return {
-            container,
-            yearElement,
-            monthElement,
+            container: container,
+            yearElement: yearElement,
+            monthElement: monthElement,
         };
     }
     function buildMonths() {
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["clearNode"])(self.monthNav);
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.clearNode)(self.monthNav);
         self.monthNav.appendChild(self.prevMonthNav);
         if (self.config.showMonths) {
             self.yearElements = [];
             self.monthElements = [];
         }
-        for (let m = self.config.showMonths; m--;) {
-            const month = buildMonth();
+        for (var m = self.config.showMonths; m--;) {
+            var month = buildMonth();
             self.yearElements.push(month.yearElement);
             self.monthElements.push(month.monthElement);
             self.monthNav.appendChild(month.container);
@@ -8610,28 +11271,28 @@ function FlatpickrInstance(element, instanceConfig) {
         self.monthNav.appendChild(self.nextMonthNav);
     }
     function buildMonthNav() {
-        self.monthNav = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-months");
+        self.monthNav = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-months");
         self.yearElements = [];
         self.monthElements = [];
-        self.prevMonthNav = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-prev-month");
+        self.prevMonthNav = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", "flatpickr-prev-month");
         self.prevMonthNav.innerHTML = self.config.prevArrow;
-        self.nextMonthNav = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-next-month");
+        self.nextMonthNav = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", "flatpickr-next-month");
         self.nextMonthNav.innerHTML = self.config.nextArrow;
         buildMonths();
         Object.defineProperty(self, "_hidePrevMonthArrow", {
-            get: () => self.__hidePrevMonthArrow,
-            set(bool) {
+            get: function () { return self.__hidePrevMonthArrow; },
+            set: function (bool) {
                 if (self.__hidePrevMonthArrow !== bool) {
-                    Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.prevMonthNav, "flatpickr-disabled", bool);
+                    (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.prevMonthNav, "flatpickr-disabled", bool);
                     self.__hidePrevMonthArrow = bool;
                 }
             },
         });
         Object.defineProperty(self, "_hideNextMonthArrow", {
-            get: () => self.__hideNextMonthArrow,
-            set(bool) {
+            get: function () { return self.__hideNextMonthArrow; },
+            set: function (bool) {
                 if (self.__hideNextMonthArrow !== bool) {
-                    Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.nextMonthNav, "flatpickr-disabled", bool);
+                    (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.nextMonthNav, "flatpickr-disabled", bool);
                     self.__hideNextMonthArrow = bool;
                 }
             },
@@ -8644,25 +11305,25 @@ function FlatpickrInstance(element, instanceConfig) {
         self.calendarContainer.classList.add("hasTime");
         if (self.config.noCalendar)
             self.calendarContainer.classList.add("noCalendar");
-        const defaults = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["getDefaultHours"])(self.config);
-        self.timeContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-time");
+        var defaults = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.getDefaultHours)(self.config);
+        self.timeContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-time");
         self.timeContainer.tabIndex = -1;
-        const separator = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-time-separator", ":");
-        const hourInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createNumberInput"])("flatpickr-hour", {
+        var separator = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", "flatpickr-time-separator", ":");
+        var hourInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createNumberInput)("flatpickr-hour", {
             "aria-label": self.l10n.hourAriaLabel,
         });
         self.hourElement = hourInput.getElementsByTagName("input")[0];
-        const minuteInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createNumberInput"])("flatpickr-minute", {
+        var minuteInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createNumberInput)("flatpickr-minute", {
             "aria-label": self.l10n.minuteAriaLabel,
         });
         self.minuteElement = minuteInput.getElementsByTagName("input")[0];
         self.hourElement.tabIndex = self.minuteElement.tabIndex = -1;
-        self.hourElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(self.latestSelectedDateObj
+        self.hourElement.value = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.pad)(self.latestSelectedDateObj
             ? self.latestSelectedDateObj.getHours()
             : self.config.time_24hr
                 ? defaults.hours
                 : military2ampm(defaults.hours));
-        self.minuteElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(self.latestSelectedDateObj
+        self.minuteElement.value = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.pad)(self.latestSelectedDateObj
             ? self.latestSelectedDateObj.getMinutes()
             : defaults.minutes);
         self.hourElement.setAttribute("step", self.config.hourIncrement.toString());
@@ -8680,20 +11341,20 @@ function FlatpickrInstance(element, instanceConfig) {
             self.timeContainer.classList.add("time24hr");
         if (self.config.enableSeconds) {
             self.timeContainer.classList.add("hasSeconds");
-            const secondInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createNumberInput"])("flatpickr-second");
+            var secondInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createNumberInput)("flatpickr-second");
             self.secondElement = secondInput.getElementsByTagName("input")[0];
-            self.secondElement.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(self.latestSelectedDateObj
+            self.secondElement.value = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.pad)(self.latestSelectedDateObj
                 ? self.latestSelectedDateObj.getSeconds()
                 : defaults.seconds);
             self.secondElement.setAttribute("step", self.minuteElement.getAttribute("step"));
             self.secondElement.setAttribute("min", "0");
             self.secondElement.setAttribute("max", "59");
             self.secondElement.setAttribute("maxlength", "2");
-            self.timeContainer.appendChild(Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-time-separator", ":"));
+            self.timeContainer.appendChild((0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", "flatpickr-time-separator", ":"));
             self.timeContainer.appendChild(secondInput);
         }
         if (!self.config.time_24hr) {
-            self.amPM = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-am-pm", self.l10n.amPM[Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])((self.latestSelectedDateObj
+            self.amPM = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", "flatpickr-am-pm", self.l10n.amPM[(0,_utils__WEBPACK_IMPORTED_MODULE_2__.int)((self.latestSelectedDateObj
                 ? self.hourElement.value
                 : self.config.defaultHour) > 11)]);
             self.amPM.title = self.l10n.toggleTitle;
@@ -8704,11 +11365,11 @@ function FlatpickrInstance(element, instanceConfig) {
     }
     function buildWeekdays() {
         if (!self.weekdayContainer)
-            self.weekdayContainer = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-weekdays");
+            self.weekdayContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-weekdays");
         else
-            Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["clearNode"])(self.weekdayContainer);
-        for (let i = self.config.showMonths; i--;) {
-            const container = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-weekdaycontainer");
+            (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.clearNode)(self.weekdayContainer);
+        for (var i = self.config.showMonths; i--;) {
+            var container = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-weekdaycontainer");
             self.weekdayContainer.appendChild(container);
         }
         updateWeekdays();
@@ -8718,35 +11379,29 @@ function FlatpickrInstance(element, instanceConfig) {
         if (!self.weekdayContainer) {
             return;
         }
-        const firstDayOfWeek = self.l10n.firstDayOfWeek;
-        let weekdays = [...self.l10n.weekdays.shorthand];
+        var firstDayOfWeek = self.l10n.firstDayOfWeek;
+        var weekdays = __spreadArrays(self.l10n.weekdays.shorthand);
         if (firstDayOfWeek > 0 && firstDayOfWeek < weekdays.length) {
-            weekdays = [
-                ...weekdays.splice(firstDayOfWeek, weekdays.length),
-                ...weekdays.splice(0, firstDayOfWeek),
-            ];
+            weekdays = __spreadArrays(weekdays.splice(firstDayOfWeek, weekdays.length), weekdays.splice(0, firstDayOfWeek));
         }
-        for (let i = self.config.showMonths; i--;) {
-            self.weekdayContainer.children[i].innerHTML = `
-      <span class='flatpickr-weekday'>
-        ${weekdays.join("</span><span class='flatpickr-weekday'>")}
-      </span>
-      `;
+        for (var i = self.config.showMonths; i--;) {
+            self.weekdayContainer.children[i].innerHTML = "\n      <span class='flatpickr-weekday'>\n        " + weekdays.join("</span><span class='flatpickr-weekday'>") + "\n      </span>\n      ";
         }
     }
     function buildWeeks() {
         self.calendarContainer.classList.add("hasWeeks");
-        const weekWrapper = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-weekwrapper");
-        weekWrapper.appendChild(Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("span", "flatpickr-weekday", self.l10n.weekAbbreviation));
-        const weekNumbers = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("div", "flatpickr-weeks");
+        var weekWrapper = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-weekwrapper");
+        weekWrapper.appendChild((0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("span", "flatpickr-weekday", self.l10n.weekAbbreviation));
+        var weekNumbers = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("div", "flatpickr-weeks");
         weekWrapper.appendChild(weekNumbers);
         return {
-            weekWrapper,
-            weekNumbers,
+            weekWrapper: weekWrapper,
+            weekNumbers: weekNumbers,
         };
     }
-    function changeMonth(value, isOffset = true) {
-        const delta = isOffset ? value : value - self.currentMonth;
+    function changeMonth(value, isOffset) {
+        if (isOffset === void 0) { isOffset = true; }
+        var delta = isOffset ? value : value - self.currentMonth;
         if ((delta < 0 && self._hidePrevMonthArrow === true) ||
             (delta > 0 && self._hideNextMonthArrow === true))
             return;
@@ -8761,7 +11416,9 @@ function FlatpickrInstance(element, instanceConfig) {
         triggerEvent("onMonthChange");
         updateNavigationCurrentMonth();
     }
-    function clear(triggerChangeEvent = true, toInitial = true) {
+    function clear(triggerChangeEvent, toInitial) {
+        if (triggerChangeEvent === void 0) { triggerChangeEvent = true; }
+        if (toInitial === void 0) { toInitial = true; }
         self.input.value = "";
         if (self.altInput !== undefined)
             self.altInput.value = "";
@@ -8774,7 +11431,7 @@ function FlatpickrInstance(element, instanceConfig) {
             self.currentMonth = self._initialDate.getMonth();
         }
         if (self.config.enableTime === true) {
-            const { hours, minutes, seconds } = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["getDefaultHours"])(self.config);
+            var _a = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.getDefaultHours)(self.config), hours = _a.hours, minutes = _a.minutes, seconds = _a.seconds;
             setHours(hours, minutes, seconds);
         }
         self.redraw();
@@ -8796,7 +11453,7 @@ function FlatpickrInstance(element, instanceConfig) {
     function destroy() {
         if (self.config !== undefined)
             triggerEvent("onDestroy");
-        for (let i = self._handlers.length; i--;) {
+        for (var i = self._handlers.length; i--;) {
             self._handlers[i].remove();
         }
         self._handlers = [];
@@ -8807,7 +11464,7 @@ function FlatpickrInstance(element, instanceConfig) {
         }
         else if (self.calendarContainer && self.calendarContainer.parentNode) {
             if (self.config.static && self.calendarContainer.parentNode) {
-                const wrapper = self.calendarContainer.parentNode;
+                var wrapper = self.calendarContainer.parentNode;
                 wrapper.lastChild && wrapper.removeChild(wrapper.lastChild);
                 if (wrapper.parentNode) {
                     while (wrapper.firstChild)
@@ -8859,7 +11516,7 @@ function FlatpickrInstance(element, instanceConfig) {
             "navigationCurrentMonth",
             "selectedDateElem",
             "config",
-        ].forEach((k) => {
+        ].forEach(function (k) {
             try {
                 delete self[k];
             }
@@ -8867,30 +11524,31 @@ function FlatpickrInstance(element, instanceConfig) {
         });
     }
     function isCalendarElem(elem) {
-        if (self.config.appendTo && self.config.appendTo.contains(elem))
-            return true;
         return self.calendarContainer.contains(elem);
     }
     function documentClick(e) {
         if (self.isOpen && !self.config.inline) {
-            const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-            const isCalendarElement = isCalendarElem(eventTarget);
-            const isInput = eventTarget === self.input ||
-                eventTarget === self.altInput ||
-                self.element.contains(eventTarget) ||
+            var eventTarget_1 = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e);
+            var isCalendarElement = isCalendarElem(eventTarget_1);
+            var isInput = eventTarget_1 === self.input ||
+                eventTarget_1 === self.altInput ||
+                self.element.contains(eventTarget_1) ||
                 (e.path &&
                     e.path.indexOf &&
                     (~e.path.indexOf(self.input) ||
                         ~e.path.indexOf(self.altInput)));
-            const lostFocus = e.type === "blur"
-                ? isInput &&
-                    e.relatedTarget &&
-                    !isCalendarElem(e.relatedTarget)
-                : !isInput &&
-                    !isCalendarElement &&
-                    !isCalendarElem(e.relatedTarget);
-            const isIgnored = !self.config.ignoredFocusElements.some((elem) => elem.contains(eventTarget));
+            var lostFocus = !isInput &&
+                !isCalendarElement &&
+                !isCalendarElem(e.relatedTarget);
+            var isIgnored = !self.config.ignoredFocusElements.some(function (elem) {
+                return elem.contains(eventTarget_1);
+            });
             if (lostFocus && isIgnored) {
+                if (self.config.allowInput) {
+                    self.setDate(self._input.value, false, self.config.altInput
+                        ? self.config.altFormat
+                        : self.config.dateFormat);
+                }
                 if (self.timeContainer !== undefined &&
                     self.minuteElement !== undefined &&
                     self.hourElement !== undefined &&
@@ -8901,10 +11559,8 @@ function FlatpickrInstance(element, instanceConfig) {
                 self.close();
                 if (self.config &&
                     self.config.mode === "range" &&
-                    self.selectedDates.length === 1) {
+                    self.selectedDates.length === 1)
                     self.clear(false);
-                    self.redraw();
-                }
             }
         }
     }
@@ -8913,7 +11569,7 @@ function FlatpickrInstance(element, instanceConfig) {
             (self.config.minDate && newYear < self.config.minDate.getFullYear()) ||
             (self.config.maxDate && newYear > self.config.maxDate.getFullYear()))
             return;
-        const newYearNum = newYear, isNewYear = self.currentYear !== newYearNum;
+        var newYearNum = newYear, isNewYear = self.currentYear !== newYearNum;
         self.currentYear = newYearNum || self.currentYear;
         if (self.config.maxDate &&
             self.currentYear === self.config.maxDate.getFullYear()) {
@@ -8929,22 +11585,23 @@ function FlatpickrInstance(element, instanceConfig) {
             buildMonthSwitch();
         }
     }
-    function isEnabled(date, timeless = true) {
+    function isEnabled(date, timeless) {
         var _a;
-        const dateToCheck = self.parseDate(date, undefined, timeless);
+        if (timeless === void 0) { timeless = true; }
+        var dateToCheck = self.parseDate(date, undefined, timeless);
         if ((self.config.minDate &&
             dateToCheck &&
-            Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(dateToCheck, self.config.minDate, timeless !== undefined ? timeless : !self.minDateHasTime) < 0) ||
+            (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(dateToCheck, self.config.minDate, timeless !== undefined ? timeless : !self.minDateHasTime) < 0) ||
             (self.config.maxDate &&
                 dateToCheck &&
-                Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(dateToCheck, self.config.maxDate, timeless !== undefined ? timeless : !self.maxDateHasTime) > 0))
+                (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(dateToCheck, self.config.maxDate, timeless !== undefined ? timeless : !self.maxDateHasTime) > 0))
             return false;
         if (!self.config.enable && self.config.disable.length === 0)
             return true;
         if (dateToCheck === undefined)
             return false;
-        const bool = !!self.config.enable, array = (_a = self.config.enable) !== null && _a !== void 0 ? _a : self.config.disable;
-        for (let i = 0, d; i < array.length; i++) {
+        var bool = !!self.config.enable, array = (_a = self.config.enable) !== null && _a !== void 0 ? _a : self.config.disable;
+        for (var i = 0, d = void 0; i < array.length; i++) {
             d = array[i];
             if (typeof d === "function" &&
                 d(dateToCheck))
@@ -8954,7 +11611,7 @@ function FlatpickrInstance(element, instanceConfig) {
                 d.getTime() === dateToCheck.getTime())
                 return bool;
             else if (typeof d === "string") {
-                const parsed = self.parseDate(d, undefined, true);
+                var parsed = self.parseDate(d, undefined, true);
                 return parsed && parsed.getTime() === dateToCheck.getTime()
                     ? bool
                     : !bool;
@@ -8977,9 +11634,10 @@ function FlatpickrInstance(element, instanceConfig) {
         return false;
     }
     function onBlur(e) {
-        const isInput = e.target === self._input;
+        var isInput = e.target === self._input;
+        var valueChanged = self._input.value.trimEnd() !== getDateStr();
         if (isInput &&
-            (self.selectedDates.length > 0 || self._input.value.length > 0) &&
+            valueChanged &&
             !(e.relatedTarget && isCalendarElem(e.relatedTarget))) {
             self.setDate(self._input.value, true, e.target === self.altInput
                 ? self.config.altFormat
@@ -8987,18 +11645,19 @@ function FlatpickrInstance(element, instanceConfig) {
         }
     }
     function onKeyDown(e) {
-        const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-        const isInput = self.config.wrap
+        var eventTarget = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e);
+        var isInput = self.config.wrap
             ? element.contains(eventTarget)
             : eventTarget === self._input;
-        const allowInput = self.config.allowInput;
-        const allowKeydown = self.isOpen && (!allowInput || !isInput);
-        const allowInlineKeydown = self.config.inline && isInput && !allowInput;
+        var allowInput = self.config.allowInput;
+        var allowKeydown = self.isOpen && (!allowInput || !isInput);
+        var allowInlineKeydown = self.config.inline && isInput && !allowInput;
         if (e.keyCode === 13 && isInput) {
             if (allowInput) {
                 self.setDate(self._input.value, true, eventTarget === self.altInput
                     ? self.config.altFormat
                     : self.config.dateFormat);
+                self.close();
                 return eventTarget.blur();
             }
             else {
@@ -9008,7 +11667,7 @@ function FlatpickrInstance(element, instanceConfig) {
         else if (isCalendarElem(eventTarget) ||
             allowKeydown ||
             allowInlineKeydown) {
-            const isTimeObj = !!self.timeContainer &&
+            var isTimeObj = !!self.timeContainer &&
                 self.timeContainer.contains(eventTarget);
             switch (e.keyCode) {
                 case 13:
@@ -9035,15 +11694,16 @@ function FlatpickrInstance(element, instanceConfig) {
                 case 39:
                     if (!isTimeObj && !isInput) {
                         e.preventDefault();
+                        var activeElement = getClosestActiveElement();
                         if (self.daysContainer !== undefined &&
                             (allowInput === false ||
-                                (document.activeElement && isInView(document.activeElement)))) {
-                            const delta = e.keyCode === 39 ? 1 : -1;
+                                (activeElement && isInView(activeElement)))) {
+                            var delta_1 = e.keyCode === 39 ? 1 : -1;
                             if (!e.ctrlKey)
-                                focusOnDay(undefined, delta);
+                                focusOnDay(undefined, delta_1);
                             else {
                                 e.stopPropagation();
-                                changeMonth(delta);
+                                changeMonth(delta_1);
                                 focusOnDay(getFirstAvailableDay(1), 0);
                             }
                         }
@@ -9054,7 +11714,7 @@ function FlatpickrInstance(element, instanceConfig) {
                 case 38:
                 case 40:
                     e.preventDefault();
-                    const delta = e.keyCode === 40 ? 1 : -1;
+                    var delta = e.keyCode === 40 ? 1 : -1;
                     if ((self.daysContainer &&
                         eventTarget.$i !== undefined) ||
                         eventTarget === self.input ||
@@ -9079,17 +11739,17 @@ function FlatpickrInstance(element, instanceConfig) {
                     break;
                 case 9:
                     if (isTimeObj) {
-                        const elems = [
+                        var elems = [
                             self.hourElement,
                             self.minuteElement,
                             self.secondElement,
                             self.amPM,
                         ]
                             .concat(self.pluginElements)
-                            .filter((x) => x);
-                        const i = elems.indexOf(eventTarget);
+                            .filter(function (x) { return x; });
+                        var i = elems.indexOf(eventTarget);
                         if (i !== -1) {
-                            const target = elems[i + (e.shiftKey ? -1 : 1)];
+                            var target = elems[i + (e.shiftKey ? -1 : 1)];
                             e.preventDefault();
                             (target || self._input).focus();
                         }
@@ -9126,18 +11786,19 @@ function FlatpickrInstance(element, instanceConfig) {
             triggerEvent("onKeyDown", e);
         }
     }
-    function onMouseOver(elem) {
+    function onMouseOver(elem, cellClass) {
+        if (cellClass === void 0) { cellClass = "flatpickr-day"; }
         if (self.selectedDates.length !== 1 ||
             (elem &&
-                (!elem.classList.contains("flatpickr-day") ||
+                (!elem.classList.contains(cellClass) ||
                     elem.classList.contains("flatpickr-disabled"))))
             return;
-        const hoverDate = elem
+        var hoverDate = elem
             ? elem.dateObj.getTime()
             : self.days.firstElementChild.dateObj.getTime(), initialDate = self.parseDate(self.selectedDates[0], undefined, true).getTime(), rangeStartDate = Math.min(hoverDate, self.selectedDates[0].getTime()), rangeEndDate = Math.max(hoverDate, self.selectedDates[0].getTime());
-        let containsDisabled = false;
-        let minRange = 0, maxRange = 0;
-        for (let t = rangeStartDate; t < rangeEndDate; t += _utils_dates__WEBPACK_IMPORTED_MODULE_4__["duration"].DAY) {
+        var containsDisabled = false;
+        var minRange = 0, maxRange = 0;
+        for (var t = rangeStartDate; t < rangeEndDate; t += _utils_dates__WEBPACK_IMPORTED_MODULE_4__.duration.DAY) {
             if (!isEnabled(new Date(t), true)) {
                 containsDisabled =
                     containsDisabled || (t > rangeStartDate && t < rangeEndDate);
@@ -9147,50 +11808,49 @@ function FlatpickrInstance(element, instanceConfig) {
                     maxRange = t;
             }
         }
-        for (let m = 0; m < self.config.showMonths; m++) {
-            const month = self.daysContainer.children[m];
-            for (let i = 0, l = month.children.length; i < l; i++) {
-                const dayElem = month.children[i], date = dayElem.dateObj;
-                const timestamp = date.getTime();
-                const outOfRange = (minRange > 0 && timestamp < minRange) ||
-                    (maxRange > 0 && timestamp > maxRange);
-                if (outOfRange) {
-                    dayElem.classList.add("notAllowed");
-                    ["inRange", "startRange", "endRange"].forEach((c) => {
-                        dayElem.classList.remove(c);
-                    });
-                    continue;
-                }
-                else if (containsDisabled && !outOfRange)
-                    continue;
-                ["startRange", "inRange", "endRange", "notAllowed"].forEach((c) => {
+        var hoverableCells = Array.from(self.rContainer.querySelectorAll("*:nth-child(-n+" + self.config.showMonths + ") > ." + cellClass));
+        hoverableCells.forEach(function (dayElem) {
+            var date = dayElem.dateObj;
+            var timestamp = date.getTime();
+            var outOfRange = (minRange > 0 && timestamp < minRange) ||
+                (maxRange > 0 && timestamp > maxRange);
+            if (outOfRange) {
+                dayElem.classList.add("notAllowed");
+                ["inRange", "startRange", "endRange"].forEach(function (c) {
                     dayElem.classList.remove(c);
                 });
-                if (elem !== undefined) {
-                    elem.classList.add(hoverDate <= self.selectedDates[0].getTime()
-                        ? "startRange"
-                        : "endRange");
-                    if (initialDate < hoverDate && timestamp === initialDate)
-                        dayElem.classList.add("startRange");
-                    else if (initialDate > hoverDate && timestamp === initialDate)
-                        dayElem.classList.add("endRange");
-                    if (timestamp >= minRange &&
-                        (maxRange === 0 || timestamp <= maxRange) &&
-                        Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["isBetween"])(timestamp, initialDate, hoverDate))
-                        dayElem.classList.add("inRange");
-                }
+                return;
             }
-        }
+            else if (containsDisabled && !outOfRange)
+                return;
+            ["startRange", "inRange", "endRange", "notAllowed"].forEach(function (c) {
+                dayElem.classList.remove(c);
+            });
+            if (elem !== undefined) {
+                elem.classList.add(hoverDate <= self.selectedDates[0].getTime()
+                    ? "startRange"
+                    : "endRange");
+                if (initialDate < hoverDate && timestamp === initialDate)
+                    dayElem.classList.add("startRange");
+                else if (initialDate > hoverDate && timestamp === initialDate)
+                    dayElem.classList.add("endRange");
+                if (timestamp >= minRange &&
+                    (maxRange === 0 || timestamp <= maxRange) &&
+                    (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.isBetween)(timestamp, initialDate, hoverDate))
+                    dayElem.classList.add("inRange");
+            }
+        });
     }
     function onResize() {
         if (self.isOpen && !self.config.static && !self.config.inline)
             positionCalendar();
     }
-    function open(e, positionElement = self._positionElement) {
+    function open(e, positionElement) {
+        if (positionElement === void 0) { positionElement = self._positionElement; }
         if (self.isMobile === true) {
             if (e) {
                 e.preventDefault();
-                const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
+                var eventTarget = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e);
                 if (eventTarget) {
                     eventTarget.blur();
                 }
@@ -9205,7 +11865,7 @@ function FlatpickrInstance(element, instanceConfig) {
         else if (self._input.disabled || self.config.inline) {
             return;
         }
-        const wasOpen = self.isOpen;
+        var wasOpen = self.isOpen;
         self.isOpen = true;
         if (!wasOpen) {
             self.calendarContainer.classList.add("open");
@@ -9217,14 +11877,14 @@ function FlatpickrInstance(element, instanceConfig) {
             if (self.config.allowInput === false &&
                 (e === undefined ||
                     !self.timeContainer.contains(e.relatedTarget))) {
-                setTimeout(() => self.hourElement.select(), 50);
+                setTimeout(function () { return self.hourElement.select(); }, 50);
             }
         }
     }
     function minMaxDateSetter(type) {
-        return (date) => {
-            const dateObj = (self.config[`_${type}Date`] = self.parseDate(date, self.config.dateFormat));
-            const inverseDateObj = self.config[`_${type === "min" ? "max" : "min"}Date`];
+        return function (date) {
+            var dateObj = (self.config["_" + type + "Date"] = self.parseDate(date, self.config.dateFormat));
+            var inverseDateObj = self.config["_" + (type === "min" ? "max" : "min") + "Date"];
             if (dateObj !== undefined) {
                 self[type === "min" ? "minDateHasTime" : "maxDateHasTime"] =
                     dateObj.getHours() > 0 ||
@@ -9232,7 +11892,7 @@ function FlatpickrInstance(element, instanceConfig) {
                         dateObj.getSeconds() > 0;
             }
             if (self.selectedDates) {
-                self.selectedDates = self.selectedDates.filter((d) => isEnabled(d));
+                self.selectedDates = self.selectedDates.filter(function (d) { return isEnabled(d); });
                 if (!self.selectedDates.length && type === "min")
                     setHoursFromDate(dateObj);
                 updateValue();
@@ -9251,7 +11911,7 @@ function FlatpickrInstance(element, instanceConfig) {
         };
     }
     function parseConfig() {
-        const boolOpts = [
+        var boolOpts = [
             "wrap",
             "weekNumbers",
             "allowInput",
@@ -9267,25 +11927,25 @@ function FlatpickrInstance(element, instanceConfig) {
             "enableSeconds",
             "disableMobile",
         ];
-        const userConfig = Object.assign(Object.assign({}, JSON.parse(JSON.stringify(element.dataset || {}))), instanceConfig);
-        const formats = {};
+        var userConfig = __assign(__assign({}, JSON.parse(JSON.stringify(element.dataset || {}))), instanceConfig);
+        var formats = {};
         self.config.parseDate = userConfig.parseDate;
         self.config.formatDate = userConfig.formatDate;
         Object.defineProperty(self.config, "enable", {
-            get: () => self.config._enable,
-            set: (dates) => {
+            get: function () { return self.config._enable; },
+            set: function (dates) {
                 self.config._enable = parseDateRules(dates);
             },
         });
         Object.defineProperty(self.config, "disable", {
-            get: () => self.config._disable,
-            set: (dates) => {
+            get: function () { return self.config._disable; },
+            set: function (dates) {
                 self.config._disable = parseDateRules(dates);
             },
         });
-        const timeMode = userConfig.mode === "time";
+        var timeMode = userConfig.mode === "time";
         if (!userConfig.dateFormat && (userConfig.enableTime || timeMode)) {
-            const defaultDateFormat = flatpickr.defaultConfig.dateFormat || _types_options__WEBPACK_IMPORTED_MODULE_0__["defaults"].dateFormat;
+            var defaultDateFormat = flatpickr.defaultConfig.dateFormat || _types_options__WEBPACK_IMPORTED_MODULE_0__.defaults.dateFormat;
             formats.dateFormat =
                 userConfig.noCalendar || timeMode
                     ? "H:i" + (userConfig.enableSeconds ? ":S" : "")
@@ -9294,29 +11954,29 @@ function FlatpickrInstance(element, instanceConfig) {
         if (userConfig.altInput &&
             (userConfig.enableTime || timeMode) &&
             !userConfig.altFormat) {
-            const defaultAltFormat = flatpickr.defaultConfig.altFormat || _types_options__WEBPACK_IMPORTED_MODULE_0__["defaults"].altFormat;
+            var defaultAltFormat = flatpickr.defaultConfig.altFormat || _types_options__WEBPACK_IMPORTED_MODULE_0__.defaults.altFormat;
             formats.altFormat =
                 userConfig.noCalendar || timeMode
                     ? "h:i" + (userConfig.enableSeconds ? ":S K" : " K")
-                    : defaultAltFormat + ` h:i${userConfig.enableSeconds ? ":S" : ""} K`;
+                    : defaultAltFormat + (" h:i" + (userConfig.enableSeconds ? ":S" : "") + " K");
         }
         Object.defineProperty(self.config, "minDate", {
-            get: () => self.config._minDate,
+            get: function () { return self.config._minDate; },
             set: minMaxDateSetter("min"),
         });
         Object.defineProperty(self.config, "maxDate", {
-            get: () => self.config._maxDate,
+            get: function () { return self.config._maxDate; },
             set: minMaxDateSetter("max"),
         });
-        const minMaxTimeSetter = (type) => (val) => {
+        var minMaxTimeSetter = function (type) { return function (val) {
             self.config[type === "min" ? "_minTime" : "_maxTime"] = self.parseDate(val, "H:i:S");
-        };
+        }; };
         Object.defineProperty(self.config, "minTime", {
-            get: () => self.config._minTime,
+            get: function () { return self.config._minTime; },
             set: minMaxTimeSetter("min"),
         });
         Object.defineProperty(self.config, "maxTime", {
-            get: () => self.config._maxTime,
+            get: function () { return self.config._maxTime; },
             set: minMaxTimeSetter("max"),
         });
         if (userConfig.mode === "time") {
@@ -9324,12 +11984,12 @@ function FlatpickrInstance(element, instanceConfig) {
             self.config.enableTime = true;
         }
         Object.assign(self.config, formats, userConfig);
-        for (let i = 0; i < boolOpts.length; i++)
+        for (var i = 0; i < boolOpts.length; i++)
             self.config[boolOpts[i]] =
                 self.config[boolOpts[i]] === true ||
                     self.config[boolOpts[i]] === "true";
-        _types_options__WEBPACK_IMPORTED_MODULE_0__["HOOKS"].filter((hook) => self.config[hook] !== undefined).forEach((hook) => {
-            self.config[hook] = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["arrayify"])(self.config[hook] || []).map(bindToInstance);
+        _types_options__WEBPACK_IMPORTED_MODULE_0__.HOOKS.filter(function (hook) { return self.config[hook] !== undefined; }).forEach(function (hook) {
+            self.config[hook] = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.arrayify)(self.config[hook] || []).map(bindToInstance);
         });
         self.isMobile =
             !self.config.disableMobile &&
@@ -9339,11 +11999,11 @@ function FlatpickrInstance(element, instanceConfig) {
                 !self.config.enable &&
                 !self.config.weekNumbers &&
                 /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        for (let i = 0; i < self.config.plugins.length; i++) {
-            const pluginConf = self.config.plugins[i](self) || {};
-            for (const key in pluginConf) {
-                if (_types_options__WEBPACK_IMPORTED_MODULE_0__["HOOKS"].indexOf(key) > -1) {
-                    self.config[key] = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["arrayify"])(pluginConf[key])
+        for (var i = 0; i < self.config.plugins.length; i++) {
+            var pluginConf = self.config.plugins[i](self) || {};
+            for (var key in pluginConf) {
+                if (_types_options__WEBPACK_IMPORTED_MODULE_0__.HOOKS.indexOf(key) > -1) {
+                    self.config[key] = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.arrayify)(pluginConf[key])
                         .map(bindToInstance)
                         .concat(self.config[key]);
                 }
@@ -9365,20 +12025,24 @@ function FlatpickrInstance(element, instanceConfig) {
     function setupLocale() {
         if (typeof self.config.locale !== "object" &&
             typeof flatpickr.l10ns[self.config.locale] === "undefined")
-            self.config.errorHandler(new Error(`flatpickr: invalid locale ${self.config.locale}`));
-        self.l10n = Object.assign(Object.assign({}, flatpickr.l10ns.default), (typeof self.config.locale === "object"
+            self.config.errorHandler(new Error("flatpickr: invalid locale " + self.config.locale));
+        self.l10n = __assign(__assign({}, flatpickr.l10ns.default), (typeof self.config.locale === "object"
             ? self.config.locale
             : self.config.locale !== "default"
                 ? flatpickr.l10ns[self.config.locale]
                 : undefined));
-        _utils_formatting__WEBPACK_IMPORTED_MODULE_5__["tokenRegex"].K = `(${self.l10n.amPM[0]}|${self.l10n.amPM[1]}|${self.l10n.amPM[0].toLowerCase()}|${self.l10n.amPM[1].toLowerCase()})`;
-        const userConfig = Object.assign(Object.assign({}, instanceConfig), JSON.parse(JSON.stringify(element.dataset || {})));
+        _utils_formatting__WEBPACK_IMPORTED_MODULE_5__.tokenRegex.D = "(" + self.l10n.weekdays.shorthand.join("|") + ")";
+        _utils_formatting__WEBPACK_IMPORTED_MODULE_5__.tokenRegex.l = "(" + self.l10n.weekdays.longhand.join("|") + ")";
+        _utils_formatting__WEBPACK_IMPORTED_MODULE_5__.tokenRegex.M = "(" + self.l10n.months.shorthand.join("|") + ")";
+        _utils_formatting__WEBPACK_IMPORTED_MODULE_5__.tokenRegex.F = "(" + self.l10n.months.longhand.join("|") + ")";
+        _utils_formatting__WEBPACK_IMPORTED_MODULE_5__.tokenRegex.K = "(" + self.l10n.amPM[0] + "|" + self.l10n.amPM[1] + "|" + self.l10n.amPM[0].toLowerCase() + "|" + self.l10n.amPM[1].toLowerCase() + ")";
+        var userConfig = __assign(__assign({}, instanceConfig), JSON.parse(JSON.stringify(element.dataset || {})));
         if (userConfig.time_24hr === undefined &&
             flatpickr.defaultConfig.time_24hr === undefined) {
             self.config.time_24hr = self.l10n.time_24hr;
         }
-        self.formatDate = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["createDateFormatter"])(self);
-        self.parseDate = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["createDateParser"])({ config: self.config, l10n: self.l10n });
+        self.formatDate = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.createDateFormatter)(self);
+        self.parseDate = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.createDateParser)({ config: self.config, l10n: self.l10n });
     }
     function positionCalendar(customPositionElement) {
         if (typeof self.config.position === "function") {
@@ -9387,21 +12051,21 @@ function FlatpickrInstance(element, instanceConfig) {
         if (self.calendarContainer === undefined)
             return;
         triggerEvent("onPreCalendarPosition");
-        const positionElement = customPositionElement || self._positionElement;
-        const calendarHeight = Array.prototype.reduce.call(self.calendarContainer.children, ((acc, child) => acc + child.offsetHeight), 0), calendarWidth = self.calendarContainer.offsetWidth, configPos = self.config.position.split(" "), configPosVertical = configPos[0], configPosHorizontal = configPos.length > 1 ? configPos[1] : null, inputBounds = positionElement.getBoundingClientRect(), distanceFromBottom = window.innerHeight - inputBounds.bottom, showOnTop = configPosVertical === "above" ||
+        var positionElement = customPositionElement || self._positionElement;
+        var calendarHeight = Array.prototype.reduce.call(self.calendarContainer.children, (function (acc, child) { return acc + child.offsetHeight; }), 0), calendarWidth = self.calendarContainer.offsetWidth, configPos = self.config.position.split(" "), configPosVertical = configPos[0], configPosHorizontal = configPos.length > 1 ? configPos[1] : null, inputBounds = positionElement.getBoundingClientRect(), distanceFromBottom = window.innerHeight - inputBounds.bottom, showOnTop = configPosVertical === "above" ||
             (configPosVertical !== "below" &&
                 distanceFromBottom < calendarHeight &&
                 inputBounds.top > calendarHeight);
-        const top = window.pageYOffset +
+        var top = window.pageYOffset +
             inputBounds.top +
             (!showOnTop ? positionElement.offsetHeight + 2 : -calendarHeight - 2);
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "arrowTop", !showOnTop);
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "arrowBottom", showOnTop);
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "arrowTop", !showOnTop);
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "arrowBottom", showOnTop);
         if (self.config.inline)
             return;
-        let left = window.pageXOffset + inputBounds.left;
-        let isCenter = false;
-        let isRight = false;
+        var left = window.pageXOffset + inputBounds.left;
+        var isCenter = false;
+        var isRight = false;
         if (configPosHorizontal === "center") {
             left -= (calendarWidth - inputBounds.width) / 2;
             isCenter = true;
@@ -9410,46 +12074,48 @@ function FlatpickrInstance(element, instanceConfig) {
             left -= calendarWidth - inputBounds.width;
             isRight = true;
         }
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "arrowLeft", !isCenter && !isRight);
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "arrowCenter", isCenter);
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "arrowRight", isRight);
-        const right = window.document.body.offsetWidth -
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "arrowLeft", !isCenter && !isRight);
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "arrowCenter", isCenter);
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "arrowRight", isRight);
+        var right = window.document.body.offsetWidth -
             (window.pageXOffset + inputBounds.right);
-        const rightMost = left + calendarWidth > window.document.body.offsetWidth;
-        const centerMost = right + calendarWidth > window.document.body.offsetWidth;
-        Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "rightMost", rightMost);
+        var rightMost = left + calendarWidth > window.document.body.offsetWidth;
+        var centerMost = right + calendarWidth > window.document.body.offsetWidth;
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "rightMost", rightMost);
         if (self.config.static)
             return;
-        self.calendarContainer.style.top = `${top}px`;
+        self.calendarContainer.style.top = top + "px";
         if (!rightMost) {
-            self.calendarContainer.style.left = `${left}px`;
+            self.calendarContainer.style.left = left + "px";
             self.calendarContainer.style.right = "auto";
         }
         else if (!centerMost) {
             self.calendarContainer.style.left = "auto";
-            self.calendarContainer.style.right = `${right}px`;
+            self.calendarContainer.style.right = right + "px";
         }
         else {
-            const doc = getDocumentStyleSheet();
+            var doc = getDocumentStyleSheet();
             if (doc === undefined)
                 return;
-            const bodyWidth = window.document.body.offsetWidth;
-            const centerLeft = Math.max(0, bodyWidth / 2 - calendarWidth / 2);
-            const centerBefore = ".flatpickr-calendar.centerMost:before";
-            const centerAfter = ".flatpickr-calendar.centerMost:after";
-            const centerIndex = doc.cssRules.length;
-            const centerStyle = `{left:${inputBounds.left}px;right:auto;}`;
-            Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "rightMost", false);
-            Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["toggleClass"])(self.calendarContainer, "centerMost", true);
-            doc.insertRule(`${centerBefore},${centerAfter}${centerStyle}`, centerIndex);
-            self.calendarContainer.style.left = `${centerLeft}px`;
+            var bodyWidth = window.document.body.offsetWidth;
+            var centerLeft = Math.max(0, bodyWidth / 2 - calendarWidth / 2);
+            var centerBefore = ".flatpickr-calendar.centerMost:before";
+            var centerAfter = ".flatpickr-calendar.centerMost:after";
+            var centerIndex = doc.cssRules.length;
+            var centerStyle = "{left:" + inputBounds.left + "px;right:auto;}";
+            (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "rightMost", false);
+            (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.toggleClass)(self.calendarContainer, "centerMost", true);
+            doc.insertRule(centerBefore + "," + centerAfter + centerStyle, centerIndex);
+            self.calendarContainer.style.left = centerLeft + "px";
             self.calendarContainer.style.right = "auto";
         }
     }
     function getDocumentStyleSheet() {
-        let editableSheet = null;
-        for (let i = 0; i < document.styleSheets.length; i++) {
-            const sheet = document.styleSheets[i];
+        var editableSheet = null;
+        for (var i = 0; i < document.styleSheets.length; i++) {
+            var sheet = document.styleSheets[i];
+            if (!sheet.cssRules)
+                continue;
             try {
                 sheet.cssRules;
             }
@@ -9462,7 +12128,7 @@ function FlatpickrInstance(element, instanceConfig) {
         return editableSheet != null ? editableSheet : createStyleSheet();
     }
     function createStyleSheet() {
-        const style = document.createElement("style");
+        var style = document.createElement("style");
         document.head.appendChild(style);
         return style.sheet;
     }
@@ -9486,16 +12152,18 @@ function FlatpickrInstance(element, instanceConfig) {
     function selectDate(e) {
         e.preventDefault();
         e.stopPropagation();
-        const isSelectable = (day) => day.classList &&
-            day.classList.contains("flatpickr-day") &&
-            !day.classList.contains("flatpickr-disabled") &&
-            !day.classList.contains("notAllowed");
-        const t = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["findParent"])(Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e), isSelectable);
+        var isSelectable = function (day) {
+            return day.classList &&
+                day.classList.contains("flatpickr-day") &&
+                !day.classList.contains("flatpickr-disabled") &&
+                !day.classList.contains("notAllowed");
+        };
+        var t = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.findParent)((0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e), isSelectable);
         if (t === undefined)
             return;
-        const target = t;
-        const selectedDate = (self.latestSelectedDateObj = new Date(target.dateObj.getTime()));
-        const shouldChangeMonth = (selectedDate.getMonth() < self.currentMonth ||
+        var target = t;
+        var selectedDate = (self.latestSelectedDateObj = new Date(target.dateObj.getTime()));
+        var shouldChangeMonth = (selectedDate.getMonth() < self.currentMonth ||
             selectedDate.getMonth() >
                 self.currentMonth + self.config.showMonths - 1) &&
             self.config.mode !== "range";
@@ -9503,7 +12171,7 @@ function FlatpickrInstance(element, instanceConfig) {
         if (self.config.mode === "single")
             self.selectedDates = [selectedDate];
         else if (self.config.mode === "multiple") {
-            const selectedIndex = isDateSelected(selectedDate);
+            var selectedIndex = isDateSelected(selectedDate);
             if (selectedIndex)
                 self.selectedDates.splice(parseInt(selectedIndex), 1);
             else
@@ -9515,12 +12183,12 @@ function FlatpickrInstance(element, instanceConfig) {
             }
             self.latestSelectedDateObj = selectedDate;
             self.selectedDates.push(selectedDate);
-            if (Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(selectedDate, self.selectedDates[0], true) !== 0)
-                self.selectedDates.sort((a, b) => a.getTime() - b.getTime());
+            if ((0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(selectedDate, self.selectedDates[0], true) !== 0)
+                self.selectedDates.sort(function (a, b) { return a.getTime() - b.getTime(); });
         }
         setHoursFromInputs();
         if (shouldChangeMonth) {
-            const isNewYear = self.currentYear !== selectedDate.getFullYear();
+            var isNewYear = self.currentYear !== selectedDate.getFullYear();
             self.currentYear = selectedDate.getFullYear();
             self.currentMonth = selectedDate.getMonth();
             if (isNewYear) {
@@ -9543,8 +12211,8 @@ function FlatpickrInstance(element, instanceConfig) {
         if (self.hourElement !== undefined)
             self.hourElement !== undefined && self.hourElement.focus();
         if (self.config.closeOnSelect) {
-            const single = self.config.mode === "single" && !self.config.enableTime;
-            const range = self.config.mode === "range" &&
+            var single = self.config.mode === "single" && !self.config.enableTime;
+            var range = self.config.mode === "range" &&
                 self.selectedDates.length === 2 &&
                 !self.config.enableTime;
             if (single || range) {
@@ -9553,13 +12221,14 @@ function FlatpickrInstance(element, instanceConfig) {
         }
         triggerChange();
     }
-    const CALLBACKS = {
+    var CALLBACKS = {
         locale: [setupLocale, updateWeekdays],
         showMonths: [buildMonths, setCalendarWidth, buildWeekdays],
         minDate: [jumpToDate],
         maxDate: [jumpToDate],
+        positionElement: [updatePositionElement],
         clickOpens: [
-            () => {
+            function () {
                 if (self.config.clickOpens === true) {
                     bind(self._input, "focus", self.open);
                     bind(self._input, "click", self.open);
@@ -9574,25 +12243,25 @@ function FlatpickrInstance(element, instanceConfig) {
     function set(option, value) {
         if (option !== null && typeof option === "object") {
             Object.assign(self.config, option);
-            for (const key in option) {
+            for (var key in option) {
                 if (CALLBACKS[key] !== undefined)
-                    CALLBACKS[key].forEach((x) => x());
+                    CALLBACKS[key].forEach(function (x) { return x(); });
             }
         }
         else {
             self.config[option] = value;
             if (CALLBACKS[option] !== undefined)
-                CALLBACKS[option].forEach((x) => x());
-            else if (_types_options__WEBPACK_IMPORTED_MODULE_0__["HOOKS"].indexOf(option) > -1)
-                self.config[option] = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["arrayify"])(value);
+                CALLBACKS[option].forEach(function (x) { return x(); });
+            else if (_types_options__WEBPACK_IMPORTED_MODULE_0__.HOOKS.indexOf(option) > -1)
+                self.config[option] = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.arrayify)(value);
         }
         self.redraw();
         updateValue(true);
     }
     function setSelectedDate(inputDate, format) {
-        let dates = [];
+        var dates = [];
         if (inputDate instanceof Array)
-            dates = inputDate.map((d) => self.parseDate(d, format));
+            dates = inputDate.map(function (d) { return self.parseDate(d, format); });
         else if (inputDate instanceof Date || typeof inputDate === "number")
             dates = [self.parseDate(inputDate, format)];
         else if (typeof inputDate === "string") {
@@ -9604,26 +12273,28 @@ function FlatpickrInstance(element, instanceConfig) {
                 case "multiple":
                     dates = inputDate
                         .split(self.config.conjunction)
-                        .map((date) => self.parseDate(date, format));
+                        .map(function (date) { return self.parseDate(date, format); });
                     break;
                 case "range":
                     dates = inputDate
                         .split(self.l10n.rangeSeparator)
-                        .map((date) => self.parseDate(date, format));
+                        .map(function (date) { return self.parseDate(date, format); });
                     break;
                 default:
                     break;
             }
         }
         else
-            self.config.errorHandler(new Error(`Invalid date supplied: ${JSON.stringify(inputDate)}`));
+            self.config.errorHandler(new Error("Invalid date supplied: " + JSON.stringify(inputDate)));
         self.selectedDates = (self.config.allowInvalidPreload
             ? dates
-            : dates.filter((d) => d instanceof Date && isEnabled(d, false)));
+            : dates.filter(function (d) { return d instanceof Date && isEnabled(d, false); }));
         if (self.config.mode === "range")
-            self.selectedDates.sort((a, b) => a.getTime() - b.getTime());
+            self.selectedDates.sort(function (a, b) { return a.getTime() - b.getTime(); });
     }
-    function setDate(date, triggerChange = false, format = self.config.dateFormat) {
+    function setDate(date, triggerChange, format) {
+        if (triggerChange === void 0) { triggerChange = false; }
+        if (format === void 0) { format = self.config.dateFormat; }
         if ((date !== 0 && !date) || (date instanceof Array && date.length === 0))
             return self.clear(triggerChange);
         setSelectedDate(date, format);
@@ -9642,7 +12313,7 @@ function FlatpickrInstance(element, instanceConfig) {
     function parseDateRules(arr) {
         return arr
             .slice()
-            .map((rule) => {
+            .map(function (rule) {
             if (typeof rule === "string" ||
                 typeof rule === "number" ||
                 rule instanceof Date) {
@@ -9658,12 +12329,12 @@ function FlatpickrInstance(element, instanceConfig) {
                 };
             return rule;
         })
-            .filter((x) => x);
+            .filter(function (x) { return x; });
     }
     function setupDates() {
         self.selectedDates = [];
         self.now = self.parseDate(self.config.now) || new Date();
-        const preloadedDate = self.config.defaultDate ||
+        var preloadedDate = self.config.defaultDate ||
             ((self.input.nodeName === "INPUT" ||
                 self.input.nodeName === "TEXTAREA") &&
                 self.input.placeholder &&
@@ -9712,7 +12383,7 @@ function FlatpickrInstance(element, instanceConfig) {
         self.input.classList.add("flatpickr-input");
         self._input = self.input;
         if (self.config.altInput) {
-            self.altInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])(self.input.nodeName, self.config.altInputClass);
+            self.altInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)(self.input.nodeName, self.config.altInputClass);
             self._input = self.altInput;
             self.altInput.placeholder = self.input.placeholder;
             self.altInput.disabled = self.input.disabled;
@@ -9725,15 +12396,18 @@ function FlatpickrInstance(element, instanceConfig) {
         }
         if (!self.config.allowInput)
             self._input.setAttribute("readonly", "readonly");
+        updatePositionElement();
+    }
+    function updatePositionElement() {
         self._positionElement = self.config.positionElement || self._input;
     }
     function setupMobile() {
-        const inputType = self.config.enableTime
+        var inputType = self.config.enableTime
             ? self.config.noCalendar
                 ? "time"
                 : "datetime-local"
             : "date";
-        self.mobileInput = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["createElement"])("input", self.input.className + " flatpickr-mobile");
+        self.mobileInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.createElement)("input", self.input.className + " flatpickr-mobile");
         self.mobileInput.tabIndex = 1;
         self.mobileInput.type = inputType;
         self.mobileInput.disabled = self.input.disabled;
@@ -9762,8 +12436,8 @@ function FlatpickrInstance(element, instanceConfig) {
                 self.input.parentNode.insertBefore(self.mobileInput, self.input.nextSibling);
         }
         catch (_a) { }
-        bind(self.mobileInput, "change", (e) => {
-            self.setDate(Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e).value, false, self.mobileFormatStr);
+        bind(self.mobileInput, "change", function (e) {
+            self.setDate((0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e).value, false, self.mobileFormatStr);
             triggerEvent("onChange");
             triggerEvent("onClose");
         });
@@ -9776,9 +12450,9 @@ function FlatpickrInstance(element, instanceConfig) {
     function triggerEvent(event, data) {
         if (self.config === undefined)
             return;
-        const hooks = self.config[event];
+        var hooks = self.config[event];
         if (hooks !== undefined && hooks.length > 0) {
-            for (let i = 0; hooks[i] && i < hooks.length; i++)
+            for (var i = 0; hooks[i] && i < hooks.length; i++)
                 hooks[i](self.selectedDates, self.input.value, self, data);
         }
         if (event === "onChange") {
@@ -9787,13 +12461,15 @@ function FlatpickrInstance(element, instanceConfig) {
         }
     }
     function createEvent(name) {
-        const e = document.createEvent("Event");
+        var e = document.createEvent("Event");
         e.initEvent(name, true, true);
         return e;
     }
     function isDateSelected(date) {
-        for (let i = 0; i < self.selectedDates.length; i++) {
-            if (Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(self.selectedDates[i], date) === 0)
+        for (var i = 0; i < self.selectedDates.length; i++) {
+            var selectedDate = self.selectedDates[i];
+            if (selectedDate instanceof Date &&
+                (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(selectedDate, date) === 0)
                 return "" + i;
         }
         return false;
@@ -9801,19 +12477,19 @@ function FlatpickrInstance(element, instanceConfig) {
     function isDateInRange(date) {
         if (self.config.mode !== "range" || self.selectedDates.length < 2)
             return false;
-        return (Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(date, self.selectedDates[0]) >= 0 &&
-            Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"])(date, self.selectedDates[1]) <= 0);
+        return ((0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(date, self.selectedDates[0]) >= 0 &&
+            (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates)(date, self.selectedDates[1]) <= 0);
     }
     function updateNavigationCurrentMonth() {
         if (self.config.noCalendar || self.isMobile || !self.monthNav)
             return;
-        self.yearElements.forEach((yearElement, i) => {
-            const d = new Date(self.currentYear, self.currentMonth, 1);
+        self.yearElements.forEach(function (yearElement, i) {
+            var d = new Date(self.currentYear, self.currentMonth, 1);
             d.setMonth(self.currentMonth + i);
             if (self.config.showMonths > 1 ||
                 self.config.monthSelectorType === "static") {
                 self.monthElements[i].textContent =
-                    Object(_utils_formatting__WEBPACK_IMPORTED_MODULE_5__["monthToStr"])(d.getMonth(), self.config.shorthandCurrentMonth, self.l10n) + " ";
+                    (0,_utils_formatting__WEBPACK_IMPORTED_MODULE_5__.monthToStr)(d.getMonth(), self.config.shorthandCurrentMonth, self.l10n) + " ";
             }
             else {
                 self.monthsDropdownContainer.value = d.getMonth().toString();
@@ -9831,17 +12507,22 @@ function FlatpickrInstance(element, instanceConfig) {
                     ? self.currentMonth + 1 > self.config.maxDate.getMonth()
                     : self.currentYear > self.config.maxDate.getFullYear());
     }
-    function getDateStr(format) {
+    function getDateStr(specificFormat) {
+        var format = specificFormat ||
+            (self.config.altInput ? self.config.altFormat : self.config.dateFormat);
         return self.selectedDates
-            .map((dObj) => self.formatDate(dObj, format))
-            .filter((d, i, arr) => self.config.mode !== "range" ||
-            self.config.enableTime ||
-            arr.indexOf(d) === i)
+            .map(function (dObj) { return self.formatDate(dObj, format); })
+            .filter(function (d, i, arr) {
+            return self.config.mode !== "range" ||
+                self.config.enableTime ||
+                arr.indexOf(d) === i;
+        })
             .join(self.config.mode !== "range"
             ? self.config.conjunction
             : self.l10n.rangeSeparator);
     }
-    function updateValue(triggerChange = true) {
+    function updateValue(triggerChange) {
+        if (triggerChange === void 0) { triggerChange = true; }
         if (self.mobileInput !== undefined && self.mobileFormatStr) {
             self.mobileInput.value =
                 self.latestSelectedDateObj !== undefined
@@ -9856,9 +12537,9 @@ function FlatpickrInstance(element, instanceConfig) {
             triggerEvent("onValueUpdate");
     }
     function onMonthNavClick(e) {
-        const eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e);
-        const isPrevMonth = self.prevMonthNav.contains(eventTarget);
-        const isNextMonth = self.nextMonthNav.contains(eventTarget);
+        var eventTarget = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e);
+        var isPrevMonth = self.prevMonthNav.contains(eventTarget);
+        var isNextMonth = self.nextMonthNav.contains(eventTarget);
         if (isPrevMonth || isNextMonth) {
             changeMonth(isPrevMonth ? -1 : 1);
         }
@@ -9874,28 +12555,28 @@ function FlatpickrInstance(element, instanceConfig) {
     }
     function timeWrapper(e) {
         e.preventDefault();
-        const isKeyDown = e.type === "keydown", eventTarget = Object(_utils_dom__WEBPACK_IMPORTED_MODULE_3__["getEventTarget"])(e), input = eventTarget;
+        var isKeyDown = e.type === "keydown", eventTarget = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.getEventTarget)(e), input = eventTarget;
         if (self.amPM !== undefined && eventTarget === self.amPM) {
             self.amPM.textContent =
-                self.l10n.amPM[Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(self.amPM.textContent === self.l10n.amPM[0])];
+                self.l10n.amPM[(0,_utils__WEBPACK_IMPORTED_MODULE_2__.int)(self.amPM.textContent === self.l10n.amPM[0])];
         }
-        const min = parseFloat(input.getAttribute("min")), max = parseFloat(input.getAttribute("max")), step = parseFloat(input.getAttribute("step")), curValue = parseInt(input.value, 10), delta = e.delta ||
+        var min = parseFloat(input.getAttribute("min")), max = parseFloat(input.getAttribute("max")), step = parseFloat(input.getAttribute("step")), curValue = parseInt(input.value, 10), delta = e.delta ||
             (isKeyDown ? (e.which === 38 ? 1 : -1) : 0);
-        let newValue = curValue + step * delta;
+        var newValue = curValue + step * delta;
         if (typeof input.value !== "undefined" && input.value.length === 2) {
-            const isHourElem = input === self.hourElement, isMinuteElem = input === self.minuteElement;
+            var isHourElem = input === self.hourElement, isMinuteElem = input === self.minuteElement;
             if (newValue < min) {
                 newValue =
                     max +
                         newValue +
-                        Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(!isHourElem) +
-                        (Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(isHourElem) && Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(!self.amPM));
+                        (0,_utils__WEBPACK_IMPORTED_MODULE_2__.int)(!isHourElem) +
+                        ((0,_utils__WEBPACK_IMPORTED_MODULE_2__.int)(isHourElem) && (0,_utils__WEBPACK_IMPORTED_MODULE_2__.int)(!self.amPM));
                 if (isMinuteElem)
                     incrementNumInput(undefined, -1, self.hourElement);
             }
             else if (newValue > max) {
                 newValue =
-                    input === self.hourElement ? newValue - max - Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(!self.amPM) : min;
+                    input === self.hourElement ? newValue - max - (0,_utils__WEBPACK_IMPORTED_MODULE_2__.int)(!self.amPM) : min;
                 if (isMinuteElem)
                     incrementNumInput(undefined, 1, self.hourElement);
             }
@@ -9905,21 +12586,21 @@ function FlatpickrInstance(element, instanceConfig) {
                     ? newValue + curValue === 23
                     : Math.abs(newValue - curValue) > step)) {
                 self.amPM.textContent =
-                    self.l10n.amPM[Object(_utils__WEBPACK_IMPORTED_MODULE_2__["int"])(self.amPM.textContent === self.l10n.amPM[0])];
+                    self.l10n.amPM[(0,_utils__WEBPACK_IMPORTED_MODULE_2__.int)(self.amPM.textContent === self.l10n.amPM[0])];
             }
-            input.value = Object(_utils__WEBPACK_IMPORTED_MODULE_2__["pad"])(newValue);
+            input.value = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.pad)(newValue);
         }
     }
     init();
     return self;
 }
 function _flatpickr(nodeList, config) {
-    const nodes = Array.prototype.slice
+    var nodes = Array.prototype.slice
         .call(nodeList)
-        .filter((x) => x instanceof HTMLElement);
-    const instances = [];
-    for (let i = 0; i < nodes.length; i++) {
-        const node = nodes[i];
+        .filter(function (x) { return x instanceof HTMLElement; });
+    var instances = [];
+    for (var i = 0; i < nodes.length; i++) {
+        var node = nodes[i];
         try {
             if (node.getAttribute("data-fp-omit") !== null)
                 continue;
@@ -9959,18 +12640,18 @@ var flatpickr = function (selector, config) {
 };
 flatpickr.defaultConfig = {};
 flatpickr.l10ns = {
-    en: Object.assign({}, _l10n_default__WEBPACK_IMPORTED_MODULE_1__["default"]),
-    default: Object.assign({}, _l10n_default__WEBPACK_IMPORTED_MODULE_1__["default"]),
+    en: __assign({}, _l10n_default__WEBPACK_IMPORTED_MODULE_1__["default"]),
+    default: __assign({}, _l10n_default__WEBPACK_IMPORTED_MODULE_1__["default"]),
 };
-flatpickr.localize = (l10n) => {
-    flatpickr.l10ns.default = Object.assign(Object.assign({}, flatpickr.l10ns.default), l10n);
+flatpickr.localize = function (l10n) {
+    flatpickr.l10ns.default = __assign(__assign({}, flatpickr.l10ns.default), l10n);
 };
-flatpickr.setDefaults = (config) => {
-    flatpickr.defaultConfig = Object.assign(Object.assign({}, flatpickr.defaultConfig), config);
+flatpickr.setDefaults = function (config) {
+    flatpickr.defaultConfig = __assign(__assign({}, flatpickr.defaultConfig), config);
 };
-flatpickr.parseDate = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["createDateParser"])({});
-flatpickr.formatDate = Object(_utils_dates__WEBPACK_IMPORTED_MODULE_4__["createDateFormatter"])({});
-flatpickr.compareDates = _utils_dates__WEBPACK_IMPORTED_MODULE_4__["compareDates"];
+flatpickr.parseDate = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.createDateParser)({});
+flatpickr.formatDate = (0,_utils_dates__WEBPACK_IMPORTED_MODULE_4__.createDateFormatter)({});
+flatpickr.compareDates = _utils_dates__WEBPACK_IMPORTED_MODULE_4__.compareDates;
 if (typeof jQuery !== "undefined" && typeof jQuery.fn !== "undefined") {
     jQuery.fn.flatpickr = function (config) {
         return _flatpickr(this, config);
@@ -9982,7 +12663,7 @@ Date.prototype.fp_incr = function (days) {
 if (typeof window !== "undefined") {
     window.flatpickr = flatpickr;
 }
-/* harmony default export */ __webpack_exports__["default"] = (flatpickr);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (flatpickr);
 
 
 /***/ }),
@@ -9991,13 +12672,15 @@ if (typeof window !== "undefined") {
 /*!*********************************************************!*\
   !*** ./node_modules/flatpickr/dist/esm/l10n/default.js ***!
   \*********************************************************/
-/*! exports provided: english, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "english", function() { return english; });
-const english = {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "english": () => (/* binding */ english)
+/* harmony export */ });
+var english = {
     weekdays: {
         shorthand: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
         longhand: [
@@ -10042,8 +12725,8 @@ const english = {
     },
     daysInMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
     firstDayOfWeek: 0,
-    ordinal: (nth) => {
-        const s = nth % 100;
+    ordinal: function (nth) {
+        var s = nth % 100;
         if (s > 3 && s < 21)
             return "th";
         switch (s % 10) {
@@ -10068,7 +12751,7 @@ const english = {
     minuteAriaLabel: "Minute",
     time_24hr: false,
 };
-/* harmony default export */ __webpack_exports__["default"] = (english);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (english);
 
 
 /***/ }),
@@ -10077,14 +12760,15 @@ const english = {
 /*!**********************************************************!*\
   !*** ./node_modules/flatpickr/dist/esm/types/options.js ***!
   \**********************************************************/
-/*! exports provided: HOOKS, defaults */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HOOKS", function() { return HOOKS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaults", function() { return defaults; });
-const HOOKS = [
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HOOKS": () => (/* binding */ HOOKS),
+/* harmony export */   "defaults": () => (/* binding */ defaults)
+/* harmony export */ });
+var HOOKS = [
     "onChange",
     "onClose",
     "onDayCreate",
@@ -10098,7 +12782,7 @@ const HOOKS = [
     "onYearChange",
     "onPreCalendarPosition",
 ];
-const defaults = {
+var defaults = {
     _disable: [],
     allowInput: false,
     allowInvalidPreload: false,
@@ -10120,9 +12804,11 @@ const defaults = {
     disableMobile: false,
     enableSeconds: false,
     enableTime: false,
-    errorHandler: (err) => typeof console !== "undefined" && console.warn(err),
-    getWeek: (givenDate) => {
-        const date = new Date(givenDate.getTime());
+    errorHandler: function (err) {
+        return typeof console !== "undefined" && console.warn(err);
+    },
+    getWeek: function (givenDate) {
+        var date = new Date(givenDate.getTime());
         date.setHours(0, 0, 0, 0);
         date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
         var week1 = new Date(date.getFullYear(), 0, 4);
@@ -10173,97 +12859,114 @@ const defaults = {
 /*!********************************************************!*\
   !*** ./node_modules/flatpickr/dist/esm/utils/dates.js ***!
   \********************************************************/
-/*! exports provided: createDateFormatter, createDateParser, compareDates, compareTimes, isBetween, duration, getDefaultHours */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDateFormatter", function() { return createDateFormatter; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDateParser", function() { return createDateParser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareDates", function() { return compareDates; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareTimes", function() { return compareTimes; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isBetween", function() { return isBetween; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "duration", function() { return duration; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDefaultHours", function() { return getDefaultHours; });
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "calculateSecondsSinceMidnight": () => (/* binding */ calculateSecondsSinceMidnight),
+/* harmony export */   "compareDates": () => (/* binding */ compareDates),
+/* harmony export */   "compareTimes": () => (/* binding */ compareTimes),
+/* harmony export */   "createDateFormatter": () => (/* binding */ createDateFormatter),
+/* harmony export */   "createDateParser": () => (/* binding */ createDateParser),
+/* harmony export */   "duration": () => (/* binding */ duration),
+/* harmony export */   "getDefaultHours": () => (/* binding */ getDefaultHours),
+/* harmony export */   "isBetween": () => (/* binding */ isBetween),
+/* harmony export */   "parseSeconds": () => (/* binding */ parseSeconds)
+/* harmony export */ });
 /* harmony import */ var _formatting__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formatting */ "./node_modules/flatpickr/dist/esm/utils/formatting.js");
 /* harmony import */ var _types_options__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../types/options */ "./node_modules/flatpickr/dist/esm/types/options.js");
 /* harmony import */ var _l10n_default__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../l10n/default */ "./node_modules/flatpickr/dist/esm/l10n/default.js");
 
 
 
-const createDateFormatter = ({ config = _types_options__WEBPACK_IMPORTED_MODULE_1__["defaults"], l10n = _l10n_default__WEBPACK_IMPORTED_MODULE_2__["english"], isMobile = false, }) => (dateObj, frmt, overrideLocale) => {
-    const locale = overrideLocale || l10n;
-    if (config.formatDate !== undefined && !isMobile) {
-        return config.formatDate(dateObj, frmt, locale);
-    }
-    return frmt
-        .split("")
-        .map((c, i, arr) => _formatting__WEBPACK_IMPORTED_MODULE_0__["formats"][c] && arr[i - 1] !== "\\"
-        ? _formatting__WEBPACK_IMPORTED_MODULE_0__["formats"][c](dateObj, locale, config)
-        : c !== "\\"
-            ? c
-            : "")
-        .join("");
-};
-const createDateParser = ({ config = _types_options__WEBPACK_IMPORTED_MODULE_1__["defaults"], l10n = _l10n_default__WEBPACK_IMPORTED_MODULE_2__["english"] }) => (date, givenFormat, timeless, customLocale) => {
-    if (date !== 0 && !date)
-        return undefined;
-    const locale = customLocale || l10n;
-    let parsedDate;
-    const dateOrig = date;
-    if (date instanceof Date)
-        parsedDate = new Date(date.getTime());
-    else if (typeof date !== "string" &&
-        date.toFixed !== undefined)
-        parsedDate = new Date(date);
-    else if (typeof date === "string") {
-        const format = givenFormat || (config || _types_options__WEBPACK_IMPORTED_MODULE_1__["defaults"]).dateFormat;
-        const datestr = String(date).trim();
-        if (datestr === "today") {
-            parsedDate = new Date();
-            timeless = true;
+var createDateFormatter = function (_a) {
+    var _b = _a.config, config = _b === void 0 ? _types_options__WEBPACK_IMPORTED_MODULE_1__.defaults : _b, _c = _a.l10n, l10n = _c === void 0 ? _l10n_default__WEBPACK_IMPORTED_MODULE_2__.english : _c, _d = _a.isMobile, isMobile = _d === void 0 ? false : _d;
+    return function (dateObj, frmt, overrideLocale) {
+        var locale = overrideLocale || l10n;
+        if (config.formatDate !== undefined && !isMobile) {
+            return config.formatDate(dateObj, frmt, locale);
         }
-        else if (/Z$/.test(datestr) ||
-            /GMT$/.test(datestr))
+        return frmt
+            .split("")
+            .map(function (c, i, arr) {
+            return _formatting__WEBPACK_IMPORTED_MODULE_0__.formats[c] && arr[i - 1] !== "\\"
+                ? _formatting__WEBPACK_IMPORTED_MODULE_0__.formats[c](dateObj, locale, config)
+                : c !== "\\"
+                    ? c
+                    : "";
+        })
+            .join("");
+    };
+};
+var createDateParser = function (_a) {
+    var _b = _a.config, config = _b === void 0 ? _types_options__WEBPACK_IMPORTED_MODULE_1__.defaults : _b, _c = _a.l10n, l10n = _c === void 0 ? _l10n_default__WEBPACK_IMPORTED_MODULE_2__.english : _c;
+    return function (date, givenFormat, timeless, customLocale) {
+        if (date !== 0 && !date)
+            return undefined;
+        var locale = customLocale || l10n;
+        var parsedDate;
+        var dateOrig = date;
+        if (date instanceof Date)
+            parsedDate = new Date(date.getTime());
+        else if (typeof date !== "string" &&
+            date.toFixed !== undefined)
             parsedDate = new Date(date);
-        else if (config && config.parseDate)
-            parsedDate = config.parseDate(date, format);
-        else {
-            parsedDate =
-                !config || !config.noCalendar
-                    ? new Date(new Date().getFullYear(), 0, 1, 0, 0, 0, 0)
-                    : new Date(new Date().setHours(0, 0, 0, 0));
-            let matched, ops = [];
-            for (let i = 0, matchIndex = 0, regexStr = ""; i < format.length; i++) {
-                const token = format[i];
-                const isBackSlash = token === "\\";
-                const escaped = format[i - 1] === "\\" || isBackSlash;
-                if (_formatting__WEBPACK_IMPORTED_MODULE_0__["tokenRegex"][token] && !escaped) {
-                    regexStr += _formatting__WEBPACK_IMPORTED_MODULE_0__["tokenRegex"][token];
-                    const match = new RegExp(regexStr).exec(date);
-                    if (match && (matched = true)) {
-                        ops[token !== "Y" ? "push" : "unshift"]({
-                            fn: _formatting__WEBPACK_IMPORTED_MODULE_0__["revFormat"][token],
-                            val: match[++matchIndex],
-                        });
-                    }
-                }
-                else if (!isBackSlash)
-                    regexStr += ".";
-                ops.forEach(({ fn, val }) => (parsedDate = fn(parsedDate, val, locale) || parsedDate));
+        else if (typeof date === "string") {
+            var format = givenFormat || (config || _types_options__WEBPACK_IMPORTED_MODULE_1__.defaults).dateFormat;
+            var datestr = String(date).trim();
+            if (datestr === "today") {
+                parsedDate = new Date();
+                timeless = true;
             }
-            parsedDate = matched ? parsedDate : undefined;
+            else if (config && config.parseDate) {
+                parsedDate = config.parseDate(date, format);
+            }
+            else if (/Z$/.test(datestr) ||
+                /GMT$/.test(datestr)) {
+                parsedDate = new Date(date);
+            }
+            else {
+                var matched = void 0, ops = [];
+                for (var i = 0, matchIndex = 0, regexStr = ""; i < format.length; i++) {
+                    var token = format[i];
+                    var isBackSlash = token === "\\";
+                    var escaped = format[i - 1] === "\\" || isBackSlash;
+                    if (_formatting__WEBPACK_IMPORTED_MODULE_0__.tokenRegex[token] && !escaped) {
+                        regexStr += _formatting__WEBPACK_IMPORTED_MODULE_0__.tokenRegex[token];
+                        var match = new RegExp(regexStr).exec(date);
+                        if (match && (matched = true)) {
+                            ops[token !== "Y" ? "push" : "unshift"]({
+                                fn: _formatting__WEBPACK_IMPORTED_MODULE_0__.revFormat[token],
+                                val: match[++matchIndex],
+                            });
+                        }
+                    }
+                    else if (!isBackSlash)
+                        regexStr += ".";
+                }
+                parsedDate =
+                    !config || !config.noCalendar
+                        ? new Date(new Date().getFullYear(), 0, 1, 0, 0, 0, 0)
+                        : new Date(new Date().setHours(0, 0, 0, 0));
+                ops.forEach(function (_a) {
+                    var fn = _a.fn, val = _a.val;
+                    return (parsedDate = fn(parsedDate, val, locale) || parsedDate);
+                });
+                parsedDate = matched ? parsedDate : undefined;
+            }
         }
-    }
-    if (!(parsedDate instanceof Date && !isNaN(parsedDate.getTime()))) {
-        config.errorHandler(new Error(`Invalid date provided: ${dateOrig}`));
-        return undefined;
-    }
-    if (timeless === true)
-        parsedDate.setHours(0, 0, 0, 0);
-    return parsedDate;
+        if (!(parsedDate instanceof Date && !isNaN(parsedDate.getTime()))) {
+            config.errorHandler(new Error("Invalid date provided: " + dateOrig));
+            return undefined;
+        }
+        if (timeless === true)
+            parsedDate.setHours(0, 0, 0, 0);
+        return parsedDate;
+    };
 };
-function compareDates(date1, date2, timeless = true) {
+function compareDates(date1, date2, timeless) {
+    if (timeless === void 0) { timeless = true; }
     if (timeless !== false) {
         return (new Date(date1.getTime()).setHours(0, 0, 0, 0) -
             new Date(date2.getTime()).setHours(0, 0, 0, 0));
@@ -10276,20 +12979,27 @@ function compareTimes(date1, date2) {
         date1.getSeconds() -
         date2.getSeconds());
 }
-const isBetween = (ts, ts1, ts2) => {
+var isBetween = function (ts, ts1, ts2) {
     return ts > Math.min(ts1, ts2) && ts < Math.max(ts1, ts2);
 };
-const duration = {
+var calculateSecondsSinceMidnight = function (hours, minutes, seconds) {
+    return hours * 3600 + minutes * 60 + seconds;
+};
+var parseSeconds = function (secondsSinceMidnight) {
+    var hours = Math.floor(secondsSinceMidnight / 3600), minutes = (secondsSinceMidnight - hours * 3600) / 60;
+    return [hours, minutes, secondsSinceMidnight - hours * 3600 - minutes * 60];
+};
+var duration = {
     DAY: 86400000,
 };
 function getDefaultHours(config) {
-    let hours = config.defaultHour;
-    let minutes = config.defaultMinute;
-    let seconds = config.defaultSeconds;
+    var hours = config.defaultHour;
+    var minutes = config.defaultMinute;
+    var seconds = config.defaultSeconds;
     if (config.minDate !== undefined) {
-        const minHour = config.minDate.getHours();
-        const minMinutes = config.minDate.getMinutes();
-        const minSeconds = config.minDate.getSeconds();
+        var minHour = config.minDate.getHours();
+        var minMinutes = config.minDate.getMinutes();
+        var minSeconds = config.minDate.getSeconds();
         if (hours < minHour) {
             hours = minHour;
         }
@@ -10300,15 +13010,15 @@ function getDefaultHours(config) {
             seconds = config.minDate.getSeconds();
     }
     if (config.maxDate !== undefined) {
-        const maxHr = config.maxDate.getHours();
-        const maxMinutes = config.maxDate.getMinutes();
+        var maxHr = config.maxDate.getHours();
+        var maxMinutes = config.maxDate.getMinutes();
         hours = Math.min(hours, maxHr);
         if (hours === maxHr)
             minutes = Math.min(maxMinutes, minutes);
         if (hours === maxHr && minutes === maxMinutes)
             seconds = config.maxDate.getSeconds();
     }
-    return { hours, minutes, seconds };
+    return { hours: hours, minutes: minutes, seconds: seconds };
 }
 
 
@@ -10318,24 +13028,25 @@ function getDefaultHours(config) {
 /*!******************************************************!*\
   !*** ./node_modules/flatpickr/dist/esm/utils/dom.js ***!
   \******************************************************/
-/*! exports provided: toggleClass, createElement, clearNode, findParent, createNumberInput, getEventTarget */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleClass", function() { return toggleClass; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearNode", function() { return clearNode; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findParent", function() { return findParent; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNumberInput", function() { return createNumberInput; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEventTarget", function() { return getEventTarget; });
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "clearNode": () => (/* binding */ clearNode),
+/* harmony export */   "createElement": () => (/* binding */ createElement),
+/* harmony export */   "createNumberInput": () => (/* binding */ createNumberInput),
+/* harmony export */   "findParent": () => (/* binding */ findParent),
+/* harmony export */   "getEventTarget": () => (/* binding */ getEventTarget),
+/* harmony export */   "toggleClass": () => (/* binding */ toggleClass)
+/* harmony export */ });
 function toggleClass(elem, className, bool) {
     if (bool === true)
         return elem.classList.add(className);
     elem.classList.remove(className);
 }
 function createElement(tag, className, content) {
-    const e = window.document.createElement(tag);
+    var e = window.document.createElement(tag);
     className = className || "";
     content = content || "";
     e.className = className;
@@ -10355,7 +13066,7 @@ function findParent(node, condition) {
     return undefined;
 }
 function createNumberInput(inputClassName, opts) {
-    const wrapper = createElement("div", "numInputWrapper"), numInput = createElement("input", "numInput " + inputClassName), arrowUp = createElement("span", "arrowUp"), arrowDown = createElement("span", "arrowDown");
+    var wrapper = createElement("div", "numInputWrapper"), numInput = createElement("input", "numInput " + inputClassName), arrowUp = createElement("span", "arrowUp"), arrowDown = createElement("span", "arrowDown");
     if (navigator.userAgent.indexOf("MSIE 9.0") === -1) {
         numInput.type = "number";
     }
@@ -10364,7 +13075,7 @@ function createNumberInput(inputClassName, opts) {
         numInput.pattern = "\\d*";
     }
     if (opts !== undefined)
-        for (const key in opts)
+        for (var key in opts)
             numInput.setAttribute(key, opts[key]);
     wrapper.appendChild(numInput);
     wrapper.appendChild(arrowUp);
@@ -10374,7 +13085,7 @@ function createNumberInput(inputClassName, opts) {
 function getEventTarget(event) {
     try {
         if (typeof event.composedPath === "function") {
-            const path = event.composedPath();
+            var path = event.composedPath();
             return path[0];
         }
         return event.target;
@@ -10391,90 +13102,93 @@ function getEventTarget(event) {
 /*!*************************************************************!*\
   !*** ./node_modules/flatpickr/dist/esm/utils/formatting.js ***!
   \*************************************************************/
-/*! exports provided: monthToStr, revFormat, tokenRegex, formats */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "monthToStr", function() { return monthToStr; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "revFormat", function() { return revFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tokenRegex", function() { return tokenRegex; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formats", function() { return formats; });
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formats": () => (/* binding */ formats),
+/* harmony export */   "monthToStr": () => (/* binding */ monthToStr),
+/* harmony export */   "revFormat": () => (/* binding */ revFormat),
+/* harmony export */   "tokenRegex": () => (/* binding */ tokenRegex)
+/* harmony export */ });
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/flatpickr/dist/esm/utils/index.js");
 
-const doNothing = () => undefined;
-const monthToStr = (monthNumber, shorthand, locale) => locale.months[shorthand ? "shorthand" : "longhand"][monthNumber];
-const revFormat = {
+var doNothing = function () { return undefined; };
+var monthToStr = function (monthNumber, shorthand, locale) { return locale.months[shorthand ? "shorthand" : "longhand"][monthNumber]; };
+var revFormat = {
     D: doNothing,
     F: function (dateObj, monthName, locale) {
         dateObj.setMonth(locale.months.longhand.indexOf(monthName));
     },
-    G: (dateObj, hour) => {
+    G: function (dateObj, hour) {
+        dateObj.setHours((dateObj.getHours() >= 12 ? 12 : 0) + parseFloat(hour));
+    },
+    H: function (dateObj, hour) {
         dateObj.setHours(parseFloat(hour));
     },
-    H: (dateObj, hour) => {
-        dateObj.setHours(parseFloat(hour));
-    },
-    J: (dateObj, day) => {
+    J: function (dateObj, day) {
         dateObj.setDate(parseFloat(day));
     },
-    K: (dateObj, amPM, locale) => {
+    K: function (dateObj, amPM, locale) {
         dateObj.setHours((dateObj.getHours() % 12) +
-            12 * Object(_utils__WEBPACK_IMPORTED_MODULE_0__["int"])(new RegExp(locale.amPM[1], "i").test(amPM)));
+            12 * (0,_utils__WEBPACK_IMPORTED_MODULE_0__.int)(new RegExp(locale.amPM[1], "i").test(amPM)));
     },
     M: function (dateObj, shortMonth, locale) {
         dateObj.setMonth(locale.months.shorthand.indexOf(shortMonth));
     },
-    S: (dateObj, seconds) => {
+    S: function (dateObj, seconds) {
         dateObj.setSeconds(parseFloat(seconds));
     },
-    U: (_, unixSeconds) => new Date(parseFloat(unixSeconds) * 1000),
+    U: function (_, unixSeconds) { return new Date(parseFloat(unixSeconds) * 1000); },
     W: function (dateObj, weekNum, locale) {
-        const weekNumber = parseInt(weekNum);
-        const date = new Date(dateObj.getFullYear(), 0, 2 + (weekNumber - 1) * 7, 0, 0, 0, 0);
+        var weekNumber = parseInt(weekNum);
+        var date = new Date(dateObj.getFullYear(), 0, 2 + (weekNumber - 1) * 7, 0, 0, 0, 0);
         date.setDate(date.getDate() - date.getDay() + locale.firstDayOfWeek);
         return date;
     },
-    Y: (dateObj, year) => {
+    Y: function (dateObj, year) {
         dateObj.setFullYear(parseFloat(year));
     },
-    Z: (_, ISODate) => new Date(ISODate),
-    d: (dateObj, day) => {
+    Z: function (_, ISODate) { return new Date(ISODate); },
+    d: function (dateObj, day) {
         dateObj.setDate(parseFloat(day));
     },
-    h: (dateObj, hour) => {
-        dateObj.setHours(parseFloat(hour));
+    h: function (dateObj, hour) {
+        dateObj.setHours((dateObj.getHours() >= 12 ? 12 : 0) + parseFloat(hour));
     },
-    i: (dateObj, minutes) => {
+    i: function (dateObj, minutes) {
         dateObj.setMinutes(parseFloat(minutes));
     },
-    j: (dateObj, day) => {
+    j: function (dateObj, day) {
         dateObj.setDate(parseFloat(day));
     },
     l: doNothing,
-    m: (dateObj, month) => {
+    m: function (dateObj, month) {
         dateObj.setMonth(parseFloat(month) - 1);
     },
-    n: (dateObj, month) => {
+    n: function (dateObj, month) {
         dateObj.setMonth(parseFloat(month) - 1);
     },
-    s: (dateObj, seconds) => {
+    s: function (dateObj, seconds) {
         dateObj.setSeconds(parseFloat(seconds));
     },
-    u: (_, unixMillSeconds) => new Date(parseFloat(unixMillSeconds)),
+    u: function (_, unixMillSeconds) {
+        return new Date(parseFloat(unixMillSeconds));
+    },
     w: doNothing,
-    y: (dateObj, year) => {
+    y: function (dateObj, year) {
         dateObj.setFullYear(2000 + parseFloat(year));
     },
 };
-const tokenRegex = {
-    D: "(\\w+)",
-    F: "(\\w+)",
+var tokenRegex = {
+    D: "",
+    F: "",
     G: "(\\d\\d|\\d)",
     H: "(\\d\\d|\\d)",
     J: "(\\d\\d|\\d)\\w+",
     K: "",
-    M: "(\\w+)",
+    M: "",
     S: "(\\d\\d|\\d)",
     U: "(.+)",
     W: "(\\d\\d|\\d)",
@@ -10484,7 +13198,7 @@ const tokenRegex = {
     h: "(\\d\\d|\\d)",
     i: "(\\d\\d|\\d)",
     j: "(\\d\\d|\\d)",
-    l: "(\\w+)",
+    l: "",
     m: "(\\d\\d|\\d)",
     n: "(\\d\\d|\\d)",
     s: "(\\d\\d|\\d)",
@@ -10492,8 +13206,8 @@ const tokenRegex = {
     w: "(\\d\\d|\\d)",
     y: "(\\d{2})",
 };
-const formats = {
-    Z: (date) => date.toISOString(),
+var formats = {
+    Z: function (date) { return date.toISOString(); },
     D: function (date, locale, options) {
         return locale.weekdays.shorthand[formats.w(date, locale, options)];
     },
@@ -10501,37 +13215,37 @@ const formats = {
         return monthToStr(formats.n(date, locale, options) - 1, false, locale);
     },
     G: function (date, locale, options) {
-        return Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(formats.h(date, locale, options));
+        return (0,_utils__WEBPACK_IMPORTED_MODULE_0__.pad)(formats.h(date, locale, options));
     },
-    H: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getHours()),
+    H: function (date) { return (0,_utils__WEBPACK_IMPORTED_MODULE_0__.pad)(date.getHours()); },
     J: function (date, locale) {
         return locale.ordinal !== undefined
             ? date.getDate() + locale.ordinal(date.getDate())
             : date.getDate();
     },
-    K: (date, locale) => locale.amPM[Object(_utils__WEBPACK_IMPORTED_MODULE_0__["int"])(date.getHours() > 11)],
+    K: function (date, locale) { return locale.amPM[(0,_utils__WEBPACK_IMPORTED_MODULE_0__.int)(date.getHours() > 11)]; },
     M: function (date, locale) {
         return monthToStr(date.getMonth(), true, locale);
     },
-    S: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getSeconds()),
-    U: (date) => date.getTime() / 1000,
+    S: function (date) { return (0,_utils__WEBPACK_IMPORTED_MODULE_0__.pad)(date.getSeconds()); },
+    U: function (date) { return date.getTime() / 1000; },
     W: function (date, _, options) {
         return options.getWeek(date);
     },
-    Y: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getFullYear(), 4),
-    d: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getDate()),
-    h: (date) => (date.getHours() % 12 ? date.getHours() % 12 : 12),
-    i: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getMinutes()),
-    j: (date) => date.getDate(),
+    Y: function (date) { return (0,_utils__WEBPACK_IMPORTED_MODULE_0__.pad)(date.getFullYear(), 4); },
+    d: function (date) { return (0,_utils__WEBPACK_IMPORTED_MODULE_0__.pad)(date.getDate()); },
+    h: function (date) { return (date.getHours() % 12 ? date.getHours() % 12 : 12); },
+    i: function (date) { return (0,_utils__WEBPACK_IMPORTED_MODULE_0__.pad)(date.getMinutes()); },
+    j: function (date) { return date.getDate(); },
     l: function (date, locale) {
         return locale.weekdays.longhand[date.getDay()];
     },
-    m: (date) => Object(_utils__WEBPACK_IMPORTED_MODULE_0__["pad"])(date.getMonth() + 1),
-    n: (date) => date.getMonth() + 1,
-    s: (date) => date.getSeconds(),
-    u: (date) => date.getTime(),
-    w: (date) => date.getDay(),
-    y: (date) => String(date.getFullYear()).substring(2),
+    m: function (date) { return (0,_utils__WEBPACK_IMPORTED_MODULE_0__.pad)(date.getMonth() + 1); },
+    n: function (date) { return date.getMonth() + 1; },
+    s: function (date) { return date.getSeconds(); },
+    u: function (date) { return date.getTime(); },
+    w: function (date) { return date.getDay(); },
+    y: function (date) { return String(date.getFullYear()).substring(2); },
 };
 
 
@@ -10541,25 +13255,33 @@ const formats = {
 /*!********************************************************!*\
   !*** ./node_modules/flatpickr/dist/esm/utils/index.js ***!
   \********************************************************/
-/*! exports provided: pad, int, debounce, arrayify */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pad", function() { return pad; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "int", function() { return int; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "debounce", function() { return debounce; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "arrayify", function() { return arrayify; });
-const pad = (number, length = 2) => `000${number}`.slice(length * -1);
-const int = (bool) => (bool === true ? 1 : 0);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "arrayify": () => (/* binding */ arrayify),
+/* harmony export */   "debounce": () => (/* binding */ debounce),
+/* harmony export */   "int": () => (/* binding */ int),
+/* harmony export */   "pad": () => (/* binding */ pad)
+/* harmony export */ });
+var pad = function (number, length) {
+    if (length === void 0) { length = 2; }
+    return ("000" + number).slice(length * -1);
+};
+var int = function (bool) { return (bool === true ? 1 : 0); };
 function debounce(fn, wait) {
-    let t;
+    var t;
     return function () {
+        var _this = this;
+        var args = arguments;
         clearTimeout(t);
-        t = setTimeout(() => fn.apply(this, arguments), wait);
+        t = setTimeout(function () { return fn.apply(_this, args); }, wait);
     };
 }
-const arrayify = (obj) => obj instanceof Array ? obj : [obj];
+var arrayify = function (obj) {
+    return obj instanceof Array ? obj : [obj];
+};
 
 
 /***/ }),
@@ -10568,20 +13290,27 @@ const arrayify = (obj) => obj instanceof Array ? obj : [obj];
 /*!************************************************************!*\
   !*** ./node_modules/flatpickr/dist/esm/utils/polyfills.js ***!
   \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (() => {
 
 "use strict";
 
 if (typeof Object.assign !== "function") {
-    Object.assign = function (target, ...args) {
+    Object.assign = function (target) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
         if (!target) {
             throw TypeError("Cannot convert undefined or null to object");
         }
-        for (const source of args) {
+        var _loop_1 = function (source) {
             if (source) {
-                Object.keys(source).forEach((key) => (target[key] = source[key]));
+                Object.keys(source).forEach(function (key) { return (target[key] = source[key]); });
             }
+        };
+        for (var _a = 0, args_1 = args; _a < args_1.length; _a++) {
+            var source = args_1[_a];
+            _loop_1(source);
         }
         return target;
     };
@@ -10590,38 +13319,15 @@ if (typeof Object.assign !== "function") {
 
 /***/ }),
 
-/***/ "./node_modules/flatpickr/dist/flatpickr.css":
-/*!***************************************************!*\
-  !*** ./node_modules/flatpickr/dist/flatpickr.css ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.css":
-/*!*************************************************************************!*\
-  !*** ./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.css ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.js":
 /*!************************************************************************!*\
   !*** ./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.js ***!
   \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module) {
 
 (function (global, factory) {
      true ? module.exports = factory() :
-    undefined;
+    0;
 }(this, (function () { 'use strict';
 
     /*! *****************************************************************************
@@ -10678,9 +13384,13 @@ if (typeof Object.assign !== "function") {
                 return {};
             return __assign({ onKeyDown: function (_, __, ___, e) {
                     var eventTarget = getEventTarget(e);
+                    var isTargetLastFocusableElement = (!fp.config.time_24hr && eventTarget === fp.amPM) ||
+                        (fp.config.time_24hr &&
+                            ((fp.config.enableSeconds && eventTarget === fp.secondElement) ||
+                                (!fp.config.enableSeconds && eventTarget === fp.minuteElement)));
                     if (fp.config.enableTime &&
                         e.key === "Tab" &&
-                        eventTarget === fp.amPM) {
+                        isTargetLastFocusableElement) {
                         e.preventDefault();
                         confirmContainer.focus();
                     }
@@ -10726,12 +13436,10 @@ if (typeof Object.assign !== "function") {
 /*!*********************************************************!*\
   !*** ./node_modules/iterators-polyfill/polyfill.min.js ***!
   \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-/* WEBPACK VAR INJECTION */(function(global) {!function(){"use strict";function t(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function e(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function o(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function r(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function i(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function s(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}var u=void 0;try{u=self}catch(t){try{u=global}catch(t){u=window}}var c=function(){function e(o,r){t(this,e),this.cursor=0,this.collection=o,this.kind=r}return e.prototype.next=function(){this.done=this.cursor===this.collection.length;var t={done:this.done,value:this.done?void 0:"value"===this.kind||"key"===this.kind?this.collection[this.cursor]:[this.cursor,this.collection[this.cursor]]};return this.cursor++,t},e}(),a=function(t){function n(r,i){e(this,n);var s=o(this,t.call(this,r,i));return s}return r(n,t),n.prototype.toString=function(){return"[object String Iterator]"},n}(c),p=function(t){function e(o,r){n(this,e);var s=i(this,t.call(this,o,r));return s}return s(e,t),e.prototype.toString=function(){return"[object Array Iterator]"},e}(c);if("function"!=typeof Array.prototype[Symbol.iterator]){var y="values"in Array.prototype,f="entries"in Array.prototype,l="keys"in Array.prototype;y||(Array.prototype.values=function(){return new p(this,"value")}),f||(Array.prototype.entries=function(){return new p(this,"key+value")}),l||(Array.prototype.keys=function(){return new p(this,"key")}),Array.prototype[Symbol.iterator]=Array.prototype.values}if("function"!=typeof String.prototype[Symbol.iterator]&&(String.prototype[Symbol.iterator]=function(){return new a(this,"value")}),"function"!=typeof NodeList.prototype[Symbol.iterator]){var h="values"in NodeList.prototype,b="entries"in NodeList.prototype,w="keys"in NodeList.prototype;h||(NodeList.prototype.values=function(){return new p(this,"value")}),b||(NodeList.prototype.entries=function(){return new p(this,"key+value")}),w||(NodeList.prototype.keys=function(){return new p(this,"key")}),NodeList.prototype[Symbol.iterator]=Array.prototype.values}}();
+!function(){"use strict";function t(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function e(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function o(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function r(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function i(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function s(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}var u=void 0;try{u=self}catch(t){try{u=__webpack_require__.g}catch(t){u=window}}var c=function(){function e(o,r){t(this,e),this.cursor=0,this.collection=o,this.kind=r}return e.prototype.next=function(){this.done=this.cursor===this.collection.length;var t={done:this.done,value:this.done?void 0:"value"===this.kind||"key"===this.kind?this.collection[this.cursor]:[this.cursor,this.collection[this.cursor]]};return this.cursor++,t},e}(),a=function(t){function n(r,i){e(this,n);var s=o(this,t.call(this,r,i));return s}return r(n,t),n.prototype.toString=function(){return"[object String Iterator]"},n}(c),p=function(t){function e(o,r){n(this,e);var s=i(this,t.call(this,o,r));return s}return s(e,t),e.prototype.toString=function(){return"[object Array Iterator]"},e}(c);if("function"!=typeof Array.prototype[Symbol.iterator]){var y="values"in Array.prototype,f="entries"in Array.prototype,l="keys"in Array.prototype;y||(Array.prototype.values=function(){return new p(this,"value")}),f||(Array.prototype.entries=function(){return new p(this,"key+value")}),l||(Array.prototype.keys=function(){return new p(this,"key")}),Array.prototype[Symbol.iterator]=Array.prototype.values}if("function"!=typeof String.prototype[Symbol.iterator]&&(String.prototype[Symbol.iterator]=function(){return new a(this,"value")}),"function"!=typeof NodeList.prototype[Symbol.iterator]){var h="values"in NodeList.prototype,b="entries"in NodeList.prototype,w="keys"in NodeList.prototype;h||(NodeList.prototype.values=function(){return new p(this,"value")}),b||(NodeList.prototype.entries=function(){return new p(this,"key+value")}),w||(NodeList.prototype.keys=function(){return new p(this,"key")}),NodeList.prototype[Symbol.iterator]=Array.prototype.values}}();
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -10739,8 +13447,7 @@ if (typeof Object.assign !== "function") {
 /*!****************************************!*\
   !*** ./node_modules/lodash/_Symbol.js ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var root = __webpack_require__(/*! ./_root */ "./node_modules/lodash/_root.js");
 
@@ -10756,8 +13463,7 @@ module.exports = Symbol;
 /*!******************************************!*\
   !*** ./node_modules/lodash/_arrayMap.js ***!
   \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((module) => {
 
 /**
  * A specialized version of `_.map` for arrays without support for iteratee
@@ -10788,8 +13494,7 @@ module.exports = arrayMap;
 /*!********************************************!*\
   !*** ./node_modules/lodash/_baseGetTag.js ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js"),
     getRawTag = __webpack_require__(/*! ./_getRawTag */ "./node_modules/lodash/_getRawTag.js"),
@@ -10827,8 +13532,7 @@ module.exports = baseGetTag;
 /*!************************************************!*\
   !*** ./node_modules/lodash/_basePropertyOf.js ***!
   \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((module) => {
 
 /**
  * The base implementation of `_.propertyOf` without support for deep paths.
@@ -10852,8 +13556,7 @@ module.exports = basePropertyOf;
 /*!**********************************************!*\
   !*** ./node_modules/lodash/_baseToString.js ***!
   \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js"),
     arrayMap = __webpack_require__(/*! ./_arrayMap */ "./node_modules/lodash/_arrayMap.js"),
@@ -10900,15 +13603,13 @@ module.exports = baseToString;
 /*!********************************************!*\
   !*** ./node_modules/lodash/_freeGlobal.js ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof __webpack_require__.g == 'object' && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
 
 module.exports = freeGlobal;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -10916,8 +13617,7 @@ module.exports = freeGlobal;
 /*!*******************************************!*\
   !*** ./node_modules/lodash/_getRawTag.js ***!
   \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var Symbol = __webpack_require__(/*! ./_Symbol */ "./node_modules/lodash/_Symbol.js");
 
@@ -10973,8 +13673,7 @@ module.exports = getRawTag;
 /*!************************************************!*\
   !*** ./node_modules/lodash/_objectToString.js ***!
   \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((module) => {
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -11006,8 +13705,7 @@ module.exports = objectToString;
 /*!**************************************!*\
   !*** ./node_modules/lodash/_root.js ***!
   \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ "./node_modules/lodash/_freeGlobal.js");
 
@@ -11026,8 +13724,7 @@ module.exports = root;
 /*!**************************************************!*\
   !*** ./node_modules/lodash/_unescapeHtmlChar.js ***!
   \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var basePropertyOf = __webpack_require__(/*! ./_basePropertyOf */ "./node_modules/lodash/_basePropertyOf.js");
 
@@ -11058,8 +13755,7 @@ module.exports = unescapeHtmlChar;
 /*!****************************************!*\
   !*** ./node_modules/lodash/isArray.js ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((module) => {
 
 /**
  * Checks if `value` is classified as an `Array` object.
@@ -11095,8 +13791,7 @@ module.exports = isArray;
 /*!*********************************************!*\
   !*** ./node_modules/lodash/isObjectLike.js ***!
   \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((module) => {
 
 /**
  * Checks if `value` is object-like. A value is object-like if it's not `null`
@@ -11135,8 +13830,7 @@ module.exports = isObjectLike;
 /*!*****************************************!*\
   !*** ./node_modules/lodash/isSymbol.js ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ "./node_modules/lodash/_baseGetTag.js"),
     isObjectLike = __webpack_require__(/*! ./isObjectLike */ "./node_modules/lodash/isObjectLike.js");
@@ -11175,8 +13869,7 @@ module.exports = isSymbol;
 /*!*****************************************!*\
   !*** ./node_modules/lodash/toString.js ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var baseToString = __webpack_require__(/*! ./_baseToString */ "./node_modules/lodash/_baseToString.js");
 
@@ -11214,8 +13907,7 @@ module.exports = toString;
 /*!*****************************************!*\
   !*** ./node_modules/lodash/unescape.js ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var toString = __webpack_require__(/*! ./toString */ "./node_modules/lodash/toString.js"),
     unescapeHtmlChar = __webpack_require__(/*! ./_unescapeHtmlChar */ "./node_modules/lodash/_unescapeHtmlChar.js");
@@ -11255,207 +13947,11 @@ module.exports = unescape;
 
 /***/ }),
 
-/***/ "./node_modules/process/browser.js":
-/*!*****************************************!*\
-  !*** ./node_modules/process/browser.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-
 /***/ "./node_modules/type/function/is.js":
 /*!******************************************!*\
   !*** ./node_modules/type/function/is.js ***!
   \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -11485,8 +13981,7 @@ module.exports = function (value) {
 /*!****************************************!*\
   !*** ./node_modules/type/object/is.js ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -11508,8 +14003,7 @@ module.exports = function (value) {
 /*!************************************************!*\
   !*** ./node_modules/type/plain-function/is.js ***!
   \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -11531,8 +14025,7 @@ module.exports = function (value) {
 /*!*******************************************!*\
   !*** ./node_modules/type/prototype/is.js ***!
   \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
@@ -11556,8 +14049,7 @@ module.exports = function (value) {
 /*!***************************************!*\
   !*** ./node_modules/type/value/is.js ***!
   \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module) => {
 
 "use strict";
 
@@ -11570,51 +14062,21 @@ module.exports = function (value) { return value !== _undefined && value !== nul
 
 /***/ }),
 
-/***/ "./node_modules/webpack/buildin/global.js":
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
 /***/ "./node_modules/whatwg-fetch/fetch.js":
 /*!********************************************!*\
   !*** ./node_modules/whatwg-fetch/fetch.js ***!
   \********************************************/
-/*! exports provided: Headers, Request, Response, DOMException, fetch */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Headers", function() { return Headers; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Request", function() { return Request; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Response", function() { return Response; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DOMException", function() { return DOMException; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetch", function() { return fetch; });
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DOMException": () => (/* binding */ DOMException),
+/* harmony export */   "Headers": () => (/* binding */ Headers),
+/* harmony export */   "Request": () => (/* binding */ Request),
+/* harmony export */   "Response": () => (/* binding */ Response),
+/* harmony export */   "fetch": () => (/* binding */ fetch)
+/* harmony export */ });
 var global =
   (typeof globalThis !== 'undefined' && globalThis) ||
   (typeof self !== 'undefined' && self) ||
@@ -12222,1451 +14684,96 @@ if (!global.fetch) {
 }
 
 
-/***/ }),
+/***/ })
 
-/***/ "./source/js/classes/AjaxUploadField.js":
-/*!**********************************************!*\
-  !*** ./source/js/classes/AjaxUploadField.js ***!
-  \**********************************************/
-/*! exports provided: AjaxUploadField */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AjaxUploadField", function() { return AjaxUploadField; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/unescape */ "./node_modules/lodash/unescape.js");
-/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_unescape__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
-/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
-
-
-
-
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-
-var AjaxUploadField = /*#__PURE__*/function (_Field) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(AjaxUploadField, _Field);
-
-  var _super = _createSuper(AjaxUploadField);
-
-  function AjaxUploadField(el) {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, AjaxUploadField);
-
-    _this = _super.call(this, el);
-    var template = el.querySelector('.flex-template'); // Remove template from DOM (to avoid submitting invalid data with form)
-
-    template.parentNode.removeChild(template); // Make some adjustments to template
-
-    template.removeAttribute('hidden');
-    template.classList.remove('flex-template');
-    _this._config = JSON.parse(lodash_unescape__WEBPACK_IMPORTED_MODULE_6___default()(el.getAttribute('data-config')));
-    _this._template = template.cloneNode(true);
-
-    if (_this.isAdvancedUpload) {
-      // Disable field if the max upload count has already been met.
-      if (_this.count >= _this.maxUploads) {
-        _this.disable();
-      } // Setup file handler for input field
-
-
-      _this.input.addEventListener('change', _this.fileSelectHandler.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this))); // Setup drag and drop events
-
-
-      ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function (event) {
-        return _this.dropZone.addEventListener(event, function (e) {
-          e.stopPropagation();
-          e.preventDefault();
-        });
-      });
-      ['dragover', 'dragenter'].forEach(function (event) {
-        return _this.dropZone.addEventListener(event, function () {
-          _this.dropZone.classList.add('--is-active');
-        });
-      });
-      ['dragleave', 'dragend', 'drop'].forEach(function (event) {
-        return _this.dropZone.addEventListener(event, function () {
-          _this.dropZone.classList.remove('--is-active');
-        });
-      });
-
-      _this.dropZone.addEventListener('drop', _this.fileSelectHandler.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this))); // Add class to trigger display of advanced features
-
-
-      _this.el.classList.add('--has-advanced-upload');
-    } // Setup click handlers for any pre-existing images in gallery
-
-
-    _this.items.forEach(function (el) {
-      el.addEventListener('click', _this.onClickRemoveHandler.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this)));
-    });
-
-    return _this;
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(AjaxUploadField, [{
-    key: "add",
-    value: function add(json, file) {
-      var template = this.template;
-      var span = template.querySelector('span');
-      var id = json.id;
-
-      if (this.fileTypeMatches(file, 'image')) {
-        var img = document.createElement('img');
-        var src = json.source_url;
-
-        if (json.media_details.sizes[this.imageSize]) {
-          src = json.media_details.sizes[this.imageSize].source_url;
-        }
-
-        img.setAttribute('src', src);
-        span.appendChild(img);
-      } else {
-        span.textContent = file.name;
-        template.classList.add('--document');
-      }
-
-      template.querySelector('input').value = id;
-      this.gallery.appendChild(template);
-      template.addEventListener('click', this.onClickRemoveHandler.bind(this));
-      this.dispatch('add', {
-        target: template
-      });
-    }
-  }, {
-    key: "disable",
-    value: function disable() {
-      if (!this.isDisabled) {
-        this.input.setAttribute('disabled', 'disabled');
-        this.dropZone.classList.add('--is-disabled');
-      }
-    }
-  }, {
-    key: "enable",
-    value: function enable() {
-      if (this.isDisabled) {
-        this.input.removeAttribute('disabled');
-        this.dropZone.classList.remove('--is-disabled');
-      }
-    }
-  }, {
-    key: "fileExtensionMatches",
-    value: function fileExtensionMatches(file, ext) {
-      return this.getFileExtension(file) === ext.toLowerCase();
-    }
-  }, {
-    key: "fileSelectHandler",
-    value: function fileSelectHandler(e) {
-      var _this2 = this;
-
-      this.dropZone.classList.add('--is-uploading');
-      var files = Array.from(e.target.files || e.dataTransfer.files);
-      var totalFileCount = files.length + this.count;
-
-      if (totalFileCount <= this.maxUploads) {
-        files.forEach(function (file) {
-          console.log(file, _this2.isValidMimeType(file.type));
-          var reader = new FileReader();
-
-          if (!_this2.isValidMimeType(file.type)) {
-            _this2.showError('invalid-type');
-
-            return;
-          }
-
-          if (_this2.maxSize && file.size > _this2.maxSize) {
-            _this2.showError('max-size');
-
-            return;
-          }
-
-          if (_this2.fileTypeMatches(file, 'image')) {
-            reader.onload = function (e) {
-              reader.readAsDataURL(file);
-            };
-          }
-
-          if (_this2.fileTypeMatches(file, 'text')) {
-            reader.onload = function (e) {
-              reader.readAsText(file);
-            };
-          }
-
-          var xhr = new XMLHttpRequest();
-
-          if (xhr.upload) {
-            xhr.open('POST', _FlexFields__WEBPACK_IMPORTED_MODULE_8__["flexFields"].restUrl + 'wp/v2/media', true);
-            xhr.responseType = 'json';
-
-            xhr.onload = function (e) {
-              if (xhr.status >= 200 && xhr.status < 400) {
-                _this2.dropZone.classList.remove('--is-uploading');
-
-                _this2.dropZone.classList.add('--is-success');
-
-                setTimeout(function () {
-                  _this2.dropZone.classList.remove('--is-success');
-                }, 2000);
-
-                _this2.add(xhr.response, file); // Disable field if the max upload count has already been met.
-
-
-                if (_this2.count >= _this2.maxUploads) {
-                  _this2.disable();
-                }
-              } else {
-                _this2.showError('failure');
-              }
-            };
-
-            xhr.onerror = function (e) {
-              _this2.showError('failure');
-            };
-
-            xhr.setRequestHeader('X-WP-Nonce', _FlexFields__WEBPACK_IMPORTED_MODULE_8__["flexFields"].restNonce);
-            xhr.setRequestHeader('Content-Disposition', 'attachment; filename="' + file.name + '"');
-            xhr.setRequestHeader('Content-Type', file.type);
-            xhr.send(file);
-          }
-        });
-      } else {
-        this.showError('max-upload');
-      }
-    }
-  }, {
-    key: "showError",
-    value: function showError() {
-      var _this3 = this;
-
-      var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'failure';
-      this.dropZone.classList.remove('--is-uploading');
-      this.dropZone.classList.remove('--is-success');
-      this.dropZone.classList.add('--is-error');
-      this.dropZone.classList.add("--is-".concat(type));
-      setTimeout(function () {
-        _this3.dropZone.classList.remove('--is-error');
-
-        _this3.dropZone.classList.remove("--is-".concat(type));
-      }, 3500);
-    }
-  }, {
-    key: "fileTypeMatches",
-    value: function fileTypeMatches(file, type) {
-      return file.type.indexOf(type) === 0;
-    }
-  }, {
-    key: "fileMimeTypeMatches",
-    value: function fileMimeTypeMatches(file, mimetype) {
-      return file.type === mimetype;
-    }
-  }, {
-    key: "isValidMimeType",
-    value: function isValidMimeType(mimetype) {
-      var isValid = !this.allowedMimeTypes.length;
-
-      if (!isValid) {
-        for (var i = 0; i < this.allowedMimeTypes.length; i++) {
-          isValid = this.allowedMimeTypes[i] === mimetype;
-
-          if (isValid) {
-            break;
-          }
-        }
-      }
-
-      return isValid;
-    }
-  }, {
-    key: "getFileExtension",
-    value: function getFileExtension(file) {
-      return file.name.split('.').pop().toLowerCase();
-    }
-  }, {
-    key: "onClickRemoveHandler",
-    value: function onClickRemoveHandler(e) {
-      e.preventDefault();
-      var target = e.currentTarget;
-      this.dispatch('remove', {
-        id: target.querySelector('input').value,
-        target: target
-      });
-      target.parentNode.removeChild(target); // Enable field if the max upload count has already been met.
-
-      if (this.count < this.maxUploads) {
-        this.enable();
-      }
-    }
-  }, {
-    key: "count",
-    get: function get() {
-      return this.gallery.querySelectorAll('a').length;
-    }
-  }, {
-    key: "allowedMimeTypes",
-    get: function get() {
-      return this._config.allowedMimeTypes || [];
-    }
-  }, {
-    key: "dropZone",
-    get: function get() {
-      return this.el.querySelector('.flex-field-ajax-upload__drop-zone');
-    }
-  }, {
-    key: "gallery",
-    get: function get() {
-      return this.el.querySelector('.flex-field-ajax-upload__gallery');
-    }
-  }, {
-    key: "imageSize",
-    get: function get() {
-      return this._config.imageSize;
-    }
-  }, {
-    key: "input",
-    get: function get() {
-      return this.el.querySelector('input[type="file"]');
-    }
-  }, {
-    key: "isAdvancedUpload",
-    get: function get() {
-      var el = this.el;
-      return ('draggable' in el || 'ondragstart' in el && 'ondrop' in el) && 'FormData' in window && 'FileReader' in window;
-    }
-  }, {
-    key: "isDisabled",
-    get: function get() {
-      return this.input.hasAttribute('disabled');
-    }
-  }, {
-    key: "items",
-    get: function get() {
-      return Array.from(this.gallery.children);
-    }
-  }, {
-    key: "maxUploads",
-    get: function get() {
-      return parseInt(this._config.maxUploads || 1, 10);
-    }
-  }, {
-    key: "maxSize",
-    get: function get() {
-      return parseInt(this._config.maxSize || 0, 10) * 1000000;
-    }
-  }, {
-    key: "template",
-    get: function get() {
-      return this._template.cloneNode(true);
-    }
-  }]);
-
-  return AjaxUploadField;
-}(_Field__WEBPACK_IMPORTED_MODULE_7__["Field"]);
-_FlexFields__WEBPACK_IMPORTED_MODULE_8__["flexFields"].addFieldClass(AjaxUploadField);
-
-/***/ }),
-
-/***/ "./source/js/classes/ChoicesField.js":
-/*!*******************************************!*\
-  !*** ./source/js/classes/ChoicesField.js ***!
-  \*******************************************/
-/*! exports provided: ChoicesField */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChoicesField", function() { return ChoicesField; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var choices_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! choices.js */ "./node_modules/choices.js/public/assets/scripts/choices.js");
-/* harmony import */ var choices_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(choices_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash/unescape */ "./node_modules/lodash/unescape.js");
-/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_unescape__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
-/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
-
-
-
-
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-
-
-var ChoicesField = /*#__PURE__*/function (_Field) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(ChoicesField, _Field);
-
-  var _super = _createSuper(ChoicesField);
-
-  function ChoicesField(el) {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, ChoicesField);
-
-    _this = _super.call(this, el);
-
-    _this.select.addEventListener('click', function (e) {
-      return e.stopPropagation();
-    });
-
-    _this.select.addEventListener('change', _this.onChange.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this)));
-
-    _this._choices = new choices_js__WEBPACK_IMPORTED_MODULE_6___default.a(_this.select, _this.config);
-
-    if (_this.config.placeholderValue && _this.select.hasAttribute('multiple')) {
-      _this._choices.input.element.setAttribute('placeholder', _this.config.placeholderValue);
-    }
-
-    return _this;
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(ChoicesField, [{
-    key: "onChange",
-    value: function onChange(e) {
-      this.dispatch('change', {
-        target: e.target
-      });
-    }
-  }, {
-    key: "choices",
-    get: function get() {
-      return this._choices;
-    }
-  }, {
-    key: "config",
-    get: function get() {
-      var select = this.el.querySelector('[data-choices]');
-      return JSON.parse(lodash_unescape__WEBPACK_IMPORTED_MODULE_7___default()(select.getAttribute('data-choices')));
-    }
-  }, {
-    key: "select",
-    get: function get() {
-      return this.el.querySelector('[data-choices]');
-    }
-  }, {
-    key: "value",
-    get: function get() {
-      return this.choices.getValue();
-    }
-  }]);
-
-  return ChoicesField;
-}(_Field__WEBPACK_IMPORTED_MODULE_8__["Field"]);
-_FlexFields__WEBPACK_IMPORTED_MODULE_9__["flexFields"].addFieldClass(ChoicesField);
-
-/***/ }),
-
-/***/ "./source/js/classes/Field.js":
-/*!************************************!*\
-  !*** ./source/js/classes/Field.js ***!
-  \************************************/
-/*! exports provided: Field */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Field", function() { return Field; });
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-var Field = /*#__PURE__*/function () {
-  function Field(el) {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, Field);
-
-    this.listeners = {}; // Make field instance accessible from element
-
-    el.flexField = this; // Make element accessible from field instance
-
-    this.el = el; // Set field name
-
-    this._name = el.getAttribute('data-name'); // Set field type (defaults to input, subclasses should override)
-
-    this._type = el.getAttribute('data-type'); // Set default value (subclasses should override)
-
-    this._value = '';
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(Field, [{
-    key: "addEventListener",
-    value: function addEventListener(type, callback) {
-      var listener = {
-        type: type,
-        callback: callback
-      };
-
-      if (this.listeners[type]) {
-        this.listeners[type].push(listener);
-      } else {
-        this.listeners[type] = [listener];
-      }
-
-      return listener;
-    }
-  }, {
-    key: "removeEventListener",
-    value: function removeEventListener(listener) {
-      var listeners = this.listeners[listener.type];
-
-      if (listeners) {
-        var index = listeners.indexOf(listener);
-
-        if (index > -1) {
-          this.listeners[listener.type] = listeners.splice(index, 1);
-        }
-      }
-    }
-  }, {
-    key: "dispatch",
-    value: function dispatch(type) {
-      var _this = this;
-
-      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-      if (this.listeners[type]) {
-        this.listeners[type].forEach(function (listener) {
-          listener.callback.apply(_this, [_objectSpread(_objectSpread({}, data), {}, {
-            type: type
-          })]);
-        });
-      }
-    }
-  }, {
-    key: "show",
-    value: function show() {
-      this.el.removeAttribute('hidden');
-    }
-  }, {
-    key: "hide",
-    value: function hide() {
-      this.el.setAttribute('hidden', 'hidden');
-    }
-  }, {
-    key: "type",
-    get: function get() {
-      return this._type;
-    }
-  }, {
-    key: "name",
-    get: function get() {
-      return this._name;
-    }
-  }, {
-    key: "value",
-    get: function get() {
-      return this._value;
-    },
-    set: function set(value) {
-      this._value = value;
-    }
-  }]);
-
-  return Field;
-}();
-
-/***/ }),
-
-/***/ "./source/js/classes/FlatpickrField.js":
-/*!*********************************************!*\
-  !*** ./source/js/classes/FlatpickrField.js ***!
-  \*********************************************/
-/*! exports provided: FlatpickrField */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FlatpickrField", function() { return FlatpickrField; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var flatpickr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flatpickr */ "./node_modules/flatpickr/dist/esm/index.js");
-/* harmony import */ var flatpickr_dist_plugins_confirmDate_confirmDate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! flatpickr/dist/plugins/confirmDate/confirmDate */ "./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.js");
-/* harmony import */ var flatpickr_dist_plugins_confirmDate_confirmDate__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(flatpickr_dist_plugins_confirmDate_confirmDate__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash/unescape */ "./node_modules/lodash/unescape.js");
-/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_unescape__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
-/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
-
-
-
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-
-
-
-var FlatpickrField = /*#__PURE__*/function (_Field) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(FlatpickrField, _Field);
-
-  var _super = _createSuper(FlatpickrField);
-
-  function FlatpickrField(el) {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, FlatpickrField);
-
-    _this = _super.call(this, el);
-    _this._flatpickr = Object(flatpickr__WEBPACK_IMPORTED_MODULE_5__["default"])(_this.input, _this.config);
-    return _this;
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(FlatpickrField, [{
-    key: "clearButton",
-    get: function get() {
-      return this.el.querySelector('.flatpickr-reset');
-    }
-  }, {
-    key: "config",
-    get: function get() {
-      var _this2 = this;
-
-      var config = JSON.parse(lodash_unescape__WEBPACK_IMPORTED_MODULE_7___default()(this.input.getAttribute('data-flatpickr')));
-
-      config.onReady = function (dateObj, dateStr, instance) {
-        _this2.clearButton.addEventListener('click', function (e) {
-          e.preventDefault();
-          instance.clear();
-          instance.close();
-        });
-      };
-
-      config.plugins = [new flatpickr_dist_plugins_confirmDate_confirmDate__WEBPACK_IMPORTED_MODULE_6___default.a({})];
-      return config;
-    }
-  }, {
-    key: "flatpickr",
-    get: function get() {
-      return this._flatpickr;
-    }
-  }, {
-    key: "input",
-    get: function get() {
-      return this.el.querySelector('[data-flatpickr]');
-    }
-  }]);
-
-  return FlatpickrField;
-}(_Field__WEBPACK_IMPORTED_MODULE_8__["Field"]);
-_FlexFields__WEBPACK_IMPORTED_MODULE_9__["flexFields"].addFieldClass(FlatpickrField);
-
-/***/ }),
-
-/***/ "./source/js/classes/FlexFields.js":
-/*!*****************************************!*\
-  !*** ./source/js/classes/FlexFields.js ***!
-  \*****************************************/
-/*! exports provided: flexFields */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "flexFields", function() { return flexFields; });
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-var FlexFields = /*#__PURE__*/function () {
-  function FlexFields() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, FlexFields);
-
-    this.classes = {};
-    this.listeners = {};
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(FlexFields, [{
-    key: "addEventListener",
-    value: function addEventListener(type, callback) {
-      var listener = {
-        type: type,
-        callback: callback
-      };
-
-      if (this.listeners[type]) {
-        this.listeners[type].push(listener);
-      } else {
-        this.listeners[type] = [listener];
-      }
-
-      return listener;
-    }
-  }, {
-    key: "removeEventListener",
-    value: function removeEventListener(listener) {
-      var listeners = this.listeners[listener.type];
-
-      if (listeners) {
-        var index = listeners.indexOf(listener);
-
-        if (index > -1) {
-          this.listeners[listener.type] = listeners.splice(index, 1);
-        }
-      }
-    }
-  }, {
-    key: "dispatch",
-    value: function dispatch(type) {
-      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var scope = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-
-      if (this.listeners[type]) {
-        this.listeners[type].forEach(function (listener) {
-          listener.callback.apply(scope, [_objectSpread(_objectSpread({}, data), {}, {
-            type: type
-          })]);
-        });
-      }
-    }
-  }, {
-    key: "addFieldClass",
-    value: function addFieldClass(classFunction) {
-      this.classes[classFunction.name] = classFunction;
-    }
-  }, {
-    key: "getFieldClass",
-    value: function getFieldClass(className) {
-      return this.classes[className];
-    }
-  }, {
-    key: "hasFieldClass",
-    value: function hasFieldClass(className) {
-      return typeof this.classes[className] !== 'undefined';
-    }
-  }]);
-
-  return FlexFields;
-}();
-
-var flexFields = new FlexFields();
-
-if (window.flexFields) {
-  for (var _i = 0, _Object$entries = Object.entries(window.flexFields); _i < _Object$entries.length; _i++) {
-    var _Object$entries$_i = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_Object$entries[_i], 2),
-        key = _Object$entries$_i[0],
-        value = _Object$entries$_i[1];
-
-    if (!flexFields.hasOwnProperty(key)) {
-      flexFields[key] = value;
-    }
-  }
-}
-
-window.flexFields = flexFields;
-
-
-/***/ }),
-
-/***/ "./source/js/classes/MediaUploadField.js":
-/*!***********************************************!*\
-  !*** ./source/js/classes/MediaUploadField.js ***!
-  \***********************************************/
-/*! exports provided: MediaUploadField */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MediaUploadField", function() { return MediaUploadField; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
-/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
-
-
-
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-var MediaUploadField = /*#__PURE__*/function (_Field) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(MediaUploadField, _Field);
-
-  var _super = _createSuper(MediaUploadField);
-
-  function MediaUploadField(el) {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, MediaUploadField);
-
-    _this = _super.call(this, el); // Setup our custom media upload modal
-
-    _this.frame = wp.media({
-      title: 'Set Featured Image',
-      button: {
-        text: 'Select'
-      },
-      multiple: false
-    });
-
-    _this.frame.on('select', function () {
-      // Get media attachment details from the frame state
-      var attachment = _this.frame.state().get('selection').first().toJSON(); // Set field value
-
-
-      _this.value = attachment.id || ''; // Set image source
-
-      _this.setImageSource((attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url) || '');
-    }); // Add click handler for the "Add Image" button.
-
-
-    _this.addButton.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      _this.frame.open();
-    }); // Add click handler for the "Remove Image" button.
-
-
-    _this.removeButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      _this.value = '';
-    }); // Toggle display of Add/Remove buttons
-
-
-    _this.toggleAddButton();
-
-    _this.toggleRemoveButton();
-
-    _this.toggleGallery();
-
-    return _this;
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(MediaUploadField, [{
-    key: "toggleAddButton",
-    value: function toggleAddButton() {
-      this.addButton.hidden = Boolean(this.input.value);
-    }
-  }, {
-    key: "toggleRemoveButton",
-    value: function toggleRemoveButton() {
-      this.removeButton.hidden = Boolean(!this.input.value);
-    }
-  }, {
-    key: "toggleGallery",
-    value: function toggleGallery() {
-      this.gallery.hidden = Boolean(!this.input.value);
-    }
-  }, {
-    key: "setImageSource",
-    value: function setImageSource(src) {
-      this.image.setAttribute('src', src);
-    }
-  }, {
-    key: "gallery",
-    get: function get() {
-      return this.el.querySelector('.flex-field-gallery');
-    }
-  }, {
-    key: "image",
-    get: function get() {
-      return this.el.querySelector('img');
-    }
-  }, {
-    key: "input",
-    get: function get() {
-      return this.el.querySelector('input[type="hidden"]');
-    }
-  }, {
-    key: "addButton",
-    get: function get() {
-      return this.el.querySelector('[data-action="add"]');
-    }
-  }, {
-    key: "removeButton",
-    get: function get() {
-      return this.el.querySelector('[data-action="remove"]');
-    }
-  }, {
-    key: "value",
-    get: function get() {
-      return this.input.value;
-    },
-    set: function set(value) {
-      if (!value) {
-        this.setImageSource('');
-      }
-
-      this.input.value = value;
-      this.toggleAddButton();
-      this.toggleRemoveButton();
-      this.toggleGallery();
-    }
-  }]);
-
-  return MediaUploadField;
-}(_Field__WEBPACK_IMPORTED_MODULE_5__["Field"]);
-_FlexFields__WEBPACK_IMPORTED_MODULE_6__["flexFields"].addFieldClass(MediaUploadField);
-
-/***/ }),
-
-/***/ "./source/js/classes/RepeatingField.js":
-/*!*********************************************!*\
-  !*** ./source/js/classes/RepeatingField.js ***!
-  \*********************************************/
-/*! exports provided: RepeatingField */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RepeatingField", function() { return RepeatingField; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
-/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
-
-
-
-
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-var RepeatingField = /*#__PURE__*/function (_Field) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(RepeatingField, _Field);
-
-  var _super = _createSuper(RepeatingField);
-
-  function RepeatingField(el) {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, RepeatingField);
-
-    _this = _super.call(this, el);
-    _this._name = _this._name.replace('[x]', '');
-    var addButton = el.querySelector('[data-action="add"][data-action-type="repeating"]');
-    var deleteButtons = el.querySelectorAll('[data-action="delete"][data-action-type="repeating"]');
-    var templateWrapper = el.querySelector('.flex-field-template'); // Remove template wrapper and contents from DOM (don't want to submit with form)
-
-    templateWrapper.parentNode.removeChild(templateWrapper); // Set index
-
-    _this._index = _this.count; // Set field type
-
-    _this._type = 'repeating'; // Set template to be used for child fields
-
-    _this._template = templateWrapper.firstElementChild.cloneNode(true); // Setup click handler for add button
-
-    addButton.addEventListener('click', _this.onClickAddButton.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this))); // Setup click handler for delete buttons
-
-    Array.from(deleteButtons).forEach(function (deleteButton) {
-      deleteButton.addEventListener('click', _this.onClickDeleteButton.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this)));
-    });
-    return _this;
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(RepeatingField, [{
-    key: "onClickAddButton",
-    value: function onClickAddButton() {
-      var _this2 = this;
-
-      var target = this.template; // Setup click handler for delete button
-
-      target.lastElementChild.addEventListener('click', this.onClickDeleteButton.bind(this)); // Replace field names as needed
-
-      Array.from(target.querySelectorAll("[name*=\"".concat(this.name, "[x]\"]"))).forEach(function (el) {
-        var name = el.getAttribute('name');
-        el.setAttribute('name', name.replace("".concat(_this2.name, "[x]"), "".concat(_this2.name, "[").concat(_this2._index, "]")));
-      }); // Append new element to DOM
-
-      this.container.appendChild(target); // Dispatch our custom addChild event
-
-      this.dispatch('addChild', {
-        target: target
-      }); // Globally dispatch
-
-      _FlexFields__WEBPACK_IMPORTED_MODULE_7__["flexFields"].dispatch('addChild', {
-        target: target
-      }, this);
-      this._index++;
-    }
-  }, {
-    key: "onClickDeleteButton",
-    value: function onClickDeleteButton(e) {
-      this.container.removeChild(e.target.parentNode);
-    }
-  }, {
-    key: "children",
-    get: function get() {
-      return Array.from(this.container.children);
-    }
-  }, {
-    key: "container",
-    get: function get() {
-      return this.el.querySelector('.flex-field-collection');
-    }
-  }, {
-    key: "count",
-    get: function get() {
-      return this.children.length;
-    }
-  }, {
-    key: "template",
-    get: function get() {
-      return this._template.cloneNode(true);
-    }
-  }]);
-
-  return RepeatingField;
-}(_Field__WEBPACK_IMPORTED_MODULE_6__["Field"]);
-_FlexFields__WEBPACK_IMPORTED_MODULE_7__["flexFields"].addFieldClass(RepeatingField);
-
-/***/ }),
-
-/***/ "./source/js/classes/RepeatingTextField.js":
-/*!*************************************************!*\
-  !*** ./source/js/classes/RepeatingTextField.js ***!
-  \*************************************************/
-/*! exports provided: RepeatingTextField */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RepeatingTextField", function() { return RepeatingTextField; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
-/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
-
-
-
-
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-var RepeatingTextField = /*#__PURE__*/function (_Field) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(RepeatingTextField, _Field);
-
-  var _super = _createSuper(RepeatingTextField);
-
-  function RepeatingTextField(el) {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, RepeatingTextField);
-
-    _this = _super.call(this, el); // Setup template
-
-    _this._template = _this.container.lastElementChild.cloneNode(true);
-
-    var addButton = _this.el.querySelector('[data-action="add"]');
-
-    var deleteButtons = _this.el.querySelectorAll('[data-action="delete"]');
-
-    _this.el.setAttribute('data-flex-initialized', ''); // Add click handler for add button
-
-
-    addButton.addEventListener('click', _this.onClickAddButton.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this)));
-    Array.from(deleteButtons).forEach(function (el) {
-      return el.addEventListener('click', _this.onClickDeleteButton.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this)));
-    });
-    return _this;
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(RepeatingTextField, [{
-    key: "onClickAddButton",
-    value: function onClickAddButton() {
-      var target = this.template;
-      var deleteButton = target.querySelector('button'); // Add handler for delete button
-
-      deleteButton.addEventListener('click', this.onClickDeleteButton.bind(this));
-      this.container.appendChild(target);
-      this.dispatch('addChild', {
-        target: target
-      });
-    }
-  }, {
-    key: "onClickDeleteButton",
-    value: function onClickDeleteButton(e) {
-      this.container.removeChild(e.target.parentNode);
-    }
-  }, {
-    key: "container",
-    get: function get() {
-      return this.el.querySelector('.flex-field-collection');
-    }
-  }, {
-    key: "template",
-    get: function get() {
-      return this._template.cloneNode(true);
-    }
-  }]);
-
-  return RepeatingTextField;
-}(_Field__WEBPACK_IMPORTED_MODULE_6__["Field"]);
-_FlexFields__WEBPACK_IMPORTED_MODULE_7__["flexFields"].addFieldClass(RepeatingTextField);
-
-/***/ }),
-
-/***/ "./source/js/classes/TinyMceField.js":
-/*!*******************************************!*\
-  !*** ./source/js/classes/TinyMceField.js ***!
-  \*******************************************/
-/*! exports provided: TinyMceField */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TinyMceField", function() { return TinyMceField; });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash/unescape */ "./node_modules/lodash/unescape.js");
-/* harmony import */ var lodash_unescape__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_unescape__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _Field__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Field */ "./source/js/classes/Field.js");
-/* harmony import */ var _FlexFields__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./FlexFields */ "./source/js/classes/FlexFields.js");
-
-
-
-
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4___default()(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-
-var TinyMceField = /*#__PURE__*/function (_Field) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(TinyMceField, _Field);
-
-  var _super = _createSuper(TinyMceField);
-
-  function TinyMceField(el) {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, TinyMceField);
-
-    _this = _super.call(this, el);
-    window.addEventListener('load', _this.setup.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2___default()(_this)));
-    return _this;
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(TinyMceField, [{
-    key: "setup",
-    value: function setup() {
-      wp.editor.initialize(this.textarea.id, this.config);
-      this._editor = window.tinymce.get(this.name);
-    }
-  }, {
-    key: "appendContent",
-    value: function appendContent(content) {
-      this.setContent(this.content + content);
-    }
-  }, {
-    key: "setContent",
-    value: function setContent(content) {
-      this._editor.setContent(content);
-    }
-  }, {
-    key: "focus",
-    value: function focus() {
-      this.editor.focus();
-      this.editor.selection.select(this.editor.getBody(), true);
-      this.editor.selection.collapse(false);
-    }
-  }, {
-    key: "config",
-    get: function get() {
-      return JSON.parse(lodash_unescape__WEBPACK_IMPORTED_MODULE_6___default()(this.textarea.getAttribute('data-config')));
-    }
-  }, {
-    key: "content",
-    get: function get() {
-      return this._editor.getContent();
-    }
-  }, {
-    key: "editor",
-    get: function get() {
-      return this._editor;
-    }
-  }, {
-    key: "textarea",
-    get: function get() {
-      return this.el.querySelector('textarea');
-    }
-  }]);
-
-  return TinyMceField;
-}(_Field__WEBPACK_IMPORTED_MODULE_7__["Field"]);
-_FlexFields__WEBPACK_IMPORTED_MODULE_8__["flexFields"].addFieldClass(TinyMceField);
-
-/***/ }),
-
-/***/ "./source/js/fields/ajax-upload.js":
-/*!*****************************************!*\
-  !*** ./source/js/fields/ajax-upload.js ***!
-  \*****************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _classes_AjaxUploadField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/AjaxUploadField */ "./source/js/classes/AjaxUploadField.js");
-
-Array.from(document.querySelectorAll('.flex-field-ajax-upload')).map(function (el) {
-  return new _classes_AjaxUploadField__WEBPACK_IMPORTED_MODULE_0__["AjaxUploadField"](el);
-});
-
-/***/ }),
-
-/***/ "./source/js/fields/choices.js":
-/*!*************************************!*\
-  !*** ./source/js/fields/choices.js ***!
-  \*************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _classes_ChoicesField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/ChoicesField */ "./source/js/classes/ChoicesField.js");
-
-Array.from(document.querySelectorAll('.flex-field-autocomplete, .flex-field-choices, .flex-field-choices-input')).map(function (el) {
-  return new _classes_ChoicesField__WEBPACK_IMPORTED_MODULE_0__["ChoicesField"](el);
-});
-
-/***/ }),
-
-/***/ "./source/js/fields/flatpickr.js":
-/*!***************************************!*\
-  !*** ./source/js/fields/flatpickr.js ***!
-  \***************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _classes_FlatpickrField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/FlatpickrField */ "./source/js/classes/FlatpickrField.js");
-
-Array.from(document.querySelectorAll('.flex-field-flatpickr')).map(function (el) {
-  return new _classes_FlatpickrField__WEBPACK_IMPORTED_MODULE_0__["FlatpickrField"](el);
-});
-
-/***/ }),
-
-/***/ "./source/js/fields/media-upload.js":
-/*!******************************************!*\
-  !*** ./source/js/fields/media-upload.js ***!
-  \******************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _classes_MediaUploadField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/MediaUploadField */ "./source/js/classes/MediaUploadField.js");
-
-Array.from(document.querySelectorAll('.flex-field-media-upload')).map(function (el) {
-  return new _classes_MediaUploadField__WEBPACK_IMPORTED_MODULE_0__["MediaUploadField"](el);
-});
-
-/***/ }),
-
-/***/ "./source/js/fields/repeating-text.js":
-/*!********************************************!*\
-  !*** ./source/js/fields/repeating-text.js ***!
-  \********************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _classes_RepeatingTextField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/RepeatingTextField */ "./source/js/classes/RepeatingTextField.js");
-/* harmony import */ var _classes_FlexFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../classes/FlexFields */ "./source/js/classes/FlexFields.js");
-
-
-Array.from(document.querySelectorAll('.flex-field-repeating-text')).map(function (el) {
-  return new _classes_RepeatingTextField__WEBPACK_IMPORTED_MODULE_0__["RepeatingTextField"](el);
-}); // Ensure field works in repeating field.
-
-_classes_FlexFields__WEBPACK_IMPORTED_MODULE_1__["flexFields"].addEventListener('addChild', function () {
-  if ('repeating' === this.type) {
-    Array.from(this.el.querySelectorAll('.flex-field-repeating-text:not([data-flex-initialized])')).map(function (el) {
-      new _classes_RepeatingTextField__WEBPACK_IMPORTED_MODULE_0__["RepeatingTextField"](el);
-    });
-  }
-});
-
-/***/ }),
-
-/***/ "./source/js/fields/repeating.js":
-/*!***************************************!*\
-  !*** ./source/js/fields/repeating.js ***!
-  \***************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _classes_RepeatingField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/RepeatingField */ "./source/js/classes/RepeatingField.js");
-
-Array.from(document.querySelectorAll('.flex-field-repeating')).map(function (el) {
-  return new _classes_RepeatingField__WEBPACK_IMPORTED_MODULE_0__["RepeatingField"](el);
-});
-
-/***/ }),
-
-/***/ "./source/js/fields/tiny-mce.js":
-/*!**************************************!*\
-  !*** ./source/js/fields/tiny-mce.js ***!
-  \**************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _classes_TinyMceField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/TinyMceField */ "./source/js/classes/TinyMceField.js");
-/* harmony import */ var _classes_FlexFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../classes/FlexFields */ "./source/js/classes/FlexFields.js");
-
-
-Array.from(document.querySelectorAll('.flex-field-tinymce')).map(function (el) {
-  return new _classes_TinyMceField__WEBPACK_IMPORTED_MODULE_0__["TinyMceField"](el);
-}); // Ensure TinyMCE field works when in a repeating field.
-
-_classes_FlexFields__WEBPACK_IMPORTED_MODULE_1__["flexFields"].addEventListener('addChild', function () {
-  var _this = this;
-
-  if ('repeating' === this.type) {
-    Array.from(this.el.querySelectorAll('.flex-field-tinymce')).map(function (el) {
-      var textarea = el.querySelector('textarea');
-      textarea.setAttribute('id', textarea.getAttribute('id').replace('x', _this._index));
-      var tinyMce = new _classes_TinyMceField__WEBPACK_IMPORTED_MODULE_0__["TinyMceField"](el);
-      tinyMce.setup();
-    });
-  }
-});
-
-/***/ }),
-
-/***/ "./source/js/flex-fields.js":
+var __webpack_exports__ = {};
 /*!**********************************!*\
   !*** ./source/js/flex-fields.js ***!
   \**********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var es6_promise_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! es6-promise/auto */ "./node_modules/es6-promise/auto.js");
 /* harmony import */ var es6_promise_auto__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(es6_promise_auto__WEBPACK_IMPORTED_MODULE_0__);
@@ -13699,87 +14806,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+})();
 
-/***/ }),
-
-/***/ "./source/js/polyfills/closest.js":
-/*!****************************************!*\
-  !*** ./source/js/polyfills/closest.js ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-if (!Element.prototype.matches) {
-  Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-}
-
-if (!Element.prototype.closest) {
-  Element.prototype.closest = function (s) {
-    var el = this;
-
-    if (!document.documentElement.contains(el)) {
-      return null;
-    }
-
-    do {
-      if (el.matches(s)) return el;
-      el = el.parentElement || el.parentNode;
-    } while (el !== null && el.nodeType === 1);
-
-    return null;
-  };
-}
-
-/***/ }),
-
-/***/ "./source/js/polyfills/object.js":
-/*!***************************************!*\
-  !*** ./source/js/polyfills/object.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-if (!Object.entries) {
-  Object.entries = function (obj) {
-    var ownProps = Object.keys(obj),
-        i = ownProps.length,
-        resArray = new Array(i); // preallocate the Array
-
-    while (i--) {
-      resArray[i] = [ownProps[i], obj[ownProps[i]]];
-    }
-
-    return resArray;
-  };
-}
-
-/***/ }),
-
-/***/ "./source/scss/flex-fields.scss":
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
 /*!**************************************!*\
   !*** ./source/scss/flex-fields.scss ***!
   \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
+__webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
-/***/ }),
+})();
 
-/***/ 0:
-/*!*************************************************************************************************************************************************************************************!*\
-  !*** multi ./source/js/flex-fields.js ./source/scss/flex-fields.scss ./node_modules/flatpickr/dist/flatpickr.css ./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.css ***!
-  \*************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(/*! ./source/js/flex-fields.js */"./source/js/flex-fields.js");
-__webpack_require__(/*! ./source/scss/flex-fields.scss */"./source/scss/flex-fields.scss");
-__webpack_require__(/*! ./node_modules/flatpickr/dist/flatpickr.css */"./node_modules/flatpickr/dist/flatpickr.css");
-module.exports = __webpack_require__(/*! ./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.css */"./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.css");
-
-
-/***/ })
-
-/******/ });
+/******/ })()
+;
 //# sourceMappingURL=flex-fields.js.map
